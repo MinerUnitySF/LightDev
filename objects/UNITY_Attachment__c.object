@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>UNITY Attachment object</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Customer_Ultimate_Parent_Text__c</fullName>
+        <description>Text version of the work orders&apos;s customer&apos;s UNITY_Company formula field. This is temporarily used for the Ross community project.</description>
+        <externalId>false</externalId>
+        <label>Customer Ultimate Parent Text</label>
+        <length>250</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Standard_Attachment_Id__c</fullName>
+        <description>It stores standard attachment id</description>
+        <externalId>false</externalId>
+        <label>Standard Attachment Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Check Request Form</fullName>
+                    <default>false</default>
+                    <label>Check Request Form</label>
+                </value>
+                <value>
+                    <fullName>Completed Survey</fullName>
+                    <default>false</default>
+                    <label>Completed Survey</label>
+                </value>
+                <value>
+                    <fullName>Copy of Supplier Parts</fullName>
+                    <default>false</default>
+                    <label>Copy of Supplier Parts</label>
+                </value>
+                <value>
+                    <fullName>Credit Card Authorization</fullName>
+                    <default>false</default>
+                    <label>Credit Card Authorization</label>
+                </value>
+                <value>
+                    <fullName>Customer Correspondence</fullName>
+                    <default>false</default>
+                    <label>Customer Correspondence</label>
+                </value>
+                <value>
+                    <fullName>Customer-Specific Service Report Sign-Off</fullName>
+                    <default>false</default>
+                    <label>Customer-Specific Service Report Sign-Off</label>
+                </value>
+                <value>
+                    <fullName>Damage &amp; Abuse - Before &amp; After Pictures</fullName>
+                    <default>false</default>
+                    <label>Damage &amp; Abuse - Before &amp; After Pictures</label>
+                </value>
+                <value>
+                    <fullName>Deposit Check</fullName>
+                    <default>false</default>
+                    <label>Deposit Check</label>
+                </value>
+                <value>
+                    <fullName>IVR Check in and Check out (Labor)</fullName>
+                    <default>false</default>
+                    <label>IVR Check in and Check out (Labor)</label>
+                </value>
+                <value>
+                    <fullName>Lien Waiver</fullName>
+                    <default>false</default>
+                    <label>Lien Waiver</label>
+                </value>
+                <value>
+                    <fullName>Miner Sign Off Sheet</fullName>
+                    <default>false</default>
+                    <label>Miner Sign Off Sheet</label>
+                </value>
+                <value>
+                    <fullName>Note To Biller</fullName>
+                    <default>false</default>
+                    <label>Note To Biller</label>
+                </value>
+                <value>
+                    <fullName>PM Checklist completed</fullName>
+                    <default>false</default>
+                    <label>PM Checklist completed</label>
+                </value>
+                <value>
+                    <fullName>PM Failures</fullName>
+                    <default>false</default>
+                    <label>PM Failures</label>
+                </value>
+                <value>
+                    <fullName>Shipping Documents</fullName>
+                    <default>false</default>
+                    <label>Shipping Documents</label>
+                </value>
+                <value>
+                    <fullName>Vendor&apos;s Estimate</fullName>
+                    <default>false</default>
+                    <label>Vendor&apos;s Estimate</label>
+                </value>
+                <value>
+                    <fullName>Vendor&apos;s Invoice</fullName>
+                    <default>false</default>
+                    <label>Vendor&apos;s Invoice</label>
+                </value>
+                <value>
+                    <fullName>Vendor Correspondence</fullName>
+                    <default>false</default>
+                    <label>Vendor Correspondence</label>
+                </value>
+                <value>
+                    <fullName>W-9</fullName>
+                    <default>false</default>
+                    <label>W-9</label>
+                </value>
+                <value>
+                    <fullName>Walmart - Ready to Invoice Still needs Paperwork</fullName>
+                    <default>false</default>
+                    <label>Walmart - Ready to Invoice Still needs Paperwork</label>
+                </value>
+                <value>
+                    <fullName>Warranty Information</fullName>
+                    <default>false</default>
+                    <label>Warranty Information</label>
+                </value>
+                <value>
+                    <fullName>Work Acknowledgment Form (Service Sign-Off)</fullName>
+                    <default>false</default>
+                    <label>Work Acknowledgment Form (Service Sign-Off)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Work_Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Work Order</label>
+        <referenceTo>WorkOrder</referenceTo>
+        <relationshipLabel>Attachments</relationshipLabel>
+        <relationshipName>Attachments</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Attachment</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Work_Order__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>Atch-{0000000000}</displayFormat>
+        <label>Attachment Name</label>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Attachments</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <sharingReasons>
+        <fullName>Vendor_Community__c</fullName>
+        <label>Vendor Community</label>
+    </sharingReasons>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>UNITY_Add_Attachment</fullName>
+        <availability>online</availability>
+        <description>Add Attachment Button</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Add Attachment</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!URLFOR(&quot;/apex/UNITY_UploadAttachment?id=&quot;+   WorkOrder.Id )}</url>
+    </webLinks>
+</CustomObject>

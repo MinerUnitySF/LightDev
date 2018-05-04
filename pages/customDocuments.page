@@ -1,0 +1,74 @@
+<apex:page standardController="genesis__Applications__c" extensions="NewDocumentCtrl" title="Documents" >
+    <apex:composition template="genesis__wizardComposition" >
+        <!-- Define the page body, including form and button bar -->
+        <apex:define name="pageBody" >
+            <!-- The first column -->
+            <apex:panelGrid columnClasses="col1,col2" columns="2" width="100%"  cellpadding="10" cellspacing="10" border="2" rules="all">
+                
+                <!-- left arrow button -->
+                <apex:outputPanel layout="block" styleClass="outPanelLeft" >
+                    <div class="button bordered back">
+                        <span class="pointer"></span>
+                        <div class="content">
+                            <span class="label">
+                                <apex:commandLink action="{!backActionLogic}" value="{!manager.backButtonText}" />
+                            </span>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+        
+                <!-- right arrow button -->
+                <apex:outputPanel layout="block">
+                    
+                    <div class="button bordered next">
+                        <span class="pointer"></span>
+                        <div class="content">
+                            <span class="label">
+                                <apex:commandLink action="{!nextActionLogic}" value="{!manager.nextButtonText}"/>
+                            </span>
+                        </div>
+                    </div>
+                    
+                </apex:outputPanel>
+            
+            </apex:panelGrid>
+            
+            <apex:pageBlock >
+                <apex:pageMessages escape="false" />
+            
+                <apex:pageBlockButtons location="top">            
+                    <apex:commandButton value="Attach File" id="UploadBtn" action="{!uploadFile}" rendered="{!showAttachFileBtn}"/>
+              <!--      <apex:commandButton value="Generate Documents" action="{!genDocument}" id="contract"  rendered="{!showAttachFileBtn}" />-->
+                   <apex:commandButton value="Generate Loan Agreement" id="contract" action="{!URLFOR($Action.genesis__Applications__c.View,genesis__Applications__c.Id)}"
+                                        onclick="openConga()"
+                                        rendered="{!showAttachFileBtn}" />
+                                                   
+                    <script Language="JavaScript">
+                    function openConga() {
+                        window.open('{!URLFOR($Action.genesis__Applications__c.Demo_Conga,genesis__Applications__c.Id)}', '','scrollbars=yes,menubar=no,height=600,width=800,resizable=yes, toolbar=no,location=no,status=yes');
+                    }  
+                    </script>            
+                </apex:pageBlockButtons>
+                
+            </apex:pageBlock>
+            
+            <apex:outputPanel id="outerPanel">
+                <apex:pageBlock title="Upload Attachment" id="uploadPanel" rendered="{!showUploadPanelGrid}"> 
+                    <apex:outputPanel layout="block">
+                        <apex:inputFile value="{!attach.body}" filename="{!attach.name}" /><br/><br/>
+                        <apex:commandButton value="Upload" action="{!processUpload}"/>
+                        <apex:commandButton value="Cancel" action="{!cancelFileUpload}"/>  
+                    </apex:outputPanel>
+                </apex:pageBlock>
+            </apex:outputPanel>
+        </apex:define>
+        
+        <apex:define name="pageNoForm" >
+        <apex:relatedList subject="{!genesis__Applications__c}" list="CombinedAttachments" title="Application">
+              <apex:facet name="header"><table><tr><td class="pbTitle"><h3>Application</h3></td></tr></table></apex:facet>
+        </apex:relatedList>
+        
+        </apex:define>
+        
+    </apex:composition>
+</apex:page>

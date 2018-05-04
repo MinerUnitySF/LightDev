@@ -1,0 +1,114 @@
+<apex:page standardController="genesis__Applications__c" extensions="CreditReportPullCtrl" action="{!onLoad}">
+
+<apex:composition template="genesis__wizardComposition">
+ div.tooltip {
+    width: 195px;
+    float: left;
+  }
+  div.tooltip:hover {
+    background: #ffffff;
+    text-decoration: none;
+  } /*BG color is a must for IE6*/
+  div.tooltip span {
+    display: none;
+    padding: 2px 3px;
+    margin-left: 8px;
+    width: 195px;
+  }
+  div.tooltip:hover span {
+    display: inline;
+    position: absolute;
+    border: 1px solid #cccccc;
+    background: #FFC;;
+    color: #000000;
+  }
+  
+<div class="tooltip" style="display:inline">
+    <span>Refresh</span>
+</div>
+        
+        <!-- Define the page body, including form and button bar -->
+        <apex:define name="pageBody" >
+            <!-- The first column -->
+            <apex:panelGrid columnClasses="col1,col2" columns="2" width="100%"  cellpadding="10" cellspacing="10" border="2" rules="all">
+                
+                <!-- left arrow button -->
+                <apex:outputPanel layout="block" styleClass="outPanelLeft" >
+                    <div class="button bordered back">
+                        <span class="pointer"></span>
+                        <div class="content">
+                            <span class="label">
+                                <apex:commandLink action="{!backActionLogic}" value="{!manager.backButtonText}" />
+                            </span>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+        
+                <!-- right arrow button -->
+                <apex:outputPanel layout="block">
+                    
+                    <div class="button bordered next">
+                        <span class="pointer"></span>
+                        <div class="content">
+                            <span class="label">
+                                <apex:commandLink action="{!nextActionLogic}" value="{!manager.nextButtonText}"/>
+                            </span>
+                        </div>
+                    </div>
+                    
+                </apex:outputPanel>
+            </apex:panelGrid>
+     
+     <apex:inputhidden value="{!genesis__Applications__c.Scorecard_Set__c}"/>       
+            <apex:pageBlock id="creditDecisionPBId">
+                <apex:pageMessages />
+                <apex:pageBlockButtons location="top">
+                    <genesis:BusyButton actionTo="{!fetchCreditPullData}" name="Pull Credit"
+                            id="CreditPullBtn" busyname="Fetching.." rerenderTo="creditDecisionPBId,creditList,creditPanelPageBlockSection,userinputPanelPageBlockSection" />
+                
+                    <genesis:BusyButton actionTo="{!saveDecisionInfo}" name="Save"
+                            id="SaveButton" busyname="Saving.." rerenderTo="creditDecisionPBId,creditPanelPageBlockSection,userinputPanelPageBlockSection" /> 
+                    <genesis:BusyButton actionTo="{!autoDecision}" name="Submit for Auto-Decisioning"
+                            id="AutoDecisionButton" busyname="Submitting.." rerenderTo="creditDecisionPBId,creditPanelPageBlockSection,userinputPanelPageBlockSection"/>   
+                    <genesis:BusyButton id="Refresh"   name="Check Credit Decision" busyname="Refreshing.." actionTo="{!refreshDecision}"
+                    rerenderTo="creditPanelPageBlockSection,userinputPanelPageBlockSection" />
+<!--                 image="/img/icon/dashboards16.png"       rerenderTo="creditPanelPageBlockSection,userinputPanelPageBlockSection" 
+                        image="{!$Resource.Refresh}" style="height:20px;width:20px;"/>   -->   
+                </apex:pageBlockButtons>
+                <apex:outputpanel id="headerid">
+                    <!-- <apex:pageBlockSection columns="2"
+                        id="creditPanelPageBlockSection" title="Decisioning Parameters">
+                        <apex:outputField value="{!decision.genesis__Open_Bankruptcy__c}"/>
+                        <apex:outputField value="{!decision.genesis__Dismissed_Bankruptcy__c}"/>
+                        <apex:outputField value="{!decision.genesis__Delinquent_Child_Support_Amount__c}"/>
+                        <apex:outputField value="{!decision.genesis__Involuntary_Repossession__c}"/>
+                        <apex:outputField value="{!decision.genesis__Vehicle_Charge_Off__c}"/>
+                        <apex:outputField value="{!decision.genesis__Decision_Status__c}"/>                        
+                    </apex:pageBlockSection>
+                    -->
+                    
+                    <apex:pageBlockSection columns="2" id="userinputPanelPageBlockSection" title="User Input">
+                        <apex:inputField value="{!decision.Equipment_Quality_Rating__c}" required="true"/>
+                        <apex:inputField value="{!decision.Target_GP_Transactional_Rating__c}" required="true"/>
+                        <apex:inputField value="{!decision.Guarantors_Rating__c}" required="true"/>
+                        <apex:inputField value="{!decision.Business_Rating__c}" required="true"/> 
+                    </apex:pageBlockSection>                   
+                </apex:outputpanel>
+                            <center><apex:actionStatus id="valueChange">
+                                <apex:facet name="start" >
+                                    <apex:image value="/img/loading32.gif" style="height:15px;"/>
+                                </apex:facet>
+                            </apex:actionStatus></center>                
+            </apex:pageBlock>
+          
+        </apex:define>
+        
+          <apex:define name="pageNoForm">
+              <apex:relatedList list="genesis__Credit_Report__r" id="creditList"/>
+          </apex:define>
+      </apex:composition>
+    
+
+
+
+</apex:page>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Custom Setting to help identify lookup fields for various objects to dynamically create relationships while creating the objects via Template Configuration</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>UNITY_Child_Object__c</fullName>
+        <description>Child Object</description>
+        <externalId>false</externalId>
+        <label>UNITY_Child Object</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Parent_Lookup_Field__c</fullName>
+        <description>Field Api name that identify the lookup to the parent</description>
+        <externalId>false</externalId>
+        <label>UNITY_Parent Lookup Field</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Parent_Object__c</fullName>
+        <description>Parent Object</description>
+        <externalId>false</externalId>
+        <label>UNITY_Parent Object</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>UNITY_TemplateConfigRelationshipLookups</label>
+    <visibility>Public</visibility>
+</CustomObject>

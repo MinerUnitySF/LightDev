@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Active_Lease__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>Active Lease</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Customer_PO__c</fullName>
+        <description>Field for users to input customer PO #’s relating to leases/rentals – Only profiles needing access to this field are: FLEXX Standard User; Integration User; System Administrator; TFS Manager; TFS Data Entry</description>
+        <externalId>false</externalId>
+        <label>Customer PO</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Expire_Date_Formula__c</fullName>
+        <description>This field returns MTM (Month-to-Month) when the Expiration Date has passed and/or Lease_Expiration__c isn&apos;t filled in with a value</description>
+        <externalId>false</externalId>
+        <formula>IF(  
+    OR(
+        ISNULL( TEXT( Lease_Expiration__c) ), 
+        TODAY()  &gt; Lease_Expiration__c
+    ), 
+    &apos;MTM&apos;,  
+    TEXT(MONTH(Lease_Expiration__c)) &amp; &apos;/&apos; &amp; TEXT(DAY(Lease_Expiration__c)) &amp; &apos;/&apos; &amp; TEXT(YEAR(Lease_Expiration__c))
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Expire Date Formula</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IP_Active__c</fullName>
+        <externalId>false</externalId>
+        <formula>ISPICKVAL( Installed_Product__r.SVMXC__Status__c , &apos;Active&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IP Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IP_Location__c</fullName>
+        <externalId>false</externalId>
+        <formula>Installed_Product__r.SVMXC__Site__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IP Location</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Installed_Product__c</fullName>
+        <externalId>false</externalId>
+        <label>Installed Product</label>
+        <referenceTo>SVMXC__Installed_Product__c</referenceTo>
+        <relationshipLabel>Lease Information</relationshipLabel>
+        <relationshipName>Lease_Information</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Lease_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Lease Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Lease_Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>((YEAR(  TODAY()  )-YEAR( Lease_Start_Date__c ))*12+(MONTH( TODAY() )-MONTH(Lease_Start_Date__c))) *  Lease_Payment__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Lease Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Lease_Expiration__c</fullName>
+        <externalId>false</externalId>
+        <label>Lease Expiration</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Lease_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Lease Number</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lease_Payment__c</fullName>
+        <externalId>false</externalId>
+        <label>Lease Payment</label>
+        <precision>9</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Lease_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Lease Rate (%)</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Lease_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Lease Start Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Lease_Term_Remaining__c</fullName>
+        <externalId>false</externalId>
+        <formula>(((YEAR(Lease_Expiration__c) - YEAR(TODAY()) - 1) *12) + (12 - MONTH(TODAY()) +1) + MONTH(Lease_Expiration__c))
+
+/*( Lease_Expiration__c -  TODAY() )  / 30*/</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Lease Term Remaining</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lease_Term__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( MONTH(Lease_Expiration__c)  -  MONTH(Lease_Start_Date__c)  = 0, (((YEAR(Lease_Expiration__c) - YEAR(Lease_Start_Date__c) - 1) *12) + (12 - MONTH(Lease_Start_Date__c) +1) + MONTH(Lease_Expiration__c)) - 1, (((YEAR(Lease_Expiration__c) - YEAR(Lease_Start_Date__c) - 1) *12) + (12 - MONTH(Lease_Start_Date__c) +1) + MONTH(Lease_Expiration__c))) 
+
+/*(((YEAR(Lease_Expiration__c) - YEAR(Lease_Start_Date__c) - 1) *12) + (12 - MONTH(Lease_Start_Date__c) +1) + MONTH(Lease_Expiration__c))*/
+
+
+/*(  ( Lease_Expiration__c - 30 )   -  Lease_Start_Date__c )  / 30*/</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Lease Term</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lessor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Lessor</label>
+        <lookupFilter>
+            <active>false</active>
+            <filterItems>
+                <field>Account.Type</field>
+                <operation>equals</operation>
+                <value>Vendor</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Lease Information</relationshipLabel>
+        <relationshipName>Lease_Information</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>M2M_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag to signify that lease is in a month-to-month status for tracking purposes</description>
+        <externalId>false</externalId>
+        <inlineHelpText>M2M = Month-to-Month Lease</inlineHelpText>
+        <label>M2M Flag</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Serial_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>Installed_Product__r.Serial_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Serial Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Lease Information</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Lease_Editor</fullName>
+        <columns>NAME</columns>
+        <columns>IP_Location__c</columns>
+        <columns>Installed_Product__c</columns>
+        <columns>Serial_Number__c</columns>
+        <columns>IP_Active__c</columns>
+        <columns>Active_Lease__c</columns>
+        <columns>M2M_Flag__c</columns>
+        <columns>Lessor__c</columns>
+        <columns>Lease_Number__c</columns>
+        <columns>Lease_Start_Date__c</columns>
+        <columns>Lease_Expiration__c</columns>
+        <columns>Lease_Payment__c</columns>
+        <columns>Lease_Term__c</columns>
+        <columns>Lease_Term_Remaining__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>IP_Location__c</field>
+            <operation>contains</operation>
+            <value>cincinnati</value>
+        </filters>
+        <filters>
+            <field>Lease_Expiration__c</field>
+            <operation>notEqual</operation>
+            <value>5/16/2002</value>
+        </filters>
+        <filters>
+            <field>Active_Lease__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Fe&apos;s Lease Editor</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Lease_Editor1</fullName>
+        <columns>NAME</columns>
+        <columns>IP_Location__c</columns>
+        <columns>Installed_Product__c</columns>
+        <columns>Serial_Number__c</columns>
+        <columns>IP_Active__c</columns>
+        <columns>Active_Lease__c</columns>
+        <columns>M2M_Flag__c</columns>
+        <columns>Lessor__c</columns>
+        <columns>Customer_PO__c</columns>
+        <columns>Lease_Number__c</columns>
+        <columns>Lease_Start_Date__c</columns>
+        <columns>Lease_Expiration__c</columns>
+        <columns>Lease_Payment__c</columns>
+        <columns>Lease_Term__c</columns>
+        <columns>Lease_Term_Remaining__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>IP_Location__c</field>
+            <operation>contains</operation>
+            <value>Owens Illinois</value>
+        </filters>
+        <filters>
+            <field>Active_Lease__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Lease Editor</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>TFS_CSM</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Mark_s_Lease_Editor</fullName>
+        <columns>NAME</columns>
+        <columns>IP_Location__c</columns>
+        <columns>Installed_Product__c</columns>
+        <columns>Serial_Number__c</columns>
+        <columns>IP_Active__c</columns>
+        <columns>Active_Lease__c</columns>
+        <columns>M2M_Flag__c</columns>
+        <columns>Lessor__c</columns>
+        <columns>Lease_Number__c</columns>
+        <columns>Lease_Start_Date__c</columns>
+        <columns>Lease_Expiration__c</columns>
+        <columns>Lease_Payment__c</columns>
+        <columns>Lease_Term__c</columns>
+        <columns>Lease_Term_Remaining__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>IP_Location__c</field>
+            <operation>contains</operation>
+            <value>club car</value>
+        </filters>
+        <filters>
+            <field>Lease_Expiration__c</field>
+            <operation>notEqual</operation>
+            <value>5/16/2002</value>
+        </filters>
+        <filters>
+            <field>Active_Lease__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>IP_Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Mark&apos;s Lease Editor</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>TFS_CSM</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Owens_Corning_Lease_Review_Editor</fullName>
+        <columns>NAME</columns>
+        <columns>IP_Location__c</columns>
+        <columns>Installed_Product__c</columns>
+        <columns>Serial_Number__c</columns>
+        <columns>IP_Active__c</columns>
+        <columns>Active_Lease__c</columns>
+        <columns>M2M_Flag__c</columns>
+        <columns>Lessor__c</columns>
+        <columns>Lease_Number__c</columns>
+        <columns>Lease_Start_Date__c</columns>
+        <columns>Lease_Expiration__c</columns>
+        <columns>Lease_Payment__c</columns>
+        <columns>Lease_Term__c</columns>
+        <columns>Lease_Term_Remaining__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>IP_Location__c</field>
+            <operation>contains</operation>
+            <value>corning</value>
+        </filters>
+        <filters>
+            <field>Active_Lease__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Owens Corning Lease Review Editor</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>TFS_CSM</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Owens_Corning_Lease_Review_Editor1</fullName>
+        <columns>NAME</columns>
+        <columns>IP_Location__c</columns>
+        <columns>Installed_Product__c</columns>
+        <columns>Serial_Number__c</columns>
+        <columns>IP_Active__c</columns>
+        <columns>Active_Lease__c</columns>
+        <columns>M2M_Flag__c</columns>
+        <columns>Lessor__c</columns>
+        <columns>Lease_Number__c</columns>
+        <columns>Lease_Start_Date__c</columns>
+        <columns>Lease_Expiration__c</columns>
+        <columns>Lease_Payment__c</columns>
+        <columns>Lease_Term__c</columns>
+        <columns>Lease_Term_Remaining__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>IP_Location__c</field>
+            <operation>contains</operation>
+            <value>corning</value>
+        </filters>
+        <filters>
+            <field>Active_Lease__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Owens Corning Lease Review Editor</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>TFS_CSM</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TFS_Lease_Review_Editor</fullName>
+        <columns>NAME</columns>
+        <columns>IP_Location__c</columns>
+        <columns>Installed_Product__c</columns>
+        <columns>Serial_Number__c</columns>
+        <columns>IP_Active__c</columns>
+        <columns>Active_Lease__c</columns>
+        <columns>Lessor__c</columns>
+        <columns>Lease_Number__c</columns>
+        <columns>Lease_Start_Date__c</columns>
+        <columns>Lease_Expiration__c</columns>
+        <columns>Lease_Payment__c</columns>
+        <columns>Lease_Term__c</columns>
+        <columns>Lease_Term_Remaining__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>IP_Active__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Active_Lease__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>TFS Lease Review Editor</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>LN-{000000}</displayFormat>
+        <label>Lease Name</label>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Lease Information</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Lease_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Lease_Start_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Lease_Term__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

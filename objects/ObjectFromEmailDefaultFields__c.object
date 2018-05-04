@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Object From Email Default Fields</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Default_Value_Checkbox__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Default Value Checkbox</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Default_Value_DateTime__c</fullName>
+        <externalId>false</externalId>
+        <label>Default Value DateTime</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Default_Value_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Default Value Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Default_Value_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Default Value Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Value_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Default Value Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Field_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Field Name</label>
+        <length>128</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Object_Name__c</fullName>
+        <description>Object Name</description>
+        <externalId>false</externalId>
+        <label>Object Name</label>
+        <length>128</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Object From Email Default Fields</label>
+    <visibility>Public</visibility>
+</CustomObject>

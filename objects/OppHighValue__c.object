@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>This lists who to send High Value Opportunity emails to(Role Names) based on the different Amount thresholds and Opportunity Type.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Threshold__c</fullName>
+        <description>The amount (threshold) to trigger a high value email. If the new/updated Opportunity Amount is at or above this value, a High Value email will be sent to the roles listed in the Who field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The amount (threshold) to trigger a high value email. If the new/updated Opportunity Amount is at or above this value, a High Value email will be sent to the roles listed in the Who field.</inlineHelpText>
+        <label>Threshold</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <description>The type of opportunity - this is what the trigger looks for first. 
+Example: If Type = &apos;Equipment&apos; and a new Opportunity Type also = Equipment, then we have found the first match and will look at threshold next.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The type of opportunity - this is what the trigger looks for first. 
+Example: If Type = &apos;Equipment&apos; and a new Opportunity Type also = Equipment, then we have found the first match and will look at threshold next.</inlineHelpText>
+        <label>Type</label>
+        <length>100</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Who__c</fullName>
+        <description>This value should be a comma separated list of which ROLES to send the high value email to.
+Example: (if you want an email to be sent to the opportunity owners salesmanager, TVP, VP Sales, and President):
+Sales Manager, Territory VP, VP of Sales, President</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This value should be a comma separated list of which ROLES to send the high value email to.
+Example: 
+Sales Manager, Territory VP, VP of Sales, President</inlineHelpText>
+        <label>Who</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Opportunity High Value Threshold</label>
+    <visibility>Public</visibility>
+</CustomObject>

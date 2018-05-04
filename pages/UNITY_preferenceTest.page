@@ -1,0 +1,139 @@
+<apex:page controller="UNITY_preferenceTestCtrl">
+  
+   <apex:stylesheet value="{!URLFOR($Resource.UNITY_LightningDesignSystemV12, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+   <apex:stylesheet value="{!URLFOR($Resource.UNITY_customerPreferenceOnVendorCSS)}" />
+
+    <apex:form >
+        
+        <div id="UNITYPreferenceContainer" class="slds">
+            <div class="preference-header">
+                  <span>Vendor Preference at <span class="unity-header-record-name">{!customer.Name}</span> for  <span class="unity-header-record-name">{!trade.Name}</span></span>
+            </div>
+            <div class="trades-header slds-col slds-size--1-of-1 ">
+                <apex:outputPanel rendered="{!canSave}">
+                    <apex:commandButton styleClass="slds-button slds-button--neutral unity-save-btn" value="Save" action="{!save}" />
+                </apex:outputPanel>
+            </div>
+            
+            <div class="current-preferences-container">
+                <apex:outputPanel id="tableContainer">
+                    <table class="slds-table slds-table--bordered unity-preference-table">
+                        <thead>
+                            <tr class="slds-text-heading--label ">
+                                <th class="slds-is-sortable" scope="col">
+                                      <span class="slds-truncate">Type</span>
+                                </th>
+                                <th scope="col">
+                                    <span class="slds-truncate">Vendor</span>
+                                </th>
+                                <th scope="col" class="unity-delete-col">
+                                </th>
+                                <th scope="col" class="unity-move-col">
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <apex:repeat value="{!VPBTList}" var="preferenceByTrade">
+                                <tr id="{!preferenceByTrade.vendorId}"
+                                    data-vpt="{!preferenceByTrade.id}"
+                                    data-vp="{!preferenceByTrade.preferenceId}"
+                                    class="slds-hint-parent unity-vendor-td {!IF(preferenceByTrade.isEditing,'unity-editing-vendor','')} 
+                                           {!IF(preferenceByTrade.preferenceType!='Do Not Use','unity-do-not-use','')}">
+                                    <td role="row"  class="unity-preference" >
+                                        <apex:outputPanel rendered="{!preferenceByTrade.isEditing}"  >
+                                             <apex:selectList value="{!preferenceByTrade.preferenceType}" styleClass="slds-select unity-preference-select" size="1">
+                                                 <apex:selectOptions value="{!types}"/>
+                                             </apex:selectList>
+                                         </apex:outputPanel>
+                                         <apex:outputPanel rendered="{! !preferenceByTrade.isEditing}">
+                                              {!preferenceByTrade.preferenceType}
+                                         </apex:outputPanel>
+                                     </td>
+                                     <td>
+                                         <span class="slds-truncate"><a target="_blank" class="slds-truncate unity-link unity-cursor-pointer" data-href="/{!preferenceByTrade.vendorId}|true">{!preferenceByTrade.vendorName}-{!preferenceByTrade.ranking}</a></span>
+                                     </td>
+                                     <td class="slds-row-action call-assign-vendor unity-preference-delete">
+                                         <apex:outputPanel rendered="{!preferenceByTrade.canDelete}">
+                                             <apex:commandLink action="{!deletePreference}" value="Delete"  reRender="tableContainer" >
+                                                <apex:param name="vendorId" assignTo="{!vendorRankingToDelete}" value="{!preferenceByTrade.id}"/>
+                                             </apex:commandLink>
+                                         </apex:outputPanel>
+                                         <!--<button  type="button"  class="slds-button unity-delete-preferences-btn unity-input" data-disabled="{!!preferenceByTrade.canDelete}" >Delete</button>
+                                         -->
+                                        </td>
+                                     <td>
+                                         <apex:outputPanel rendered="{!preferenceByTrade.isPreferred}">
+                                             <div class="unity-control-ranking">
+                                                 <apex:outputPanel rendered="{!!(preferenceByTrade.ranking==preferredCount)}">
+                                                     <div onClick="unity_goDownJS()" class="{!IF(preferenceByTrade.isEditing,'unity-move-up chevronup unity-append-svg','')}"    data-class="slds-icon--small" data-href="/assets/icons/utility-sprite/svg/symbols.svg#chevrondown"></div>
+                                                 </apex:outputPanel>
+                                             </div>
+                                             <div class="unity-control-ranking">
+                                                 <apex:outputPanel rendered="{!!(preferenceByTrade.ranking==1)}">
+                                                     <div onClick="unity_goUpJS()"  class="{!IF(preferenceByTrade.isEditing,'unity-move-down chevrondown unity-append-svg','')}" data-class="slds-icon--small" data-href="/assets/icons/utility-sprite/svg/symbols.svg#chevronup"></div>
+                                                 </apex:outputPanel>
+                                             </div>
+                                         </apex:outputPanel>
+                                     </td>
+                                </tr>
+                            </apex:repeat>
+                            
+                        </tbody>
+                    </table>
+                </apex:outputPanel>
+              </div>
+            
+            <div class="trades-header slds-col slds-size--1-of-1 ">
+                <apex:outputPanel rendered="{!canSave}">
+                    <apex:commandButton styleClass="slds-button slds-button--neutral unity-save-btn" value="Save" action="{!save}" oncomplete="UNITY.customerPreferences.init()"/>
+                </apex:outputPanel>
+            </div>
+        </div>
+       
+        <apex:actionFunction action="{!goUp}"   name="unity_goUpJS"   rerender="apexMessage,tableContainer" oncomplete="UNITY.customerPreferences.init()"></apex:actionFunction>
+        <apex:actionFunction action="{!goDown}" name="unity_goDownJS" rerender="apexMessage,tableContainer" oncomplete="UNITY.customerPreferences.init()"></apex:actionFunction>
+    </apex:form>
+   
+   
+   
+   <script src="/support/console/35.0/integration.js" type="text/javascript"></script>
+   <apex:includeScript value="{!URLFOR($Resource.UNITY_svg4everybody, 'svg4everybody-master/dist/svg4everybody.min.js')}" />
+   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+   <script src="{!URLFOR($Resource.UNITY_utilsJS)}"/>
+   <script> 
+       $( document ).ready(function(){
+       //UNITY.utils.init();
+            svg4everybody();
+            
+            (function(){
+    
+                window.UNITY = (typeof window.UNITY == "undefined") ? {} : window.UNITY ;
+                
+                if(typeof window.UNITY.customerPreferences != "undefined") return undefined;
+                
+                window.UNITY.customerPreferences = (function(){
+                    
+                    var factory = {};
+                    
+                    factory.init = function (){
+                        console.log('UNITY.customerPreferences.init');
+                        window.UNITY.utils.addSVGIcons();
+                        window.UNITY.utils.activateLinks();
+                    }
+                    
+                    return factory;
+                    
+                    
+                }());
+                
+                window.UNITY.customerPreferences.init();
+                
+             }());
+           
+       });
+    
+       
+   </script>
+    
+</apex:page>

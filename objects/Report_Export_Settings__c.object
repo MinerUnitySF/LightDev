@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Holds the settings for report export</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Attachment_File_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Attachment File Name</label>
+        <length>250</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Content_Type__c</fullName>
+        <description>This is the attachment format.  
+application/vnd.ms-excel for excel file (default)
+text/csv for csv file</description>
+        <externalId>false</externalId>
+        <label>Content Type</label>
+        <length>250</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email_Body__c</fullName>
+        <description>Optional plain text that goes to the email&apos;s body</description>
+        <externalId>false</externalId>
+        <label>Email Body</label>
+        <length>250</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email_Recipient__c</fullName>
+        <description>Email recipient</description>
+        <externalId>false</externalId>
+        <label>Email Recipient</label>
+        <length>250</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email_Subject__c</fullName>
+        <description>Subject of the email</description>
+        <externalId>false</externalId>
+        <label>Email Subject</label>
+        <length>250</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Results_Required__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>Results Required</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Report Export Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

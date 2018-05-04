@@ -1,0 +1,45 @@
+<apex:page standardController="WorkOrder"
+     extensions="UNITY_CloneWorkOrderController"
+     action="{!cloneWorkOrder}">
+     <apex:pageMessages />
+    
+    <script src="/support/console/35.0/integration.js" type="text/javascript"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="{!URLFOR($Resource.UNITY_utilsJS)}"/>
+    
+    <script type="text/javascript">
+    function openSubTab(url) {
+      sforce.console.getEnclosingPrimaryTabId(
+        function(primarytab)
+        {
+          sforce.console.openSubtab(primarytab.id, url, true);
+        });
+    }
+    </script>
+
+
+    <script type="text/javascript">
+        (function(U,$,sforce){
+            if((U!=null)&&($!=null)&&(sforce!=null)){
+                worId = '{!newWOId}';
+                console.log(worId);
+                if((typeof worId == 'string') && ((worId.length  == 15) || (worId.length  == 18))){
+                    console.log('redirect');
+                    setTimeout(function(){ 
+                        if(sforce.console.isInConsole()){
+                            //sforce.console.openPrimaryTab(null, '/'+worId, true);
+                            openSubTab('/'+worId);
+                        }else{
+                            U.utils.openURL('/'+worId, '', false);
+                        }
+                        U.utils.close();
+                    }, 5000);
+                }else{
+                     console.log('>>> No record.');
+                }  
+            }else{
+               console.log('Required : sforce Integration.js ToolKit, JQuery, UNITY_utilsJS.js');
+            }
+         }((UNITY || null), ($ || null), (sforce  || null) ));
+    </script>
+</apex:page>

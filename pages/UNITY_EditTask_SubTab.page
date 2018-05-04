@@ -1,0 +1,67 @@
+<apex:page showHeader="true" sidebar="false" standardController="Task">
+    <apex:remoteObjects >
+        <apex:remoteObjectModel name="Task"
+                                fields="Id,Subject,WhatId,UNITY_Call_Disposition__c,Description">
+        </apex:remoteObjectModel>
+    </apex:remoteObjects>
+    <!-- JavaScript to make Remote Objects calls -->
+    <script type="text/javascript" src="{!URLFOR($Resource.jquery_ui,'js/jquery.js')}"></script>
+    <script type="text/javascript" src="https://c.na56.visual.force.com/support/console/35.0/integration.js"></script>
+    <script>
+    
+        var $j = jQuery.noConflict();
+        var out = $j("#output");
+        var taskid = '';
+        
+        $j(document).ready(function(){
+            sforce.console.getFocusedSubtabObjectId(getTaskId);
+        });
+        
+        var getTaskId = function getTaskId(result) {
+            taskid = result.id;
+            sforce.console.getEnclosingTabId(getTabLink);
+        }
+        
+        var getTabLink = function getTabLink(result){
+            sforce.console.getTabLink(sforce.console.TabLink.TAB_ONLY, result.id, isOnEdit);
+        }
+        
+        var isOnEdit = function isOnEdit(result){
+            var link = result.tabLink;
+            var myTaskLink = taskid + '%2Fe';
+            if(link && link.indexOf(myTaskLink) == -1){
+                findTask(taskid);
+            }
+        }
+         
+        function findTask(id){
+            if(id && id != ''){
+                var t = new SObjectModel.Task();
+                t.retrieve({ where: {Id: {eq:id}},limit: 1 }, function(err, records, event){
+                    if(err){
+                        out.html(err.message);
+                    }else{
+                        records.forEach(function(record){
+                            var id = record.get("Id");
+                            var whatid = record.get("WhatId");//the task related to
+                            var taskname = record.get("Subject");
+                            var desc = record.get("Description");
+                            var disp = record.get("UNITY_Call_Disposition__c");
+                            var url = id + '/e';
+                            if((whatid && whatid != '') && (desc && desc != '') && (disp && disp != '')){
+                            }else{
+                                sforce.console.getEnclosingPrimaryTabId(function(pResult){
+                                    sforce.console.getFocusedSubtabId(function(subTabId){
+                                        sforce.console.openSubtab(pResult.id,url,true,taskname,subTabId.id);
+                                    });
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        };
+        
+    </script>
+    <div id="output"></div>
+</apex:page>

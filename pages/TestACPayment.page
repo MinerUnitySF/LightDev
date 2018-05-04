@@ -1,0 +1,6 @@
+<apex:page StandardController="Account">
+    <apex:iframe src="https://miner-catalina.minercorporation.com/TESTAccountCentral/login.aspx?cpnyID={!$User.UNITY_AC_Company_Code__c}&custID={!Account.MH_SL_CustID__c}"
+        scrolling="true" frameborder="false" title="Account Central"
+        id="theIframe" height="500" width="100%"/>
+     
+</apex:page>

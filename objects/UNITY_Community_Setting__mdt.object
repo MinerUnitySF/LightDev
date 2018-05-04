@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Settings for customer and vendor communities</description>
+    <fields>
+        <fullName>Value__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Value</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <label>UNITY Community Setting</label>
+    <pluralLabel>UNITY Community Settings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,368 @@
+<apex:page standardController="WorkOrder" sidebar="false" showHeader="false" docType="html-5.0"
+           standardStylesheets="true" extensions="UNITY_TimeInput_Ctlr">
+    <!-- JavaScript and style includes -->
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'js/jquery.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'js/jquery-ui.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.moment_timezone,'moment.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.moment_timezone,'moment.timezone.2010-2020.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.datetimepicker,'jquery.datetimepicker.full.js')}"/>
+    <apex:includeScript value="/support/console/35.0/integration.js"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.smoothness.css')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.css')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.datetimepicker,'jquery.datetimepicker.css')}"/>
+    <!-- Custom Style css -->
+    <style type="text/css">
+        h2{
+            font-weight: bold;
+            color: #16325c;
+            font-size: 1.1em;
+            font-family: Arial,Helvetica,sans-serif;
+        }
+        body .bPageBlock .pbBody .labelCol,.bPageBlock .labelCol{
+            color: #54698d;
+            font-weight: normal;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            word-wrap: break-word;
+            max-width: 330px;
+            width: 18%;
+            padding-left: 2px;
+            text-align: right;
+            font-size: 91%;
+            margin: 0;
+        }
+        body .btn, body input.btn{
+            border-radius: 3px;
+            line-height: 24px;
+            padding: 0 9px;
+            border: 1px solid #e0e5ee;
+            box-shadow: none;
+            cursor: default;
+            font-size: 12px;
+            height: auto;
+            outline: 0;
+            font-weight: normal;
+            font-family: 'SalesforceSans-Regular',Helvetica,Arial,sans-serif;
+            color: #0070d2;
+            text-align: center;
+            white-space: nowrap;
+            background-color: #f4f5f7;
+            background-image: none;
+        }
+        body .btn:hover, body input.btn:hover{
+            background-color: #e7edf4;
+            text-decoration: none;
+        }
+        body .bDetailBlock.bPageBlock .pbBody .dataCol,body .bPageBlock .pbBody .dataCol{
+            vertical-align: middle;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            font-family: SalesforceSans-Regular,Arial,sans-serif;
+            color: #16325c;
+            padding-left: 10px;
+            text-align: left;
+            font-size: 12px;
+        }
+        input[type="text"]{
+            border: 1px solid #d8dde6;
+            border-radius: 3px;
+            padding: 4px;
+            min-height: 28px;
+            box-sizing: border-box;
+            width: 90%;
+        }
+        input[type="text"]:focus{
+            box-shadow: 0 0 3px #0070d2;
+            outline: 0;
+        }
+        .detailList .inlineEditWrite{
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left:10px;
+            margin-left:-10px
+        }
+        .detailList .inlineEditWriteOn{
+            background-image: url("/img/support/servicedesk/pencil12.gif");
+            background-color: #f4f6f9;
+            background-position: center right;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left:10px;
+            margin-left:-10px
+        }
+        .buttons-wrapper{
+            display:block;
+            height: 30px;
+        }
+    </style>
+    <!-- page content -->
+    <apex:form >
+        <apex:variable value="{!WorkOrder.UNITY_Account_Time_Zone__c}" var="acctTZSidKey"/>
+        <apex:pageBlock mode="maindetail">
+            
+            <!-- Page Messages -->
+            <apex:outputPanel id="messages">
+                <apex:pageMessages ></apex:pageMessages>
+            </apex:outputPanel>
+            
+            <!-- Page buttons -->
+            <apex:pageBlockButtons location="top" rendered="{!NOT(hasError)}">
+                <apex:outputPanel styleClass="buttons-wrapper">
+                    <apex:outputPanel >
+                        <apex:commandButton id="saveButton" value="Save"
+                                            status="loadingStatus"
+                                            reRender="messages"
+                                            styleClass="saveBtn"
+                                            style="display:none;" />
+                        <apex:commandButton id="cancelBtn" action="{!cancelChange}" value="Cancel"
+                                            reRender="messages,content-wrapper" onclick="resetInlineEdit();"
+                                            styleClass="cancelBtn" style="display:none;" />
+                    </apex:outputPanel>
+                    <c:ajaxStatus overlayColor="#fff" loadingText="Saving..."/>
+                </apex:outputPanel>
+            </apex:pageBlockButtons>
+            
+            <!-- PageBlock Section -->
+            <apex:pageBlockSection columns="2" showHeader="false" rendered="{!NOT(hasError)}">
+                <apex:pageBlockSectionItem >
+                    <h2 style="display:block;text-align:center;padding:0px 0px 10px 0px;">Customer Time Zone ({!acctTimeZone})</h2>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <h2 style="display:block;text-align:center;padding:0px 0px 10px 0px;">Local Time Zone ({!localTimeZone})</h2>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+            <apex:outputPanel id="content-wrapper" rendered="{!NOT(hasError)}">
+                <apex:pageBlockSection columns="2" showHeader="false">
+                    <!-- Customer Time Zone Work Window Begin  -->
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.WorkOrder.fields.UNITY_Work_Window_Begin__c.Label}" />
+                        <apex:outputPanel >
+                            <apex:outputField value="{!WorkOrder.UNITY_Work_Window_Begin_Cust__c}">
+                                <apex:inlineEditSupport event="ondblclick" 
+                                                        changedStyleClass="myBoldClass"
+                                                        showOnEdit="saveButton,cancelBtn"
+                                                        resetFunction="resetInlineEdit"/>
+                            </apex:outputField>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:outputField value="{!WorkOrder.UNITY_Work_Window_Begin__c}"/>
+                    <!-- Customer Time Zone Tech ETA  -->
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.WorkOrder.fields.StartDate.Label}" />
+                        <apex:outputPanel >
+                            <apex:outputField value="{!WorkOrder.UNITY_Tech_ETA_Date_Cust__c}">
+                                <apex:inlineEditSupport event="ondblclick" 
+                                                        changedStyleClass="myBoldClass myStartDate"
+                                                        showOnEdit="saveButton,cancelBtn"
+                                                        resetFunction="resetInlineEdit"/>
+                            </apex:outputField>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:outputField value="{!WorkOrder.StartDate}"/>
+                    <!-- Customer Time Zone Start Travel  -->
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.WorkOrder.fields.FSO__Start_Travel_Date__c.Label}" />
+                        <apex:outputPanel >
+                            <apex:outputField value="{!WorkOrder.UNITY_Start_Travel_Date_Cust__c}">
+                                <apex:inlineEditSupport event="ondblclick" 
+                                                        changedStyleClass="myBoldClass"
+                                                        showOnEdit="saveButton,cancelBtn"
+                                                        resetFunction="resetInlineEdit"/>
+                            </apex:outputField>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:outputField value="{!WorkOrder.FSO__Start_Travel_Date__c}"/>
+                    <!-- Customer Time Zone Check-in date  -->
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.WorkOrder.fields.FSO__Check_In_Date__c.Label}" />
+                        <apex:outputPanel >
+                            <apex:outputField value="{!WorkOrder.UNITY_Check_In_Date_Cust__c}" id="checkInCust">
+                                <apex:inlineEditSupport event="ondblclick" 
+                                                        changedStyleClass="myBoldClass"
+                                                        showOnEdit="saveButton,cancelBtn"
+                                                        resetFunction="resetInlineEdit"/>
+                            </apex:outputField>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+
+                    <apex:outputField value="{!WorkOrder.FSO__Check_In_Date__c}"/>
+                    <!-- Customer Time Zone Check-Out date  -->
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Check-Out Date" />
+                        <apex:outputPanel >
+                            <apex:outputField value="{!WorkOrder.UNITY_Check_Out_Date_Cust__c}" id="checkOutCust">
+                                <apex:inlineEditSupport event="ondblclick" 
+                                                        changedStyleClass="myBoldClass"
+                                                        showOnEdit="saveButton,cancelBtn"
+                                                        resetFunction="resetInlineEdit"/>
+                            </apex:outputField>
+                        </apex:outputPanel>
+                        
+                    </apex:pageBlockSectionItem>
+                    
+                    
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Check-Out Date" />
+                        <apex:outputField value="{!WorkOrder.FSO__Completed_Date__c}"/>
+                    </apex:pageBlockSectionItem>
+                    <!-- Customer Time Zone Work Window End date  -->
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.WorkOrder.fields.UNITY_Work_Window_End__c.Label}" />
+                        <apex:outputPanel >
+                            <apex:outputField value="{!WorkOrder.UNITY_Work_Window_End_Cust__c}">
+                                <!--<apex:inlineEditSupport event="ondblclick" 
+                                                        changedStyleClass="myBoldClass"
+                                                        showOnEdit="saveButton,cancelBtn"
+                                                        resetFunction="resetInlineEdit"/>-->
+                            </apex:outputField>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:outputField value="{!WorkOrder.UNITY_Work_Window_End__c}"/>
+                    <!-- *****************
+Template do add new fields
+Copy and paste the code below
+Change Target_Field_Name__c with the DateTime field
+Change Origin_Field_Name__c with the Text field
+*****************
+<apex:pageBlockSectionItem>
+<apex:outputLabel value="{!$ObjectType.WorkOrder.fields.Target_Field_Name__c.Label}" />
+<apex:outputPanel>
+<apex:outputField value="{!WorkOrder.Origin_Field_Name__c}">
+<apex:inlineEditSupport event="ondblclick" 
+changedStyleClass="myBoldClass"
+showOnEdit="saveButton,cancelBtn"
+hideOnEdit="editButton"
+resetFunction="resetInlineEdit"/>
+</apex:outputField>
+</apex:outputPanel>
+</apex:pageBlockSectionItem>
+<apex:outputField value="{!WorkOrder.Target_Field_Name__c}"/>
+-->
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+                <!--Clay: Added to hidden input to automatically choose User as source for check in -->
+                <apex:inputHidden value="{!WorkOrder.UNITY_Check_In_Source__c}" id="checkInSource"/>
+
+                <!--Clay: Added to hidden input to automatically choose User as source for check out -->
+                <apex:inputHidden value="{!WorkOrder.UNITY_Check_Out_Source__c}" id="checkOutSource"/>
+        </apex:pageBlock>
+
+        <apex:actionFunction action="{!saveRecord}"
+                             name="saveRecord"
+                             status="loadingStatus"
+                             oncomplete="resetInlineEdit();"
+                             reRender="messages,content-wrapper"/>
+    </apex:form>
+    <!--end page content-->
+
+    <!-- JS Code -->
+    <script type="text/javascript">
+        var $j = jQuery.noConflict();
+        var saved = false;
+        $j(function(){
+            $j(document).on("focus","input[type='text']",function(){
+                var val = $j(this).val();
+                if($j(this).hasClass("datepicker") != true /*&& (val == null || val == '')*/){
+                    $j(this).addClass("datepicker").datetimepicker({
+                        format:'m/d/Y h:i A',
+                        formatTime:'h:i A',
+                        formatDate:'m/d/Y',
+                        onShow:function(ct,$input){
+                            var that = $j(this);
+                            setTimeout(function(){
+                                var x = (that.parent().width() / 2 - 120);
+                                that.animate({left:x+"px",top:"25px"},400);
+                            },1);
+                        },
+                        onHide:function(ct,$input){
+                            $input.datetimepicker('destroy');
+                            $input.removeClass("datepicker");
+                        }
+                    }).blur().focus();
+                }
+                $j(".saveBtn").show();
+                $j(".cancelBtn").show();
+            });
+            $j(document).on("change",".datepicker",function(){
+                var val = $j(this).val();
+                var inId = $j(this).attr("id"); 
+                console.log("//Clay - what is this? " + $j(this).attr("id"));
+                if(moment(val).isValid()) {
+                    $j(this).val(moment(val).format('M/D/YYYY h:mm A')).addClass("trackchange");
+
+                    if(inId.includes('checkOutCust')) {
+                        $j('input[id$=checkOutSource]').val('User');
+                        // console.log('//Clay checkout source:' + $j('input[id$=checkOutSource]').val());
+                    }else if(inId.includes('checkInCust')) {
+                        $j('input[id$=checkInSource]').val('User');
+                        //console.log('//Clay checkin source:' + $j('input[id$=checkInSource]').val());
+
+                    }
+
+                    //$j(this).datetimepicker('destroy');
+                    //$j(this).removeClass("datepicker");
+                
+                }else{
+                    $j(this).val("").removeClass("trackchange");
+
+                    //remove our checkin/out source if one of those fields was cleared
+                    if(inId.includes('checkOutCust')) {
+                        $j('input[id$=checkOutSource]').val('');
+                        // console.log('//Clay checkout source:' + $j('input[id$=checkOutSource]').val());
+                    }else if(inId.includes('checkInCust')) {
+                        $j('input[id$=checkInSource]').val('');
+                        //console.log('//Clay checkin source:' + $j('input[id$=checkInSource]').val());
+                    }
+                    
+                }
+                //console.log("####Izay: field value: " + $j(this).val());
+                //console.log("####Izay: tracking changes for: " + $j(".trackchange").length + " fields");
+            });
+        });
+        function resetInlineEdit(){
+            $j(".saveBtn").hide();
+            $j(".cancelBtn").hide();
+            console.log("####Izay: tracking changes for: " + $j(".trackchange").length + " fields");
+            $j(".trackchange").each(function(){
+                var id = $j(this).attr("id");
+                var visible = $j(this).is(":visible");
+                sfdcPage.getInlineEditData(id).resetFieldById(id);
+                $j(this).removeClass("trackchange");
+            });
+            console.log("####Izay: tracking changes for: " + $j(".trackchange").length + " fields");
+            console.log('### saved:' + saved);
+            if(saved){
+                
+                sforce.console.getFocusedSubtabId(function(result){
+                    var tid = result.id;
+                    console.log('##### tid: '+tid);
+                    sforce.console.refreshSubtabById(tid, true, function(){
+                        
+                    });
+                });
+                
+            }
+        }
+        $j(document).ready(function(){
+            if({!showBtns}){
+                $j(".saveBtn").show();
+                $j(".cancelBtn").show();
+            }
+        });
+        $j(document).on("click",".saveBtn",function(e){
+            e.preventDefault();
+            var changes = $j(".trackchange").length;
+            if(changes > 1){
+                alert('Please update and save one(1) Date/Time field at a time');
+                resetInlineEdit()
+            }else{
+                saved = true;
+                setTimeout(saveRecord,100);
+            }
+        });
+    </script>
+    <!-- End JS Code -->
+</apex:page>

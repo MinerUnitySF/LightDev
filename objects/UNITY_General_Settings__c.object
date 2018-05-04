@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Custom Setting for general kay value mappings for the App</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>UNITY_Description__c</fullName>
+        <description>Description for this setting&apos;s usage</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>UNITY General Settings</label>
+    <visibility>Protected</visibility>
+</CustomObject>

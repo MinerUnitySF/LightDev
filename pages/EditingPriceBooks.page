@@ -1,0 +1,49 @@
+<apex:page standardController="PriceBookEntry" extensions="EditingPriceBooks">
+
+    <apex:form id="form">
+        <apex:pageBlock title="EditingPriceBooks" >
+                <apex:pageMessages />
+                
+                <apex:pageBlockSection title="">
+            
+                    <apex:pageBlockSectionItem >
+                        Select Pricebook:
+                        <apex:inputField value="{!entry.PriceBook2Id}"/>        
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        Active:
+                        <apex:inputCheckbox value="{!entry.IsActive}"/> 
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                       Standard Price:
+                       <apex:outputField value="{!standardPrice.UnitPrice}"/>
+                    </apex:pageBlockSectionItem>        
+                    
+                    <apex:pageBlockSectionItem >
+                       Standard Cost:
+                       <apex:outputField value="{!standardCost.SVMXC__Product_Cost__c}"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                       New Price:
+                        <apex:inputField value="{!entry.UnitPrice}"/>   
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        Cost:
+                        <apex:inputField value="{!entry.Cost__c}"/> 
+                    </apex:pageBlockSectionItem>
+                    
+                </apex:pageBlockSection>
+                
+                <apex:pageBlockButtons location="bottom">
+                       <apex:commandButton value="Save Pricebook Entry" action="{!SavePriceBookEntry}" />
+                </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+    
+    </apex:form>
+
+</apex:page>

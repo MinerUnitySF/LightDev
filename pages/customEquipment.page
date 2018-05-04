@@ -1,0 +1,49 @@
+<apex:page standardController="genesis__Applications__c" extensions="CustomEquipmentCtrl" action="{!onLoad}">
+   <apex:composition template="genesis__wizardComposition" >
+        <!-- Define the page body, including form and button bar -->
+        <apex:define name="pageBody" >
+            <!-- The first column -->
+            <apex:panelGrid columnClasses="col1,col2" columns="2"  width="100%"  cellpadding="10" cellspacing="10" border="2" rules="all">
+                
+                <!-- left arrow button -->
+                <apex:outputPanel layout="block" styleClass="outPanelLeft" >
+                    <div class="button bordered back">
+                        <span class="pointer"></span>
+                        <div class="content">
+                            <span class="label">
+                                <apex:commandLink action="{!backActionLogic}" value="{!manager.backButtonText}" />
+                            </span>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+        
+                <!-- right arrow button -->
+                <apex:outputPanel layout="block">
+                    
+                    <div class="button bordered next">
+                        <span class="pointer"></span>
+                        <div class="content">
+                            <span class="label">
+                                <apex:commandLink action="{!nextActionLogic}" value="{!manager.nextButtonText}"/>
+                            </span>
+                        </div>
+                    </div>
+                    
+                </apex:outputPanel>
+            
+            </apex:panelGrid>
+            
+           
+        </apex:define>
+        
+        <apex:define name="pageNoForm" >
+            
+            <apex:relatedList list="genesis__Application_Equipments__r" id="creditList"/>
+        </apex:define>
+      <apex:outputPanel rendered="{!NOT(manager.isSF1Request)}" >
+  <apex:include pageName="genesis__mwizardComposition"/>
+  Its equipment page!
+  </apex:outputPanel>
+  </apex:composition>
+
+</apex:page>

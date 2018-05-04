@@ -1,0 +1,234 @@
+<apex:page docType="html" sidebar="false" standardController="Order" extensions="UNITY_UsageRequestHandler" standardStylesheets="true">
+    <!-- JavaScript and style includes -->
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'js/jquery.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'js/jquery-ui.js')}"/>
+    <apex:includeScript value="/support/console/35.0/integration.js"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.smoothness.css')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.css')}"/>
+    <style type="text/css">
+    	.busy{
+        	display:none;
+        }
+        .loading-box{
+        	background-color:#fff;
+            border:1px solid #222;
+            -webkit-border-radius: 5px 5px 5px 5px;
+            border-radius:5px 5px 5px 5px;
+            box-shadow:0 0 15px 0 rgba(0,0,0,.5);
+            color:#333;
+            font-size:1em;
+            font-weight:bold;
+            left:calc(50% - 21px);
+            padding:5px;
+            position:fixed;
+            top:200px;
+            text-align:center;
+            width:32px;
+            z-index:999999;
+        }
+        .loading-img{
+            padding:0px 5px;
+            vertical-align:middle;
+            width:20px;
+        }
+        .loading-overlay{
+            background-color:#fff;
+            display:block;
+            opacity:.20;
+            filter:alpha(opacity=20);
+            width:100%;
+            height:100%;
+            position:fixed;
+            z-index:99999;
+            left:0;
+            top:0;
+        }
+        .output{
+        	display:block;
+        	padding:10px;
+        	color:#444;
+        	font-size:13px;
+        }
+        #progressbar {
+        	margin-top: 20px;
+        }
+        
+        .progress-label {
+        	font-weight: normal;
+        	font-family: Arial,Helvetica,sans-serif;
+        	text-shadow: 1px 1px 0 #fff;
+        }
+        
+        .ui-dialog-titlebar-close {
+        	display: none;
+        }
+    </style>
+    <!--
+    <div class="busy">
+        <div class="loading-box">
+            <img class="loading-img" src="{!URLFOR($Resource.UNITY_loadingGif)}"/>
+        </div>
+        <div class="loading-overlay"></div>
+    </div>
+	-->
+    <apex:sectionHeader title="{!Order.OrderNumber}" subtitle="Create PO from Usage Request"/>
+    <div id="output" class="output">
+        
+    </div>
+    
+    <div id="dialog" title="Create PO">
+        <div class="progress-label">Checking NTE...<br/></div>
+        <div id="progressbar"></div>
+    </div>
+    
+    <script type="text/javascript">
+    	var $j = jQuery.noConflict();
+    	$j(function(){
+            var progressbar = $j("#progressbar"),
+                progressLabel = $j(".progress-label"),
+                output = $j("#output"),
+                dialog = $j("#dialog").dialog({
+                    autoOpen: true,
+                    closeOnEscape: false,
+                    resizable: false,
+                    width: 500,
+                    position:{my:"center top", at:"center top", of: output},
+                    open: function(){
+                        progressbar.progressbar({
+                            value: false
+                        });
+                        progressbar.find( ".ui-progressbar-value" ).css({"background":"rgb(182, 179, 218)"});
+                        initCreatePOProcess();
+                    }
+                });
+            function initCreatePOProcess(){
+                console.log('in initCreatePOProcess function...');
+                console.log('#####Izay: Calling createPOFromUsageRequest2...');
+                //showBusy();
+                UNITY_UsageRequestHandler.createPOFromUsageRequest2('{!Order.Id}',function(result,event){
+                    console.log('#####Izay: createPOFromUsageRequest2 event = ' + event);
+                    console.log('#####Izay: createPOFromUsageRequest2 result = ' + result);
+                    //If no errors while checking nte...
+                    if(event.status){
+                        //If result = false (NTE Not Exceeded)... need to create PO
+                        if(result.success == 'true'){
+                            if(result.result == 'false'){
+                                console.log('#####Izay: NOT Exceeded NTE');
+                                console.log('#####Izay: Calling createPurchaseOrders2...');
+                                progressLabel.append("<span>"+result['message']+"</span><br/>");
+                                progressLabel.append("<span>Creating Purchase Order...</span><br/>");
+                                //Calling @RemoteAction createPurchaseOrders2 on controller class
+                                UNITY_UsageRequestHandler.createPurchaseOrders2('{!Order.Id}',function(result,event){
+                                    console.log('#####Izay: createPurchaseOrders2 event = ' + event);
+                                    console.log('#####Izay: createPurchaseOrders2 result = ' + result);
+                                    //If no errors (Apex exception) during PO creation...
+                                    if(event.status){
+                                        //If there are no errors on the result message...
+                                        if(result.success == 'true'){
+                                            progressLabel.append("<span>"+result.message+"</span>");
+                                            //Call the updateUsageRequestStatus function passing the new status
+                                            updateUsageRequestStatus('PO Created',function(){
+                                                progressbar.progressbar("option",{value: 100});
+                                                progressLabel.append('<span>Returning to Usage Request in 5 seconds...</span><br/>');
+                                                setTimeout(gotoUR,5000);
+                                            });
+                                        }else{
+                                            progressLabel.append("<span>"+result.message+"</span><br/>");
+                                            if('{!Order.Id}' != ''){
+                                                dialog.dialog("option","buttons",[{text:"Go Back",click: function(){gotoUR}}]);
+                                            }
+                                        }
+                                    //Otherwise, error during processing...
+                                    }else{
+                                        //Display message to user
+                                        if(event.type == 'exception'){
+                                            progressLabel.append(event.message + "<br/>\n<pre>" + event.where + "</pre>");
+                                        }else{
+                                            progressLabel.append(event.message);
+                                        }
+                                    }
+                                },{escape:false});
+                            //Otherwise, if result = true (NTE Exceeded)... Need to create a quote
+                            }else{
+                                console.log('#####Izay: Exceeded NTE');
+                                console.log('#####Izay: Need to call Create Quote From usage Request Here');
+                                //Display message to user
+                                progressLabel.append("<span>"+result['message']+"</span><br/>");
+                                progressLabel.append('<span>Creating Quote...</span><br/>');
+                                //Call @RemoteAction createQuote2 on controller class
+                                UNITY_UsageRequestHandler.createQuote2('{!Order.Id}',function(result,event){
+                                    console.log('#####Izay: createQuoteFromUsageRequest2 event = ' + event);
+                                    console.log('#####Izay: createQuoteFromUsageRequest2 result = ' + result);
+                                    //If no error while pricessing
+                                    if(event.status){
+                                        if(result.success == 'true'){
+                                            progressLabel.append("<span>"+result.message+"</span><br/>");
+                                            updateUsageRequestStatus('In Quote Process',function(){
+                                                progressbar.progressbar("option",{value: 100});
+                                                progressLabel.append('<span>Returning to Usage Request in 5 seconds...</span><br/>');
+                                                setTimeout(gotoUR,5000);
+                                            });
+                                        }else{
+                                            progressLabel.append("<span>"+result.message+"</span><br/>");
+                                            if('{!Order.Id}' != ''){
+                                                dialog.dialog("option","buttons",[{text:"Go Back",click: function(){gotoUR}}]);
+                                            }
+                                        }
+                                    }else{
+                                        if(event.type == 'exception'){
+                                            progressLabel.append(event.message + "<br/>\n<pre>" + event.where + "</pre>");
+                                        }else{
+                                            progressLabel.append(event.message);
+                                        }
+                                    }
+                                },{escape:false});
+                            }
+                        }else{
+                            progressLabel.append("<span>"+result.message+"</span><br/>");
+                            if('{!Order.Id}' != ''){
+                                dialog.dialog("option","buttons",[{text:"Go Back",click: function(){gotoUR}}]);
+                            }
+                        }
+                    }
+                },{escape:false});
+            }
+            //This function updates the usage request status
+            function updateUsageRequestStatus(value,callback){
+                UNITY_UsageRequestHandler.updateUsageRequestStatus('{!Order.Id}',value,function(result,event){
+                    console.log('#####Izay: updateUsageRequestStatus event = ' + event);
+                    console.log('#####Izay: updateUsageRequestStatus result = ' + result);
+                    if(event.status){
+                        if(result == true){
+                            progressLabel.append('<span>Usage Request status updated...</span><br/>');
+                        }else{
+                            progressLabel.append('<span>An error occurred while updating Usage Request Status...</span><br/>');
+                        }
+                        callback();
+                    }else{
+                        if(event.type == 'exception'){
+                            progressLabel.append(event.message + "<br/>\n<pre>" + event.where + "</pre>");
+                        }else{
+                            progressLabel.append(event.message);
+                        }
+                    }
+                },{escape:false});    
+            }
+            //This function redirects back to the Usage Request
+            function gotoUR(){
+            	sforce.console.getEnclosingPrimaryTabId(function(pResult){
+                	sforce.console.getFocusedSubtabId(function(subTabId){
+                    	sforce.console.openSubtab(pResult.id,'/{!Order.Id}',true,'{!Order.OrderNumber}',subTabId.id);
+                	});
+            	});
+        	}
+        });
+            
+    	function hideBusy(){
+            $j('.busy').hide();
+        }
+    	function showBusy(){
+            $j('.busy').show();
+        }
+    	
+    </script>
+</apex:page>

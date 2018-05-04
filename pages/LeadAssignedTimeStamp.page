@@ -1,0 +1,66 @@
+<apex:page showHeader="false" sidebar="false" standardController="Lead">
+    <apex:remoteObjects >
+        <apex:remoteObjectModel name="Lead"
+                                fields="Id,Status">
+            <apex:remoteObjectField name="Date_Time_Assigned__c" jsShorthand="AssignedDate"/>
+        </apex:remoteObjectModel>
+    </apex:remoteObjects>
+    <!-- JavaScript to make Remote Objects calls -->
+    <script type="text/javascript" src="{!URLFOR($Resource.jquery_ui,'js/jquery.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.jquery_ui,'moment/moment.min.js')}"></script>
+    <script>
+        var $j = jQuery.noConflict();
+        var out = $j("#output");
+        $j(function(){
+            // Create a new Remote Object
+            var l = new SObjectModel.Lead();
+            // Use the Remote Object to query the lead record
+            l.retrieve({ where: {Id: {eq:'{!Lead.Id}'}},limit: 1 }, function(err, records, event){
+                if(err){
+                    out.html(err.message);
+                }else{
+                    records.forEach(function(record) {
+                        // Build the text for a warehouse line item
+                        var aDate = record.get("AssignedDate");//get the lead assigned date
+                        var status = record.get("Status");//get the lead status
+                        //If the lead status is assigned
+                        if(status == 'Assigned' || 'Contacted'){
+                            //if the lead does not have an assigned date
+                            if(!aDate || aDate == ''){
+                                //Set the assigned date
+                                var b = moment(Date.now());//get the time now
+                                var ad = b.valueOf();//get tyhe miliseconds since epoch
+                                var offset = (((b.utcOffset() * -1) * 60) * 1000);//get utc offset and convert it to miliseconds
+                                var adPlus = ad + offset;//add the offset in miliseconds to the epoch miliseconds
+                                record.set('AssignedDate', adPlus);//Set the assigned date time
+                                //Update the record
+                                record.update(function(err,ids){
+                                    if(err){
+                                        out.html(err.message);   
+                                    }else{
+                                        l.retrieve({ where: {Id: {eq:'{!Lead.Id}'}},limit: 1 }, function(err, records, event){
+                                            if(err){
+                                                out.html(err.message);
+                                            }else{
+                                                records.forEach(function(record) {
+                                                    // Build the text for a warehouse line item
+                                                    var status = record.get("Status");//get the lead status
+                                                    //If the lead status is assigned
+                                                    if(status == 'New'){
+                                                        console.log('New... will reload page now.');
+                                                        window.top.location.href = 'https://na56.salesforce.com/{!Lead.Id}#reloaded';
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <div id="output"></div>
+</apex:page>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Holds map of status field values to the parent object update value and their sequence order</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>UNITY_Order__c</fullName>
+        <description>The sequence order for the status</description>
+        <externalId>false</externalId>
+        <label>Order</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Origin_Object__c</fullName>
+        <description>The object that the status belongs to</description>
+        <externalId>false</externalId>
+        <label>Origin Object</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Origin_Record_Type__c</fullName>
+        <description>The record type of the origin record</description>
+        <externalId>false</externalId>
+        <label>Origin Record Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Origin_Value__c</fullName>
+        <description>The status in the origin object that updates the target object to the target value</description>
+        <externalId>false</externalId>
+        <label>Origin Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Target_Object__c</fullName>
+        <description>The object that gets affected by this status</description>
+        <externalId>false</externalId>
+        <label>Target Object</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Target_Record_Type__c</fullName>
+        <description>The record type of the target record</description>
+        <externalId>false</externalId>
+        <label>UNITY Target Record Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Target_Value__c</fullName>
+        <description>The value to assign to the target object</description>
+        <externalId>false</externalId>
+        <label>Target Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>UNITY Status Fields Update Map</label>
+    <visibility>Public</visibility>
+</CustomObject>

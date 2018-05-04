@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>CTI_Skill_ID_Map__c</baseObject>
+    <category>other</category>
+    <deployed>true</deployed>
+    <description>CTI Skill IDs</description>
+    <label>CTI Skill IDs</label>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Id</field>
+            <table>CTI_Skill_ID_Map__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Owner</field>
+            <table>CTI_Skill_ID_Map__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>CTI_Skill_ID_Map__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>CTI_Skill_ID_Map__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedBy</field>
+            <table>CTI_Skill_ID_Map__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedDate</field>
+            <table>CTI_Skill_ID_Map__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedBy</field>
+            <table>CTI_Skill_ID_Map__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>InContact_ID__c</field>
+            <table>CTI_Skill_ID_Map__c</table>
+        </columns>
+        <masterLabel>CTI Skill IDs Map</masterLabel>
+    </sections>
+</ReportType>

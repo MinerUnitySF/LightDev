@@ -1,0 +1,3121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Allows associating tax codes with activity types from work orders. For each activity type, one and only one tax code should be set. This value is passed via integration to Avatax for calculation of sales tax.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Activity_Type__c</fullName>
+        <description>Activity type associated to work details. Must be unique</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Add or modify activity type</inlineHelpText>
+        <label>Activity Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Asset Mgmt Fees</fullName>
+                    <default>false</default>
+                    <label>Asset Mgmt Fees</label>
+                </value>
+                <value>
+                    <fullName>Bond</fullName>
+                    <default>false</default>
+                    <label>Bond</label>
+                </value>
+                <value>
+                    <fullName>Destination Credit</fullName>
+                    <default>false</default>
+                    <label>Destination Credit</label>
+                </value>
+                <value>
+                    <fullName>Double Time Labor</fullName>
+                    <default>false</default>
+                    <label>Double Time Labor</label>
+                </value>
+                <value>
+                    <fullName>Double Time Travel</fullName>
+                    <default>false</default>
+                    <label>Double Time Travel</label>
+                </value>
+                <value>
+                    <fullName>Field Supplies</fullName>
+                    <default>false</default>
+                    <label>Field Supplies</label>
+                </value>
+                <value>
+                    <fullName>Freight - New Construction</fullName>
+                    <default>false</default>
+                    <label>Freight - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Freight - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Freight - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Holiday Labor</fullName>
+                    <default>false</default>
+                    <label>Holiday Labor</label>
+                </value>
+                <value>
+                    <fullName>Holiday Travel</fullName>
+                    <default>false</default>
+                    <label>Holiday Travel</label>
+                </value>
+                <value>
+                    <fullName>Overtime Labor</fullName>
+                    <default>false</default>
+                    <label>Overtime Labor</label>
+                </value>
+                <value>
+                    <fullName>Overtime Travel</fullName>
+                    <default>false</default>
+                    <label>Overtime Travel</label>
+                </value>
+                <value>
+                    <fullName>Parts - New Construction</fullName>
+                    <default>false</default>
+                    <label>Parts - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Parts - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Parts - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Freight</fullName>
+                    <default>false</default>
+                    <label>Pass Through Freight</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Labor</fullName>
+                    <default>false</default>
+                    <label>Pass Through Labor</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Parts</fullName>
+                    <default>false</default>
+                    <label>Pass Through Parts</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Rentals</fullName>
+                    <default>false</default>
+                    <label>Pass Through Rentals</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Tax</fullName>
+                    <default>false</default>
+                    <label>Pass Through Tax</label>
+                </value>
+                <value>
+                    <fullName>Permits and Licenses</fullName>
+                    <default>false</default>
+                    <label>Permits and Licenses</label>
+                </value>
+                <value>
+                    <fullName>Preventative Maintenance</fullName>
+                    <default>false</default>
+                    <label>Preventative Maintenance</label>
+                </value>
+                <value>
+                    <fullName>Preventive Maintenance</fullName>
+                    <default>false</default>
+                    <label>Preventive Maintenance</label>
+                </value>
+                <value>
+                    <fullName>Rental - Equipment</fullName>
+                    <default>false</default>
+                    <label>Rental - Equipment</label>
+                </value>
+                <value>
+                    <fullName>Rental - New Construction</fullName>
+                    <default>false</default>
+                    <label>Rental - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Rental - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Rental - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Service Charge</fullName>
+                    <default>false</default>
+                    <label>Service Charge</label>
+                </value>
+                <value>
+                    <fullName>Service Fee</fullName>
+                    <default>false</default>
+                    <label>Service Fee</label>
+                </value>
+                <value>
+                    <fullName>Standard Labor</fullName>
+                    <default>false</default>
+                    <label>Standard Labor</label>
+                </value>
+                <value>
+                    <fullName>Standard Travel</fullName>
+                    <default>false</default>
+                    <label>Standard Travel</label>
+                </value>
+                <value>
+                    <fullName>Sublbr - New Construction</fullName>
+                    <default>false</default>
+                    <label>Sublbr - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Sublbr - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Sublbr - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Use Tax</fullName>
+                    <default>false</default>
+                    <label>Use Tax</label>
+                </value>
+                <value>
+                    <fullName>Vendor Double Time Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Double Time Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Double Time Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Double Time Travel</label>
+                </value>
+                <value>
+                    <fullName>Vendor Holiday Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Holiday Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Holiday Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Holiday Travel</label>
+                </value>
+                <value>
+                    <fullName>Vendor Overtime Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Overtime Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Overtime Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Overtime Travel</label>
+                </value>
+                <value>
+                    <fullName>Vendor Service Fee</fullName>
+                    <default>false</default>
+                    <label>Vendor Service Fee</label>
+                </value>
+                <value>
+                    <fullName>Vendor Standard Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Standard Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Standard Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Standard Travel</label>
+                </value>
+                <value>
+                    <fullName>Warranty</fullName>
+                    <default>false</default>
+                    <label>Warranty</label>
+                </value>
+                <value>
+                    <fullName>Warranty Labor</fullName>
+                    <default>false</default>
+                    <label>Warranty Labor</label>
+                </value>
+                <value>
+                    <fullName>Warranty Travel</fullName>
+                    <default>false</default>
+                    <label>Warranty Travel</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>A short description for the record</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Excluded_Activity_Types__c</fullName>
+        <description>The activity lines that are not included in the w/o</description>
+        <externalId>false</externalId>
+        <label>Excluded Activity Types</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Asset Mgmt Fees</fullName>
+                    <default>false</default>
+                    <label>Asset Mgmt Fees</label>
+                </value>
+                <value>
+                    <fullName>Bond</fullName>
+                    <default>false</default>
+                    <label>Bond</label>
+                </value>
+                <value>
+                    <fullName>Destination Credit</fullName>
+                    <default>false</default>
+                    <label>Destination Credit</label>
+                </value>
+                <value>
+                    <fullName>Double Time Labor</fullName>
+                    <default>false</default>
+                    <label>Double Time Labor</label>
+                </value>
+                <value>
+                    <fullName>Field Supplies</fullName>
+                    <default>false</default>
+                    <label>Field Supplies</label>
+                </value>
+                <value>
+                    <fullName>Freight - New Construction</fullName>
+                    <default>false</default>
+                    <label>Freight - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Freight - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Freight - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Overtime Labor</fullName>
+                    <default>false</default>
+                    <label>Overtime Labor</label>
+                </value>
+                <value>
+                    <fullName>Parts - New Construction</fullName>
+                    <default>false</default>
+                    <label>Parts - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Parts - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Parts - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Freight</fullName>
+                    <default>false</default>
+                    <label>Pass Through Freight</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Labor</fullName>
+                    <default>false</default>
+                    <label>Pass Through Labor</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Parts</fullName>
+                    <default>false</default>
+                    <label>Pass Through Parts</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Rentals</fullName>
+                    <default>false</default>
+                    <label>Pass Through Rentals</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Tax</fullName>
+                    <default>false</default>
+                    <label>Pass Through Tax</label>
+                </value>
+                <value>
+                    <fullName>Preventive Maintenance</fullName>
+                    <default>false</default>
+                    <label>Preventive Maintenance</label>
+                </value>
+                <value>
+                    <fullName>Rental - New Construction</fullName>
+                    <default>false</default>
+                    <label>Rental - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Rental - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Rental - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Standard Labor</fullName>
+                    <default>false</default>
+                    <label>Standard Labor</label>
+                </value>
+                <value>
+                    <fullName>Sublbr - New Construction</fullName>
+                    <default>false</default>
+                    <label>Sublbr - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Sublbr - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Sublbr - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Use Tax</fullName>
+                    <default>false</default>
+                    <label>Use Tax</label>
+                </value>
+                <value>
+                    <fullName>Warranty</fullName>
+                    <default>false</default>
+                    <label>Warranty</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Excluded_Line_Types__c</fullName>
+        <description>The line types that are NOT included (excluded) in the work order for the exception to match</description>
+        <externalId>false</externalId>
+        <label>Excluded Line Types</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Parts</fullName>
+                    <default>false</default>
+                    <label>Parts</label>
+                </value>
+                <value>
+                    <fullName>Labor</fullName>
+                    <default>false</default>
+                    <label>Labor</label>
+                </value>
+                <value>
+                    <fullName>Travel</fullName>
+                    <default>false</default>
+                    <label>Travel</label>
+                </value>
+                <value>
+                    <fullName>Expenses</fullName>
+                    <default>false</default>
+                    <label>Expenses</label>
+                </value>
+                <value>
+                    <fullName>Vendor Services</fullName>
+                    <default>false</default>
+                    <label>Vendor Services</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Included_Activity_Types__c</fullName>
+        <description>Activity types for the exception record</description>
+        <externalId>false</externalId>
+        <label>Included Activity Types</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Asset Mgmt Fees</fullName>
+                    <default>false</default>
+                    <label>Asset Mgmt Fees</label>
+                </value>
+                <value>
+                    <fullName>Bond</fullName>
+                    <default>false</default>
+                    <label>Bond</label>
+                </value>
+                <value>
+                    <fullName>Destination Credit</fullName>
+                    <default>false</default>
+                    <label>Destination Credit</label>
+                </value>
+                <value>
+                    <fullName>Double Time Labor</fullName>
+                    <default>false</default>
+                    <label>Double Time Labor</label>
+                </value>
+                <value>
+                    <fullName>Field Supplies</fullName>
+                    <default>false</default>
+                    <label>Field Supplies</label>
+                </value>
+                <value>
+                    <fullName>Freight - New Construction</fullName>
+                    <default>false</default>
+                    <label>Freight - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Freight - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Freight - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Overtime Labor</fullName>
+                    <default>false</default>
+                    <label>Overtime Labor</label>
+                </value>
+                <value>
+                    <fullName>Parts - New Construction</fullName>
+                    <default>false</default>
+                    <label>Parts - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Parts - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Parts - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Freight</fullName>
+                    <default>false</default>
+                    <label>Pass Through Freight</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Labor</fullName>
+                    <default>false</default>
+                    <label>Pass Through Labor</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Parts</fullName>
+                    <default>false</default>
+                    <label>Pass Through Parts</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Rentals</fullName>
+                    <default>false</default>
+                    <label>Pass Through Rentals</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Tax</fullName>
+                    <default>false</default>
+                    <label>Pass Through Tax</label>
+                </value>
+                <value>
+                    <fullName>Preventive Maintenance</fullName>
+                    <default>false</default>
+                    <label>Preventive Maintenance</label>
+                </value>
+                <value>
+                    <fullName>Rental - New Construction</fullName>
+                    <default>false</default>
+                    <label>Rental - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Rental - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Rental - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Standard Labor</fullName>
+                    <default>false</default>
+                    <label>Standard Labor</label>
+                </value>
+                <value>
+                    <fullName>Sublbr - New Construction</fullName>
+                    <default>false</default>
+                    <label>Sublbr - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Sublbr - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Sublbr - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Use Tax</fullName>
+                    <default>false</default>
+                    <label>Use Tax</label>
+                </value>
+                <value>
+                    <fullName>Warranty</fullName>
+                    <default>false</default>
+                    <label>Warranty</label>
+                </value>
+                <value>
+                    <fullName>Double Time Travel</fullName>
+                    <default>false</default>
+                    <label>Double Time Travel</label>
+                </value>
+                <value>
+                    <fullName>Vendor Double Time Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Double Time Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Double Time Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Double Time Travel</label>
+                </value>
+                <value>
+                    <fullName>Vendor Holiday Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Holiday Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Holiday Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Holiday Travel</label>
+                </value>
+                <value>
+                    <fullName>Vendor Overtime Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Overtime Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Overtime Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Overtime Travel</label>
+                </value>
+                <value>
+                    <fullName>Vendor Service Fee</fullName>
+                    <default>false</default>
+                    <label>Vendor Service Fee</label>
+                </value>
+                <value>
+                    <fullName>Vendor Standard Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Standard Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Standard Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Standard Travel</label>
+                </value>
+                <value>
+                    <fullName>Warranty Labor</fullName>
+                    <default>false</default>
+                    <label>Warranty Labor</label>
+                </value>
+                <value>
+                    <fullName>Warranty Travel</fullName>
+                    <default>false</default>
+                    <label>Warranty Travel</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>8</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Included_Line_Types__c</fullName>
+        <description>The line types that are included in the work order to match the exception rule</description>
+        <externalId>false</externalId>
+        <label>Included Line Types</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Parts</fullName>
+                    <default>false</default>
+                    <label>Parts</label>
+                </value>
+                <value>
+                    <fullName>Labor</fullName>
+                    <default>false</default>
+                    <label>Labor</label>
+                </value>
+                <value>
+                    <fullName>Travel</fullName>
+                    <default>false</default>
+                    <label>Travel</label>
+                </value>
+                <value>
+                    <fullName>Expenses</fullName>
+                    <default>false</default>
+                    <label>Expenses</label>
+                </value>
+                <value>
+                    <fullName>Vendor Services</fullName>
+                    <default>false</default>
+                    <label>Vendor Services</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Line_Type__c</fullName>
+        <description>Denotes the line type that the rule applies to. Doesn&apos;t need to be specified for the rule to work</description>
+        <externalId>false</externalId>
+        <label>Line Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Parts</fullName>
+                    <default>false</default>
+                    <label>Parts</label>
+                </value>
+                <value>
+                    <fullName>Labor</fullName>
+                    <default>false</default>
+                    <label>Labor</label>
+                </value>
+                <value>
+                    <fullName>Travel</fullName>
+                    <default>false</default>
+                    <label>Travel</label>
+                </value>
+                <value>
+                    <fullName>Expenses</fullName>
+                    <default>false</default>
+                    <label>Expenses</label>
+                </value>
+                <value>
+                    <fullName>Vendor Services</fullName>
+                    <default>false</default>
+                    <label>Vendor Services</label>
+                </value>
+                <value>
+                    <fullName>Labor - Installation</fullName>
+                    <default>false</default>
+                    <label>Labor - Installation</label>
+                </value>
+                <value>
+                    <fullName>Labor - Service</fullName>
+                    <default>false</default>
+                    <label>Labor - Service</label>
+                </value>
+                <value>
+                    <fullName>Permits and Licenses</fullName>
+                    <default>false</default>
+                    <label>Permits and Licenses</label>
+                </value>
+                <value>
+                    <fullName>Rental</fullName>
+                    <default>false</default>
+                    <label>Rental</label>
+                </value>
+                <value>
+                    <fullName>Service Fee</fullName>
+                    <default>false</default>
+                    <label>Service Fee</label>
+                </value>
+                <value>
+                    <fullName>Stock Receipt (Restocking)</fullName>
+                    <default>false</default>
+                    <label>Stock Receipt (Restocking)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Operation__c</fullName>
+        <description>Operation used to determine if a work order matches the exception</description>
+        <externalId>false</externalId>
+        <label>Operation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Includes</fullName>
+                    <default>false</default>
+                    <label>Includes</label>
+                </value>
+                <value>
+                    <fullName>Not Includes</fullName>
+                    <default>false</default>
+                    <label>Not Includes</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Order_Type__c</fullName>
+        <description>Denotes the order type that the rule applies to. Doesn&apos;t need to be specified for the rule to work</description>
+        <externalId>false</externalId>
+        <label>Order Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Service-DDM</fullName>
+                    <default>false</default>
+                    <label>Service-DDM</label>
+                </value>
+                <value>
+                    <fullName>Service-NMS</fullName>
+                    <default>false</default>
+                    <label>Service-NMS</label>
+                </value>
+                <value>
+                    <fullName>Service-PM</fullName>
+                    <default>false</default>
+                    <label>Service-PM</label>
+                </value>
+                <value>
+                    <fullName>Service-AED</fullName>
+                    <default>false</default>
+                    <label>Service-AED</label>
+                </value>
+                <value>
+                    <fullName>Service-GLASS</fullName>
+                    <default>false</default>
+                    <label>Service-GLASS</label>
+                </value>
+                <value>
+                    <fullName>Service-MHE</fullName>
+                    <default>false</default>
+                    <label>Service-MHE</label>
+                </value>
+                <value>
+                    <fullName>Parts Orders</fullName>
+                    <default>false</default>
+                    <label>Parts Orders</label>
+                </value>
+                <value>
+                    <fullName>Leasing/Rental</fullName>
+                    <default>false</default>
+                    <label>Leasing/Rental</label>
+                </value>
+                <value>
+                    <fullName>Sales-EQUIP</fullName>
+                    <default>false</default>
+                    <label>Sales-EQUIP</label>
+                </value>
+                <value>
+                    <fullName>Fleet Maintenance (TFS)</fullName>
+                    <default>false</default>
+                    <label>Fleet Maintenance (TFS)</label>
+                </value>
+                <value>
+                    <fullName>Service-RES</fullName>
+                    <default>false</default>
+                    <label>Service-RES</label>
+                </value>
+                <value>
+                    <fullName>Service</fullName>
+                    <default>false</default>
+                    <label>Service</label>
+                </value>
+                <value>
+                    <fullName>PM</fullName>
+                    <default>false</default>
+                    <label>PM</label>
+                </value>
+                <value>
+                    <fullName>Project</fullName>
+                    <default>false</default>
+                    <label>Project</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Segment__c</fullName>
+        <description>Denotes that the rule is segment specific to support multiple tax codes per activity type based on segments (Service Teams)</description>
+        <externalId>false</externalId>
+        <label>Segment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Atlanta</fullName>
+                    <default>false</default>
+                    <label>Atlanta</label>
+                </value>
+                <value>
+                    <fullName>Austin</fullName>
+                    <default>false</default>
+                    <label>Austin</label>
+                </value>
+                <value>
+                    <fullName>San Antonio</fullName>
+                    <default>false</default>
+                    <label>San Antonio</label>
+                </value>
+                <value>
+                    <fullName>Valley</fullName>
+                    <default>false</default>
+                    <label>Valley</label>
+                </value>
+                <value>
+                    <fullName>El Paso</fullName>
+                    <default>false</default>
+                    <label>El Paso</label>
+                </value>
+                <value>
+                    <fullName>Houston</fullName>
+                    <default>false</default>
+                    <label>Houston</label>
+                </value>
+                <value>
+                    <fullName>New Orleans</fullName>
+                    <default>false</default>
+                    <label>New Orleans</label>
+                </value>
+                <value>
+                    <fullName>Miami</fullName>
+                    <default>false</default>
+                    <label>Miami</label>
+                </value>
+                <value>
+                    <fullName>Jacksonville</fullName>
+                    <default>false</default>
+                    <label>Jacksonville</label>
+                </value>
+                <value>
+                    <fullName>Orlando</fullName>
+                    <default>false</default>
+                    <label>Orlando</label>
+                </value>
+                <value>
+                    <fullName>Tallahassee</fullName>
+                    <default>false</default>
+                    <label>Tallahassee</label>
+                </value>
+                <value>
+                    <fullName>Tampa</fullName>
+                    <default>false</default>
+                    <label>Tampa</label>
+                </value>
+                <value>
+                    <fullName>Dallas</fullName>
+                    <default>false</default>
+                    <label>Dallas</label>
+                </value>
+                <value>
+                    <fullName>Avondale</fullName>
+                    <default>false</default>
+                    <label>Avondale</label>
+                </value>
+                <value>
+                    <fullName>Mesa</fullName>
+                    <default>false</default>
+                    <label>Mesa</label>
+                </value>
+                <value>
+                    <fullName>Tucson</fullName>
+                    <default>false</default>
+                    <label>Tucson</label>
+                </value>
+                <value>
+                    <fullName>Utah</fullName>
+                    <default>false</default>
+                    <label>Utah</label>
+                </value>
+                <value>
+                    <fullName>National</fullName>
+                    <default>false</default>
+                    <label>National</label>
+                </value>
+                <value>
+                    <fullName>Miner-Equipment</fullName>
+                    <default>false</default>
+                    <label>Miner-Equipment</label>
+                </value>
+                <value>
+                    <fullName>AL</fullName>
+                    <default>false</default>
+                    <label>AL</label>
+                </value>
+                <value>
+                    <fullName>AK</fullName>
+                    <default>false</default>
+                    <label>AK</label>
+                </value>
+                <value>
+                    <fullName>AZ</fullName>
+                    <default>false</default>
+                    <label>AZ</label>
+                </value>
+                <value>
+                    <fullName>AR</fullName>
+                    <default>false</default>
+                    <label>AR</label>
+                </value>
+                <value>
+                    <fullName>CA</fullName>
+                    <default>false</default>
+                    <label>CA</label>
+                </value>
+                <value>
+                    <fullName>CO</fullName>
+                    <default>false</default>
+                    <label>CO</label>
+                </value>
+                <value>
+                    <fullName>CT</fullName>
+                    <default>false</default>
+                    <label>CT</label>
+                </value>
+                <value>
+                    <fullName>DE</fullName>
+                    <default>false</default>
+                    <label>DE</label>
+                </value>
+                <value>
+                    <fullName>DC</fullName>
+                    <default>false</default>
+                    <label>DC</label>
+                </value>
+                <value>
+                    <fullName>FL</fullName>
+                    <default>false</default>
+                    <label>FL</label>
+                </value>
+                <value>
+                    <fullName>GA</fullName>
+                    <default>false</default>
+                    <label>GA</label>
+                </value>
+                <value>
+                    <fullName>HI</fullName>
+                    <default>false</default>
+                    <label>HI</label>
+                </value>
+                <value>
+                    <fullName>ID</fullName>
+                    <default>false</default>
+                    <label>ID</label>
+                </value>
+                <value>
+                    <fullName>IL</fullName>
+                    <default>false</default>
+                    <label>IL</label>
+                </value>
+                <value>
+                    <fullName>IN</fullName>
+                    <default>false</default>
+                    <label>IN</label>
+                </value>
+                <value>
+                    <fullName>IA</fullName>
+                    <default>false</default>
+                    <label>IA</label>
+                </value>
+                <value>
+                    <fullName>KS</fullName>
+                    <default>false</default>
+                    <label>KS</label>
+                </value>
+                <value>
+                    <fullName>KY</fullName>
+                    <default>false</default>
+                    <label>KY</label>
+                </value>
+                <value>
+                    <fullName>LA</fullName>
+                    <default>false</default>
+                    <label>LA</label>
+                </value>
+                <value>
+                    <fullName>ME</fullName>
+                    <default>false</default>
+                    <label>ME</label>
+                </value>
+                <value>
+                    <fullName>MD</fullName>
+                    <default>false</default>
+                    <label>MD</label>
+                </value>
+                <value>
+                    <fullName>MA</fullName>
+                    <default>false</default>
+                    <label>MA</label>
+                </value>
+                <value>
+                    <fullName>MI</fullName>
+                    <default>false</default>
+                    <label>MI</label>
+                </value>
+                <value>
+                    <fullName>MN</fullName>
+                    <default>false</default>
+                    <label>MN</label>
+                </value>
+                <value>
+                    <fullName>MS</fullName>
+                    <default>false</default>
+                    <label>MS</label>
+                </value>
+                <value>
+                    <fullName>MO</fullName>
+                    <default>false</default>
+                    <label>MO</label>
+                </value>
+                <value>
+                    <fullName>MT</fullName>
+                    <default>false</default>
+                    <label>MT</label>
+                </value>
+                <value>
+                    <fullName>NE</fullName>
+                    <default>false</default>
+                    <label>NE</label>
+                </value>
+                <value>
+                    <fullName>NV</fullName>
+                    <default>false</default>
+                    <label>NV</label>
+                </value>
+                <value>
+                    <fullName>NH</fullName>
+                    <default>false</default>
+                    <label>NH</label>
+                </value>
+                <value>
+                    <fullName>NJ</fullName>
+                    <default>false</default>
+                    <label>NJ</label>
+                </value>
+                <value>
+                    <fullName>NM</fullName>
+                    <default>false</default>
+                    <label>NM</label>
+                </value>
+                <value>
+                    <fullName>NY</fullName>
+                    <default>false</default>
+                    <label>NY</label>
+                </value>
+                <value>
+                    <fullName>NC</fullName>
+                    <default>false</default>
+                    <label>NC</label>
+                </value>
+                <value>
+                    <fullName>ND</fullName>
+                    <default>false</default>
+                    <label>ND</label>
+                </value>
+                <value>
+                    <fullName>OH</fullName>
+                    <default>false</default>
+                    <label>OH</label>
+                </value>
+                <value>
+                    <fullName>OK</fullName>
+                    <default>false</default>
+                    <label>OK</label>
+                </value>
+                <value>
+                    <fullName>OR</fullName>
+                    <default>false</default>
+                    <label>OR</label>
+                </value>
+                <value>
+                    <fullName>PA</fullName>
+                    <default>false</default>
+                    <label>PA</label>
+                </value>
+                <value>
+                    <fullName>RI</fullName>
+                    <default>false</default>
+                    <label>RI</label>
+                </value>
+                <value>
+                    <fullName>SC</fullName>
+                    <default>false</default>
+                    <label>SC</label>
+                </value>
+                <value>
+                    <fullName>SD</fullName>
+                    <default>false</default>
+                    <label>SD</label>
+                </value>
+                <value>
+                    <fullName>TN</fullName>
+                    <default>false</default>
+                    <label>TN</label>
+                </value>
+                <value>
+                    <fullName>TX</fullName>
+                    <default>false</default>
+                    <label>TX</label>
+                </value>
+                <value>
+                    <fullName>UT</fullName>
+                    <default>false</default>
+                    <label>UT</label>
+                </value>
+                <value>
+                    <fullName>VT</fullName>
+                    <default>false</default>
+                    <label>VT</label>
+                </value>
+                <value>
+                    <fullName>VA</fullName>
+                    <default>false</default>
+                    <label>VA</label>
+                </value>
+                <value>
+                    <fullName>WA</fullName>
+                    <default>false</default>
+                    <label>WA</label>
+                </value>
+                <value>
+                    <fullName>WV</fullName>
+                    <default>false</default>
+                    <label>WV</label>
+                </value>
+                <value>
+                    <fullName>WI</fullName>
+                    <default>false</default>
+                    <label>WI</label>
+                </value>
+                <value>
+                    <fullName>WY</fullName>
+                    <default>false</default>
+                    <label>WY</label>
+                </value>
+                <value>
+                    <fullName>AS</fullName>
+                    <default>false</default>
+                    <label>AS</label>
+                </value>
+                <value>
+                    <fullName>GU</fullName>
+                    <default>false</default>
+                    <label>GU</label>
+                </value>
+                <value>
+                    <fullName>PR</fullName>
+                    <default>false</default>
+                    <label>PR</label>
+                </value>
+                <value>
+                    <fullName>VI</fullName>
+                    <default>false</default>
+                    <label>VI</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Tax_Code__c</fullName>
+        <description>The tax code associated to the activity type</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the tax code associated with this activity type</inlineHelpText>
+        <label>Tax Code</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Tax Code Association</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Activity_Type__c</columns>
+        <columns>Tax_Code__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Line_Type__c</columns>
+        <columns>Order_Type__c</columns>
+        <columns>Segment__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Exceptions</fullName>
+        <columns>NAME</columns>
+        <columns>Description__c</columns>
+        <columns>Segment__c</columns>
+        <columns>Order_Type__c</columns>
+        <columns>Included_Line_Types__c</columns>
+        <columns>Included_Activity_Types__c</columns>
+        <columns>Excluded_Line_Types__c</columns>
+        <columns>Excluded_Activity_Types__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Tax_Code_Associations__c.Exception</value>
+        </filters>
+        <label>Exceptions</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Standard</fullName>
+        <columns>NAME</columns>
+        <columns>Segment__c</columns>
+        <columns>Order_Type__c</columns>
+        <columns>Line_Type__c</columns>
+        <columns>Activity_Type__c</columns>
+        <columns>Tax_Code__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Tax_Code_Associations__c.Standard</value>
+        </filters>
+        <label>Standard</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>A-{0000}</displayFormat>
+        <label>Tax Code Associations Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Tax Code Associations</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Exception</fullName>
+        <active>true</active>
+        <description>Exceptions to Tax Code Association</description>
+        <label>Exception</label>
+        <picklistValues>
+            <picklist>Activity_Type__c</picklist>
+            <values>
+                <fullName>Asset Mgmt Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Destination Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Time Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Time Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Field Supplies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Holiday Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Holiday Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Overtime Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Overtime Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Freight</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Rentals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permits and Licenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Preventative Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Preventive Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - Equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Use Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Double Time Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Double Time Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Holiday Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Holiday Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Overtime Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Overtime Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Service Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Standard Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Standard Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty Travel</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Excluded_Activity_Types__c</picklist>
+            <values>
+                <fullName>Asset Mgmt Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Destination Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Time Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Field Supplies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Overtime Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Freight</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Rentals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Preventive Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Use Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Excluded_Line_Types__c</picklist>
+            <values>
+                <fullName>Expenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Included_Activity_Types__c</picklist>
+            <values>
+                <fullName>Asset Mgmt Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Destination Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Time Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Time Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Field Supplies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Overtime Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Freight</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Rentals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Preventive Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Use Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Double Time Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Double Time Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Holiday Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Holiday Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Overtime Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Overtime Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Service Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Standard Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Standard Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty Travel</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Included_Line_Types__c</picklist>
+            <values>
+                <fullName>Expenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Line_Type__c</picklist>
+            <values>
+                <fullName>Expenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labor - Installation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labor - Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permits and Licenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stock Receipt %28Restocking%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Operation__c</picklist>
+            <values>
+                <fullName>Includes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Includes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Order_Type__c</picklist>
+            <values>
+                <fullName>Fleet Maintenance %28TFS%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leasing%2FRental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts Orders</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales-EQUIP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service-AED</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service-DDM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service-GLASS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service-MHE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service-NMS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service-PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service-RES</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Segment__c</picklist>
+            <values>
+                <fullName>AK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AZ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Atlanta</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Avondale</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dallas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>El Paso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Houston</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ID</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jacksonville</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ME</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mesa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miami</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miner-Equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ND</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NJ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>National</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Orleans</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Orlando</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Antonio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tallahassee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tampa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tucson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utah</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Valley</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WY</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Standard</fullName>
+        <active>true</active>
+        <description>Standard Tax Code Association</description>
+        <label>Standard</label>
+        <picklistValues>
+            <picklist>Activity_Type__c</picklist>
+            <values>
+                <fullName>Asset Mgmt Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Destination Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Time Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Time Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Field Supplies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Holiday Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Holiday Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Overtime Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Overtime Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Freight</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Rentals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permits and Licenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Preventative Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Preventive Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - Equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Use Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Double Time Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Double Time Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Holiday Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Holiday Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Overtime Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Overtime Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Service Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Standard Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Standard Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty Travel</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Excluded_Activity_Types__c</picklist>
+            <values>
+                <fullName>Asset Mgmt Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Destination Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Time Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Field Supplies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Overtime Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Freight</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Rentals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Preventive Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Use Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Excluded_Line_Types__c</picklist>
+            <values>
+                <fullName>Expenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Included_Activity_Types__c</picklist>
+            <values>
+                <fullName>Asset Mgmt Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Destination Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Time Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Time Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Field Supplies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Overtime Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Freight</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Rentals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Preventive Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Use Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Double Time Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Double Time Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Holiday Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Holiday Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Overtime Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Overtime Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Service Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Standard Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Standard Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty Travel</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Included_Line_Types__c</picklist>
+            <values>
+                <fullName>Expenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Line_Type__c</picklist>
+            <values>
+                <fullName>Expenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labor - Installation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labor - Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permits and Licenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stock Receipt %28Restocking%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Operation__c</picklist>
+            <values>
+                <fullName>Includes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Includes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Order_Type__c</picklist>
+            <values>
+                <fullName>Fleet Maintenance %28TFS%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leasing%2FRental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts Orders</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales-EQUIP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service-AED</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service-DDM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service-GLASS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service-MHE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service-NMS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service-PM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service-RES</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Segment__c</picklist>
+            <values>
+                <fullName>AK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AZ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Atlanta</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Avondale</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dallas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>El Paso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Houston</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ID</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jacksonville</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ME</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mesa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miami</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miner-Equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ND</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NJ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>National</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Orleans</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Orlando</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Antonio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tallahassee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tampa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tucson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utah</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Valley</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WY</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

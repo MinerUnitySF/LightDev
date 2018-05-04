@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>This custom setting is referenced in UNITY_CreateCaseFromEmail email handler class to map field values from email body to field values for Case fields for various templates.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Field_Name__c</fullName>
+        <description>This field specifies the Case field API name.</description>
+        <externalId>false</externalId>
+        <label>Field Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Final_Value__c</fullName>
+        <description>This is the final value for the Case field that matches with the field definition within Salesforce.</description>
+        <externalId>false</externalId>
+        <label>Final Value</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Source_Value__c</fullName>
+        <description>This specifies the value parsed from the incoming email. This value will get mapped to the final value from Field_Value__c field and copied to the Case record.</description>
+        <externalId>false</externalId>
+        <label>Source Value</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Template_Key__c</fullName>
+        <description>This field is used by the email handler class to match incoming email&apos;s &quot;from&quot; email address or email address domain. The &quot;from&quot; domain or address cannot be shared between different customers that use different templates. It has to match with UNITY_CaseFromEmailFields__c.Template_Key__c</description>
+        <externalId>false</externalId>
+        <label>Template Key</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Template_Name__c</fullName>
+        <description>This field specifies which customer this template is applicable to.</description>
+        <externalId>false</externalId>
+        <label>Template Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>UNITY Case From Email Field Values</label>
+    <visibility>Public</visibility>
+</CustomObject>

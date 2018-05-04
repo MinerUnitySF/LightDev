@@ -1,0 +1,167 @@
+<apex:page standardController="WorkOrder" showHeader="false" sidebar="false" standardStylesheets="false"
+           applyBodyTag="false" applyHtmlTag="false" docType="html-5.0">
+    
+    <style type="text/css">
+        		
+                body{
+        			font-family: Arial, Helvetica, sans-serif;
+        			font-size: 90%;
+        		}
+        		table{
+                	margin:0px;
+                	padding:0px;
+                	width:100%;
+                }
+                table,thead,tbody,th,td{
+                    border-collapse: collapse;
+                    border-spacing: 0px;
+        			line-height:13px;
+                }
+        		h1{
+        			font-size: 2em;
+        		}
+        		.page-wrapper{
+                	background-color:#fff;
+        			border: 2px solid #000;
+                }
+        		.header-table{
+        			border:1px solid #000;
+        		}
+        		.header-table td{
+                	margin:0px;
+                	padding:0px 3px;
+                	width:33%;
+        			font-size:13px;
+        			font-weight:normal;
+                }
+                .header-table-inner td{
+                	margin:0px;
+                	padding:3px 3px;
+        			font-size:13px;
+        			font-weight:normal;
+                }
+                .header-table-inner th{
+                	margin:0px;
+                	padding:0px 2px;
+        			font-size:13px;
+        			font-weight:bold;
+                }
+        		.content-table{
+        			
+        		}
+                .content-table th{
+					background-color:#000;
+                	border:1px solid #000;
+                	color:#fff;
+                	font-size:11px;
+                	padding:1px 3px;
+                	text-align:center;
+                }
+                .content-table td{
+                	border:1px solid #000;
+        			font-size:11px;
+                	padding:1px 3px;
+                }
+        		.task-table td{
+        			border:1px solid #000;
+        			padding:0px;
+        			font-size:11px;
+        		}
+        		.task-table-inner td{
+                	border:1px solid #000;
+        			font-size:11px;
+                	padding:1px 3px;
+        		}
+        		.task-table-inner th{
+                	border:1px solid #000;
+        			border-top:none;
+        			font-size:11px;
+                	padding:1px 3px;
+        			background-color:#d5d5d5;
+                }
+        		.signature-table td{
+        			padding:0px;
+        			border:none;
+        			border-bottom:1px solid #000;
+        			font-size:11px;
+        		}
+        		.options-table td{
+        			border:none;
+        			padding:3px;
+        			font-size:11px;
+        			text-align:left;
+        		}
+        		.asset-condition-table th{
+        			background-color:#000;
+                	border:none;
+                	color:#fff;
+                	font-size:11px;
+                	padding:1px 3px;
+                	text-align:center;
+        		}
+        		.asset-condition-table td{
+        			border:none;
+        			padding:3px 0px 15px;
+        			text-align:center;
+        			font-size:11px;
+        		}
+        		.store-stamp{
+        			border:2px solid #000;
+        			height:60px;
+        			margin:10px;
+        			position:relative;
+        		}
+        		.store-stamp-text{
+        			display:block;
+        			position:absolute;
+        			bottom:3px;
+        			left:3px;
+        		}
+                .label{
+                	font-weight:bold;
+                }
+                .right{
+                	text-align:right;
+                }
+        		.left{
+        			text-align:left;
+        		}
+        		.center{
+        			text-align:center;
+        		}
+        		td.no-border,th.no-border,table.no-border,
+        		.asset-condition-table td.no-border,
+        		.asset-condition-table th.no-border{
+        			border:none;
+        		}
+        		.check-box{
+        			display:inline-block;
+        			width:7px;
+        			height:7px;
+        			border:1px solid #000;
+        			vertical-align:baseline;
+        		}
+            </style>
+    <div style="height:0px;width:0px;overflow:hidden;">
+        {!WorkOrder.CaseId}
+        {!WorkOrder.UNITY_Email_Logo_URL__c}
+        {!WorkOrder.UNITY_Tech_ETA_Date_Cust__c}
+        {!WorkOrder.WorkOrderNumber}
+        {!WorkOrder.Account.Name}
+        {!WorkOrder.UNITY_Site_Store_Number__c}
+        {!WorkOrder.Contact.Name}
+        {!WorkOrder.UNITY_Site_Contact_Phone__c}
+        {!WorkOrder.Account.ShippingStreet}
+        {!WorkOrder.Account.ShippingCity}
+        {!WorkOrder.Account.ShippingState}
+        {!WorkOrder.Account.ShippingPostalCode}
+        {!WorkOrder.case.UNITY_Customer_PO__c}
+        {!WorkOrder.UNITY_Work_Description__c}
+        {!WorkOrder.UNITY_Assigned_Vendor__r.Name}
+        {!WorkOrder.UNITY_Skill_Broad__c}
+        {!WorkOrder.UNITY_Trade__c}
+        {!WorkOrder.UNITY_Trade__r.Name}
+        {!WorkOrder.UNITY_Assigned_Vendor__c}
+    </div>
+    <c:UNITY_ServiceReport workOrder="{!WorkOrder}"></c:UNITY_ServiceReport>
+</apex:page>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Service Channel Request fields to case fields mappings. Used as key value pair.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>CustomerId_Subscriber__c</fullName>
+        <description>If this field is populated, we will look for mappings based on this specific customer (SubscriberId in Service Channel).</description>
+        <externalId>false</externalId>
+        <label>CustomerId - Subscriber</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>Description of the Field type e.g. BU mapping or Priority mapping. This should just be used for maintenance purpose only</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SCField__c</fullName>
+        <description>This is the source field to match against. All Service Channel case payloads fill the service channel fields on the case.</description>
+        <externalId>false</externalId>
+        <label>SCField</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SourceValue__c</fullName>
+        <description>The Source Value coming in through service channel or other integration for mapping.</description>
+        <externalId>false</externalId>
+        <label>SourceValue</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TargetField__c</fullName>
+        <description>This is the target field to map the value to when the case is created from SC.</description>
+        <externalId>false</externalId>
+        <label>TargetField</label>
+        <length>75</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Value__c</fullName>
+        <description>Value of the Key (Name) provided</description>
+        <externalId>false</externalId>
+        <label>Value</label>
+        <length>100</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>UNITY SC to Case Field Mapping</label>
+    <visibility>Public</visibility>
+</CustomObject>

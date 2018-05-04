@@ -1,0 +1,46 @@
+<apex:page sidebar="false" showHeader="false">
+    <style type="text/css">
+        .row-wrapper{
+            display: block;
+            min-width: 900px;
+        }
+        .chart-wrapper{
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            vertical-align: top;
+            width: 280px;
+        }
+        .chart-overlay{
+            diaplay: block;
+            width: 282px;
+            height: 248px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 100;
+        }
+        .report-link{
+            position: absolute;
+            top: 257px;
+            right: 5px;
+        }
+    </style>
+    <div class="row-wrapper">
+        <div class="chart-wrapper">
+            <analytics:reportChart reportId="00Oi0000006E3Am" showRefreshButton="true" size="tiny"></analytics:reportChart>
+            <a href="https://na15.salesforce.com/00Oi0000006E3Am" target="_blank" class="chart-overlay"></a>
+            <a class="report-link" href="https://na15.salesforce.com/00Oi0000006E3Am" target="_blank">Open Report</a>
+        </div>
+        <div class="chart-wrapper">
+            <analytics:reportChart reportId="00Oi0000006E31f" showRefreshButton="true" size="tiny"></analytics:reportChart>
+            <a href="https://na15.salesforce.com/00Oi0000006E31f" target="_blank" class="chart-overlay"></a>
+            <a class="report-link" href="https://na15.salesforce.com/00Oi0000006E31f" target="_blank">Open Report</a>
+        </div>
+        <div class="chart-wrapper">
+            <analytics:reportChart reportId="00Oi0000006E31k" showRefreshButton="true" size="tiny"></analytics:reportChart>
+            <a href="https://na15.salesforce.com/00Oi0000006E31k" target="_blank" class="chart-overlay"></a>
+            <a class="report-link" href="https://na15.salesforce.com/00Oi0000006E31k" target="_blank">Open Report</a>
+        </div>
+    </div>
+</apex:page>

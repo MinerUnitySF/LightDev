@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Exceptions to the Tax code</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Activity_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Activity Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Asset Mgmt Fees</fullName>
+                    <default>false</default>
+                    <label>Asset Mgmt Fees</label>
+                </value>
+                <value>
+                    <fullName>Bond</fullName>
+                    <default>false</default>
+                    <label>Bond</label>
+                </value>
+                <value>
+                    <fullName>Destination Credit</fullName>
+                    <default>false</default>
+                    <label>Destination Credit</label>
+                </value>
+                <value>
+                    <fullName>Double Time Labor</fullName>
+                    <default>false</default>
+                    <label>Double Time Labor</label>
+                </value>
+                <value>
+                    <fullName>Double Time Travel</fullName>
+                    <default>false</default>
+                    <label>Double Time Travel</label>
+                </value>
+                <value>
+                    <fullName>Field Supplies</fullName>
+                    <default>false</default>
+                    <label>Field Supplies</label>
+                </value>
+                <value>
+                    <fullName>Freight - New Construction</fullName>
+                    <default>false</default>
+                    <label>Freight - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Freight - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Freight - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Holiday Labor</fullName>
+                    <default>false</default>
+                    <label>Holiday Labor</label>
+                </value>
+                <value>
+                    <fullName>Holiday Travel</fullName>
+                    <default>false</default>
+                    <label>Holiday Travel</label>
+                </value>
+                <value>
+                    <fullName>Overtime Labor</fullName>
+                    <default>false</default>
+                    <label>Overtime Labor</label>
+                </value>
+                <value>
+                    <fullName>Overtime Travel</fullName>
+                    <default>false</default>
+                    <label>Overtime Travel</label>
+                </value>
+                <value>
+                    <fullName>Parts - New Construction</fullName>
+                    <default>false</default>
+                    <label>Parts - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Parts - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Parts - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Freight</fullName>
+                    <default>false</default>
+                    <label>Pass Through Freight</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Labor</fullName>
+                    <default>false</default>
+                    <label>Pass Through Labor</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Parts</fullName>
+                    <default>false</default>
+                    <label>Pass Through Parts</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Rentals</fullName>
+                    <default>false</default>
+                    <label>Pass Through Rentals</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Tax</fullName>
+                    <default>false</default>
+                    <label>Pass Through Tax</label>
+                </value>
+                <value>
+                    <fullName>Permits and Licenses</fullName>
+                    <default>false</default>
+                    <label>Permits and Licenses</label>
+                </value>
+                <value>
+                    <fullName>Preventative Maintenance</fullName>
+                    <default>false</default>
+                    <label>Preventative Maintenance</label>
+                </value>
+                <value>
+                    <fullName>Preventive Maintenance</fullName>
+                    <default>false</default>
+                    <label>Preventive Maintenance</label>
+                </value>
+                <value>
+                    <fullName>Rental - Equipment</fullName>
+                    <default>false</default>
+                    <label>Rental - Equipment</label>
+                </value>
+                <value>
+                    <fullName>Rental - New Construction</fullName>
+                    <default>false</default>
+                    <label>Rental - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Rental - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Rental - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Service Charge</fullName>
+                    <default>false</default>
+                    <label>Service Charge</label>
+                </value>
+                <value>
+                    <fullName>Service Fee</fullName>
+                    <default>false</default>
+                    <label>Service Fee</label>
+                </value>
+                <value>
+                    <fullName>Standard Labor</fullName>
+                    <default>false</default>
+                    <label>Standard Labor</label>
+                </value>
+                <value>
+                    <fullName>Standard Travel</fullName>
+                    <default>false</default>
+                    <label>Standard Travel</label>
+                </value>
+                <value>
+                    <fullName>Sublbr - New Construction</fullName>
+                    <default>false</default>
+                    <label>Sublbr - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Sublbr - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Sublbr - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Use Tax</fullName>
+                    <default>false</default>
+                    <label>Use Tax</label>
+                </value>
+                <value>
+                    <fullName>Vendor Double Time Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Double Time Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Double Time Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Double Time Travel</label>
+                </value>
+                <value>
+                    <fullName>Vendor Holiday Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Holiday Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Holiday Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Holiday Travel</label>
+                </value>
+                <value>
+                    <fullName>Vendor Overtime Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Overtime Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Overtime Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Overtime Travel</label>
+                </value>
+                <value>
+                    <fullName>Vendor Service Fee</fullName>
+                    <default>false</default>
+                    <label>Vendor Service Fee</label>
+                </value>
+                <value>
+                    <fullName>Vendor Standard Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Standard Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Standard Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Standard Travel</label>
+                </value>
+                <value>
+                    <fullName>Warranty</fullName>
+                    <default>false</default>
+                    <label>Warranty</label>
+                </value>
+                <value>
+                    <fullName>Warranty Labor</fullName>
+                    <default>false</default>
+                    <label>Warranty Labor</label>
+                </value>
+                <value>
+                    <fullName>Warranty Travel</fullName>
+                    <default>false</default>
+                    <label>Warranty Travel</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Tax_Code_Association__c</fullName>
+        <externalId>false</externalId>
+        <label>Tax Code Association</label>
+        <referenceTo>Tax_Code_Associations__c</referenceTo>
+        <relationshipLabel>Tax Code Exceptions</relationshipLabel>
+        <relationshipName>Tax_Code_Exceptions</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Tax_Code__c</fullName>
+        <description>The tax code to be applied to the activity type lines on work orders that match the exception</description>
+        <externalId>false</externalId>
+        <label>Tax Code</label>
+        <length>15</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Tax Code Exception</label>
+    <nameField>
+        <displayFormat>TCEX-{000000}</displayFormat>
+        <label>TaxCodeException No</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Tax Code Exceptions</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Read</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>MFL - TVP</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Miner Florida - Territory VP</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>Miner_Southeast_Region_VP</parentRole>
+</Role>

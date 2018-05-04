@@ -1,0 +1,965 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Unity project, service contract line items will capture labor and part pricing related to a specific service contract for a vendor or customer.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>UNITY_Cost_Plus__c</fullName>
+        <externalId>false</externalId>
+        <label>Cost Plus %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Currency__c</fullName>
+        <description>Currency to be used</description>
+        <externalId>false</externalId>
+        <label>Currency</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>United States $</fullName>
+                    <default>false</default>
+                    <label>United States $</label>
+                </value>
+                <value>
+                    <fullName>Canada $</fullName>
+                    <default>false</default>
+                    <label>Canada $</label>
+                </value>
+                <value>
+                    <fullName>Mexico Peso</fullName>
+                    <default>false</default>
+                    <label>Mexico Peso</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Exclude__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>Exclude?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Holiday_Multiplier__c</fullName>
+        <description>Holiday Multiplier by Trade</description>
+        <externalId>false</externalId>
+        <label>Holiday Labor Multiplier</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Holiday_Travel_Multiplier__c</fullName>
+        <externalId>false</externalId>
+        <label>Holiday Travel Multiplier</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Inclusion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Inclusion?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Is_Preferred_Part__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates Preferred Parts for the Customer Account. If rates not available, pull data from Pricebook</description>
+        <externalId>false</externalId>
+        <label>Is Preferred Part ?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Labor_Cost__c</fullName>
+        <description>Labor Rate</description>
+        <externalId>false</externalId>
+        <label>Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Labor_Hours__c</fullName>
+        <description>Contains minimum Labor Hours value required to complete the task</description>
+        <externalId>false</externalId>
+        <label>Labor Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_OT_Multiplier__c</fullName>
+        <description>Overtime Multiplier</description>
+        <externalId>false</externalId>
+        <label>OT Labor Multiplier</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_OT_Travel_Multiplier__c</fullName>
+        <externalId>false</externalId>
+        <label>OT Travel Multiplier</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>All</fullName>
+                    <default>true</default>
+                    <label>All</label>
+                </value>
+                <value>
+                    <fullName>2 Hour Response</fullName>
+                    <default>false</default>
+                    <label>2 Hour Response</label>
+                </value>
+                <value>
+                    <fullName>4 Hour Response</fullName>
+                    <default>false</default>
+                    <label>4 Hour Response</label>
+                </value>
+                <value>
+                    <fullName>12 Hour Response</fullName>
+                    <default>false</default>
+                    <label>12 Hour Response</label>
+                </value>
+                <value>
+                    <fullName>24 Hour Response</fullName>
+                    <default>false</default>
+                    <label>24 Hour Response</label>
+                </value>
+                <value>
+                    <fullName>48 Hour Response</fullName>
+                    <default>false</default>
+                    <label>48 Hour Response</label>
+                </value>
+                <value>
+                    <fullName>72 Hour Response</fullName>
+                    <default>false</default>
+                    <label>72 Hour Response</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Product information</description>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Service Contract Line Items</relationshipLabel>
+        <relationshipName>Service_Contract_Line_Items</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Resources__c</fullName>
+        <description>Number of resources required to complete the job</description>
+        <externalId>false</externalId>
+        <label>Number of Resources</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Self_Perform_Labor_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Self-Perform Labor Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Self_Perform_Trip_Charge_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Self-Perform Trip Charge Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Self_Perform_Trip_Charge_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Self-Perform Trip Charge Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Flat Fee</fullName>
+                    <default>false</default>
+                    <label>Flat Fee</label>
+                </value>
+                <value>
+                    <fullName>Hourly Rate</fullName>
+                    <default>false</default>
+                    <label>Hourly Rate</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Service_Charge_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Charge/Fee Amount</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Service_Charge_Percentage__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Charge/Fee Percentage</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Service_Charge__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Charge</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Service_Contract__c</fullName>
+        <description>Unity project, master detail relationship between Service Contract and its line items</description>
+        <externalId>false</externalId>
+        <label>Service Contract</label>
+        <referenceTo>UNITY_Service_Contract__c</referenceTo>
+        <relationshipLabel>Service Contract Line Items</relationshipLabel>
+        <relationshipName>UNITY_Service_Contract_Line_Items</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>UNITY_Tax__c</fullName>
+        <description>Holds Tax information</description>
+        <externalId>false</externalId>
+        <label>Tax</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Threshold_End__c</fullName>
+        <externalId>false</externalId>
+        <label>Threshold End</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Threshold_Start__c</fullName>
+        <externalId>false</externalId>
+        <label>Threshold Start</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Total_Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>(UNITY_Labor_Cost__c * UNITY_Labor_Hours__c* UNITY_Resources__c ) +  UNTIY_Material_Cost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Trade__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Trade</label>
+        <referenceTo>FSO__Skill__c</referenceTo>
+        <relationshipLabel>Service Contract Line Items</relationshipLabel>
+        <relationshipName>Service_Contract_Line_Items</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Trip_Charge_Type__c</fullName>
+        <description>Type of Trip Charge By Trade</description>
+        <externalId>false</externalId>
+        <label>Trip Charge Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Flat Fee</fullName>
+                    <default>false</default>
+                    <label>Flat Fee</label>
+                </value>
+                <value>
+                    <fullName>Hourly Rate</fullName>
+                    <default>false</default>
+                    <label>Hourly Rate</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Trip_Charge__c</fullName>
+        <description>Trip Charge by Trade</description>
+        <externalId>false</externalId>
+        <label>Trip Charge</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNTIY_Material_Cost__c</fullName>
+        <description>Product Cost</description>
+        <externalId>false</externalId>
+        <label>Product Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Unity_NTE__c</fullName>
+        <description>Not to Exceed cost</description>
+        <externalId>false</externalId>
+        <inlineHelpText>NTE that will be used if no NTE is specified on trade</inlineHelpText>
+        <label>NTE</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Unity_Service_Contract_Line_Item_Ext_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Will Contain Unique Record Id from source</description>
+        <externalId>true</externalId>
+        <label>Service Contract Line Item Ext Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <label>Service Contract Line Item</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>SCL-{0000}</displayFormat>
+        <label>Service Contract Line Item ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Service Contract Line Items</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>UNITY_Hourly_Rate</fullName>
+        <active>true</active>
+        <description>NTE, Labor, Travel, OT rates and multipliers per trade.</description>
+        <label>Hourly Rate</label>
+        <picklistValues>
+            <picklist>UNITY_Currency__c</picklist>
+            <values>
+                <fullName>Canada %24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico Peso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United States %24</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Priority__c</picklist>
+            <values>
+                <fullName>12 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>72 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Self_Perform_Trip_Charge_Type__c</picklist>
+            <values>
+                <fullName>Flat Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hourly Rate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Trip_Charge_Type__c</picklist>
+            <values>
+                <fullName>Flat Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hourly Rate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>UNITY_Menu_Pricing</fullName>
+        <active>true</active>
+        <label>Menu Pricing</label>
+        <picklistValues>
+            <picklist>UNITY_Currency__c</picklist>
+            <values>
+                <fullName>Canada %24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico Peso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United States %24</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Priority__c</picklist>
+            <values>
+                <fullName>12 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>72 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Self_Perform_Trip_Charge_Type__c</picklist>
+            <values>
+                <fullName>Flat Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hourly Rate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Trip_Charge_Type__c</picklist>
+            <values>
+                <fullName>Flat Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hourly Rate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>UNITY_NTE</fullName>
+        <active>true</active>
+        <description>Specify NTE by Trade and Priority</description>
+        <label>NTE</label>
+        <picklistValues>
+            <picklist>UNITY_Currency__c</picklist>
+            <values>
+                <fullName>Canada %24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico Peso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United States %24</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Priority__c</picklist>
+            <values>
+                <fullName>12 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>72 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Self_Perform_Trip_Charge_Type__c</picklist>
+            <values>
+                <fullName>Flat Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hourly Rate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Trip_Charge_Type__c</picklist>
+            <values>
+                <fullName>Flat Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hourly Rate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>UNITY_Product_Pricing</fullName>
+        <active>true</active>
+        <description>Cost of product and any associated labor</description>
+        <label>Product Pricing</label>
+        <picklistValues>
+            <picklist>UNITY_Currency__c</picklist>
+            <values>
+                <fullName>Canada %24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico Peso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United States %24</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Priority__c</picklist>
+            <values>
+                <fullName>12 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>72 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Self_Perform_Trip_Charge_Type__c</picklist>
+            <values>
+                <fullName>Flat Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hourly Rate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Trip_Charge_Type__c</picklist>
+            <values>
+                <fullName>Flat Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hourly Rate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>UNITY_Product_Pricing_Rule</fullName>
+        <active>true</active>
+        <label>Product Pricing Rule</label>
+        <picklistValues>
+            <picklist>UNITY_Currency__c</picklist>
+            <values>
+                <fullName>Canada %24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico Peso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United States %24</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Priority__c</picklist>
+            <values>
+                <fullName>12 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>72 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Self_Perform_Trip_Charge_Type__c</picklist>
+            <values>
+                <fullName>Flat Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hourly Rate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Trip_Charge_Type__c</picklist>
+            <values>
+                <fullName>Flat Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hourly Rate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>UNITY_Service_Charge</fullName>
+        <active>true</active>
+        <label>Service Charge/Service Fee</label>
+        <picklistValues>
+            <picklist>UNITY_Currency__c</picklist>
+            <values>
+                <fullName>Canada %24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico Peso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United States %24</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Priority__c</picklist>
+            <values>
+                <fullName>12 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>72 Hour Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Self_Perform_Trip_Charge_Type__c</picklist>
+            <values>
+                <fullName>Flat Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hourly Rate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Trip_Charge_Type__c</picklist>
+            <values>
+                <fullName>Flat Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hourly Rate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

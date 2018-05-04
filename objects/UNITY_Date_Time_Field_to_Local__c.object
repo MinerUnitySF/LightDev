@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>List of fields to be converted to the user&apos;s local time zone when changed</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>UNITY_Is_to_Local__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Denotes that the target value will get the value for the user&apos;s time zone</description>
+        <externalId>false</externalId>
+        <label>Is to Local</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Object__c</fullName>
+        <description>The object api name to which the mapping applies to</description>
+        <externalId>false</externalId>
+        <label>Object (api)</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Origin_Field__c</fullName>
+        <description>The field to track for changes and use its value to be updated with the account local time</description>
+        <externalId>false</externalId>
+        <label>Origin Field (api)</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Target_Field__c</fullName>
+        <description>The target field to get updated</description>
+        <externalId>false</externalId>
+        <label>Target Field (api)</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_To_Date_Time__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Denotes that the target field is a date time field</description>
+        <externalId>false</externalId>
+        <label>To Date/Time?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>UNITY Date Time Field to Local</label>
+    <visibility>Public</visibility>
+</CustomObject>

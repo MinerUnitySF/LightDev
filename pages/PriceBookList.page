@@ -1,0 +1,30 @@
+<apex:page standardController="Product2" extensions="PriceBookList">
+
+    <apex:form id="form">
+        <apex:pageBlock title="PriceBooks">
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="Add to Pricebook" onClick="window.top.location.href = '/apex/EditingPriceBooks?product={!currentEntry}'; "/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockTable value="{!entries}" var="entry">
+                <apex:column headerValue="Action">
+                    <a href="/{!entry.Id}" target="_top" >View</a>              
+                    <a href="/apex/EditingPriceBooks?id={!entry.Id}" target="_top">Edit</a>
+                    <a href="javascript:if (window.confirm('Are you sure?')) DeleteBook('{!entry.Id}');">Delete</a>
+                </apex:column>
+                <apex:column headerValue="Price Book Name" value="{!entry.PriceBook2.name}"/>
+                <apex:column headerValue="New Price" value="{!entry.UnitPrice}"/>
+                <apex:column headerValue="Cost" value="{!entry.Cost__c}"/>
+                <apex:column headerValue="Active" value="{!entry.IsActive}"/>
+                <apex:column headerValue="Price Book Entry Id" value="{!entry.Id}"/>
+                
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        
+        <apex:actionFunction action="{!DeleteBook}" name="DeleteBook" reRender="form">
+        <apex:param name="bookID" value="" assignTo="{!SelectedId}"/>
+        </apex:actionFunction>  
+        
+
+    </apex:form>
+
+</apex:page>

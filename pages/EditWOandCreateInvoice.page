@@ -1,0 +1,576 @@
+<apex:page standardController="SVMXC__Service_Order__c" extensions="EditWOandCreateInvoice" docType="html" sidebar="false" deferLastCommandUntilReady="true">
+    <!--
+        Changelog
+        ------------------------------------------
+        Programer:   Izay
+        Description: Updated Work Order currency fields to display cents.
+                     Also made some minor layout changes
+        Date:        3/31/2015
+        ------------------------------------------
+        Programer:   Izay
+        Description: Made dynamic re-rendering specific to the row/column rather than the table. 
+                     Allows the user to keep working while the page processes
+        Date:        4/30/2015
+    -->
+    <script type="text/javascript" src="{!URLFOR($Resource.jquery_ui,'js/jquery.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.jquery_ui,'js/jquery-ui.js')}"></script>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.smoothness.css')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.css')}"/>
+    <script type="text/javascript">
+        var $j = jQuery.noConflict();
+    </script>
+    
+    <apex:form >
+        
+        <apex:sectionHeader title="Work Order" subtitle="Edit & Create Invoice"/>
+        
+        <div id="page-message">
+            <div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+                <p>
+                    <span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+                    <strong>Alert:</strong>&nbsp;<apex:outputPanel id="message"><apex:outputText escape="false" value="{!message}"></apex:outputText></apex:outputPanel>
+                </p>
+            </div>
+        </div>
+        
+        <div id="workPerformedNotes"  title="Existing Work Performed Notes" style="display:none;">
+        	<textarea id="workPerformedTextArea" rows="6" cols="30"><apex:outputtext value="{!workPerformed}"/></textarea>
+            <span id="copyResult"></span>
+        </div>
+        
+        <apex:pageBlock mode="edit">
+            
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!completeLines}" value="Complete All Lines" reRender="values,lines-table,script,message" status="loadingStatus"/>
+                <input type="button" value="Quick Save" class="btn" onclick="confirmQuotedValues(false);"/>
+                <input type="button" value="Save" class="btn" onclick="confirmQuotedValues(true);"/>
+                <input type="button" value="Save and Create Invoice" class="btn" onclick="confirmCreateInvoice();"/>
+                <!--<apex:commandButton action="{!saveAndClose}" value="Save" reRender="values,lines-table,script,message" status="loadingStatus"/>-->
+                <!--<apex:commandButton value="Save and Create Invoice" action="{!updateAndCreateInvoice}" 
+                                    reRender="values,lines-table,script,message" status="loadingStatus"/>-->
+                <apex:commandButton action="{!callAvatax}" value="Call Avatax" 
+                                    reRender="values,lines-table,script,message" status="loadingStatus"/>
+                <apex:outputPanel rendered="{!isQuote}">
+                    <input type="button" value="Request Update Quoted Values" class="btn" onclick="confirmEditQuotedValues();"/>
+                </apex:outputPanel>
+                <apex:commandButton value="Cancel" reRender="values,lines-table,script" immediate="true" onclick="window.location.href='/{!workOrder.Id}'"/>
+                <apex:commandButton value="Invoice Preview" immediate="true" rendered="{!previewButtonVisible}" onclick="window.open('/apex/SVMX_VF_Invoice_Preview?id={!workOrder.Id}','_blank','menubar=0, toolbar=1,resizable=1, width=1000, height=800'); return false;"/>
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection title="Work Order Details" columns="2" collapsible="false"></apex:pageBlockSection>
+            
+            <apex:outputPanel id="values" style="display:block;position:relative;">
+                <apex:actionStatus id="loadingStatusValues">
+                    <apex:facet name="start">
+                        <img class="loading-img-alt" src="../../img/loading32.gif"/>
+                        <div class="loading-overlay-alt"></div>
+                    </apex:facet>
+                </apex:actionStatus>
+                
+                <table width="100%">
+                    <tr>
+                        <td style="width:30%;">
+                            <apex:pageBlockSection collapsible="false" columns="1">
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >Work Order:</apex:outputLabel>
+                                    <apex:outputField value="{!tempLine.SVMXC__Service_Order__c}"/>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >Bill To Account:</apex:outputLabel>
+                                    <apex:inputField value="{!workOrder.SVMXC__Company__c}"/>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >Customer P.O.:</apex:outputLabel>
+                                    <apex:inputField value="{!workOrder.Customer_P_O__c}"/>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                	<apex:outputLabel >Invoice Service Notes:</apex:outputLabel>
+                                	<apex:inputField value="{!workOrder.Service_Notes__c}"/>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem rendered="{!AND(workPerformed != '')}" >
+                                	<apex:outputLabel >&nbsp;</apex:outputLabel>
+                                	<apex:outputLink id="workPerformedLink" onclick="showWorkPerformedNotes();return false;">View existing Work Performed Notes</apex:outputLink>
+                                </apex:pageBlockSectionItem>
+                            </apex:pageBlockSection>
+                        </td>
+                        <td>
+                            <apex:pageBlockSection collapsible="false" columns="1">
+                                <apex:pageBlockSectionItem rendered="{!OR(isService,isAdmin,NOT(isQuote))}">
+                                    <apex:outputLabel >NTE:</apex:outputLabel>
+                                    <apex:outputField value="{!workOrder.NTEThreshold__c}"/>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem rendered="{!OR(isService,isAdmin,isQuote)}">
+                                    <apex:outputLabel >Quoted Total:</apex:outputLabel>
+                                    <apex:outputField value="{!workOrder.Quoted_Total__c}"/>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem rendered="{!OR(isEquip, isAdmin)}">
+                                    <apex:outputLabel >Contract Total:</apex:outputLabel>
+                                    <apex:outputField value="{!workOrder.Contract_Total_c__c}"/>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem rendered="{!OR(isEquip, isAdmin)}">
+                                    <apex:outputLabel >Contract Amount:</apex:outputLabel>
+                                    <apex:outputField value="{!workOrder.Contract_Amount__c}"/>
+                                </apex:pageBlockSectionItem>
+                            </apex:pageBlockSection>
+                        </td>
+                        <td>
+                            <apex:pageBlockSection collapsible="false" columns="1">
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >Revenue:</apex:outputLabel>
+                                    <apex:outputText value="${0,number,###,###,##0.00}"><apex:param value="{!revenue}"/></apex:outputText>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >Total Tax:</apex:outputLabel>
+                                    <apex:outputText value="${0,number,###,###,##0.00}"><apex:param value="{!taxTotal}"/></apex:outputText>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >Work Order Total:</apex:outputLabel>
+                                    <apex:outputText value="${0,number,###,###,##0.00}"><apex:param value="{!orderTotal}"/></apex:outputText>
+                                </apex:pageBlockSectionItem>
+                            </apex:pageBlockSection>
+                        </td>
+                        <td>
+                            <apex:pageBlockSection collapsible="false" columns="1">
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >Margin $:</apex:outputLabel>
+                                    <apex:outputText value="${0,number,###,###,##0.00}"><apex:param value="{!marginCurr}"/></apex:outputText>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >Margin %:</apex:outputLabel>
+                                    <apex:outputText value="{0,number,##0.00}%"><apex:param value="{!marginPercent}"/></apex:outputText>
+                                </apex:pageBlockSectionItem>
+                            </apex:pageBlockSection>
+                        </td>
+                    </tr>
+                </table>
+            </apex:outputPanel>
+            
+            <apex:pageBlockSection title="Work Detail Lines" columns="1" collapsible="false"></apex:pageBlockSection>
+            
+            <apex:pageBlockTable value="{!workOrderLines}" var="lineWrap" id="lines-table" styleClass="details-table">
+                <apex:column headerValue="Sort" styleClass="small-col">
+                    <apex:inputField value="{!lineWrap.line.Sort_Order__c}" style="width:25px;" rendered="{!lineWrap.edit}"/>
+                    <apex:outputField value="{!lineWrap.line.Sort_Order__c}" rendered="{!NOT(lineWrap.edit)}"/>
+                </apex:column>
+                <apex:column headerValue="Hide?" styleClass="small-col">
+                    <apex:inputCheckbox value="{!lineWrap.line.Hide_Line__c}" rendered="{!AND(lineWrap.edit, lineWrap.canInvoice)}"/>
+                    <apex:image value="/img/checkbox_checked.gif" rendered="{!AND(OR(NOT(lineWrap.edit), NOT(lineWrap.canInvoice)), lineWrap.line.Hide_Line__c)}"/>
+                    <apex:image value="/img/checkbox_unchecked.gif" rendered="{!AND(OR(NOT(lineWrap.edit),NOT(lineWrap.canInvoice)), NOT(lineWrap.line.Hide_Line__c))}"/>
+                </apex:column>
+                <!--
+                <apex:column headerValue="Quoted?" styleClass="small-col" rendered="{!isQuote}">
+                    <apex:inputCheckbox value="{!lineWrap.line.Quoted__c}" rendered="{!lineWrap.edit}"/>
+                    <apex:image value="/img/checkbox_checked.gif" rendered="{!AND(OR(NOT(lineWrap.edit), NOT(lineWrap.canInvoice)), lineWrap.line.Quoted__c)}"/>
+                    <apex:image value="/img/checkbox_unchecked.gif" rendered="{!AND(OR(NOT(lineWrap.edit),NOT(lineWrap.canInvoice)), NOT(lineWrap.line.Quoted__c))}"/>
+                </apex:column>
+                -->
+                <apex:column headerValue="Line Type">
+                    <apex:inputField value="{!lineWrap.line.SVMXC__Line_Type__c}" rendered="{!lineWrap.edit}">
+                        <apex:actionSupport event="onchange" action="{!lineWrap.togglePart}" rerender="part-col,prod-code-col,qoh-col,vendor-col,stock-loc,status-col,quote-col,script"/>
+                    </apex:inputField>
+                    <apex:outputField value="{!lineWrap.line.SVMXC__Line_Type__c}" rendered="{!NOT(lineWrap.edit)}"/>
+                </apex:column>
+                <apex:column headerValue="Activity Type">
+                    <apex:inputField value="{!lineWrap.line.SVMXC__Activity_Type__c}" rendered="{!lineWrap.edit}"/>
+                    <apex:outputField value="{!lineWrap.line.SVMXC__Activity_Type__c}" rendered="{!NOT(lineWrap.edit)}"/>
+                </apex:column>
+                <apex:column headerValue="Part">
+                    <apex:outputPanel id="part-col">
+                        <apex:inputField value="{!lineWrap.line.SVMXC__Product__c}" rendered="{!AND(lineWrap.isPart, lineWrap.edit)}"
+                                         style="width: 100px;" onkeydown="if(event.keyCode==13){this.blur();actionFunction();}">
+                            <apex:actionSupport event="onchange" action="{!lineWrap.changePart}" oncomplete="calculateTotals();" 
+                                                rerender="part-col,qoh-col,prod-code-col,unit-cost-col,unit-price-col,subtotal-col,values,script">
+                                <apex:param name="sc" value="{!workOrder.Super_Center__c}"/>
+                            </apex:actionSupport>
+                        </apex:inputField>
+                    </apex:outputPanel>
+                    <apex:outputField value="{!lineWrap.line.SVMXC__Product__c}" rendered="{!AND(lineWrap.isPart, NOT(lineWrap.edit))}"/>
+                </apex:column>
+                <apex:column headerValue="QOH">
+                    <apex:outputPanel id="qoh-col">
+                        <apex:outputText value="{!lineWrap.inv1}/{!lineWrap.inv2}" rendered="{!lineWrap.isPart}" />
+                    </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="Product Code" rendered="{!OR(isService, isAdmin)}">
+                    <apex:outputPanel id="prod-code-col">
+                        <apex:outputText value="{!lineWrap.prodCode}"/>
+                    </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="Stock Location">
+                    <apex:outputPanel id="stock-loc">
+                        <apex:inputField value="{!lineWrap.line.SVMXC__Consumed_From_Location__c}"
+                                         rendered="{!AND(lineWrap.line.SVMXC__Line_Type__c == 'Parts',lineWrap.edit)}" onkeydown="if(event.keyCode==13){this.blur();actionFunction();}">
+                            <apex:actionSupport event="onchange" action="{!lineWrap.populateInventory}" 
+                                                rerender="qoh-col">
+                                <apex:param name="sc" value="{!workOrder.Super_Center__c}"/>
+                            </apex:actionSupport>
+                        </apex:inputField>
+                        <apex:outputField value="{!lineWrap.line.SVMXC__Consumed_From_Location__c}" rendered="{!NOT(lineWrap.edit)}"/>
+                    </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="Vendor">
+                    <apex:outputPanel id="vendor-col">
+                        <apex:inputField value="{!lineWrap.line.Vendor__c}" rendered="{!AND(lineWrap.edit, lineWrap.line.SVMXC__Line_Type__c == 'Vendor Services')}"
+                                         onkeydown="if(event.keyCode==13){this.blur();}">
+                        </apex:inputField>
+                        <apex:outputField value="{!lineWrap.line.Vendor__c}" rendered="{!AND(NOT(lineWrap.edit), lineWrap.line.SVMXC__Line_Type__c == 'Vendor Services')}"/>
+                    </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.SVMXC__Service_Order_Line__c.fields.Quoted_Quantity__c.Label}" 
+                             width="40" rendered="{!isQuote}">
+                    <apex:outputPanel id="quoted-qty-col">
+                        <apex:inputField value="{!lineWrap.line.Quoted_Quantity__c}" style="width:40px;" 
+                                         rendered="{!OR(AND(ISBLANK(lineWrap.line.Id),lineWrap.line.Quoted__c),AND(editQuote,lineWrap.edit,lineWrap.line.Quoted__c))}">
+                            <apex:actionSupport event="onchange" action="{!calculateTotals}" rerender="values,subtotal-col" status="loadingStatusValues"/>
+                        </apex:inputField>
+                        <apex:outputText value="{0, number,###,###,##0.00}" style="width:40px;"
+                                         rendered="{!AND(NOT(ISBLANK(lineWrap.line.Id)),NOT(editQuote))}">
+                            <apex:param value="{!lineWrap.line.Quoted_Quantity__c}" />
+                        </apex:outputText>
+                    </apex:outputPanel>
+                        
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.SVMXC__Service_Order_Line__c.fields.Quoted_Unit_Cost__c.Label}"  
+                             width="60" rendered="{!isQuote}">
+                    <apex:outputPanel id="quoted-cost-col">
+                        <apex:inputField value="{!lineWrap.line.Quoted_Unit_Cost__c}" style="width:60px;" 
+                                         rendered="{!OR(AND(ISBLANK(lineWrap.line.Id),lineWrap.line.Quoted__c),AND(editQuote,lineWrap.edit,lineWrap.line.Quoted__c))}" />
+                        <apex:outputText value="{0, number,###,###,##0.00}" style="width:60px;" 
+                                         rendered="{!AND(NOT(ISBLANK(lineWrap.line.Id)),NOT(editQuote))}" >
+                            <apex:param value="{!lineWrap.line.Quoted_Unit_Cost__c}" />
+                        </apex:outputText>
+                    </apex:outputPanel>
+                        
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.SVMXC__Service_Order_Line__c.fields.Quoted_Unit_Price__c.Label}" 
+                             width="60" rendered="{!isQuote}">
+                    <apex:outputPanel id="quoted-price-col">
+                        <apex:inputField value="{!lineWrap.line.Quoted_Unit_Price__c}" style="width:60px;" 
+                                         rendered="{!OR(AND(ISBLANK(lineWrap.line.Id),lineWrap.line.Quoted__c),AND(editQuote,lineWrap.edit,lineWrap.line.Quoted__c))}">
+                            <apex:actionSupport event="onchange" action="{!calculateTotals}" rerender="values,subtotal-col" status="loadingStatusValues"/>  
+                        </apex:inputField>
+                        <apex:outputText value="{0, number,###,###,##0.00}" style="width:60px;" 
+                                         rendered="{!AND(NOT(ISBLANK(lineWrap.line.Id)),NOT(editQuote))}" >
+                            <apex:param value="{!lineWrap.line.Quoted_Unit_Price__c}" />
+                        </apex:outputText>
+                    </apex:outputPanel>
+                </apex:column>
+                <apex:column width="40" headerValue="Actual Qty">
+                    <apex:outputPanel id="qty-col">
+                        <apex:inputField value="{!lineWrap.line.SVMXC__Actual_Quantity2__c}"  style="width: 40px;" 
+                                         rendered="{!AND(lineWrap.edit,OR(NOT(isQuote),AND(isQuote,NOT(lineWrap.line.Quoted__c)),AND(isQuote,lineWrap.line.Quoted__c,NOT(ISBLANK(lineWrap.line.Id)),lineWrap.line.SVMXC__Line_Type__c != 'Labor')))}" 
+                                         onkeydown="if(event.keyCode==13){this.blur();actionFunction();}">
+                            <apex:actionSupport event="onchange" action="{!calculateTotals}" rerender="values,subtotal-col" 
+                                                status="loadingStatusValues"/>
+                        </apex:inputField>
+                        <apex:outputText value="{0, number,###,###,##0.000}" style="width: 40px;" 
+                                         rendered="{!OR(NOT(lineWrap.edit),AND(isQuote,lineWrap.line.SVMXC__Line_Type__c == 'Labor',lineWrap.line.Quoted__c))}">
+                            <apex:param value="{!lineWrap.line.SVMXC__Actual_Quantity2__c}" />
+                        </apex:outputText>
+                    </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="Unit Cost" width="60">
+                    <apex:outputPanel id="unit-cost-col">
+                        <apex:inputField value="{!lineWrap.line.Vendor_Cost_Per_Unit__c}"
+                                         rendered="{!AND(lineWrap.edit,OR(NOT(isQuote),AND(isQuote,NOT(lineWrap.line.Quoted__c)),AND(isQuote,lineWrap.line.Quoted__c,NOT(ISBLANK(lineWrap.line.Id)))))}"
+                                         onkeydown="if(event.keyCode==13){this.blur();actionFunction();}" style="width: 60px;">
+                            <apex:actionSupport event="onchange" action="{!calculateTotals}" rerender="values,subtotal-col" status="loadingStatusValues"/>
+                        </apex:inputField>
+                        <apex:outputText value="{0, number,###,###,##0.000}" style="width: 40px;" rendered="{!NOT(lineWrap.edit)}">
+                            <apex:param value="{!lineWrap.line.Vendor_Cost_Per_Unit__c}" />
+                        </apex:outputText>
+                    </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="Unit Price" width="60">
+                    <apex:outputPanel id="unit-price-col">
+                        <apex:inputField value="{!lineWrap.line.SVMXC__Actual_Price2__c}"
+                                         rendered="{!AND(lineWrap.edit,OR(NOT(isQuote),AND(isQuote,NOT(lineWrap.line.Quoted__c))))}"
+                                         onkeydown="if(event.keyCode==13){this.blur();actionFunction();}" style="width: 60px;">
+                            <apex:actionSupport event="onchange" action="{!calculateTotals}" rerender="values,subtotal-col" status="loadingStatusValues"/>
+                        </apex:inputField>
+                        <apex:outputText value="{0, number,###,###,##0.000}" style="width: 40px;" rendered="{!OR(NOT(lineWrap.edit),AND(isQuote,lineWrap.line.Quoted__c))}">
+                            <apex:param value="{!lineWrap.line.SVMXC__Actual_Price2__c}" />
+                        </apex:outputText>
+                    </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="Sales Tax">
+                    <apex:outputField value="{!lineWrap.line.Sales_Tax__c}" />
+                </apex:column>
+                <apex:column headerValue="Subtotal">
+                    <apex:outputPanel id="subtotal-col">
+                        <apex:outputText value="{0, number,$###,###,##0.000}">
+                            <apex:param value="{!lineWrap.subTotal}" />
+                        </apex:outputText>
+                    </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="Line Status">
+                    <apex:outputPanel id="status-col">
+                        <apex:inputField value="{!lineWrap.line.SVMXC__Line_Status__c}" rendered="{!OR(AND(lineWrap.edit,NOT(isQuote)),AND(isQuote,editQuote),AND(isQuote,ISBLANK(lineWrap.line.Id)))}" onkeydown="if(event.keyCode==13){this.blur();actionFunction();}">
+                            <apex:actionSupport event="onchange" action="{!lineWrap.enableCheckbox}" rerender="subtotal-col,unit-price-col,unit-cost-col,qty-col,script" status="row-status"></apex:actionSupport>
+                        </apex:inputField>
+                        <apex:outputField value="{!lineWrap.line.SVMXC__Line_Status__c}" rendered="{!OR(NOT(lineWrap.edit),AND(isQuote,NOT(ISBLANK(lineWrap.line.Id)),NOT(editQuote)))}"/>
+                    </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="Deliver Date" rendered="{!OR(isEquip, isAdmin)}">
+                    <apex:inputField value="{!lineWrap.line.Deliver_Date__c}" rendered="{!lineWrap.edit}" onkeydown="if(event.keyCode==13){this.blur();actionFunction();}"/>
+                    <apex:outputField value="{!lineWrap.line.Deliver_Date__c}" rendered="{!NOT(lineWrap.edit)}"/>
+                </apex:column>
+                <apex:column headerValue="Work Detail Date" rendered="{!OR(isService, isAdmin)}">
+                    <apex:inputField value="{!lineWrap.line.WD_Created_Date__c}" rendered="{!lineWrap.edit}" onkeydown="if(event.keyCode==13){this.blur();actionFunction();}"/>
+                    <apex:outputField value="{!lineWrap.line.WD_Created_Date__c}" rendered="{!NOT(lineWrap.edit)}"/>
+                </apex:column>
+                <apex:column headerValue="Work Description">
+                    <apex:inputField style="width:90%;height:40px;" value="{!lineWrap.line.SVMXC__Work_Description__c}" rendered="{!lineWrap.edit}" onkeydown="if(event.keyCode==13){this.blur();actionFunction();}"/>
+                    <apex:outputField style="width:90%;height:40px;" value="{!lineWrap.line.SVMXC__Work_Description__c}" rendered="{!NOT(lineWrap.edit)}"/>
+                </apex:column>
+                <apex:column headerValue="Billable">
+                    <apex:inputField value="{!lineWrap.line.SVMXC__Is_Billable__c}" rendered="{!AND(lineWrap.edit,NOT(isWarranty))}" onkeydown="if(event.keyCode==13){this.blur();actionFunction();}">
+                        <apex:actionSupport event="onchange" action="{!lineWrap.billableChanged}" rerender="values,quoted-price-col,unit-price-col,subtotal-col,script" 
+                                            status="loadingStatusValues" oncomplete="calculateTotals();"/>
+                    </apex:inputField>
+                    <apex:outputField value="{!lineWrap.line.SVMXC__Is_Billable__c}" rendered="{!OR(NOT(lineWrap.edit),isWarranty)}"/>
+                </apex:column>
+                <apex:column headerValue="Quoted?" rendered="{!isQuote}">
+                    <apex:outputPanel id="quote-col">
+                        <apex:inputField value="{!lineWrap.line.Quoted__c}"
+                                            rendered="{!AND(lineWrap.edit,isQuote,lineWrap.line.SVMXC__Line_Type__c == 'Labor',OR(ISBLANK(lineWrap.line.Id),editQuote))}">
+                            <apex:actionSupport event="onchange" action="{!lineWrap.quotedChanged}"
+                                                rerender="values,quoted-qty-col,quoted-cost-col,quoted-price-col,qty-col,unit-cost-col,unit-price-col,subtotal-col,script"
+                                                status="loadingStatusValues"  oncomplete="calculateTotals();"/>
+                        </apex:inputField>
+                        <apex:outputField value="{!lineWrap.line.Quoted__c}" rendered="{!NOT(ISBLANK(lineWrap.line.Id))}"/>
+                        <!--<apex:image value="/img/checkbox_checked.gif" rendered="{!AND(NOT(ISBLANK(lineWrap.line.Id)),lineWrap.line.Quoted__c)}"/>
+                        <apex:image value="/img/checkbox_unchecked.gif" rendered="{!AND(NOT(ISBLANK(lineWrap.line.Id)),NOT(lineWrap.line.Quoted__c))}"/>-->
+                    </apex:outputPanel>
+                </apex:column>
+            </apex:pageBlockTable>
+            
+            <br/>
+            
+            <apex:commandButton action="{!add10MoreLines}" value="Add 10 More Lines" status="loadingStatus" rerender="lines-table,script,message" styleClass="add-btn"/>
+            
+        </apex:pageBlock>
+        
+        <apex:actionFunction action="{!calculateTotals}" name="calculateTotals" reRender="values"/>
+        <apex:actionFunction action="{!quickSave}" name="quickSave" reRender="values,lines-table,script,message" status="loadingStatus"/>
+        <apex:actionFunction action="{!saveAndClose}" name="saveAndClose" reRender="values,lines-table,script,message" status="loadingStatus"/>
+        <apex:actionFunction action="{!updateAndCreateInvoice}" name="updateAndCreateInvoice" reRender="values,lines-table,script,message" status="loadingStatus"/>
+        <apex:actionFunction action="{!requestEditQuote}" name="requestEditQuote" reRender="values,lines-table,script,message" status="loadingStatus"/>
+        <apex:actionFunction action="{!requestUpdateQuotedTotal}" name="requestUpdateQuotedTotal" reRender="values,lines-table,script,message" status="loadingStatus"/>
+        
+    </apex:form>
+    
+    <c:ajaxStatus loadingText="Processing..."></c:ajaxStatus>
+    
+    <style type="text/css">
+        #page-message{
+            display: none;
+            margin: 0px 0px 10px;
+        }
+        .bPageBlock .detailList .labelCol{
+            width: 50%;
+        }
+        .bPageBlock .list.details-table{
+            margin: 0px 10px;
+            width: calc(100% - 20px);
+        }   
+        .details-table tr{
+            position: relative;
+        }
+        .homeTab .pageTitleIcon, .individualPalette .homeBlock .pageTitleIcon{
+            background-image: url("/img/icon/wrench32.png");
+            background-position: 0px 0px;
+            width: 32px;
+            height: 32px;
+        }
+        .small-col{
+            width: 40px;
+        }
+        .row-overlay{
+            display:block;
+            position:absolute;
+            width:100%;
+            background:rgba(0,0,0,.15);
+            z-index:100000;
+            height:100%;
+            top:0px;
+            left:0px;
+            text-align: center;
+        }
+        .row-overlay img{
+            background: #fff;
+            border: 1px solid #aaa;
+            -webkit-border-radius: 4px 4px 4px 4px;
+            border-radius: 4px 4px 4px 4px;
+            padding:5px 8px;
+            position: absolute;
+            left: calc(50% - 13px);
+            top: calc(50% - 13px);
+            width: 14px;
+        }
+        .lookupInput input[readonly] {
+            border: 1px solid #bbb;
+        }
+        .bEditBlock .btn.add-btn{
+            margin-left: 10px;
+            margin-bottom: 10px;
+        }
+        .loading-img-alt{
+            background: #fff;
+            border: 1px solid #aaa;
+            -webkit-border-radius: 4px 4px 4px 4px;
+            border-radius: 4px 4px 4px 4px;
+            padding:5px 8px;
+            position: absolute;
+            left: calc(50% - 13px);
+            top: calc(50% - 13px);
+            width: 14px;
+        }
+        .loading-overlay-alt{
+            background-color:#fff;
+            display:block;
+            opacity:.40;
+            filter:alpha(opacity=40);
+            width:100%;
+            height:100%;
+            position:absolute;
+            z-index:99999;
+            left:0;
+            top:0;
+        }
+    </style>
+    
+    <apex:outputPanel id="script">
+        <script type="text/javascript">
+            $j(document).ready(function(){
+                if({!hasError}){
+                    $j("#page-message").show();
+                }else{
+                    $j("#page-message").hide();
+                }
+                if(detectIE()){
+                    $j("textarea").resizable();
+                }
+            });
+            /**
+             * detect IE
+             * returns version of IE or false, if browser is not Internet Explorer
+             */
+            function detectIE() {
+                var ua = window.navigator.userAgent;
+            
+                var msie = ua.indexOf('MSIE ');
+                if (msie > 0) {
+                    // IE 10 or older => return version number
+                    return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+                }
+            
+                var trident = ua.indexOf('Trident/');
+                if (trident > 0) {
+                    // IE 11 => return version number
+                    var rv = ua.indexOf('rv:');
+                    return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+                }
+            
+                var edge = ua.indexOf('Edge/');
+                if (edge > 0) {
+                   // IE 12 => return version number
+                   return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+                }
+            
+                // other browser
+                return false;
+            }
+            function confirmQuotedValues(closePage){
+                if({!isQuote}){
+                    $j('<div><p>Please confirm that all quoted values are correct.</p><p><em>*Note: Quoted values can be updated by authorized person only.</em></p></div>').dialog({
+                        modal:true,
+                        buttons:{
+                            'Yes':function() {
+                                if(closePage){
+                                    saveAndClose();
+                                }else{
+                                    quickSave();
+                                }
+                                $j(this).dialog("close");
+                             },
+                             'Cancel':function() {
+                                $j(this).dialog("close");
+                             }
+                        }
+                    });
+                }else{
+                    if(closePage){
+                        saveAndClose();
+                    }else{
+                        quickSave();
+                    }
+                }
+            }
+            function confirmEditQuotedValues(){
+                if({!isQuote}){
+                    $j('<div><p>Request approval to update quoted values?</p><p><em>*Note: The work order will be locked until the request has been answered.</em></p></div>').dialog({
+                        modal:true,
+                        buttons:{
+                            'Yes':function() {
+                                requestEditQuote();
+                                $j(this).dialog("close");
+                             },
+                             'Cancel':function() {
+                                $j(this).dialog("close");
+                             }
+                        }
+                    });
+                }
+            }
+            function confirmCreateInvoice(){
+                if({!isQuote}){
+                    var qt =  {!IF(workOrder.Quoted_Total__c != null,workOrder.Quoted_Total__c,0)};
+                    var wt = {!revenue};
+                    if(wt > qt){
+                        $j('<div><p>The work order total is greater than the quoted total.</p><p><strong>Request to increase quoted total?</strong></p><p><em>*Note: The work order will be locked until the request has been answered.</em></p></div>').dialog({
+                            modal:true,
+                            buttons:{
+                                'Yes':function() {
+                                    requestUpdateQuotedTotal();
+                                    $j(this).dialog("close");
+                                 },
+                                 'Cancel':function() {
+                                    $j(this).dialog("close");
+                                 }
+                            }
+                        });
+                    }else{
+                        updateAndCreateInvoice();
+                    }
+                }else{
+                    updateAndCreateInvoice();   
+                }
+            }
+            function showWorkPerformedNotes(){
+            	$j('#workPerformedNotes').dialog({
+                            modal:true,
+                            buttons:{
+                                 'Copy to clipboard':function(){
+                                 	var wpTextarea = document.getElementById("workPerformedTextArea");
+                                 	wpTextarea.select();
+                                 	try {
+								       	var successful = document.execCommand('copy');
+										var copyResult = document.getElementById("copyResult");
+										
+								       	if(successful) copyResult.innerHTML = 'Copied!';
+								       	else copyResult.innerHTML = 'Unable to copy!';
+								   	} catch (err) {
+								        copyResult.innerHTML = 'Unsupported Browser!';
+								   	}
+                                 },
+                                 'Close':function() {
+                                    $j(this).dialog("close");
+                                 }                                 
+                            }
+                        });
+            }
+        </script>
+    </apex:outputPanel>
+    
+</apex:page>

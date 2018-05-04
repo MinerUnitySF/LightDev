@@ -1,0 +1,201 @@
+<apex:page docType="html-5.0" standardController="UNITY_Invoice__c" extensions="UNITY_InvoicePDFController" applyBodyTag="false" applyHtmlTag="false" showHeader="false" renderAs="pdf">
+<head>
+    <style type="text/css">
+        @page {
+            margin-left: 2mm;
+            margin-right: 2mm; 
+            margin-bottom: 1.45cm;
+            @bottom-right {
+                font-family: Helvetica;
+                font-size: 9pt;
+                content: "Page " counter(page) " of " counter(pages);
+            }
+                           
+        }
+        .title {
+            padding: 0px 0px 0px 0px;
+            font-size: 28pt;
+        }
+        .borderedTable {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .grayHeader {
+            background-color: #b3b3b3;
+        }
+        .invoiceHeaderTable {
+            padding: 170px 0px 0px 0px;
+            min-width: 80%;
+        }
+        .invoiceLineItemTable {
+            padding: 270px 0px 0px 0px;
+            min-width: 80%;
+        }
+        .page-wrapper{
+            background-image:{!IF(invoice.UNITY_Invoice_Status__c == 'Cancelled','url('+URLFOR($Resource.images,'cancelled-whatermark.png')+')',IF(invoice.UNITY_Invoice_Status__c == 'Invoice Creation', 'url('+URLFOR($Resource.images,'draft-whatermark.png')+')','none'))}
+        }
+    </style>
+    </head>
+    <apex:repeat value="{!pageWrappers}" var="page" rendered="{!NOT(invoiceId = null)}" >
+        <div style="position:relative;height:930px;page-break-after:auto" class="page-wrapper">
+            <img style="left:4%;top:10px;position:absolute;max-width:600px;max-height:300px" id="theImage" src="{!invoice.UNITY_Email_Logo_URL__c}"/>
+            <div style="width:33%;left:32%;top:10px;font-size:80%;position:absolute;text-align:center">
+                <apex:outputText value="{!IF(UNITY_Invoice__c.UNITY_Business_Unit_Account__c != NULL,UNITY_Invoice__c.UNITY_Business_Unit_Account__r.MSPFS_BU_Shipping_Address__c,UNITY_Invoice__c.UNITY_Case__r.UNITY_Business_Unit_Account__r.MSPFS_BU_Shipping_Address__c)}" escape="false"/>
+            </div>
+            <table class="borderedTable" style="width:26%;right:4%;top:10px;position:absolute;font-size:80%;">
+                <tr>
+                    <td style="width:40%" class="borderedTable">Invoice No:</td>
+                    <td style="width:60%" class="borderedTable">{!invoice.Name}</td>
+                </tr>
+                <tr>
+                    <td style="width:40%" class="borderedTable">Date:</td>
+                    <td style="width:60%" class="borderedTable">
+                        <apex:outputText value="{0,date, MM/dd/YYYY}">
+                            <apex:param value="{!dateValue}"></apex:param>
+                        </apex:outputText>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:40%" class="borderedTable">Page:</td>
+                    <td style="width:60%" class="borderedTable">{!page.pageNumber} of {!totalPages}</td>
+                </tr>
+            </table>
+            <div style="left:4%;top:130px;width:30%;position:absolute;background-color:#b3b3b3;text-align:center;border-style: solid;border-color: black;font-size:80%;">Bill To:</div>
+            <div style="right:4%;top:130px;width:30%;position:absolute;background-color: #b3b3b3;text-align:center;border-style: solid;border-color: black;font-size:80%;">Job Site Information:</div>
+            <div style="left:4%;top:160px;width:30%;position:absolute;font-size:80%">
+                <apex:outputText value="{!UNITY_Invoice__c.UNITY_Bill_To_Address__c}" escape="false" />
+            </div>
+            <div style="right:4%;top:160px;width:30%;position:absolute;font-size:80%">
+                <apex:outputText value="{!LEFT(UNITY_Invoice__c.UNITY_Case__r.Account.Name,FIND(' - '& UNITY_Invoice__c.UNITY_Case__r.Account.ShippingStreet,UNITY_Invoice__c.UNITY_Case__r.Account.Name,0))}"></apex:outputText><br/>
+                <apex:outputText value="{!UNITY_Invoice__c.UNITY_Case__r.UNITY_Site_Location_Address__c}" escape="false" /><br/>
+                <apex:outputPanel rendered="{!NOT(UNITY_Invoice__c.UNITY_Customer__r.Residential__c)}">
+                    <apex:outputText value="Site/Store#:"></apex:outputText>&nbsp;<apex:outputText value="{!UNITY_Invoice__c.UNITY_Case__r.UNITY_Store_Location_Number__c}"></apex:outputText>
+                </apex:outputPanel>
+            </div>
+            
+            <div style="left:2%;right:2%;top:240px;position:absolute;font-size:80%;font-family:Arial,Helvetica,sans-serif;">
+                <table style="width:100%" class="borderedTable" id="invoiceHeaderTable">
+                    <thead class="borderedTable, grayHeader">
+                        <tr>
+                            <td style="width:30%;text-align:center" class="borderedTable">Customer P.O.</td>
+                            <td style="width:20%;text-align:center" class="borderedTable">Customer Id #</td>
+                            <td style="width:50%;text-align:center" class="borderedTable">Payment Terms</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;min-height:18px;" class="borderedTable">{!invoice.UNITY_Case__r.UNITY_Customer_PO__c}</td>
+                            <td style="text-align:center;min-height:18px;" class="borderedTable">{!invoice.UNITY_Customer__r.UNITY_Account_ID__c}</td>
+                            <td style="text-align:center;min-height:18px;" class="borderedTable">{!invoice.UNITY_Customer_Service_Contract__r.UNITY_Net_Payment_Terms__c}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table style="width:100%" class="borderedTable" id="invoiceHeaderTable">
+                    <thead class="borderedTable, grayHeader">
+                        <tr>
+                            <td style="text-align:center" class="borderedTable">Invoice Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:left;min-height:18px;max-height:105px;font-size:80%;display:block;text-overflow:ellipsis;overflow:hidden;padding:5px;font-family:Arial,Helvetica,sans-serif;" class="borderedTable">{!invoice.UNITY_Invoice_Description__c}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table style="width:100%;" class="borderedTable" id="invoiceLineItemTable">
+                    <thead class="borderedTable, grayHeader">
+                        <tr class="borderedTable">
+                            <th style="width:20%;text-align:center;" class="borderedTable">Product Name</th>
+                            <th style="width:45%;text-align:center;" class="borderedTable">Description</th>
+                            <th style="width:8%;text-align:center;" class="borderedTable">Quantity</th>
+                            <th style="width:9%;text-align:center;" class="borderedTable">Unit Price</th>
+                            <th style="width:9%;text-align:center;" class="borderedTable">Total</th>
+                            <th style="width:9%;text-align:center;" class="borderedTable">Tax</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <apex:repeat value="{!page.invoiceLineItemWrappers}" var="ili">
+                            <tr style="min-height:16px;" class="borderedTable">
+                                <td style="text-align:left;min-height:16px;font-size:75%" class="borderedTable">{!ili.productName}</td>
+                                <td style="text-align:left;min-height:16px;font-size:75%" class="borderedTable">{!ili.description}</td>
+                                <td style="text-align:center;min-height:16px;font-size:75%" class="borderedTable">{!ili.quantity}</td>
+                                <td style="text-align:center;min-height:16px;font-size:75%" class="borderedTable">
+                                    <apex:outputText value="{0, number, #,###,##0.00}">
+                                        <apex:param value="{!VALUE(TRIM(ili.price))}" />
+                                    </apex:outputText>
+                                    </td>
+                                <td style="text-align:center;min-height:16px;font-size:75%" class="borderedTable">
+                                    <apex:outputText value="{0, number, #,###,##0.00}">
+                                        <apex:param value="{!VALUE(TRIM(ili.total))}" />
+                                    </apex:outputText>
+                                </td>        
+                                <td style="text-align:center;min-height:16px;font-size:75%" class="borderedTable">
+                                    <apex:outputText value="{0, number, #,###,##0.00}">
+                                        <apex:param value="{!VALUE(TRIM(ili.tax))}" />
+                                    </apex:outputText>
+                                </td>          
+                            </tr>
+                        </apex:repeat>
+                    </tbody>
+                </table>
+                
+                <table style="width:100%;" class="borderedTable">
+                    <tr>
+                        <td style="width:34%;font-size:60%;padding:3px;" class="borderedTable">{!invoice.UNITY_Case__r.UNITY_Email_Invoice_Guarantee_Text__c}</td>
+                        <td style="width:36%;font-size:80%;padding:3px;" class="borderedTable">
+                            <span><Strong>Please Remit To:</Strong></span><br/>
+                            <apex:outputText value="{!IF(UNITY_Invoice__c.UNITY_Business_Unit_Account__c != NULL,UNITY_Invoice__c.UNITY_Business_Unit_Account__r.MSPFS_BU_Billing_Address__c,UNITY_Invoice__c.UNITY_Case__r.UNITY_Business_Unit_Account__r.MSPFS_BU_Billing_Address__c)}" escape="false"/>
+                        </td>
+                        <td style="width:30%;font-size:90%" class="borderedTable">
+                            <apex:outputPanel rendered="{!page.lastPage}">
+                                <table >
+                                    <tr>
+                                        <td>Net Invoice:</td>
+                                        <td style="text-align:right"><div style="padding-left:80px">
+                                            <apex:outputText value="{0, number, #,###,##0.00}">
+                                                <apex:param value="{!UNITY_Invoice__c.UNITY_Total_Price__c}" />
+                                            </apex:outputText>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Less Discount:</td>
+                                        <td style="text-align:right">
+                                            <div style="padding-left:80px">
+                                                <apex:outputText value="{0, number, #,###,##0.00}">
+                                                    <apex:param value="{!UNITY_Invoice__c.UNITY_Total_Adjustments__c}" />
+                                                </apex:outputText>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sales Tax:</td>
+                                        <td style="text-align:right">
+                                            <div style="padding-left:80px">
+                                                <apex:outputText value="{0, number, #,###,##0.00}">
+                                                    <apex:param value="{!UNITY_Invoice__c.UNITY_Total_Tax__c}" />
+                                                </apex:outputText>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Invoice Total:</b></td>
+                                        <td style="text-align:right">
+                                            <b>
+                                                <div style="padding-left:80px">
+                                                    <apex:outputText value="{0, number, #,###,##0.00}">
+                                                        <apex:param value="{!UNITY_Invoice__c.UNITY_Final_Price__c}"></apex:param>
+                                                    </apex:outputText>
+                                                </div>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </apex:outputPanel> 
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </apex:repeat>
+</apex:page>

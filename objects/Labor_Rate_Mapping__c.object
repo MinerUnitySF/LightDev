@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Allows a mapping between activity type set on the manage work details screen to a labor rate type when creating a labor line</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Labor_Rate_Type__c</fullName>
+        <description>labor rate type to be set on the work detail</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Type the Labor Rate Type EXACTLY as you want the activity type to map to on the work detail.</inlineHelpText>
+        <label>Labor Rate Type</label>
+        <length>50</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Labor Rate Mapping</label>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,9 @@
+<apex:page controller="UNITY_AutopopulateChildController">
+    
+    <script src="{!URLFOR($Resource.UNITY_utilsJS)}"/>  
+    
+    <script>
+        UNITY.utils.openURL('{!mapFieldsAndRedirect}','', false);
+    </script>
+    
+</apex:page>

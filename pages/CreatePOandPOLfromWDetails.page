@@ -1,0 +1,84 @@
+<apex:page controller="CreatePOandPOLfromWDetails">
+    <script type="text/javascript">
+        var isClicked = false;
+            function checkDoubleSubmit(obj){
+                if (isClicked) {
+                    return false;
+                }else {
+                    isClicked = true;
+                    obj.className = 'btnDisabled';//only shows the button as disabled.
+                    return true;
+                }
+            }
+    </script>
+    <apex:form > 
+    <apex:pageBlock > 
+    
+    
+    <apex:pageBlockButtons > 
+<!--         <apex:commandButton action="{!quickSave}" value="Quick Save"/> -->
+        <apex:commandButton action="{!selectAll}" value="Select All" reRender="theRepeat"/>
+         <apex:commandButton action="{!saveAndClose}" value="Save and Close" onclick="return checkDoubleSubmit (this)"/>
+    </apex:pageBlockButtons>
+    
+    Work Order: <apex:outputField value="{!wo.SVMXC__Service_Order__c}"/><br/>
+    <apex:outputPanel id="theRepeat">
+    <apex:repeat value="{!wodwgroupedbyvendor}" var="wodw_listx" >
+        <br/>
+        Vendor : <apex:outputField value="{!wodw_listx[0].wod.Vendor__c}"/>
+        <apex:pageblocktable value="{!wodw_listx}" var="wod" id="theTable"> 
+            
+        
+            <apex:column >
+                <apex:facet name="header">Add to Parts Order</apex:facet>
+                <apex:inputCheckbox value="{!wod.checked}" />
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Line Type</apex:facet>
+                <apex:inputField value="{!wod.wod.SVMXC__Line_Type__c}" />
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Part</apex:facet>
+                <apex:inputField value="{!wod.wod.SVMXC__Product__c}" id="woPart">
+                    <apex:actionSupport action="{!SetProductDescription}" event="onchange" rerender="woDesc">
+                        <apex:param value="{!wod.wod.Id}" name="selectedWodId" assignTo="{!selectedWodId}" />
+                    </apex:actionSupport>
+                </apex:inputField>
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Cross Reference</apex:facet>
+                <apex:inputField value="{!wod.lin.Product_Cross_Reference__c}">
+                    <apex:actionSupport action="{!SetProduct}" event="onchange" rerender="woPart,woDesc">
+                        <apex:param value="{!wod.wod.Id}" name="selectedWodId" assignTo="{!selectedWodId}" />
+                    </apex:actionSupport>
+                </apex:inputField>
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Activity Type</apex:facet>
+                <apex:inputField value="{!wod.wod.SVMXC__Activity_Type__c}" />
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Vendor</apex:facet>
+                <apex:inputField value="{!wod.wod.Vendor__c}" />
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Line Status</apex:facet>
+                <apex:inputField value="{!wod.wod.SVMXC__Line_Status__c}" />
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Line Qty</apex:facet>
+                <apex:inputField value="{!wod.wod.SVMXC__Actual_Quantity2__c}" />
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Work Description</apex:facet> 
+                <apex:inputField style="width:90%;height:40px;" value="{!wod.wod.SVMXC__Work_Description__c}" id="woDesc" />
+            </apex:column>
+            
+                
+        </apex:pageblocktable>
+    </apex:repeat>
+    </apex:outputPanel>
+    
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

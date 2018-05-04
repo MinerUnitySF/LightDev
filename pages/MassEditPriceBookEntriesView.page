@@ -1,0 +1,172 @@
+<!--
+*************************************************************************************
+Page     :  MassEditPriceBookEntriesView.page
+Developer:  mickey@vertiba.com
+Created  :  January 26, 2015
+Modified :  January 29, 2015
+Objective:  This page presents the UI for editing several products within
+                               the selected price book.
+
+*************************************************************************************
+-->
+
+<apex:page controller="MassEditPriceBookEntriesController">
+
+    <apex:form id="productForm">
+
+        <apex:pageBlock id="productBlock" title="Edit Price Book Entries">
+
+            <apex:pageMessages id="messages" />
+
+            <apex:outputLabel id="pricebookLabel" value="Select Pricebook:" />
+
+            &nbsp;&nbsp;
+
+            <apex:selectList id="pricebooks"
+                              size="1"
+                             value="{!selectedPricebook}">
+
+                <apex:selectOptions value="{!activePricebooks}" />
+
+            </apex:selectList>
+
+            <br />
+
+            <br />
+
+            <apex:outputLabel id="searchLabel" value="Search Products" />
+
+            &nbsp;&nbsp;
+
+            <apex:inputText id="searchString" 
+                            onkeydown="if(event.keyCode==13)dosearch();"
+                            value="{!searchString}" />
+
+            <apex:commandButton action="{!search}" 
+                                        id="search"
+                                onkeypress="return noenter(event);"                             
+                                  rerender="messages, productTable"
+                                    status="searchStatus"
+                                     value="Search" />
+            
+            <apex:actionFunction action="{!search}"
+                                     id="doSearch" 
+                                   name="doSearch" />
+
+            <apex:actionStatus id="searchStatus"
+                               startText="  Retrieving Products - Please Wait" />
+
+            <br />
+
+            <br />
+
+            <apex:commandButton action="{!setAllProductsSelected}" 
+                                      id="setAllProductsSelected"
+                                rerender="goToUpsertPage, productTable, setAllProductsSelected" 
+                                   value="{! if (allProductsSelected, 'Deselect All', 'Select All')}" />
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <apex:commandButton action="{!goToUpsertPage}" 
+                                disabled="{!disableAddModify}"
+                                      id="goToUpsertPage"
+                                   value="Add / Modify" />
+
+            <apex:pageBlockTable id="productTable"
+                                 value="{!productWrappers}"
+                                   var="product">
+
+                <apex:column headerValue="Selected">
+                
+                    <apex:inputCheckbox value="{!product.selected}">
+
+                        <apex:actionSupport action="{!setDisableAddModify}"
+                                               event="onchange"
+                                            rerender="goToUpsertPage" />
+
+                    </apex:inputCheckbox>
+
+                </apex:column>
+
+                <apex:column headerValue="Product Name">
+                
+                    <apex:outputText value="{!product.name}" />
+
+                </apex:column>
+
+                <apex:column headerValue="Product Family">
+                
+                    <apex:outputText value="{!product.family}" />
+
+                </apex:column>
+
+                <apex:column headerValue="Standard Price">
+                
+                    <apex:outputText value="{0, number, currency}">
+
+                        <apex:param value="{!product.standardPrice}" />
+
+                    </apex:outputText>
+
+                </apex:column>
+
+                <apex:column headerValue="New Price">
+                
+                    <apex:outputText value="{0, number, currency}">
+
+                        <apex:param value="{!product.customPrice}" />
+
+                    </apex:outputText>
+
+                </apex:column>
+
+                <apex:column headerValue="Standard Cost">
+                
+                    <apex:outputText value="{0, number, currency}">
+
+                        <apex:param value="{!product.standardCost}" />
+
+                    </apex:outputText>
+
+                </apex:column>
+
+                <apex:column headerValue="Cost">
+                
+                    <apex:outputText value="{0, number, currency}">
+
+                        <apex:param value="{!product.customCost}" />
+
+                    </apex:outputText>
+
+                </apex:column>
+
+            </apex:pageBlockTable>
+
+      </apex:pageBlock>
+
+  </apex:form>
+
+    <script type='text/javascript'>
+
+        function noenter(ev)
+        {
+            var returnValue = true;
+
+            if ( window.event
+            &&   window.event.keyCode == 13
+            ||   ev.which == 13
+               )
+            {
+                doSearch();
+
+                returnValue = false;
+
+            }   //  [Enter] key is pressed
+
+            return returnValue;
+
+        };
+
+    </script>
+
+</apex:page>

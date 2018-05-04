@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Ability to issue parts from a location without a stockable target location and without a source document. This is to manage issuance of parts to departments that are not online
+    The above parts are called Miscellaneous Issues.
+    There can be one or more products issued in a miscellaneous issue.
+    Some of the products may be serialized.
+    Serial numbers must be unique.
+    Ability to track the history of all miscellaneous issue transactions only at the quantity level. History tracking at serial number level is not required.
+    Only some users should be allowed to post Miscellaneous Issues.
+Vertiba 12/18/13</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Department__c</fullName>
+        <description>Name of the department to whom the parts are issued</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of the department to whom the parts are issued</inlineHelpText>
+        <label>Department</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Issued_From_Location__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Issued From Location</label>
+        <referenceTo>SVMXC__Site__c</referenceTo>
+        <relationshipLabel>Misc Issue</relationshipLabel>
+        <relationshipName>Misc_Issue</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Misc_Issue_Number__c</fullName>
+        <displayFormat>{0000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Misc Issue Number</label>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Posted_to_Inventory__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag indicates if this miscellaneous receipt has been posted to inventory or not</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag indicates if this miscellaneous receipt has been posted to inventory or not</inlineHelpText>
+        <label>Posted to Inventory</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Misc Issue</label>
+    <nameField>
+        <label>Misc Issue Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Misc Issue</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

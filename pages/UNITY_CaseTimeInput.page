@@ -1,0 +1,361 @@
+<apex:page standardController="Case" sidebar="false" showHeader="false" docType="html-5.0"
+           standardStylesheets="true" extensions="UNITY_TimeInput_Ctlr">
+    <!-- JavaScript and style includes -->
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'js/jquery.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'js/jquery-ui.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.moment_timezone,'moment.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.moment_timezone,'moment.timezone.2010-2020.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.datetimepicker,'jquery.datetimepicker.full.js')}"/>
+    <apex:includeScript value="/support/console/35.0/integration.js"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.smoothness.css')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.css')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.datetimepicker,'jquery.datetimepicker.css')}"/>
+    <!-- Custom Style css -->
+    <style type="text/css">
+        h2{
+            font-weight: bold;
+            color: #16325c;
+            font-size: 1.1em;
+            font-family: Arial,Helvetica,sans-serif;
+        }
+        body .bPageBlock .pbBody .labelCol,.bPageBlock .labelCol{
+            color: #54698d;
+            font-weight: normal;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            word-wrap: break-word;
+            max-width: 330px;
+            width: 18%;
+            padding-left: 2px;
+            text-align: right;
+            font-size: 91%;
+            margin: 0;
+        }
+        body .btn, body input.btn{
+            border-radius: 3px;
+            line-height: 24px;
+            padding: 0 9px;
+            border: 1px solid #e0e5ee;
+            box-shadow: none;
+            cursor: default;
+            font-size: 12px;
+            height: auto;
+            outline: 0;
+            font-weight: normal;
+            font-family: 'SalesforceSans-Regular',Helvetica,Arial,sans-serif;
+            color: #0070d2;
+            text-align: center;
+            white-space: nowrap;
+            background-color: #f4f5f7;
+            background-image: none;
+        }
+        body .btn:hover, body input.btn:hover{
+            background-color: #e7edf4;
+            text-decoration: none;
+        }
+        body .bDetailBlock.bPageBlock .pbBody .dataCol,body .bPageBlock .pbBody .dataCol{
+            vertical-align: middle;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            font-family: SalesforceSans-Regular,Arial,sans-serif;
+            color: #16325c;
+            padding-left: 10px;
+            text-align: left;
+            font-size: 12px;
+        }
+        input[type="text"]{
+            border: 1px solid #d8dde6;
+            border-radius: 3px;
+            padding: 4px;
+            min-height: 28px;
+            box-sizing: border-box;
+            width: 90%;
+        }
+        input[type="text"]:focus{
+            box-shadow: 0 0 3px #0070d2;
+            outline: 0;
+        }
+        .detailList .inlineEditWrite{
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left:10px;
+            margin-left:-10px
+        }
+        .detailList .inlineEditWriteOn{
+            background-image: url("/img/support/servicedesk/pencil12.gif");
+            background-color: #f4f6f9;
+            background-position: center right;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left:10px;
+            margin-left:-10px
+        }
+        .buttons-wrapper{
+            display:block;
+            height: 30px;
+        }
+    </style>
+    <!-- page content -->
+    <apex:form >
+        <apex:variable value="{!Case.UNITY_Account_Time_Zone__c}" var="acctTZSidKey"/>
+        <apex:pageBlock mode="maindetail">
+            
+            <!-- Page Messages -->
+            <apex:outputPanel id="messages">
+                <apex:pageMessages ></apex:pageMessages>
+            </apex:outputPanel>
+            
+            <!-- Page buttons -->
+            <apex:pageBlockButtons location="top" rendered="{!NOT(hasError)}">
+                <apex:outputPanel styleClass="buttons-wrapper">
+                    <apex:outputPanel >
+                        <apex:commandButton id="saveButton" value="Save"
+                                            status="loadingStatus"
+                                            reRender="messages"
+                                            styleClass="saveBtn"
+                                            style="display:none;" />
+                        <apex:commandButton id="cancelBtn" action="{!cancelChange}" value="Cancel"
+                                            reRender="messages,content-wrapper" onclick="resetInlineEdit();"
+                                            styleClass="cancelBtn" style="display:none;" />
+                    </apex:outputPanel>
+                    <c:ajaxStatus overlayColor="#fff" loadingText="Saving..."/>
+                </apex:outputPanel>
+            </apex:pageBlockButtons>
+            
+            <!-- PageBlock Section -->
+            <apex:pageBlockSection columns="2" showHeader="false" rendered="{!NOT(hasError)}">
+                <apex:pageBlockSectionItem >
+                    <h2 style="display:block;text-align:center;padding:0px 0px 10px 0px;">Customer Time Zone ({!acctTimeZone})</h2>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <h2 style="display:block;text-align:center;padding:0px 0px 10px 0px;">Local Time Zone ({!localTimeZone})</h2>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:outputPanel id="content-wrapper" rendered="{!NOT(hasError)}">
+                <apex:pageBlockSection columns="2" showHeader="false">
+                    <!-- Customer Time Zone Work Window Begin  -->
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.Case.fields.UNITY_Work_Window_Begin__c.Label}" />
+                        <apex:outputPanel >
+                            <apex:outputField value="{!Case.UNITY_Work_Window_Begin_Cust__c}">
+                                <apex:inlineEditSupport event="ondblclick" 
+                                                        changedStyleClass="myBoldClass"
+                                                        showOnEdit="saveButton,cancelBtn"
+                                                        resetFunction="resetInlineEdit"/>
+                            </apex:outputField>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:outputField value="{!Case.UNITY_Work_Window_Begin__c}"/>
+                    <!-- Customer Time Zone Work Window End date  -->
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.Case.fields.UNITY_Work_Window_End__c.Label}" />
+                        <apex:outputPanel >
+                            <apex:outputField value="{!Case.UNITY_Work_Window_End_Cust__c}">
+                                <apex:inlineEditSupport event="ondblclick" 
+                                                        changedStyleClass="myBoldClass"
+                                                        showOnEdit="saveButton,cancelBtn"
+                                                        hideOnEdit="editButton"
+                                                        resetFunction="resetInlineEdit"/>
+                            </apex:outputField>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:outputField value="{!Case.UNITY_Work_Window_End__c}"/>
+                    <!-- Customer Time Zone Created Date  -->
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.Case.fields.CreatedDate.Label}" />
+                        <apex:outputPanel >
+                            <apex:outputField value="{!Case.UNITY_Created_Date_Cust__c}">
+                                <!--<apex:inlineEditSupport event="ondblclick" 
+                                                        changedStyleClass="myBoldClass"
+                                                        showOnEdit="saveButton,cancelBtn"
+                                                        hideOnEdit="editButton"
+                                                        resetFunction="resetInlineEdit"/>-->
+                            </apex:outputField>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:outputField value="{!Case.CreatedDate}"/>
+
+
+                    <!-- Customer Time Zone Closed Date  -->
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.Case.fields.ClosedDate.Label}" />
+                        <apex:outputPanel >
+                            <apex:outputField value="{!Case.UNITY_Closed_Date_Cust__c}">
+                                <!--<apex:inlineEditSupport event="ondblclick" 
+                                                        changedStyleClass="myBoldClass"
+                                                        showOnEdit="saveButton,cancelBtn"
+                                                        hideOnEdit="editButton"
+                                                        resetFunction="resetInlineEdit"/>-->
+                            </apex:outputField>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>                    
+                    <apex:outputField value="{!Case.ClosedDate}"/>
+
+                    <!--UNITY_ServiceChannel_Scheduled_Date_Time__c-->
+                    <apex:pageBlockSectionItem rendered="{!Case.UNITY_Portal_Source__c == 'Service Channel'}">
+                        <apex:outputLabel value="{!$ObjectType.Case.fields.UNITY_ServiceChannel_Scheduled_Date_Time__c.Label}" />
+                            <apex:outputPanel styleClass="SC_SchedDate">
+                                <apex:outputField value="{!Case.UNITY_ServiceChannel_Scheduled_Date_Time__c}" id="editScSchedDate" >
+                                    <apex:inlineEditSupport event="ondblclick" 
+                                    changedStyleClass="myBoldClass"
+                                    showOnEdit="saveButton,cancelBtn"
+                                    hideOnEdit="editButton"
+                                    resetFunction="resetInlineEdit"/>
+                                </apex:outputField>
+                            </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                    <!-- <apex:outputField value="{!Case.UNITY_ServiceChannel_Scheduled_Date_Time__c}"/> -->
+
+                    <!-- *****************
+Template do add new fields
+Copy and paste the code below
+Change Object__c with the Object API name
+Change Target_Field_Name__c with the DateTime field
+Change Origin_Field_Name__c with the Text field
+*****************
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="{!$ObjectType.Object__c.fields.Target_Field_Name__c.Label}" />
+<apex:outputPanel >
+<apex:outputField value="{!Object__c.Origin_Field_Name__c}">
+<apex:inlineEditSupport event="ondblclick" 
+changedStyleClass="myBoldClass"
+showOnEdit="saveButton,cancelBtn"
+hideOnEdit="editButton"
+resetFunction="resetInlineEdit"/>
+</apex:outputField>
+</apex:outputPanel>
+</apex:pageBlockSectionItem>
+<apex:outputField value="{!Object__c.Target_Field_Name__c}"/>
+-->
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+        </apex:pageBlock>
+        <apex:actionFunction action="{!saveRecord}"
+                             name="saveRecord"
+                             status="loadingStatus"
+                             oncomplete="resetInlineEdit();"
+                             reRender="messages,content-wrapper"/>        
+    </apex:form>
+    <!--end page content-->
+
+    <!-- JS Code -->
+    <script type="text/javascript">
+        var $j = jQuery.noConflict();
+        var saved = false;        
+        $j(function(){
+            $j(document).on("focus","input[type='text']",function(){
+                var val = $j(this).val();
+                if($j(this).hasClass("datepicker") != true /*&& (val == null || val == '')*/){
+                    $j(this).addClass("datepicker").datetimepicker({
+                        format:'m/d/Y h:i A',
+                        formatTime:'h:i A',
+                        formatDate:'m/d/Y',
+                        onShow:function(ct,$input){
+                            var that = $j(this);
+                            setTimeout(function(){
+                                var x = (that.parent().width() / 2 - 135);
+                                that.animate({left:x+"px",top:"25px"},400);
+                            },1);
+                        },
+                        onHide:function(ct,$input){
+                            $input.datetimepicker('destroy');
+                            $input.removeClass("datepicker");
+                        }
+                    }).blur().focus().addClass("trackchange");
+                    //lets also check for our service channel field, grab the value from the html and put it in the input
+                    if($j(this).prop('id').includes("editScSchedDate")) {
+                            var sched = $j(".SC_SchedDate").find('span[id$=inner]').html();
+                            var elem = $j(".SC_SchedDate").find('span[id$=inner]');
+
+                            if(moment(sched).isValid()){
+                                // $j(".SC_SchedDate").val(moment(val).format('M/D/YYYY h:mm A'));
+                                $j(this).val(moment(sched).format('M/D/YYYY h:mm A'));
+                            }
+                    }
+                }
+                $j(".saveBtn").show();
+                $j(".cancelBtn").show();
+            });
+            $j(document).on("change",".datepicker",function(){
+                var val = $j(this).val();
+                if(moment(val).isValid()){
+                    $j(this).val(moment(val).format('M/D/YYYY h:mm A'));
+                    //$j(this).datetimepicker('destroy');
+                    //$j(this).removeClass("datepicker");
+                }else{
+                    $j(this).val('');
+                }
+            });
+        });
+        function resetInlineEdit(){
+            $j(".saveBtn").hide();
+            $j(".cancelBtn").hide();
+            $j(".trackchange").each(function(){
+                var id = $j(this).attr("id");
+                var visible = $j(this).is(":visible");
+                sfdcPage.getInlineEditData(id).resetFieldById(id);
+                $j(this).removeClass("trackchange");
+            });
+            console.log('### saved:' + saved);
+            if(saved){
+                sforce.console.getFocusedSubtabId(function(result){
+                    var tid = result.id;
+                    console.log('##### tid: '+tid);
+                    sforce.console.refreshSubtabById(tid, true, function(){
+                        
+                    });
+                });
+            }
+        }
+        $j(document).ready(function(){
+            if({!showBtns}){
+                $j(".saveBtn").show();
+                $j(".cancelBtn").show();
+            }
+            //to pull value of service channel scheduled date
+                var val = $j(".SC_SchedDate").find('span[id$=inner]').html();
+                var elem = $j(".SC_SchedDate").find('span[id$=inner]');
+
+                console.log('HTML: ' + $j(".SC_SchedDate").find('span[id$=inner]').html());
+                console.log('TEXT: ' + $j(".SC_SchedDate").find('span[id$=inner]').text());
+                console.log("time in scheddate " + val);
+                console.log(moment(val).isValid());
+                if(moment(val).isValid()){
+                    // $j(".SC_SchedDate").val(moment(val).format('M/D/YYYY h:mm A'));
+                    elem.html(moment(val).format('M/D/YYYY h:mm A')); 
+
+                }
+
+        });
+        $j(document).on("click",".saveBtn",function(e){
+            e.preventDefault();
+            var changes = $j(".trackchange").length;
+            if(changes > 1){
+                alert('Please update and save one(1) Date/Time field at a time');
+                resetInlineEdit()
+            }else{
+                //CLAY:format the service channel value back before saving.
+                //this is Ninja stuff approved by Izay.
+                var elem = $j(".SC_SchedDate").find('span[id$=inner]');
+                var input = $j(".SC_SchedDate").find('input[id$=editScSchedDate]');
+                var oldVal = input.val();
+                var oldHtml = elem.html();
+                // var oldText = elem.text();
+                if(moment(oldVal).isValid() && moment(oldHtml).isValid()){
+                    input.val(moment(oldVal, 'M/D/YYYY h:mm A').format('YYYY/MM/DD HH:mm:ss'));
+                    elem.html(moment(oldHtml, 'M/D/YYYY h:mm A').format('YYYY/MM/DD HH:mm:ss'));
+                    // elem.text(moment(oldText, 'M/D/YYYY h:mm A').format('YYYY/MM/DD HH:mm:ss'));
+                    console.log('CLAY: on save ' + input.val());
+                }
+
+                saved = true;
+                setTimeout(saveRecord,100);
+                //now make it go back so it doesn't look stupid
+                elem.html(oldHtml);
+                // elem.text(oldText);
+            }
+
+        });
+    </script>
+    <!-- End JS Code -->
+</apex:page>

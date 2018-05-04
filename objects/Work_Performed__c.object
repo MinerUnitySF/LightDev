@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Object to track job history notes of Problem Description, Work Performed and Recommended Service to assist with reporting and job tracking.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>History_Notes__c</fullName>
+        <description>Notes description</description>
+        <externalId>false</externalId>
+        <label>Notes</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Job_History_Date__c</fullName>
+        <defaultValue>Today()</defaultValue>
+        <description>Created date of work history line detail</description>
+        <externalId>false</externalId>
+        <label>Job History Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Note_Type__c</fullName>
+        <description>Type of note being tracked for use in multi-day jobs</description>
+        <externalId>false</externalId>
+        <label>Note Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Problem Description</fullName>
+                    <default>false</default>
+                    <label>Problem Description</label>
+                </value>
+                <value>
+                    <fullName>Recommended Service</fullName>
+                    <default>false</default>
+                    <label>Recommended Service</label>
+                </value>
+                <value>
+                    <fullName>Work Performed</fullName>
+                    <default>false</default>
+                    <label>Work Performed</label>
+                </value>
+                <value>
+                    <fullName>Estimate Needed</fullName>
+                    <default>false</default>
+                    <label>Estimate Needed</label>
+                </value>
+                <value>
+                    <fullName>Parts Needed</fullName>
+                    <default>false</default>
+                    <label>Parts Needed</label>
+                </value>
+                <value>
+                    <fullName>Job Update</fullName>
+                    <default>false</default>
+                    <label>Job Update</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Report_Status__c</fullName>
+        <description>Field used on output documentation to assist with what to report on the Service Report</description>
+        <externalId>false</externalId>
+        <label>Report Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Queued</fullName>
+                    <default>true</default>
+                    <label>Queued</label>
+                </value>
+                <value>
+                    <fullName>Reported</fullName>
+                    <default>false</default>
+                    <label>Reported</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Service_Report__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The service report the note was included on</description>
+        <externalId>false</externalId>
+        <label>Service Report</label>
+        <referenceTo>Service_Report__c</referenceTo>
+        <relationshipLabel>Job Notes</relationshipLabel>
+        <relationshipName>Job_Notes</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Work_Order_c__c</fullName>
+        <description>Work order related to the job history lists</description>
+        <externalId>false</externalId>
+        <label>Work Order</label>
+        <referenceTo>SVMXC__Service_Order__c</referenceTo>
+        <relationshipLabel>Job Notes</relationshipLabel>
+        <relationshipName>Job_History</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <label>Job Note</label>
+    <nameField>
+        <displayFormat>JN-{0000000}</displayFormat>
+        <label>Work Performed Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Job Notes</pluralLabel>
+    <searchLayouts>
+        <searchFilterFields>OBJECT_ID</searchFilterFields>
+        <searchFilterFields>Job_History_Date__c</searchFilterFields>
+        <searchFilterFields>Note_Type__c</searchFilterFields>
+        <searchFilterFields>Report_Status__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

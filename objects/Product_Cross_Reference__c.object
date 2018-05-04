@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Object contains cross reference information for products and how they are referred to by various manufacturers/suppliers/vendors. Object is a detail relationship to Products and will be searchable by name, description and vendor. Will contain cost information for future expansion.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Barcode__c</fullName>
+        <description>For future use of barcoding products</description>
+        <externalId>false</externalId>
+        <label>Barcode</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cost__c</fullName>
+        <description>Standard cost from this vendor. Not used as of 4/1/2014</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the cost to purchase this item from this vendor.</inlineHelpText>
+        <label>Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>Internal description of the cross reference product</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Internal description of the cross reference product</inlineHelpText>
+        <label>Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Manufacturer__c</fullName>
+        <description>Manufacturer of the part supplied as this cross reference from this supplier</description>
+        <externalId>false</externalId>
+        <label>Manufacturer</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Referenced product from the product master</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the product from the product master that this cross reference is related to.</inlineHelpText>
+        <label>Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Product Cross References</relationshipLabel>
+        <relationshipName>Product_Cross_References</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Supplier_Description__c</fullName>
+        <description>Description of part used by vendor</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Vendor&apos;s description of the part</inlineHelpText>
+        <label>Supplier Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Supplier_Name__c</fullName>
+        <description>Name referenced by the vendor for this product</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name the vendor uses to refer to this product</inlineHelpText>
+        <label>Supplier Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vendor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The vendor to which this cross referenced product applies</description>
+        <externalId>false</externalId>
+        <label>Vendor</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.Type</field>
+                <operation>equals</operation>
+                <value>Supplier, Vendor</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Product Cross References</relationshipLabel>
+        <relationshipName>Product_Cross_References</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Product Cross Reference</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>CR-{000000}</displayFormat>
+        <label>Cross Reference ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Product Cross References</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Supplier_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Supplier_Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Product__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Vendor__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Supplier_Name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Product__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Supplier_Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Vendor__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Supplier_Name__c</searchFilterFields>
+        <searchFilterFields>Supplier_Description__c</searchFilterFields>
+        <searchFilterFields>Product__c</searchFilterFields>
+        <searchFilterFields>Vendor__c</searchFilterFields>
+        <searchResultsAdditionalFields>Supplier_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Supplier_Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Product__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Vendor__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>require_product</fullName>
+        <active>true</active>
+        <description>product is always required</description>
+        <errorConditionFormula>isblank (  Product__c )</errorConditionFormula>
+        <errorMessage>Product is required to create a cross reference.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

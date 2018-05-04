@@ -1,0 +1,64 @@
+<apex:page docType="html" sidebar="false" controller="UNITY_ConsoleNotificationController" standardStylesheets="true">
+    <!-- JavaScript to make Remote Objects calls -->
+    <apex:remoteObjects >
+        <apex:remoteObjectModel name="UNITY_My_Notification__c" jsShorthand="MyNotif"
+                                fields="Id,Push_Notification__c,User__c,Status__c">
+        </apex:remoteObjectModel>
+    </apex:remoteObjects>
+    <!-- JavaScript to include -->
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'js/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'js/jquery-ui.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'moment/moment.min.js')}"/>
+    <apex:includeScript value="/support/console/35.0/integration.js"/>
+    <apex:includeScript value="{!URLFOR($Resource.cometd, 'cometd/cometd.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.cometd, 'cometd/json2.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.cometd, 'cometd/jquery.cometd.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.console_notification, 'console-notification-min.js')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.smoothness.css')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.css')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.console_notification,'console-notification.css')}"/>
+    <!-- compenent wrapper -->
+    <div id="component-wrapper">
+        <div class="busy">
+            <div class="loading-box">
+                <img class="loading-img" src="{!URLFOR($Resource.UNITY_loadingGif)}"/>
+            </div>
+            <div class="loading-overlay"></div>
+        </div>
+        <div class="header">
+            <div class="title">
+                <h2>
+                    Notifications
+                </h2>
+            </div>
+            <div class="select-menu">
+                <div class="menu-elem select-count">
+                    <span class="selected-notifs"></span>&nbsp;Selected
+                </div>
+                <a href="#" class="menu-elem menu-btn dismiss" title="Dismiss Notification(s)"><span class="dismiss-icon"></span></a>
+            </div>
+        </div>
+        <div id="output">
+            <ul id="notif-list"></ul>
+        </div>
+        <div class="footer">
+            <div class="footer-elem">
+                <span class="total-notifs"></span>&nbsp;Notification(s)
+            </div>
+        </div>
+    </div>
+    <!-- Javascript to initialize component -->
+    <script type="text/javascript">
+        var $j = jQuery.noConflict();
+        $j(document).ready(function(){
+            console.log('in ready function...');
+            var cn = new window.cNOTIFICATION();
+            var config = {
+                session_id:'{!$Api.Session_ID}',
+                unread_num_bg:"{!URLFOR($Resource.images,'notification-icon-bg.png')}" ,
+                unread_num_img:"{!URLFOR($Resource.images,'notification-icon-number.png')}"
+            };
+            cn.init(config);
+        });
+    </script>
+</apex:page>

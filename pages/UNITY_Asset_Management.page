@@ -1,0 +1,98 @@
+<apex:page showHeader="true" sidebar="true" standardController="Account" extensions="UNITY_AssetManagementController">
+    
+    <apex:form >
+	  	<apex:pageMessages id="am_message" ></apex:pageMessages>
+
+		<apex:pageBlock title="Search Account to transfer">
+		    <input type="text" id="am_term_to_search"> </input>
+		    <button type="button" id="am_search">Search</button>
+	    </apex:pageBlock>
+
+		<apex:pageBlock title="Select Account" id="am_select_account_container">
+		    <apex:pageBlockButtons rendered="{!!(n_accounts==0)}" styleClass="am_transfer">     
+		        <apex:commandButton value="Transfer" action="{!transfer}" reRender="am_asset_container,am_message"/>
+		        </apex:pageBlockButtons>
+			    <apex:outputPanel rendered="{!(n_accounts==0)}">
+			            Account not Found.
+			    </apex:outputPanel>
+			    <apex:outputPanel rendered="{!!(n_accounts==0)}">
+
+			    <apex:selectList value="{!transferTo}" size="1">
+			        <apex:selectOptions value="{!accountOptions}"/>
+				</apex:selectList>
+			</apex:outputPanel>
+	    </apex:pageBlock>
+
+		<apex:pageBlock title="Assets" id="am_asset_container">
+		    <apex:pageBlockTable value="{!assets}" var="asset" >
+		    	<apex:column >
+		    		<apex:inputCheckbox value="{!asset.tranfer}"/>
+		        </apex:column>
+		        <apex:column >
+		            <apex:facet name="header">Name</apex:facet>
+		            <apex:outputLink styleClass="unity-a" target="_blank" value="/{!asset.record.id}">
+		               {!asset.record.name}
+		            </apex:outputLink>
+		        </apex:column>
+		        <apex:column >
+		            <apex:facet name="header">Make</apex:facet>
+		            <apex:outputText value="{!asset.record.UNITY_Make__c}"/>
+		        </apex:column>     
+		        <apex:column >
+		            <apex:facet name="header">Model</apex:facet>
+		            <apex:outputText value="{!asset.record.UNITY_Model__c}"/>
+		        </apex:column>   
+		        <apex:column >
+		            <apex:facet name="header">Asset Condition</apex:facet>
+		            <apex:outputText value="{!asset.record.SSVY_Asset_Condition__c}"/>
+		        </apex:column>              
+		        <apex:column >
+		            <apex:facet name="header">Is Under Warranty?</apex:facet>
+		            <apex:outputText value="{!asset.record.UNITY_Is_Under_Warranty__c }"/>
+		        </apex:column> 
+		        <apex:column >
+		            <apex:facet name="header">Scan Code</apex:facet>
+		            <apex:outputText value="{!asset.record.SSVY_ScanCode__c}"/>
+		        </apex:column>                
+		    </apex:pageBlockTable>
+	    </apex:pageBlock>
+
+    
+    	<apex:actionFunction action="{!search}" name="am_search" rerender="am_selectAccount,am_select_account_container">
+        	<apex:param name="search_name" assignTo="{!search_name}" value="" />
+    	</apex:actionFunction>
+    	<apex:actionFunction action="{!transfer}" name="am_transfer" >
+        	<apex:param name="transferTo" assignTo="{!transferTo}" value="" />
+    	</apex:actionFunction>
+    </apex:form>
+
+    <!-- JAVASCRIPT LIBRARIES START -->
+        <script src="/support/console/35.0/integration.js" type="text/javascript"></script>
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- JAVASCRIPT LIBRARIES END -->
+        
+             
+    <script> 
+       $( document ).ready(function(){
+           $( document ).on('click','a.unity-a',function(event){
+                
+                var $a   = $(this);
+                if ((typeof sforce == 'object' ) && sforce.console.isInConsole()) { 
+                	event.preventDefault();
+                    sforce.console.getFocusedPrimaryTabId(function(primatyTab){
+                        sforce.console.openSubtab(primatyTab.id, $a.prop('href'), true); 
+                    }); 
+                }
+           });
+
+           $( document ).on('click','#am_search',function(event){
+                am_search($('#am_term_to_search').val());
+           });
+/*
+           $( document ).on('click','#am_transfer',function(event){
+                am_transfer($('#am_account').val());
+           });*/
+       });
+    </script> 
+    
+</apex:page>

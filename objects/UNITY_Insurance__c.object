@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>UNITY_Layout</fullName>
+        <fields>Name</fields>
+        <fields>UNITY_Insurance_Type__c</fields>
+        <fields>UNITY_Insured_Amount__c</fields>
+        <fields>UNITY_Expiration_Date__c</fields>
+        <label>UNITY Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Capture customer and vendor insurance requirement and expiry</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>UNITY_Account__c</fullName>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Insurance</relationshipLabel>
+        <relationshipName>Insurance</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>UNITY_Expiration_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Expiration Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Insurance_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Insurance Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Automobile Liability</fullName>
+                    <default>false</default>
+                    <label>Automobile Liability</label>
+                </value>
+                <value>
+                    <fullName>General Liability</fullName>
+                    <default>false</default>
+                    <label>General Liability</label>
+                </value>
+                <value>
+                    <fullName>Installation Floater Liability</fullName>
+                    <default>false</default>
+                    <label>Installation Floater Liability</label>
+                </value>
+                <value>
+                    <fullName>Rented Equipment Liability</fullName>
+                    <default>false</default>
+                    <label>Rented Equipment Liability</label>
+                </value>
+                <value>
+                    <fullName>Umbrella Liability</fullName>
+                    <default>false</default>
+                    <label>Umbrella Liability</label>
+                </value>
+                <value>
+                    <fullName>Workers Compensation Liability</fullName>
+                    <default>false</default>
+                    <label>Workers Compensation Liability</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Insured_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Insured Amount</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Received__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Received?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Required__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Required?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Insurance</label>
+    <nameField>
+        <displayFormat>INS-{0000}</displayFormat>
+        <label>Insurance ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Insurance</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>UNITY_Insurance</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>UNITY_Layout</compactLayoutAssignment>
+        <label>UNITY_Insurance</label>
+        <picklistValues>
+            <picklist>UNITY_Insurance_Type__c</picklist>
+            <values>
+                <fullName>Automobile Liability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General Liability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Installation Floater Liability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rented Equipment Liability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Umbrella Liability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workers Compensation Liability</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <visibility>Public</visibility>
+</CustomObject>

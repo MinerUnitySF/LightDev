@@ -1,0 +1,583 @@
+<apex:page standardController="UNITY_Proposal__c" extensions="MSPFS_NewQuoteItemContExt" docType="html-5.0" name="AddProduct" title="Add Product" deferLastCommandUntilReady="true">
+    <!-- JavaScript and style includes -->
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'js/jquery.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'js/jquery-ui.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'moment/moment.min.js')}"/>
+    <apex:includeScript value="/support/console/35.0/integration.js"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.smoothness.css')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.UNITY_SLDS_100, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    
+    <apex:includeScript value="{!URLFOR($Resource.clookup)}"/>
+    
+<script type="text/javascript">
+var $j = jQuery.noConflict();
+var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+$j(function(){
+    if(is_chrome){
+    	$j('<style type="text/css">input[type="text"],select{margin-top:0px;}</style>').appendTo('body');
+	}
+});
+</script>
+<!-- Custom Style css -->
+<style type="text/css">
+body{
+	min-width:1000px;
+}
+h2{
+    font-weight: bold;
+    color: #16325c;
+    font-size: 1.1em;
+    font-family: Arial,Helvetica,sans-serif;
+}
+body .bPageBlock .pbBody .labelCol,.bPageBlock .labelCol{
+    color: #54698d;
+    font-weight: normal;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    word-wrap: break-word;
+    max-width: 330px;
+    width: 18%;
+    padding-left: 2px;
+    text-align: right;
+    font-size: 91%;
+    margin: 0;
+}
+body .btn, body input.btn{
+    border-radius: 3px;
+    line-height: 24px;
+    padding: 0 9px;
+    border: 1px solid #e0e5ee;
+    box-shadow: none;
+    cursor: default;
+    font-size: 12px;
+    height: auto;
+    outline: 0;
+    font-weight: normal;
+    font-family: 'SalesforceSans-Regular',Helvetica,Arial,sans-serif;
+    color: #0070d2;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #f4f5f7;
+    background-image: none;
+}
+body .btn:hover, body input.btn:hover{
+    background-color: #e7edf4;
+    text-decoration: none;
+}
+body .bDetailBlock.bPageBlock .pbBody .dataCol,body .bPageBlock .pbBody .dataCol{
+    vertical-align: middle;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-family: SalesforceSans-Regular,Arial,sans-serif;
+    color: #16325c;
+    padding-left: 10px;
+    text-align: left;
+    font-size: 12px;
+}
+.lines-table{
+	border-collapse:collapse;
+	margin-bottom:25px;
+}
+body .pbBody table.list tr.dataRow td,
+	.apexp .detailList .list td,
+	.apexp .editPage .bPageBlock .detailList .list tr td,
+	.dataCell{
+	padding: 3px;
+    margin: 0px;
+    border: 1px solid #ececec;
+    position: relative;
+	vertical-align: middle;
+}
+body .pbBody table.list tr.dataRow td.select,
+	.apexp .detailList .list td.select,
+	.apexp .editPage .bPageBlock .detailList .list tr td.select{
+	width:40px;
+}
+body .pbBody table.list tr.dataRow td.currency,
+	.apexp .detailList .list td.currency,
+	.apexp .editPage .bPageBlock .detailList .list tr td.currency{
+	width:80px;
+}
+body .pbBody table.list tr.dataRow td.lookup-cell,
+	.apexp .detailList .list td.lookup-cell,
+	.apexp .editPage .bPageBlock .detailList .list tr td.lookup-cell{
+	min-width:100px;
+}
+.cell-wrapper{
+    padding: 0px;
+    margin: 0px;
+    display: block;
+	top: 0px;
+	height: 100%;
+	width: 100%;
+}
+input[type="text"],select{
+	/*-webkit-box-shadow:inset 1px 1px 2px 0 rgba(0,0,0,.2);
+	box-shadow:inset 1px 1px 2px 0 rgba(0,0,0,.2);*/
+	background: #fff;
+    border: 1px solid rgba(0, 0, 0, .3);
+    border-radius: 0px;
+    padding: 3px;
+    min-height: 25px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    display:block;
+    position:absolute;
+    top:0px;
+	margin-left:-3px;
+	margin-top:-1px;
+}
+input[type="text"]:hover,select:hover{
+	/*-webkit-box-shadow:inset 1px 1px 2px 0 rgba(0,0,0,.2);
+	box-shadow:inset 1px 1px 2px 0 rgba(0,0,0,.2);*/
+	border: 1px solid rgba(0, 112, 210, .6);
+    outline: 0;
+}
+input[type="text"]:focus,select:focus{
+	box-shadow: 0 0 3px #0070d2;
+	border: 1px solid rgba(0, 112, 210, .5);
+    outline: 0;
+	z-index: 99;
+}
+input[type="text"].warning-input{
+	border: 1px solid #f9dd34;
+	background: #fbf9ee;
+	color: #363636;
+}
+.lookupInput{
+	display: block;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+}
+.lookupInput input[type="text"]{
+	padding-right:23px;
+}
+.lookupInput input[type="text"].partLocation{
+	padding-right:37px;
+}
+.lookupInput a{
+	position: absolute;
+	right: 0px;
+	top: calc(50% - 10px);
+	z-index: 100;
+}
+.buttons-wrapper{
+    display:block;
+    height: 30px;
+}
+.info-icon-wrapper{
+	display:block;
+	width:14px;
+	padding:0px;
+	margin:0px;
+	position:absolute;
+	right:23px;
+	top: calc(50% - 7px);
+    height:14px;
+	z-index: 100;
+}
+.info-icon{
+	width:14px;
+	height: 14px;
+	position:absolute;
+	right:0px;top:0px;
+	background: url("/img/alohaSkin/help_grey.png");
+	background-size: 14px 14px;
+	background-repeat:no-repeat;
+}
+.info-table{
+	border-collapse:collapse;
+}
+.info-table th{
+	text-align:right;
+	padding: 3px;
+	font-weight:normal;
+	font-family:"Salesforce Sans", Arial, sans-serif;
+}
+.info-table td{
+	vertical-align:middle;
+	padding: 3px;
+	color:#888d96;
+}
+.ui-tooltip {
+	border: 1px solid #a8adb6;
+	color: #54698d;
+	font-family:"Salesforce Sans", Arial, sans-serif;
+	font-size: 12px;
+}
+.arrow:after {
+	background: #fff;
+	border: 1px solid #a8adb6;
+}
+.arrow {
+	width: 70px;
+	height: 16px;
+	overflow: hidden;
+	position: absolute;
+	left: 50%;
+	margin-left: -35px;
+	bottom: -16px;
+}
+.arrow.top {
+	top: -16px;
+	bottom: auto;
+}
+.arrow.bottom {
+	bottom: -16px;
+	top: auto;
+}
+.arrow.left {
+	left: 20%;
+}
+.arrow:after {
+	content: "";
+	position: absolute;
+	left: 20px;
+	top: -20px;
+	width: 25px;
+	height: 25px;
+	box-shadow: 6px 5px 9px -9px black;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+.arrow.top:after {
+	bottom: -20px;
+	top: auto;
+}
+.arrow.bottom:after {
+	top: -20px;
+	bottom: auto;
+}
+</style>
+
+
+    <apex:form >
+
+        <apex:inputHidden value="{!UNITY_Proposal__c.UNITY_Proposal_Status__c}" />
+        <c:ajaxStatus loadingText="Processing..." overlayColor="#fff" />
+        <apex:sectionHeader title="Add Product" subTitle="Quote {!UNITY_Proposal__c.Name}" />
+
+        <apex:pageBlock title="Quote Detail" mode="maindetail">
+            
+            <apex:outputPanel id="messages">
+                <apex:pageMessages id="pgMsgs"/>
+            </apex:outputPanel>
+
+            <apex:pageBlockButtons location="top">
+            	<apex:commandButton action="{!doSave}" value="Save" status="loadingStatus" reRender="messages,script,items-wrapper,order-detail" rendered="{!canEdit}" />
+                <apex:commandButton action="{!doQuickSave}" value="Quick Save" status="loadingStatus" reRender="messages,script,items-wrapper,order-detail" rendered="{!canEdit}" />
+                <apex:commandButton styleClass="cancel-btn" value="Go Back"></apex:commandButton>
+            </apex:pageBlockButtons>
+            <apex:outputPanel id="order-detail">
+            	<apex:pageBlockSection showHeader="false" collapsible="false" columns="2">
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel >Quote</apex:outputLabel>
+                        <apex:outputLink value="{!newQuote.Id}">{!newQuote.Name}</apex:outputLink>
+                    </apex:pageBlockSectionItem>
+                    <apex:outputField value="{!newQuote.UNITY_Proposal_Status__c}"></apex:outputField>
+                    <apex:outputField value="{!newQuote.UNITY_Total_Cost__c}"></apex:outputField>
+
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+        </apex:pageBlock>
+
+        <apex:pageBlock mode="edit">
+            <apex:pageBlockButtons location="top">
+            	<apex:commandButton action="{!addItem}" value="Add Product" rendered="{!canEdit}" reRender="messages,items-wrapper" status="loadingStatus"/>
+                <apex:commandButton styleClass="delSel-btn" value="Remove Selected" rendered="{!canEdit}"/>
+            </apex:pageBlockButtons>
+
+            <apex:PageBlockSection collapsible="false" columns="1" title="Products">
+                <apex:outputPanel id="items-wrapper">
+                	<apex:outputPanel rendered="{!quoteLines.size > 0}">
+                        <apex:pageBlockTable value="{!quoteLines}" var="line" styleClass="lines-table">
+
+                            <apex:column headerValue="Select" styleClass="select">
+                            	<apex:inputCheckbox value="{!line.sel}" rendered="{!canEdit}" styleClass="sel-cbx" />
+                            </apex:column>
+
+                            <apex:column headerValue="Product" styleClass="lookup-cell">
+                                <apex:outputPanel id="product-panel"  styleClass="cell-wrapper">
+                                    <apex:outputPanel rendered="{!OR(line.item.UNITY_Product__c == NULL,line.item.Id == NULL)}" style="position:absolute;display:block;width:100%;height:100%;top:0px;">
+                                    <c:CustomLookupField field-name="UNITY_Product__c" 
+                                                         field_id="part-lookup-{!line.index}" 
+                                                         hidden_field_id="part-lookup-{!line.index}-hidden"
+                                                         initial_field_value="{!IF(line.item.UNITY_Product__c != null,line.item.UNITY_Product__r.Name,'')}"
+                                                         initial_field_data_id="{!IF(line.item.UNITY_Product__c != null,line.item.UNITY_Product__c,'')}"
+                                                         fields_to_return="Id,Name,ProductCode,Description,UNITY_Product_External_Id__c,UNITY_Product_Type__c,UNITY_Is_Stockable__c"
+                                                         fields_labels="{'Name':'Name','ProductCode':'ProductCode','Description':'Description','UNITY_Product_External_Id__c':'External Id','UNITY_Product_Type__c':'Product Type','UNITY_Is_Stockable__c':'Is Stockable'}"
+                                                         like_fields="ProductCode,Description,UNITY_Product_External_Id__c,UNITY_Product_Legacy_Id__c"
+                                                         where_clause="RecordType.Name = \'Miner\'"
+                                                         obj_name="Product2"></c:CustomLookupField>
+                                    
+                                    <apex:inputHidden value="{!line.item.UNITY_Product__c}" required="false" html-data-id="part-lookup-{!line.index}-hidden" />
+                                    <script type="text/javascript">
+                                    $j('[data-id="part-lookup-{!line.index}-hidden"]').change(function(){
+                                        productChange('{!line.index}',$j(this).val());
+                                    });
+                                    </script>
+                                </apex:outputPanel>
+                                    <apex:outputField value="{!line.item.UNITY_Product__c}" rendered="{!AND(line.item.UNITY_Product__c != NULL,line.item.Id != NULL)}" />
+                                </apex:outputPanel>
+                            </apex:column>
+							
+                            <!--
+                            <apex:column headerValue="Product">
+                                <apex:outputPanel id="product-panel">
+                                    <apex:inputField value="{!line.item.UNITY_Product__c}" >
+                                    	<apex:actionSupport action="{!line.onProductChange}" event="onchange" reRender="messages,items-wrapper,order-detail" status="loadingStatus"/>
+                                    </apex:inputField>
+                                </apex:outputPanel>
+                            </apex:column>
+                            -->
+                            <apex:column headerValue="Product Code">
+                                <apex:outputPanel id="prodCode-panel">
+                                	<apex:outputField value="{!line.item.UNITY_Product__r.ProductCode}"></apex:outputField>
+                                </apex:outputPanel>
+                            </apex:column>
+
+                            <apex:column headerValue="Line Type">
+                            	<apex:outputPanel id="lineType-panel" styleClass="cell-wrapper">
+                                	<apex:inputField value="{!line.item.UNITY_Type__c}">
+                                    	<apex:actionSupport event="onchange" reRender="partSource-panel,asset-panel,vendOT-panel,vendHT-panel"/>
+                                    </apex:inputField>
+                                </apex:outputPanel>
+                            </apex:column>
+
+                            <apex:column headerValue="Activity Type">
+                            	<apex:outputPanel id="activityType-panel" styleClass="cell-wrapper">
+                                	<apex:inputField value="{!line.item.UNITY_Activity_Type__c}">
+                                    	<apex:actionSupport event="onchange" reRender="partSource-panel,asset-panel,vendOT-panel,vendHT-panel"/>
+                                    </apex:inputField>
+                                </apex:outputPanel>
+                            </apex:column>
+
+                            <apex:column headerValue="Quantity" styleClass="currency">
+                                <apex:outputPanel id="qty-panel" styleClass="cell-wrapper">
+                                	<!--<apex:inputField value="{!line.item.UNITY_Quantity__c}" required="false" styleClass="short {!IF(AND(line.inStockQty != null,line.item.UNITY_Quantity__c != null),IF(line.item.UNITY_Quantity__c > line.inStockQty, 'warning-input',''),'')}" html-title="{!IF(AND(line.inStockQty != null,line.item.UNITY_Quantity__c != null),IF(line.item.UNITY_Quantity__c > line.inStockQty, 'Quantity is greater than the On Hand Qty in the selected stock location ',''),'')}">-->
+                                	<apex:inputField value="{!line.item.UNITY_Quantity__c}" required="false" styleClass="short " >
+                                        <apex:actionSupport action="{!line.onCostQtyChange}" event="onchange" reRender="totalCost-panel,qty-panel"/>
+                                    </apex:inputField>
+                                </apex:outputPanel>
+                            </apex:column>
+
+                            <apex:column headerValue="Cost" styleClass="currency">
+                                <apex:outputPanel id="cost-panel" styleClass="cell-wrapper">
+                                    <apex:inputField value="{!line.item.UNITY_Cost__c}" styleClass="short">
+                                    	<apex:actionSupport action="{!line.onCostQtyChange}" event="onchange" reRender="totalCost-panel"/>
+                                    </apex:inputField>
+                                </apex:outputPanel>
+                            </apex:column>
+
+                            <apex:column headerValue="Part Source" styleClass="lookup-cell">
+                                <apex:outputPanel id="partSource-panel" styleClass="cell-wrapper">
+                                    <apex:inputField value="{!line.item.UNITY_Part_Source__c}" rendered="{!AND(OR(line.item.UNITY_Type__c='Parts',CONTAINS(line.item.UNITY_Activity_Type__c,'Parts'),CONTAINS(line.item.UNITY_Activity_Type__c,'Freight')),NOT(line.item.UNITY_Is_Vendor_Supply__c))}" >
+                                    	<apex:actionSupport action="{!line.onPartSourceChange}" event="onchange" reRender="partLocation-panel"/>
+                                    </apex:inputField>
+                                </apex:outputPanel>
+                            </apex:column>
+
+                            <apex:column headerValue="Part Location" styleClass="lookup-cell">
+                                <apex:outputPanel id="partLocation-panel"  styleClass="cell-wrapper">
+                                    <apex:inputField value="{!line.item.UNITY_Part_Location__c}" rendered="{!line.isMinerSource}" styleClass="partLocation">
+                                    	<apex:actionSupport action="{!line.onStockLocationChange}"  event="onchange" reRender="part-stock-panel,qty-panel"/>
+                                    </apex:inputField>
+                                    <apex:outputPanel id="part-stock-panel" styleClass="info-icon-wrapper">
+                                        <div data-stockinfo="{!line.item.UNITY_Part_Location__c},{!line.item.UNITY_Product__c}" class="info-icon" style="display:{!IF(line.item.UNITY_Part_Location__c == null,'none','block')}"></div>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:column>
+
+                            <apex:column headerValue="Asset" styleClass="lookup-cell">
+                                <apex:outputPanel id="asset-panel" styleClass="cell-wrapper">
+                                    <apex:inputField value="{!line.item.UNITY_Asset__c}" rendered="{!OR(CONTAINS(line.item.UNITY_Type__c,'Labor'),CONTAINS(line.item.UNITY_Activity_Type__c,'Labor'),line.item.UNITY_Type__c='Parts',CONTAINS(line.item.UNITY_Activity_Type__c,'Parts'),CONTAINS(line.item.UNITY_Activity_Type__c,'Freight'))}" />
+                                </apex:outputPanel>
+                            </apex:column>
+
+                            <apex:column headerValue="Total Cost" styleClass="currency">
+                                <apex:outputPanel id="totalCost-panel" styleClass="cell-wrapper">
+                                	<apex:outputField value="{!line.item.UNITY_Total_Cost__c}" />
+                                </apex:outputPanel>
+                            </apex:column>
+
+                            <apex:column headerValue="Is Vendor Supply?" styleClass="select">
+                                <apex:outputPanel id="vendSupply-panel" styleClass="cell-wrapper">
+                                	<apex:inputField value="{!line.item.UNITY_Is_Vendor_Supply__c}">
+                                    	<apex:actionSupport action="{!line.onVendorSupplyChange}" event="onchange" reRender="partSource-panel,lineType-panel,activityType-panel,partLocation-panel"/>
+                                    </apex:inputField>
+                                </apex:outputPanel>
+                            </apex:column>
+
+                            <apex:column headerValue="OT" styleClass="select">
+                                <apex:outputPanel id="vendOT-panel" styleClass="cell-wrapper">
+                                	<apex:inputField value="{!line.item.UNITY_Vendor_OT_Multiplier__c}" rendered="{!OR(CONTAINS(line.item.UNITY_Type__c,'Labor'),CONTAINS(line.item.UNITY_Activity_Type__c,'Labor'),line.item.UNITY_Type__c='Travel',CONTAINS(line.item.UNITY_Activity_Type__c,'Travel'))}" />
+                                </apex:outputPanel>
+                            </apex:column>
+
+                            <apex:column headerValue="HT" styleClass="select">
+                                <apex:outputPanel id="vendHT-panel" styleClass="cell-wrapper">
+                                	<apex:inputField value="{!line.item.UNITY_Vendor_Holiday_Multiplier__c}" rendered="{!OR(CONTAINS(line.item.UNITY_Type__c,'Labor'),CONTAINS(line.item.UNITY_Activity_Type__c,'Labor'),line.item.UNITY_Type__c='Travel',CONTAINS(line.item.UNITY_Activity_Type__c,'Travel'))}" />
+                                </apex:outputPanel>
+                            </apex:column>
+
+                        </apex:pageBlockTable>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!quoteLines.size == 0}">
+                        <div>
+                            No records to display
+                        </div>
+                    </apex:outputPanel>
+
+                </apex:outputPanel>
+            </apex:PageBlockSection>
+        </apex:pageBlock>
+
+        <apex:actionFunction action="{!deleteSel}" name="deleteSelected" reRender="messages,items-wrapper,order-detail" status="loadingStatus" immediate="false"/>
+        <apex:actionFunction action="{!onProductChange}" name="productChange" reRender="messages,items-wrapper,order-detail" status="loadingStatus" immediate="false">
+        	<apex:param name="index" value=""></apex:param>
+            <apex:param name="myValue" value=""></apex:param>
+        </apex:actionFunction>
+
+    </apex:form>
+
+
+
+    <apex:outputPanel id="script">
+        <script type="text/javascript">
+        	$j(function(){
+        		var saveComplete = {!saveComplete};
+                var finalize = {!finalize};
+        		if(saveComplete){
+                    if(finalize)
+        				alert('{!saveResult}');
+        			closeAndRefresh(true);
+        		}
+        	});
+        </script>
+    </apex:outputPanel>
+    <script type="text/javascript">
+    $j(".cancel-btn").click(function(e) {
+        e.preventDefault();
+        if({!quoteLines.size} > 0){
+            closeAndRefresh(true);
+        }else{
+            closeAndRefresh(false);
+        }
+    });
+    $j(".delSel-btn").click(function(e) {
+        e.preventDefault();
+        var hasSel = false;
+        $j(".sel-cbx").each(function(i){
+            if ( $j(this).is(":checked") )
+                hasSel = true;
+        });
+        if ( hasSel ) {
+            if ( confirm('Are you sure?') ) {
+                deleteSelected();
+            }
+        }
+    });
+    function closeAndRefresh(refresh) {
+        sforce.console.getEnclosingPrimaryTabId(function(result) {
+            var ptabid = result.id;
+            if ( refresh == true ) {
+                sforce.console.refreshPrimaryTabById(ptabid,false,function(result){
+                    sforce.console.getEnclosingTabId(function(result){
+                        var mytabid = result.id;
+                        sforce.console.closeTab(mytabid);
+                        sforce.console.openSubtab( ptabid, '/{!UNITY_Proposal__c.Id}', true, function(result){} );
+                    });
+                });
+            } else {
+                sforce.console.getEnclosingTabId(function(result) {
+                    var mytabid = result.id;
+                    sforce.console.closeTab(mytabid);
+                    sforce.console.openSubtab( ptabid, '/{!UNITY_Proposal__c.Id}', true, function(result){} );
+                });
+            }
+        });
+    }
+    $j( document ).tooltip( {
+        items: "[data-stockInfo],[title]",
+        position: {
+            at: "center-40 bottom+4",
+            using: function( position, feedback ) {
+                $j( this ).css( position );
+                $j( "<div>" )
+                .addClass( "arrow" )
+                .addClass( feedback.vertical )
+                .addClass( feedback.horizontal )
+                .appendTo( this );
+            }
+        },
+        show: null,
+        hide: null,
+        content: function(callback){
+            var elem = $j(this);
+            if(elem.is("[data-stockinfo]")){
+                var args = elem.attr("data-stockinfo").split(",");
+                //console.log('data-stockinfo[0]' + args[0]);
+                //console.log('data-stockinfo[1]' + args[1]);
+                var input = $j(this).parent().parent().find(".lookupInput").find("input").val();
+                if(input && input != ""){
+                    getStockInfo(args,function(result){
+                        //console.log('result: ' + result);
+                        if(result){
+                            if(result['err']){
+                                callback(result['err']);
+                            }else{
+                                //console.log('qty: ' + result["qty"]);
+                                //console.log('lastDate: ' + result["lastDate"]);
+                                var myDate = moment(result["lastDate"]).format('M/D/YYYY hh:mm A');
+                                var html = '<table class="info-table"><tr><th>On Hand Qty</th><td>'+result["qty"]+'</td>';
+                                html += '<tr><th>Last Modified</th><td>'+myDate+'</td></tr></table>';
+                                console.log('html: '+html);
+                                callback(html);
+                            }
+                        }else{
+                            //Error handling here
+                            callback(result);
+                        }
+                    });
+                    //return 'qwerty';
+                }else{
+                    callback(null);
+                }
+            }else{
+                var t = elem.attr("title");
+                if(t != "" && t.indexOf("Lookup") == -1){
+                	var html = '<span>'+t+'</span>'; 
+                	callback(html);
+                }else{
+                    callback(null);
+                }
+            }
+        }
+    });
+    
+    $j(document).ready(function(){
+        sforce.console.setTabTitle('Add Product');
+    });
+    
+    function getStockInfo(args,callback){
+        if(args && args.length > 0){
+            UNITY_NewOrderItemController.getStockInfo(args,function(result,event){
+                if(event.status){
+                    callback(result);
+                }else{
+                    var err = {};
+                    err["err"] = event.message;
+                    console.log('Error: ' + event.message);
+                 	callback(err);
+                }
+            },{escape:false});
+        }
+    }
+    
+    </script>
+</apex:page>

@@ -1,0 +1,123 @@
+<apex:page controller="UNITY_customerPreferenceOnVendorCtrl" action="{!getData}">
+    
+    <apex:stylesheet value="{!URLFOR($Resource.UNITY_LightningDesignSystemV12, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.UNITY_customerPreferenceOnVendorCSS)}" />
+    
+    <apex:form >
+        <div id="UNITYPreferenceContainer" class="slds">
+             <div class="preference-header">
+                  <span>Vendor Preference at {!onCustomer.name}</span>
+             </div>
+            <div class="trades-header slds-col slds-size--1-of-1 ">
+                   <apex:outputPanel rendered="{!isEditableVendor}">
+                        <button type="button" class="slds-button slds-button--neutral unity-save-btn" >Save</button> 
+                   </apex:outputPanel>
+               </div>
+             <div class="current-preferences-container">
+                   <table class="slds-table slds-table--bordered unity-preference-table">
+                          <thead>
+                            <tr class="slds-text-heading--label ">
+                              
+                              <th class="slds-is-sortable" scope="col">
+                                  <span class="slds-truncate">Type</span>
+                              </th>
+                              <th scope="col">
+                                <span class="slds-truncate">Vendor</span>
+                              </th>
+                              <th scope="col" class="unity-delete-col">
+                              </th>
+                              <th scope="col" class="unity-move-col">
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                               <apex:repeat value="{!preferences}" var="vendor">
+                                    <tr id="{!vendor.id}" class="slds-hint-parent unity-vendor-td {!IF(vendor.id==vendorId,'unity-editing-vendor','')}"  
+                                        data-id="{!vendor.id}" data-ranking="{!vendor.ranking}" 
+                                        data-type="{!vendor.preferenceType}" 
+                                        data-vpid="{!vendor.preferenceId}">
+                                      
+                                      <th role="row"  class="unity-preference" >
+                                          <apex:outputPanel rendered="{!isEditableVendor && (vendor.id==vendorId)}">
+                                              <select class="slds-select unity-preference-select">
+                                                  <option value="Preferred" >Preferred</option>
+                                                  <option value="DO NOT USE" >Do Not Use</option>
+                                              </select>
+                                          </apex:outputPanel>
+                                          <apex:outputPanel rendered="{! (vendor.id!=vendorId) || !isEditableVendor }">
+                                              {!vendor.preferenceType}
+                                          </apex:outputPanel>
+                                      </th>
+                                      <td ><span class="slds-truncate"><a  target="_blank" class="slds-truncate unity-link-to-vendor">{!vendor.Name}</a></span></td>
+                                      <td class="slds-row-action call-assign-vendor unity-preference-delete">
+                                          <button  type="button"  class="slds-button unity-delete-preferences-btn" >Delete</button>
+                                      </td>
+                                      <td>
+                                          <div class="{!IF(isEditableVendor && (vendor.id==vendorId),'unity-move-up chevronup','')}">
+                                          </div>
+                                          <div class="{!IF(isEditableVendor && (vendor.id==vendorId),'unity-move-down chevrondown','')}">
+                                          </div>
+                                      </td>
+                                    </tr>
+                               </apex:repeat>
+                          </tbody>
+                     </table>
+              </div>
+              <div class="trade-container">
+                    <div class="trades-header slds-col slds-size--1-of-1 ">
+                         <span><h3>{!onVendor.name} - Trades</h3></span>
+                    </div>
+                    <div class="slds-grid">
+                         <apex:repeat value="{!tradeCovered}" var="trade">
+                             <div class="trade-checkbox slds-col slds-size--1-of-4">
+                                <div class="slds-form-element">
+                                  <label class="slds-checkbox" for="{!tradeCovered[trade].id}">
+                                  
+                                    <input name="checkbox" class="unity-trade-checkbox" type="checkbox" id="{!tradeCovered[trade].id}" data-tpid="{!tradeCovered[trade].tradePreferenceId}" data-id="{!tradeCovered[trade].id}"  />
+                                    <span class="slds-checkbox--faux"></span>
+                                    <span class="slds-form-element__label">{!tradeCovered[trade].Name}</span>
+                                  </label>
+                                </div>
+                             </div>
+                         </apex:repeat>
+                     </div>
+               </div>
+               <div class="trades-header slds-col slds-size--1-of-1 " style="float: left;">
+                   <apex:outputPanel rendered="{!isEditableVendor}">
+                        <button type="button" class="slds-button slds-button--neutral unity-save-btn" >Save</button> 
+                   </apex:outputPanel>
+               </div>
+        </div>
+        
+    </apex:form>
+    
+    <apex:remoteObjects jsNamespace="SObjectModel">
+        <apex:remoteObjectModel name="UNITY_Vendor_Preference__c" jsShorthand="VendorPreference" fields="Name,Id">
+            <apex:remoteObjectField name="Customer__c" jsShorthand="cId"/>
+            <apex:remoteObjectField name="Vendor__c"   jsShorthand="vId"/>
+            <apex:remoteObjectField name="Ranking__c"  jsShorthand="ranking"/>
+            <apex:remoteObjectField name="Type__c"     jsShorthand="type"/> 
+        </apex:remoteObjectModel>
+        <apex:remoteObjectModel name="UNITY_Vendor_Preference_By_Trade__c" jsShorthand="VendorPreferenceByTrade" fields="Name,Id">
+            <apex:remoteObjectField name="Customer__c" jsShorthand="cId"/>
+            <apex:remoteObjectField name="Vendor__c"   jsShorthand="vId"/>
+            <apex:remoteObjectField name="Trade__c"    jsShorthand="tId"/>
+            <apex:remoteObjectField name="Vendor_Preference__c"  jsShorthand="vendorPreferenceId"/> 
+        </apex:remoteObjectModel>
+    </apex:remoteObjects>
+    
+    <!-- JAVASCRIPT LIBRARIES -->
+    
+    <script src="/support/console/35.0/integration.js" type="text/javascript"></script>
+    <apex:includeScript value="{!URLFOR($Resource.UNITY_svg4everybody, 'svg4everybody-master/dist/svg4everybody.min.js')}" />
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <!-- JAVASCRIPT LIBRARIES END -->
+    
+    <!-- JAVASCRIPT -->
+    
+    <script src="{!URLFOR($Resource.UNITY_utilsJS)}"/>
+    <script src="{!URLFOR($Resource.UNITY_setVendorPreferenceJS)}"/>
+    
+    <!-- JAVASCRIPT END -->
+</apex:page>

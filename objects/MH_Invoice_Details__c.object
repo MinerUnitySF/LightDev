@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Invoice details to support WO / WD creation
+Proof of Concept 12/23/13</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Activity_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Activity Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Use Tax</fullName>
+                    <default>false</default>
+                    <label>Use Tax</label>
+                </value>
+                <value>
+                    <fullName>Destination Credit</fullName>
+                    <default>false</default>
+                    <label>Destination Credit</label>
+                </value>
+                <value>
+                    <fullName>Bond</fullName>
+                    <default>false</default>
+                    <label>Bond</label>
+                </value>
+                <value>
+                    <fullName>Warranty</fullName>
+                    <default>false</default>
+                    <label>Warranty</label>
+                </value>
+                <value>
+                    <fullName>Sublbr - New Construction</fullName>
+                    <default>false</default>
+                    <label>Sublbr - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Standard Labor</fullName>
+                    <default>false</default>
+                    <label>Standard Labor</label>
+                </value>
+                <value>
+                    <fullName>Double Time Labor</fullName>
+                    <default>false</default>
+                    <label>Double Time Labor</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Tax</fullName>
+                    <default>false</default>
+                    <label>Pass Through Tax</label>
+                </value>
+                <value>
+                    <fullName>Field Supplies</fullName>
+                    <default>false</default>
+                    <label>Field Supplies</label>
+                </value>
+                <value>
+                    <fullName>Freight - New Construction</fullName>
+                    <default>false</default>
+                    <label>Freight - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Freight - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Freight - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Parts - New Construction</fullName>
+                    <default>false</default>
+                    <label>Parts - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Parts - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Parts - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Preventive Maintenance</fullName>
+                    <default>false</default>
+                    <label>Preventive Maintenance</label>
+                </value>
+                <value>
+                    <fullName>Rental - New Construction</fullName>
+                    <default>false</default>
+                    <label>Rental - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Rental - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Rental - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Sublbr - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Sublbr - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Parts</fullName>
+                    <default>false</default>
+                    <label>Pass Through Parts</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Labor</fullName>
+                    <default>false</default>
+                    <label>Pass Through Labor</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Freight</fullName>
+                    <default>false</default>
+                    <label>Pass Through Freight</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Rentals</fullName>
+                    <default>false</default>
+                    <label>Pass Through Rentals</label>
+                </value>
+                <value>
+                    <fullName>Overtime Labor</fullName>
+                    <default>false</default>
+                    <label>Overtime Labor</label>
+                </value>
+                <value>
+                    <fullName>Asset Mgmt Fees</fullName>
+                    <default>false</default>
+                    <label>Asset Mgmt Fees</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Add_to_Invoice__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Add to Invoice</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Date_Invoiced__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Invoiced</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Detail_Line_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Detail Line Cost</label>
+        <precision>9</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Hide_Line_c__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag to hide lines on an invoice if desired</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box if the line should be hidden on the Invoice</inlineHelpText>
+        <label>Hide Line?</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Interface_Processed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Added this field to support Scribe updating the record after it pulls the data so it does not pull it twice</description>
+        <externalId>false</externalId>
+        <label>Interface Processed</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Invoice__r.Status__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Invoice Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Invoice__c</fullName>
+        <externalId>false</externalId>
+        <label>MH-Invoice</label>
+        <referenceTo>MH_Invoice__c</referenceTo>
+        <relationshipName>Invoice_Details</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Line_Price_per_Unit__c</fullName>
+        <externalId>false</externalId>
+        <label>Line Price per Unit</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Line_Qty__c</fullName>
+        <externalId>false</externalId>
+        <label>Line Qty</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Line_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Line Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Parts</fullName>
+                    <default>false</default>
+                    <label>Parts</label>
+                </value>
+                <value>
+                    <fullName>Labor</fullName>
+                    <default>false</default>
+                    <label>Labor</label>
+                </value>
+                <value>
+                    <fullName>Expenses</fullName>
+                    <default>false</default>
+                    <label>Expenses</label>
+                </value>
+                <value>
+                    <fullName>Travel</fullName>
+                    <default>false</default>
+                    <label>Travel</label>
+                </value>
+                <value>
+                    <fullName>Vendor Services</fullName>
+                    <default>false</default>
+                    <label>Vendor Services</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Part__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Part</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipName>Invoice_Details</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Sales_Tax__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Tax</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Sort_Order__c</fullName>
+        <description>Order in which the invoice lines should be presented when the invoice is produced via conga.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate the order for the lines.</inlineHelpText>
+        <label>Sort Order</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>T_Line_Price_per_Unit__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(Line_Price_per_Unit__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>T_Line_Price_per_Unit</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Line_Price__c</fullName>
+        <description>The detail line-item line price</description>
+        <externalId>false</externalId>
+        <label>Extended Price</label>
+        <precision>9</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Line_Price_formula__c</fullName>
+        <description>Calculates the total price of the line including tax</description>
+        <externalId>false</externalId>
+        <formula>Total_Line_Price__c +  Sales_Tax__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Line Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Unit_of_Measure_idc__c</fullName>
+        <description>Update line items with unit of measure</description>
+        <externalId>false</externalId>
+        <label>Unit of Measure</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Vendor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Vendor</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Invoice_Details</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Work_Description_idc__c</fullName>
+        <description>Update invoice detail line with corresponding work detail line on a WO</description>
+        <externalId>false</externalId>
+        <label>Work Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Detail__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Work detail related to this invoice detail entry</description>
+        <externalId>false</externalId>
+        <label>Work Detail</label>
+        <referenceTo>SVMXC__Service_Order_Line__c</referenceTo>
+        <relationshipName>Invoice_Details</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Work_Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Work Order</label>
+        <referenceTo>SVMXC__Service_Order__c</referenceTo>
+        <relationshipName>Invoice_Details</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Invoice Detail</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Invoice__c</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>Part__c</columns>
+        <columns>Work_Order__c</columns>
+        <columns>Work_Detail__c</columns>
+        <columns>Vendor__c</columns>
+        <columns>Line_Type__c</columns>
+        <columns>Line_Qty__c</columns>
+        <columns>Activity_Type__c</columns>
+        <columns>Line_Price_per_Unit__c</columns>
+        <columns>Sales_Tax__c</columns>
+        <columns>Total_Line_Price__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Created_Today</fullName>
+        <columns>Invoice__c</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>Part__c</columns>
+        <columns>Work_Order__c</columns>
+        <columns>Work_Detail__c</columns>
+        <columns>Vendor__c</columns>
+        <columns>Line_Type__c</columns>
+        <columns>Line_Qty__c</columns>
+        <columns>Activity_Type__c</columns>
+        <columns>Line_Price_per_Unit__c</columns>
+        <columns>Sales_Tax__c</columns>
+        <columns>Total_Line_Price__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>Created Today</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>{000000}</displayFormat>
+        <label>Invoice Record</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Invoice Details</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>MH_Master</fullName>
+        <active>true</active>
+        <label>MH Master</label>
+        <picklistValues>
+            <picklist>Activity_Type__c</picklist>
+            <values>
+                <fullName>Asset Mgmt Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Destination Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Time Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Field Supplies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Overtime Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Freight</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Rentals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Preventive Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Use Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Line_Type__c</picklist>
+            <values>
+                <fullName>Expenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>MH_Read_Only</fullName>
+        <active>true</active>
+        <label>MH Read Only</label>
+        <picklistValues>
+            <picklist>Activity_Type__c</picklist>
+            <values>
+                <fullName>Asset Mgmt Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Destination Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Time Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Field Supplies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Overtime Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Freight</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Rentals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Preventive Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sublbr - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Use Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Line_Type__c</picklist>
+            <values>
+                <fullName>Expenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Date_Invoiced__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Detail_Line_Cost__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Line_Qty__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Line_Price_per_Unit__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Part__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Edit_Invoice_Details_Not_Billed</fullName>
+        <active>false</active>
+        <description>Invoice Details can be edited only when Invoice is Not Billed or Reversed.</description>
+        <errorConditionFormula>NOT(ISPICKVAL(Invoice__r.Status__c , &quot;Not Billed&quot;))
+&amp;&amp;
+NOT(ISPICKVAL(Invoice__r.Status__c, &quot;Reversed&quot;))</errorConditionFormula>
+        <errorMessage>Invoice Details cannot be edited after the Invoice has been billed.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

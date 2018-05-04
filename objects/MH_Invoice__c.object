@@ -1,0 +1,2354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Account_Terms__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Account__r.MH_Terms__c = &apos;02&apos;, &quot;Net 10 days&quot;,
+IF( Account__r.MH_Terms__c = &apos;03&apos;, &quot;Net 15 days&quot;,
+IF( Account__r.MH_Terms__c = &apos;04&apos;, &quot;Net 30 days&quot;,
+IF( Account__r.MH_Terms__c = &apos;05&apos;, &quot;Net 45 days&quot;,
+IF( Account__r.MH_Terms__c = &apos;06&apos;, &quot;Net 60 days&quot;,
+IF( Account__r.MH_Terms__c = &apos;07&apos;, &quot;Net 75 days&quot;,
+IF( Account__r.MH_Terms__c = &apos;08&apos;, &quot;Net 90 days&quot;,
+IF( Account__r.MH_Terms__c = &apos;09&apos;, &quot;Net 120 days&quot;,
+IF( Account__r.MH_Terms__c = &apos;10&apos;, &quot;Net 180 days&quot;,
+IF( Account__r.MH_Terms__c = &apos;11&apos;, &quot;2% 10 days net 30&quot;,
+IF( Account__r.MH_Terms__c = &apos;12&apos;, &quot;4% 10 days net 30&quot;,
+IF( Account__r.MH_Terms__c = &apos;13&apos;, &quot;Net 20 days&quot;,
+IF( Account__r.MH_Terms__c = &apos;14&apos;, &quot;Net 25 days&quot;,
+IF( Account__r.MH_Terms__c = &apos;15&apos;, &quot;Net 38 days&quot;, &quot;Due Upon Receipt&quot;))))))))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Terms</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Invoices1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Activity_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Activity Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Calibration</fullName>
+                    <default>false</default>
+                    <label>Calibration</label>
+                </value>
+                <value>
+                    <fullName>Cleanup</fullName>
+                    <default>false</default>
+                    <label>Cleanup</label>
+                </value>
+                <value>
+                    <fullName>Installation</fullName>
+                    <default>false</default>
+                    <label>Installation</label>
+                </value>
+                <value>
+                    <fullName>Repair</fullName>
+                    <default>false</default>
+                    <label>Repair</label>
+                </value>
+                <value>
+                    <fullName>Service</fullName>
+                    <default>false</default>
+                    <label>Service</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Call_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(TEXT( Work_Order__r.SVMXC__Billing_Type__c )), TEXT( Work_Order__r.SVMXC__Component__r.Call_Type__c), TEXT( Work_Order__r.SVMXC__Billing_Type__c ))
+
+/*IF(ISBLANK(TEXT(Work_Order__r.SVMXC__Component__r.Call_Type__c)),  TEXT( Location__r.Call_Type__c),  TEXT(Work_Order__r.SVMXC__Component__r.Call_Type__c))*/</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Call Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Certificate__c</fullName>
+        <description>Sales Tax certificate value from the work order. Passed to Avatax to indicate that the work is non-taxable.</description>
+        <externalId>false</externalId>
+        <formula>Work_Order__r.Certificate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sales Tax Certificate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Company__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(Work_Order__r.SVMXC__Service_Group__c ),
+Work_Order__r.SVMXC__Group_Member__r.SVMXC__Service_Group__r.Company__c,
+Work_Order__r.SVMXC__Service_Group__r.Company__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Company</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consumed_From_Location__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Consumed From Location</label>
+        <referenceTo>SVMXC__Site__c</referenceTo>
+        <relationshipName>Invoices2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipName>Invoices1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Customer_P_O__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer P.O.</label>
+        <length>35</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date_Invoiced__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Invoiced</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>End_Date_and_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date and Time</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Field_Office__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Field Office</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Invoices2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Hide_Line_ic__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Hide Line?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Details_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Invoice Details Cost</label>
+        <summarizedField>MH_Invoice_Details__c.Detail_Line_Cost__c</summarizedField>
+        <summaryForeignKey>MH_Invoice_Details__c.Invoice__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Details_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <label>Invoice Details Revenue</label>
+        <summarizedField>MH_Invoice_Details__c.Total_Line_Price__c</summarizedField>
+        <summaryForeignKey>MH_Invoice_Details__c.Invoice__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Details_Sub_Total__c</fullName>
+        <externalId>false</externalId>
+        <label>Invoice Details Sub-Total</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Margin__c</fullName>
+        <externalId>false</externalId>
+        <formula>Invoice_Details_Revenue__c  -  Invoice_Details_Cost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Invoice Margin</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Sales_Tax_Roll_up__c</fullName>
+        <externalId>false</externalId>
+        <formula>Sales_Tax__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Invoice Sales Tax Roll-up</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Terms_c__c</fullName>
+        <description>This fills the terms field from the Account record</description>
+        <externalId>false</externalId>
+        <label>Invoice Terms</label>
+        <length>25</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Invoice_Total_Rollup_1__c</fullName>
+        <externalId>false</externalId>
+        <formula>Invoice_Sales_Tax_Roll_up__c + Invoice_Total_Rollup__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Invoice Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Total_Rollup__c</fullName>
+        <externalId>false</externalId>
+        <label>Invoice Item Total</label>
+        <summarizedField>MH_Invoice_Details__c.Total_Line_Price__c</summarizedField>
+        <summaryForeignKey>MH_Invoice_Details__c.Invoice__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Total__c</fullName>
+        <externalId>false</externalId>
+        <label>Invoice Total</label>
+        <precision>17</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Total_formula__c</fullName>
+        <description>Total invoice including sales tax</description>
+        <externalId>false</externalId>
+        <formula>Sub_Total__c +  Total_Tax__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Invoice Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Labor_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Labor Time</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location_Address_c__c</fullName>
+        <description>Lists address of Location for invoicing purposes</description>
+        <externalId>false</externalId>
+        <label>Location Address</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location_City_c__c</fullName>
+        <description>This fills the Location City to the Invoice detail</description>
+        <externalId>false</externalId>
+        <label>Location City</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location_State_c__c</fullName>
+        <description>This fills Location State on the Invoice detail</description>
+        <externalId>false</externalId>
+        <label>Location State</label>
+        <length>25</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location_Zip_c__c</fullName>
+        <description>This fills Location Zip on the Invoice detail</description>
+        <externalId>false</externalId>
+        <label>Location Zip</label>
+        <length>15</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <referenceTo>SVMXC__Site__c</referenceTo>
+        <relationshipName>Invoices1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Post_to_Period__c</fullName>
+        <externalId>false</externalId>
+        <label>Post-to-Period</label>
+        <length>7</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Recommended_Service__c</fullName>
+        <description>Recommended service field from WO record</description>
+        <externalId>false</externalId>
+        <label>Recommended Service</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>SL_Invoice_Date_c__c</fullName>
+        <description>Date field used for determining when a work order will show as being invoiced regardless of when it is actually being invoiced</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the back-date of a work order for invoicing when it is being invoiced on the last day of the month or the first few days of the next month and it needs billed in the previous month</inlineHelpText>
+        <label>SL Invoice Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>SL_Invoice_ID__c</fullName>
+        <description>ID from SL integration.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ID from SL integration.</inlineHelpText>
+        <label>SL Invoice ID</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SL_Status__c</fullName>
+        <description>Status returned from SL. B=Billed, R=Reversed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status returned from SL.</inlineHelpText>
+        <label>SL Status</label>
+        <length>1</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SP_Work_Performed_c__c</fullName>
+        <description>Work Performed field from WO record</description>
+        <externalId>false</externalId>
+        <label>SP Work Performed</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sales_Tax__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Tax</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Segment_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( Work_Order__r.SVMXC__Group_Member__c ), 
+TEXT(Work_Order__r.SVMXC__Service_Group__r.Segment__c), 
+TEXT(Work_Order__r.SVMXC__Group_Member__r.SVMXC__Service_Group__r.Segment__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Segment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Segment__c</fullName>
+        <description>Used to hold the segment that the work order is related to. Because the segment can come from either the technician&gt;Sales Team or the Sales Team fields on the work order, it is easier for integration purposes to set the values here when creating an invoice</description>
+        <externalId>false</externalId>
+        <label>Segment</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Notes_c__c</fullName>
+        <description>Text area (32k character) for Service Coordinators to write notes for invoicing</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Text area (32k character) for Service Coordinators to write notes for invoicing</inlineHelpText>
+        <label>Service Notes</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Service_Team_Address_ic__c</fullName>
+        <description>Address field for the Service Team</description>
+        <externalId>false</externalId>
+        <label>Service Team Address</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Service_Team_City_ic__c</fullName>
+        <description>City field for Service Team on Invoice</description>
+        <externalId>false</externalId>
+        <label>Service Team City</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Service_Team_Fax_id__c</fullName>
+        <description>Pull the Service Team fax number into the Invoice master detail for addition to output documentation</description>
+        <externalId>false</externalId>
+        <label>Service Team Fax</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Service_Team_Legal_Name__c</fullName>
+        <description>Legal name of the Service Team entity for invoicing purposes</description>
+        <externalId>false</externalId>
+        <label>Service Team Legal Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Team_Phone_id__c</fullName>
+        <description>Pulls Service Team phone number into Invoice master detail for addition to the output documentation</description>
+        <externalId>false</externalId>
+        <label>Service Team Phone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Service_Team_State_ic__c</fullName>
+        <description>State field of Service Team on Invoice</description>
+        <externalId>false</externalId>
+        <label>Service Team State</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Service_Team_Zip_ic__c</fullName>
+        <description>Zip field for Service Team on Invoice</description>
+        <externalId>false</externalId>
+        <label>Service Team Zip</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Service_Team_ic__c</fullName>
+        <description>Service Team field on Invoice</description>
+        <externalId>false</externalId>
+        <label>Service Team</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date_and_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date and Time</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>Status for integration (depends on tax details).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status for integration (depends on tax details).</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Not Billed</fullName>
+                    <default>true</default>
+                    <label>Not Billed</label>
+                </value>
+                <value>
+                    <fullName>In-Batch</fullName>
+                    <default>false</default>
+                    <label>In-Batch</label>
+                </value>
+                <value>
+                    <fullName>Billed</fullName>
+                    <default>false</default>
+                    <label>Billed</label>
+                </value>
+                <value>
+                    <fullName>Void</fullName>
+                    <default>false</default>
+                    <label>Void</label>
+                </value>
+                <value>
+                    <fullName>Under Review</fullName>
+                    <default>false</default>
+                    <label>Under Review</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sub_Total__c</fullName>
+        <description>summary of line extended price of work details. Extended price is populated via apex class creating invoice from work order</description>
+        <externalId>false</externalId>
+        <label>Sub Total</label>
+        <summarizedField>MH_Invoice_Details__c.Total_Line_Price__c</summarizedField>
+        <summaryForeignKey>MH_Invoice_Details__c.Invoice__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Supercenter_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( Work_Order__r.SVMXC__Group_Member__c  ), 
+TEXT(Work_Order__r.SVMXC__Service_Group__r.Super_Center__c), 
+TEXT(Work_Order__r.SVMXC__Group_Member__r.SVMXC__Service_Group__r.Super_Center__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Super Center</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Supercenter__c</fullName>
+        <description>Used to hold the supercenter that the work order is related to. Because the supercenter can come from either the technician&gt;Sales Team or the Sales Team fields on the work order, it is easier for integration purposes to set the values here when creating an invoice</description>
+        <externalId>false</externalId>
+        <label>Supercenter</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tax_Added__c</fullName>
+        <description>Count detail records where Sales Tax is null.  Switch Status on Invoice when Tax Updated = 0.</description>
+        <externalId>false</externalId>
+        <label>Tax Added</label>
+        <summaryFilterItems>
+            <field>MH_Invoice_Details__c.Sales_Tax__c</field>
+            <operation>equals</operation>
+            <value></value>
+        </summaryFilterItems>
+        <summaryForeignKey>MH_Invoice_Details__c.Invoice__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Tax__c</fullName>
+        <description>rollup summary of the total tax of all invoice details. Tax is populated via call to Avatax.</description>
+        <externalId>false</externalId>
+        <label>Total Tax</label>
+        <summarizedField>MH_Invoice_Details__c.Sales_Tax__c</summarizedField>
+        <summaryForeignKey>MH_Invoice_Details__c.Invoice__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Voucher_Roll_Up_Total__c</fullName>
+        <externalId>false</externalId>
+        <label>Voucher Roll-Up Total</label>
+        <summarizedField>MH_Invoice_Details__c.Total_Line_Price__c</summarizedField>
+        <summaryFilterItems>
+            <field>MH_Invoice_Details__c.Activity_Type__c</field>
+            <operation>equals</operation>
+            <value>Rental - Service and Remodel, Pass Through Parts, Pass Through Labor, Pass Through Freight, Pass Through Rentals,, Asset Mgmt Fees</value>
+        </summaryFilterItems>
+        <summaryForeignKey>MH_Invoice_Details__c.Invoice__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Voucher__c</fullName>
+        <description>Determines if an invoice should be on a voucher or not. Value sent to SL via scribe</description>
+        <externalId>false</externalId>
+        <formula>IF (  
+ ( Supercenter_Formula__c  = &apos;TFS&apos; &amp;&amp;  
+   Segment_Formula__c  = &apos;TFS&apos;   &amp;&amp;   
+  ISPICKVAL( Work_Order__r.SVMXC__Order_Type__c, &apos;Fleet Maintenance (TFS)&apos;))
+  &amp;&amp; NOT(Work_Order__r.TFS_AMF_WO__c = TRUE) , 
+TRUE,
+FALSE)
+
+/*IF (  
+ Supercenter__c = &apos;TFS&apos; &amp;&amp;  
+ Segment__c = &apos;TFS&apos; &amp;&amp; 
+ ISPICKVAL( Location__r.Super_Center__c, &apos;TFS&apos;) &amp;&amp;
+ ISPICKVAL( Location__r.Segment__c, &apos;TFS&apos;) &amp;&amp;
+ ISPICKVAL( Location__r.Call_Type__c, &apos;TFS&apos;) &amp;&amp;
+ ISPICKVAL( Work_Order__r.SVMXC__Order_Type__c, &apos;Fleet Maintenance (TFS)&apos;), 
+TRUE,
+FALSE)*/</formula>
+        <label>Voucher</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>WO_Doc_Number__c</fullName>
+        <description>Field to hold the document number coming from the Work Order for NMS/TFS invoicing</description>
+        <externalId>false</externalId>
+        <label>WO Doc Number</label>
+        <length>25</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WO_Labor_Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Work_Order__r.Labor_Cost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>WO Labor Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>WO_Order_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Work_Order__r.SVMXC__Order_Type__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>WO Order Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WO_Parts_Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Work_Order__r.Parts_Cost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>WO Parts Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>WO_TFS_Tax_Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Work_Order__r.Tax_Cost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>WO TFS Tax Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Work_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Description</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Work Order this invoice was created from.</description>
+        <externalId>false</externalId>
+        <label>Work Order</label>
+        <referenceTo>SVMXC__Service_Order__c</referenceTo>
+        <relationshipName>Invoices</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Invoice</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Status__c</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>Location__c</columns>
+        <columns>Account__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>INVOICES_BILLED_DATE</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>notEqual</operation>
+            <value>Total Fleet Solutions</value>
+        </filters>
+        <label>INVOICES BILLED - DATE</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>INVOICES_BILLED_DATE_Denver</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - SW Denver</value>
+        </filters>
+        <filters>
+            <field>Date_Invoiced__c</field>
+            <operation>greaterThan</operation>
+            <value>7/31/2017</value>
+        </filters>
+        <label>INVOICES BILLED - DATE Denver</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>INVOICES_BILLED_DATE_June</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Status__c</columns>
+        <columns>SL_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed,Void</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>notEqual</operation>
+            <value>Total Fleet Solutions</value>
+        </filters>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>equals</operation>
+            <value>June Kulick</value>
+        </filters>
+        <label>INVOICES BILLED - DATE June billed and r</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>INVOICES_BILLED_DATE_MCT</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed,In-Batch</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - CT San Antonio,TMC - CT Corpus Christi,TMC - CT Austin</value>
+        </filters>
+        <filters>
+            <field>SL_Invoice_Date_c__c</field>
+            <operation>greaterThan</operation>
+            <value>8/1/2017</value>
+        </filters>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <label>INVOICES BILLED - DATE MCT</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>INVOICES_BILLED_DATE_MEP</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed,In-Batch</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - SW El Paso</value>
+        </filters>
+        <filters>
+            <field>SL_Invoice_Date_c__c</field>
+            <operation>greaterThan</operation>
+            <value>8/1/2017</value>
+        </filters>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <label>INVOICES BILLED - DATE MEP</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>INVOICES_BILLED_DATE_MFL_Kevin_Mungal</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed,In-Batch</value>
+        </filters>
+        <filters>
+            <field>SL_Invoice_Date_c__c</field>
+            <operation>greaterThan</operation>
+            <value>8/1/2017</value>
+        </filters>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>equals</operation>
+            <value>kevin mungal</value>
+        </filters>
+        <label>INVOICES BILLED - DATE MFL Kevin Mungal</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>INVOICES_BILLED_DATE_MFL_Orlando_June</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed,In-Batch</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - FL Orlando,TMC - FL Jacksonville,TMC - FL Tampa,TMC - FL Tallahassee</value>
+        </filters>
+        <filters>
+            <field>SL_Invoice_Date_c__c</field>
+            <operation>greaterThan</operation>
+            <value>8/1/2017</value>
+        </filters>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>notEqual</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>equals</operation>
+            <value>June Kulick</value>
+        </filters>
+        <label>INVOICES BILLED - DATE MFL Orlando June</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>INVOICES_BILLED_DATE_MFL_Orlando_Sasha</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed,In-Batch</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - FL Orlando,TMC - FL Jacksonville,TMC - FL Tampa,TMC - FL Tallahassee</value>
+        </filters>
+        <filters>
+            <field>SL_Invoice_Date_c__c</field>
+            <operation>greaterThan</operation>
+            <value>8/1/2017</value>
+        </filters>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>equals</operation>
+            <value>Sasha Pittsley</value>
+        </filters>
+        <label>INVOICES BILLED - DATE MFL Orlando Sasha</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>INVOICES_BILLED_DATE_MGA_Amanda_Doolittle</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed,In-Batch</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - GA Atlanta</value>
+        </filters>
+        <filters>
+            <field>SL_Invoice_Date_c__c</field>
+            <operation>greaterThan</operation>
+            <value>8/1/2017</value>
+        </filters>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>equals</operation>
+            <value>Amanda Doolittle</value>
+        </filters>
+        <label>INVOICES BILLED - DATE MGA Amanda Doolit</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>INVOICES_BILLED_DATE_MNO_Chauntell</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed,In-Batch</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC FL - New Orleans</value>
+        </filters>
+        <filters>
+            <field>SL_Invoice_Date_c__c</field>
+            <operation>greaterThan</operation>
+            <value>7/31/2017</value>
+        </filters>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <label>INVOICES BILLED - DATE MNO Chauntell</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>INVOICES_BILLED_DATE_MNT</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed,In-Batch</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - NT Dallas</value>
+        </filters>
+        <filters>
+            <field>SL_Invoice_Date_c__c</field>
+            <operation>greaterThan</operation>
+            <value>9/1/2017</value>
+        </filters>
+        <label>INVOICES BILLED - DATE MNT</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>INVOICES_BILLED_DATE_Missy_Puckett</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>notEqual</operation>
+            <value>Total Fleet Solutions</value>
+        </filters>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>equals</operation>
+            <value>Missy Puckett</value>
+        </filters>
+        <filters>
+            <field>Date_Invoiced__c</field>
+            <operation>greaterThan</operation>
+            <value>2/1/2016</value>
+        </filters>
+        <label>INVOICES BILLED - DATE Missy Puckett</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>INVOICES_BILLED_DATE_Prologis</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed,In-Batch</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - HN Houston</value>
+        </filters>
+        <filters>
+            <field>Account__c</field>
+            <operation>equals</operation>
+            <value>Prologis</value>
+        </filters>
+        <filters>
+            <field>SL_Invoice_Date_c__c</field>
+            <operation>greaterThan</operation>
+            <value>1/1/2017</value>
+        </filters>
+        <label>INVOICES BILLED - DATE Prologis</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>INVOICES_BILLED_Equipment_MCT</fullName>
+        <columns>NAME</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Account__c</columns>
+        <columns>Location__c</columns>
+        <columns>Location_Address_c__c</columns>
+        <columns>Location_City_c__c</columns>
+        <columns>Location_State_c__c</columns>
+        <columns>Location_Zip_c__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed</value>
+        </filters>
+        <filters>
+            <field>Supercenter_Formula__c</field>
+            <operation>equals</operation>
+            <value>Miner-Central Texas</value>
+        </filters>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <label>INVOICES BILLED - Equipment MCT</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>In_Batch_Invoices</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Location__c</columns>
+        <columns>Status__c</columns>
+        <columns>SL_Status__c</columns>
+        <columns>Sub_Total__c</columns>
+        <columns>Voucher__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>In-Batch</value>
+        </filters>
+        <label>In-Batch Invoices</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>Operations_Mgmt_TMC</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Invoice_View</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>Location__c</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Sub_Total__c</columns>
+        <columns>Total_Tax__c</columns>
+        <columns>Invoice_Total_Rollup__c</columns>
+        <columns>Status__c</columns>
+        <columns>Voucher__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>lessThan</operation>
+            <value>11/5/2014 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - SW Mesa,TMC - SW Avondale,TMC - SW Tucson</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>MH_Invoice__c.MH_Read_Only</value>
+        </filters>
+        <label>Invoice View</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Invoices_In_Batch_Not_Billed</fullName>
+        <columns>Account__c</columns>
+        <columns>NAME</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>Status__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>Invoice_Total_Rollup_1__c</columns>
+        <columns>Total_Tax__c</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <columns>Invoice_Margin__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Not Billed,In-Batch</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>notEqual</operation>
+            <value>Total Fleet Solutions</value>
+        </filters>
+        <label>Invoices In-Batch_Not Billed</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MCT_Service_Billed_Invoices</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Location__c</columns>
+        <columns>Account__c</columns>
+        <columns>Sub_Total__c</columns>
+        <columns>Total_Tax__c</columns>
+        <columns>Invoice_Total__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>In-Batch,Billed</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - CT San Antonio</value>
+        </filters>
+        <label>MCT Service Billed Invoices</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MCT_Service_Invoices</fullName>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Status__c</columns>
+        <columns>NAME</columns>
+        <columns>Location__c</columns>
+        <columns>Account__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>notEqual</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <filters>
+            <field>Supercenter__c</field>
+            <operation>equals</operation>
+            <value>Miner-Central Texas</value>
+        </filters>
+        <label>MCT Service Invoices</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>MSW_Management</group>
+            <group>Miner_Equipment_Team</group>
+            <group>Operations_Mgmt_TMC</group>
+            <group>TMC_SW_c</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>MEL_Equipment</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Invoice_Total_Rollup_1__c</columns>
+        <columns>Invoice_Margin__c</columns>
+        <columns>Location__c</columns>
+        <columns>Work_Order__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <filters>
+            <field>SL_Invoice_Date_c__c</field>
+            <operation>greaterThan</operation>
+            <value>1/1/2016</value>
+        </filters>
+        <filters>
+            <field>Supercenter_Formula__c</field>
+            <operation>equals</operation>
+            <value>Miner-Equipment</value>
+        </filters>
+        <label>MEL Equipment</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MFL_Equipment</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Location__c</columns>
+        <columns>Work_Order__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Invoice_Total_Rollup_1__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - FL Jacksonville,TMC - FL Orlando,TMC - FL Tampa</value>
+        </filters>
+        <label>MFL Equipment Invs</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MFL_Equipment_Gina</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Location__c</columns>
+        <columns>Work_Order__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Invoice_Total_Rollup_1__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - FL Jacksonville,TMC - FL Orlando,TMC - FL Tampa</value>
+        </filters>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>equals</operation>
+            <value>Gina Constantine</value>
+        </filters>
+        <label>MFL Equipment Invs Gina</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MFL_Equipment_Inv</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Location__c</columns>
+        <columns>Work_Order__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Work_Description__c</columns>
+        <columns>Invoice_Total_Rollup_1__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - FL Jacksonville,TMC - FL Orlando,TMC - FL Tampa</value>
+        </filters>
+        <filters>
+            <field>Date_Invoiced__c</field>
+            <operation>greaterThan</operation>
+            <value>8/31/2015</value>
+        </filters>
+        <label>MFL Equipment Inv Current</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MFL_Equipment_Sasha</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Location__c</columns>
+        <columns>Work_Order__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Invoice_Total_Rollup_1__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - FL Jacksonville,TMC - FL Orlando,TMC - FL Tampa</value>
+        </filters>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>equals</operation>
+            <value>Sasha Pittsley</value>
+        </filters>
+        <label>MFL Equipment Invs Sasha</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MFL_Reversed_Invoices</fullName>
+        <columns>LAST_UPDATE</columns>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Location__c</columns>
+        <columns>Work_Order__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Invoice_Total_Rollup_1__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - FL Jacksonville,TMC - FL Orlando,TMC - Tallahassee</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Void</value>
+        </filters>
+        <label>MFL Reversed Invoices</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MHN_Service_Invoices</fullName>
+        <columns>Status__c</columns>
+        <columns>NAME</columns>
+        <columns>Location__c</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Sub_Total__c</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <columns>Invoice_Details_Revenue__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>notEqual</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <filters>
+            <field>Supercenter__c</field>
+            <operation>equals</operation>
+            <value>Miner-Houston</value>
+        </filters>
+        <label>MHN Service Invoices</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>MSW_Management</group>
+            <group>Miner_Equipment_Team</group>
+            <group>Operations_Mgmt_TMC</group>
+            <group>TMC_SW_c</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>MNO_Reversed_Invoices</fullName>
+        <columns>LAST_UPDATE</columns>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Location__c</columns>
+        <columns>Work_Order__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Invoice_Total_Rollup_1__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC HN - New Orleans</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Void</value>
+        </filters>
+        <label>MNO Reversed Invoices</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MNT_Equipment</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Location__c</columns>
+        <columns>Work_Order__c</columns>
+        <columns>Invoice_Total_Rollup_1__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - NT Dallas</value>
+        </filters>
+        <label>MNT Equipment</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MNT_Invoice_Complete</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Location__c</columns>
+        <columns>Work_Order__c</columns>
+        <columns>Invoice_Total_Rollup_1__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Status__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - NT Dallas</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Void,Billed,In-Batch</value>
+        </filters>
+        <label>MNT Invoice Complete</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MNT_Jacki</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Location__c</columns>
+        <columns>Work_Order__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Invoice_Total_Rollup__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Not Billed,In-Batch,Billed,Void</value>
+        </filters>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>contains</operation>
+            <value>Missy PUckett</value>
+        </filters>
+        <label>MNT Jacki</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MNT_Reversed_Invoices</fullName>
+        <columns>LAST_UPDATE</columns>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>Location__c</columns>
+        <columns>Work_Order__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Invoice_Total_Rollup_1__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - NT Dallas</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Void</value>
+        </filters>
+        <label>MNT Reversed Invoices</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MSW_Install_Invoices</fullName>
+        <columns>Status__c</columns>
+        <columns>NAME</columns>
+        <columns>Location__c</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <filters>
+            <field>Supercenter__c</field>
+            <operation>equals</operation>
+            <value>Miner-Southwest</value>
+        </filters>
+        <label>MSW Install Invoices</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>MSW_Management</group>
+            <group>Miner_Equipment_Team</group>
+            <group>Operations_Mgmt_TMC</group>
+            <group>TMC_SW_c</group>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>IN-{0000000}</displayFormat>
+        <label>Invoice #</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Invoices</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>true</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>MH_Invoice</fullName>
+        <active>true</active>
+        <label>MH Invoice</label>
+        <picklistValues>
+            <picklist>Activity_Type__c</picklist>
+            <values>
+                <fullName>Calibration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cleanup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Installation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Billed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-Batch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Billed</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Under Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Void</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>MH_Read_Only</fullName>
+        <active>true</active>
+        <label>MH Read Only</label>
+        <picklistValues>
+            <picklist>Activity_Type__c</picklist>
+            <values>
+                <fullName>Calibration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cleanup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Installation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Billed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-Batch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Billed</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Under Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Void</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Location__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Account__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Service_Team_ic__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Sub_Total__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Total_Tax__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Invoice_Total_formula__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Location__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Location_Address_c__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Customer_P_O__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Sub_Total__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Sales_Tax__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Invoice_Total_formula__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Invoice_Status</fullName>
+        <active>true</active>
+        <description>Invoice Status cannot be changed to &quot;In-Batch&quot; until all invoice details have Sales Tax.</description>
+        <errorConditionFormula>Tax_Added__c &lt;&gt; 0
+&amp;&amp;
+ISPICKVAL(Status__c, &quot;In-Batch&quot;)</errorConditionFormula>
+        <errorDisplayField>Status__c</errorDisplayField>
+        <errorMessage>Status cannot change to &quot;In-Batch&quot; until all Invoice Details have Sales Tax.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Require_Account_on_Creation</fullName>
+        <active>true</active>
+        <description>Require Account on Creation</description>
+        <errorConditionFormula>OR(ISBLANK( Account__c ),ISNULL( Account__c ))</errorConditionFormula>
+        <errorDisplayField>Account__c</errorDisplayField>
+        <errorMessage>Invoice must be related to an account</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Call_Avatax</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Call Avatax</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/callAvataxInvoice?id={!MH_Invoice__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Conga_Invoice_c</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>false</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>550</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Multi-IP Invoice</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://composer.congamerge.com 
+?sessionId={!API.Session_ID} 
+&amp;serverUrl={!API.Partner_Server_URL_80} 
+&amp;id={!MH_Invoice__c.Id} 
+&amp;ReportID=[Lines]00Oi0000005ac5g, 
+[Acct]00Oi0000005acEs?pv0={!MH_Invoice__c.AccountId__c}, 
+[Fld]00Oi0000005acrk?pv0={!MH_Invoice__c.AccountId__c}, 
+[Det]00Oi0000005acwQ?pv0={!MH_Invoice__c.LocationId__c}, 
+[MSWD]00Oi0000005ad1a?pv0={!MH_Invoice__c.Work_OrderId__c}, 
+[Loc]00Oi0000005adY5?pv0={!MH_Invoice__c.LocationId__c}, 
+[Deta]00Oi0000005agc5?pv0={!MH_Invoice__c.LocationId__c} 
+&amp;TemplateID=a26i0000000B1Mf
+&amp;ds7=13 
+&amp;lg4=1 
+&amp;lg3=2 
+&amp;defaultpdf=true 
+&amp;ofn=Summary Invoice+for+{!MH_Invoice__c.Account__c}+{!TODAY()}</url>
+        <width>700</width>
+    </webLinks>
+    <webLinks>
+        <fullName>Credit_Memo</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Credit Memo</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://composer.congamerge.com
+?sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_80}
+&amp;id={!MH_Invoice__c.Id}
+&amp;ReportID=[Lines]00Oi0000005ac5g,
+[Acct]00Oi0000005acEs?pv0={!MH_Invoice__c.AccountId__c},
+[WDL]00Oi0000005aywq?pv0={!MH_Invoice__c.Id},
+[ILD]00Oi0000005dNZy?pv0={!MH_Invoice__c.Id},
+[Det]00Oi0000005acwQ?pv0={!MH_Invoice__c.LocationId__c},
+[MSWD]00Oi0000005aywq?pv0={!MH_Invoice__c.Id},
+[Loc]00Oi0000005adY5?pv0={!MH_Invoice__c.LocationId__c},
+[Deta]00Oi0000005abSO?pv0={!MH_Invoice__c.Id},
+[Job]00Oi0000005boci?pv0={!MH_Invoice__c.Work_OrderId__c}
+&amp;TemplateID={!IF( MH_Invoice__c.WO_Order_Type__c = &quot;Sales-EQUIP&quot;, &quot;a26i0000000BGqH&quot;, &quot;a26i0000000BGqH&quot;)}
+&amp;defaultpdf=true
+&amp;ofn=Credit_Memo+for+{!MH_Invoice__c.Account__c}+{!TODAY()}}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Equipment_Detail_c</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Word Invoice</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://composer.congamerge.com
+?sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_80}
+&amp;id={!MH_Invoice__c.Id}
+&amp;ReportID=[Lines]00Oi0000005ac5g,
+[Acct]00Oi0000005acEs?pv0={!MH_Invoice__c.AccountId__c},
+[WDL]00Oi0000005aywq?pv0={!MH_Invoice__c.Id},
+[ILD]00Oi0000005b2qn?pv0={!MH_Invoice__c.Id},
+[Det]00Oi0000005acwQ?pv0={!MH_Invoice__c.LocationId__c},
+[MSWD]00Oi0000005aywq?pv0={!MH_Invoice__c.Id},
+[Loc]00Oi0000005adY5?pv0={!MH_Invoice__c.LocationId__c},
+[Deta]00Oi0000005abSO?pv0={!MH_Invoice__c.Id},
+[Job]00Oi0000005boci?pv0={!MH_Invoice__c.Work_OrderId__c}
+&amp;TemplateID=a26i00000009W8X
+&amp;ofn=Invoice+for+{!MH_Invoice__c.Account__c}+{!TODAY()}}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Equipment_Summary_c</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Equipment Summary</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://composer.congamerge.com
+?sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_80}
+&amp;id={!MH_Invoice__c.Id}
+&amp;ReportID=[Lines]00Oi0000005ac5g,
+[Acct]00Oi0000005acEs?pv0={!MH_Invoice__c.AccountId__c},
+[Fld]00Oi0000005acrk?pv0={!MH_Invoice__c.AccountId__c},
+[Det]00Oi0000005acwQ?pv0={!MH_Invoice__c.LocationId__c},
+[MSWD]00Oi0000005ad1a?pv0={!MH_Invoice__c.Work_OrderId__c},
+[Loc]00Oi0000005adY5?pv0={!MH_Invoice__c.LocationId__c},
+[Deta]00Oi0000005agc5?pv0={!MH_Invoice__c.LocationId__c}
+&amp;TemplateID=a26i00000009WID
+&amp;defaultpdf=true
+&amp;ofn=Invoice+for+{!MH_Invoice__c.Account__c}+{!TODAY()}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Miner_Invoice_c</fullName>
+        <availability>online</availability>
+        <description>Miner Invoice with line detail</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Detail Invoice</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://composer.congamerge.com
+?sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_80}
+&amp;id={!MH_Invoice__c.Id}
+&amp;ReportID=[Lines]00Oi0000005ac5g,
+[Acct]00Oi0000005acEs?pv0={!MH_Invoice__c.AccountId__c},
+[WDL]00Oi0000005aywq?pv0={!MH_Invoice__c.Id},
+[ILD]00Oi0000005b2qn?pv0={!MH_Invoice__c.Id},
+[Det]00Oi0000005acwQ?pv0={!MH_Invoice__c.LocationId__c},
+[MSWD]00Oi0000005aywq?pv0={!MH_Invoice__c.Id},
+[Loc]00Oi0000005adY5?pv0={!MH_Invoice__c.LocationId__c},
+[Deta]00Oi0000005abSO?pv0={!MH_Invoice__c.Id},
+[Job]00Oi0000005boci?pv0={!MH_Invoice__c.Work_OrderId__c}
+&amp;TemplateID={!IF( MH_Invoice__c.WO_Order_Type__c = &quot;Sales-EQUIP&quot;, &quot;a26i00000009W8X&quot;, &quot;a26i0000000B0vP&quot;)}
+&amp;defaultpdf=true
+&amp;ds7=13
+&amp;lg4=1
+&amp;lg3=2
+&amp;ofn=Detail Invoice+for+{!MH_Invoice__c.Account__c}+{!TODAY()}}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Service_Detail_c</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Service Detail</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://composer.congamerge.com
+?sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_80}
+&amp;id={!MH_Invoice__c.Id}
+&amp;ReportID=[Lines]00Oi0000005ac5g,
+[Acct]00Oi0000005acEs?pv0={!MH_Invoice__c.AccountId__c},
+[WDL]00Oi0000005aywq?pv0={!MH_Invoice__c.Id},
+[ILD]00Oi0000005b2qn?pv0={!MH_Invoice__c.Id},
+[Det]00Oi0000005acwQ?pv0={!MH_Invoice__c.LocationId__c},
+[MSWD]00Oi0000005aywq?pv0={!MH_Invoice__c.Id},
+[Loc]00Oi0000005adY5?pv0={!MH_Invoice__c.LocationId__c},
+[Deta]00Oi0000005abSO?pv0={!MH_Invoice__c.Id}
+&amp;TemplateID=a26i0000000B0vK
+&amp;defaultpdf=true
+&amp;DS7=13
+&amp;ofn=Invoice+for+{!MH_Invoice__c.Account__c}+{!TODAY()}}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Service_Summary_c</fullName>
+        <availability>online</availability>
+        <description>Used when service summary or quote is required instead of line detail</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Summary Invoice</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://composer.congamerge.com
+?sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_80}
+&amp;id={!MH_Invoice__c.Id}
+&amp;ReportID=[Lines]00Oi0000005ac5g,
+[Acct]00Oi0000005acEs?pv0={!MH_Invoice__c.AccountId__c},
+[Fld]00Oi0000005acrk?pv0={!MH_Invoice__c.AccountId__c},
+[Det]00Oi0000005acwQ?pv0={!MH_Invoice__c.LocationId__c},
+[MSWD]00Oi0000005ad1a?pv0={!MH_Invoice__c.Work_OrderId__c},
+[Loc]00Oi0000005adY5?pv0={!MH_Invoice__c.LocationId__c},
+[Deta]00Oi0000005agc5?pv0={!MH_Invoice__c.LocationId__c},
+[Job]00Oi0000005boci?pv0={!MH_Invoice__c.Work_OrderId__c}
+&amp;TemplateID={!IF( MH_Invoice__c.WO_Order_Type__c = &quot;Sales-EQUIP&quot;,&quot;a26i00000009WhU&quot;, &quot;a26i00000009WID&quot;)}
+&amp;defaultpdf=true
+&amp;ds7=13
+&amp;lg4=1
+&amp;lg3=2
+&amp;ofn=Summary Invoice+for+{!MH_Invoice__c.Account__c}+{!TODAY()}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Summary_Invoice_c</fullName>
+        <availability>online</availability>
+        <description>Create an invoice with no line detail.</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Summary Invoice</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://composer.congamerge.com
+?sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_80}
+&amp;id={!MH_Invoice__c.Id}
+&amp;ReportID=[Lines]00Oi0000005ac5g,
+[Acct]00Oi0000005acEs?pv0={!MH_Invoice__c.AccountId__c},
+[Fld]00Oi0000005acrk?pv0={!MH_Invoice__c.AccountId__c},
+[Det]00Oi0000005acwQ?pv0={!MH_Invoice__c.LocationId__c},
+[MSWD]00Oi0000005ad1a?pv0={!MH_Invoice__c.Work_OrderId__c},
+[Loc]00Oi0000005adY5?pv0={!MH_Invoice__c.LocationId__c},
+[Deta]00Oi0000005agc5?pv0={!MH_Invoice__c.LocationId__c}
+&amp;TemplateID={!IF( $User.ProfileId = &quot;a26i00000009WID&quot;, &quot;a26i00000009W8X&quot;, &quot;a26i00000009WhU&quot;)}
+&amp;ds=13
+&amp;ds7=1
+&amp;defaultpdf=true
+&amp;ofn=Invoice+for+{!MH_Invoice__c.Account__c}+{!TODAY()}</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,289 @@
+<apex:page standardController="Order" doctype="html-5.0" showHeader="false" sidebar="false" renderAs="pdf" applyHtmlTag="false" applyBodyTag="false"> 
+    <html>
+        <head>
+            <style type="text/css">
+                @page{
+                    margin: 0.5in;
+                    @bottom-right{
+                        content: counter(page) " of " counter(pages);
+                        font-size: 10px;
+                    }
+                }
+                table.header{
+                    border-collapse:collapse;
+                    font-size: 13px;
+                    margin: 0px 0px 0px;
+                    width: 100%;
+                }
+                table.header td{
+                    margin:0px;
+                    padding:0px;
+                    vertical-align: top;
+                    width: 33%;
+                }
+                table.header td.middle{
+                    width: 40%;
+                }
+                h1{
+                    font-size: 18px;
+                    margin: 0px 0px 10px 0px;
+                }
+                h2{
+                    font-size: 14px;
+                    margin: 0px 0px 5px 0px;
+                }
+                img.logo{
+                    margin:0px;
+                    padding:0px;
+                    width:200px;
+                }
+                table.main-details{
+                    font-size: 12px;
+                    margin:5px 0px;
+                    padding:0px;
+                    vertical-align:top;
+                    width: 100%;
+                }
+                table.main-details td{
+                    padding: 2px 3px;
+                    vertical-align:top;
+                }
+                table.main-details td.label{
+                    font-weight:bold;
+                }
+                table.main-details td.header{
+                    border: 1px solid #333;
+                    background-color: #c5c5c5;
+                }
+                table.shipping-details{
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    clear:none;
+                    font-size: 12px;
+                    margin:10px 0px;
+                    padding:0px;
+                    text-align:left;
+                    vertical-align:top;
+                    width: 50%;
+                }
+                table.shipping-details td{
+                    padding: 2px 3px;
+                    vertical-align:top;
+                    width:50%;
+                }
+                table.shipping-details td.label{
+                    font-weight:bold;
+                    width:30%;
+                }
+                table.shipping-details.long td{
+                    width:25%;
+                }
+                table.shipping-details td.header{
+                    border: 1px solid #333;
+                    background-color: #d5d5d5;
+                }
+                table.body{
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    font-size: 12px;
+                    font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+                    margin:20px 0px 0px;
+                    padding:0px;
+                    text-align:center;
+                    width: 100%;
+                }
+                table.body tbody{
+                    width: 100%;
+                }
+                table.body th{
+                    background-color: #fff;
+                    color: #444;
+                    border-bottom:1px dashed #444; 
+                }
+                table.body td{
+                    padding: 2px 4px;
+                    max-width:250px;
+                    width:25%;
+                }
+                table.body tr td:first-child{
+                    width:40%;
+                }
+                table.body tr td span.desc,table.body tr th span.desc{
+                    display:block;
+                    margin:0px 0px 0px 15px;
+                }
+                table.inline{
+                    /*float:left;*/
+                }
+                th.right{
+                    text-align: right;
+                }
+                th.left{
+                    text-align: left;
+                }
+                td.left{
+                    text-align: left;
+                }
+                td.right{
+                    text-align: right;
+                }
+                td.center{
+                    text-align: center;
+                }
+                table.border,th.border,td.border{
+                    border:1px solid #333;
+                }
+            </style>
+        </head>
+        <body>
+            <table class="header">
+                <tr>
+                    <td>
+                        <apex:outputPanel >
+                            <img src="{!Order.FSO__WorkOrder__r.UNITY_Email_Logo_URL__c}"/>
+                        </apex:outputPanel>
+                    </td>
+                    <td class="middle center">
+                        <strong>{!Order.UNITY_Business_Unit_Account__r.Name}</strong><br/>
+                        {!Order.UNITY_Business_Unit_Account__r.ShippingStreet}<br/>
+                        {!Order.UNITY_Business_Unit_Account__r.ShippingCity}, {!Order.UNITY_Business_Unit_Account__r.ShippingState} {!Order.UNITY_Business_Unit_Account__r.ShippingpostalCode}
+                        <br/>Phone: {!Order.UNITY_Business_Unit_Account__r.Phone} | Fax: {!Order.UNITY_Business_Unit_Account__r.Fax}
+                    </td>
+                    <td class="right">
+                        <h1>
+                            Packing List
+                        </h1>
+                    </td>
+                </tr>
+            </table>
+            <br/><br/>
+            <!-- Shipping Information Section -->
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:35%;">
+                        <table class="main-details" style="width:100%;">
+                            <tr>
+                                <td class="label">Case Number:</td><td class="">{!Order.FSO__WorkOrder__r.Case.CaseNumber}</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Work Order Number:</td><td class="">{!Order.FSO__WorkOrder__r.WorkOrderNumber}</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Order Number:</td><td class="">{!Order.OrderNumber}</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Date:</td><td class="">
+                                <apex:outputText value="{0,date,M/d/YYYY}"> 
+                                    <apex:param value="{!TODAY()}"/> 
+                                </apex:outputText> 
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td></td>
+                    <td style="width:35%;">
+                        <table class="main-details" style="width:100%;">
+                            <tr>
+                                <td></td><td class="label header center">Ship To</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <apex:outputPanel rendered="{!Order.UNITY_Ship_To_Account__c != null}">
+                                        <strong>{!Order.UNITY_Ship_To_Account__r.Name}</strong><br/>
+                                        {!Order.ShippingStreet}<br/>
+                                        {!Order.ShippingCity}, {!Order.ShippingState} {!Order.ShippingPostalCode}
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!AND(Order.UNITY_Ship_To_Account__c == NULL,Order.ShipToContact != NULL)}">
+                                        <strong>{!Order.ShipToContact.Name}</strong><br/>
+                                        {!Order.ShippingStreet}<br/>
+                                        {!Order.ShippingCity}, {!Order.ShippingState} {!Order.ShippingPostalCode}
+                                    </apex:outputPanel>
+                                </td>
+                                
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:35%;">
+                        <table class="main-details" style="width:100%;">
+                            <tr>
+                                <td class="label header center">Vendor Information</td>
+                                
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>{!Order.UNITY_Vendor__r.Name}</strong><br/>
+                                    {!Order.UNITY_Vendor__r.ShippingStreet}<br/>
+                                    {!Order.UNITY_Vendor__r.ShippingCity}, {!Order.UNITY_Vendor__r.ShippingState} {!Order.UNITY_Vendor__r.ShippingpostalCode}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td></td>
+                    <td style="width:35%;">
+                        <table class="main-details" style="width:100%;">
+                            <tr>
+                                <td class="label  header center">Job Site Information</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Store/Location #:</strong>&nbsp;<span>{!Order.Account.UNITY_LOC__c}</span><br/>
+                                    <strong>{!Order.Account.Name}</strong><br/>
+                                    {!Order.Account.ShippingStreet}<br/>
+                                    {!Order.Account.ShippingCity}, {!Order.Account.ShippingState} {!Order.Account.ShippingpostalCode}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <table class="shipping-details long inline" style="width:100%;">
+                
+            </table>
+            <!-- Lines Section -->
+            <table class="body inline">
+                <thead>
+                    <tr>
+                        <th class="left">{!Order.UNITY_Business_Unit__c} Item Number<span class="desc">Description</span></th>
+                        <th>Legacy Product Code</th>
+                        <th>Unit of Measure<br/>(UOM)</th>
+                        <th>Order QTY</th>
+                        <th>QTY Shipped</th>
+                        <th>Part On Hand</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <apex:repeat value="{!Order.OrderItems}" var="p">
+                        <apex:variable value="{!p.UNITY_Part_On_Hand__c}" var="poh"/>
+                        <apex:variable value="{!p.UNITY_Product_Name__c == 'Miscellaneous Items'}" var="isMisc"/>
+                        <tr style="display:{!IF(OR(poh,isMisc),'table-row','none')}">
+                            <td class="left">
+                                <span>{!p.UNITY_Product_Code__c}</span><br/>
+                                <span class="desc">{!p.UNITY_Product_Name__c}{!IF(p.UNITY_Unknown_Part_Description__c != null,' '+p.UNITY_Unknown_Part_Description__c,'' )}</span>
+                            </td>
+                            <td>
+                                <span>{!p.PriceBookEntry.Product2.UNITY_Product_External_Id__c}</span>
+                            </td>
+                            <td>
+                                <span>{!p.PriceBookEntry.Product2.UNITY_Unit_Of_Measure__c}</span>
+                            </td>
+                            <td>
+                                <span>{!p.Quantity}</span>
+                            </td>
+                            <td>
+                                <span>{!p.UNITY_Expected_Quantity__c}</span>
+                            </td>
+                            <td>
+                                <span>{!p.UNITY_Part_On_Hand__c}</span>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </tbody>
+            </table>
+        </body>
+    </html>
+</apex:page>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Storage for key values referenced by code and formulas within solution</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Value__c</fullName>
+        <description>Return value for the associated key</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the value to be returned for the associated key</inlineHelpText>
+        <label>Value</label>
+        <length>100</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Key Value Store</label>
+    <visibility>Public</visibility>
+</CustomObject>

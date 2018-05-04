@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>UNITY project - Cache and Log vendor assignment for work orders.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Assignment_Warning__c</fullName>
+        <externalId>false</externalId>
+        <label>Assignment Warning</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Customer__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Vendor Assignments (Account)</relationshipLabel>
+        <relationshipName>Vendor_Rankings</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Initial_PO_Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>Initial_PO__r.UNITY_Total_Cost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Initial PO Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Initial_PO__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Initial PO</label>
+        <referenceTo>Order</referenceTo>
+        <relationshipLabel>Vendor Assignments</relationshipLabel>
+        <relationshipName>Vendor_Assignments</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Last_Assigned__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Assigned</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>OON__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Out of Network</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PIN__c</fullName>
+        <description>4 Digit PIN# that&apos;s randomly assigned to vendor assignment record at creation</description>
+        <externalId>false</externalId>
+        <label>PIN</label>
+        <length>4</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Request_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Request Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Service Request</fullName>
+                    <default>false</default>
+                    <label>Service Request</label>
+                </value>
+                <value>
+                    <fullName>Preventive Maintenance</fullName>
+                    <default>false</default>
+                    <label>Preventive Maintenance</label>
+                </value>
+                <value>
+                    <fullName>Project</fullName>
+                    <default>false</default>
+                    <label>Project</label>
+                </value>
+                <value>
+                    <fullName>Site Survey</fullName>
+                    <default>false</default>
+                    <label>Site Survey</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Assigned</fullName>
+                    <default>false</default>
+                    <label>Assigned</label>
+                </value>
+                <value>
+                    <fullName>Accepted</fullName>
+                    <default>false</default>
+                    <label>Accepted</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>Rejected-No Response</fullName>
+                    <default>false</default>
+                    <label>Rejected-No Response</label>
+                </value>
+                <value>
+                    <fullName>Rejected-Other</fullName>
+                    <default>false</default>
+                    <label>Rejected-Other</label>
+                </value>
+                <value>
+                    <fullName>Candidate</fullName>
+                    <default>false</default>
+                    <label>Candidate</label>
+                </value>
+                <value>
+                    <fullName>Candidate-Off Hours</fullName>
+                    <default>false</default>
+                    <label>Candidate-Off Hours</label>
+                </value>
+                <value>
+                    <fullName>Candidate-Below Margin</fullName>
+                    <default>false</default>
+                    <label>Candidate-Below Margin</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Trade__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Trade</label>
+        <referenceTo>FSO__Skill__c</referenceTo>
+        <relationshipLabel>Vendor Assignments</relationshipLabel>
+        <relationshipName>Vendor_Assignments</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>2 Hour Response</fullName>
+                    <default>false</default>
+                    <label>2 Hour Response</label>
+                </value>
+                <value>
+                    <fullName>4 Hour Response</fullName>
+                    <default>false</default>
+                    <label>4 Hour Response</label>
+                </value>
+                <value>
+                    <fullName>12 Hour Response</fullName>
+                    <default>false</default>
+                    <label>12 Hour Response</label>
+                </value>
+                <value>
+                    <fullName>24 Hour Response</fullName>
+                    <default>false</default>
+                    <label>24 Hour Response</label>
+                </value>
+                <value>
+                    <fullName>48 Hour Response</fullName>
+                    <default>false</default>
+                    <label>48 Hour Response</label>
+                </value>
+                <value>
+                    <fullName>72 Hour Response</fullName>
+                    <default>false</default>
+                    <label>72 Hour Response</label>
+                </value>
+                <value>
+                    <fullName>Project</fullName>
+                    <default>false</default>
+                    <label>Project</label>
+                </value>
+                <value>
+                    <fullName>Planned Maintenance</fullName>
+                    <default>false</default>
+                    <label>Planned Maintenance</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Score_Factor_1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF (ISPICKVAL(UNITY_Priority__c, &apos;2 Hour Response&apos;) || ISPICKVAL(UNITY_Priority__c, &apos;4 Hour Response&apos;),
+ CASE( Status__c, &apos;Rejected-No Response&apos;, 0, 
+       &apos;Accepted&apos;, 1,
+       &apos;Rejected&apos;, 1,
+       &apos;Rejected-Other&apos;, 1,
+       NULL),
+NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score Factor 1</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Score_Factor_2__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF (!(ISPICKVAL(UNITY_Priority__c, &apos;2 Hour Response&apos;) || ISPICKVAL(UNITY_Priority__c, &apos;4 Hour Response&apos;)),
+ CASE( Status__c, &apos;Rejected-No Response&apos;, 0, 
+       &apos;Accepted&apos;, 1,
+       &apos;Rejected&apos;, 1,
+       &apos;Rejected-Other&apos;, 1,
+       NULL),
+NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score Factor 2</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Vendor_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Vendor Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vendor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Vendor</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Vendor Assignments (Account)</relationshipLabel>
+        <relationshipName>Vendor_Rankings1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Work_Order__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Order</label>
+        <referenceTo>WorkOrder</referenceTo>
+        <relationshipLabel>Vendor Assignments</relationshipLabel>
+        <relationshipName>Vendor_Assignments</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <label>Vendor Assignment</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>VA-{0000000}</displayFormat>
+        <label>Vendor Assigment</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Vendor Assignments</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Maps default field values on Case based on email domain or email address.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Business_Unit__c</fullName>
+        <description>This field specifies what Business Unit on the Case is applicable to the case based on &quot;To&quot; email address domain for Email-to-Case</description>
+        <externalId>false</externalId>
+        <label>Business Unit</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case_Origin__c</fullName>
+        <description>This field specifies what Case Origin is applicable to the case based on &quot;To&quot; email address domain for Email-to-Case</description>
+        <externalId>false</externalId>
+        <label>Case Origin</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Owner_Name__c</fullName>
+        <description>Name of the Case Owner - Queue/User</description>
+        <externalId>false</externalId>
+        <label>Owner Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>To_Email_Domain__c</fullName>
+        <description>Domain for the &quot;To&quot; email address</description>
+        <externalId>false</externalId>
+        <label>To Email Domain</label>
+        <length>150</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>UNITY Email Domain Map</label>
+    <visibility>Public</visibility>
+</CustomObject>

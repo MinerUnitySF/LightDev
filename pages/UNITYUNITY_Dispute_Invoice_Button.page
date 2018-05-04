@@ -1,0 +1,7 @@
+<apex:page standardController="UNITY_Invoice__c" extensions="UNITY_DisputeInvoiceButtonController" action="{!disputeInvoice}">
+<apex:form >
+    <apex:pageBlock >
+        <apex:pageMessages />
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

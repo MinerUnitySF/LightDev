@@ -1,0 +1,1751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>UNITY object</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>MSPFS_MSP_Cost__c</fullName>
+        <description>Holds cost for MSP BU for intercompany transfer WOs</description>
+        <externalId>false</externalId>
+        <label>MSP Cost</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>MSPFS_MSP_Price__c</fullName>
+        <description>Holds the price for MSP BU on intercompany transfer WOs</description>
+        <externalId>false</externalId>
+        <label>MSP Price</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>MSPFS_Technician2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Technician #2</label>
+        <referenceTo>CKSW_BASE__Resource__c</referenceTo>
+        <relationshipLabel>Quote Line Items (Technician #2)</relationshipLabel>
+        <relationshipName>Quote_Line_Items1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MSPFS_Technician__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Technician</label>
+        <referenceTo>CKSW_BASE__Resource__c</referenceTo>
+        <relationshipLabel>Quote Line Items</relationshipLabel>
+        <relationshipName>Quote_Line_Items</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Activity_Type__c</fullName>
+        <description>The activity type for the quote line</description>
+        <externalId>false</externalId>
+        <label>Activity Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>UNITY_Type__c</controllingField>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Asset Mgmt Fees</fullName>
+                    <default>false</default>
+                    <label>Asset Mgmt Fees</label>
+                </value>
+                <value>
+                    <fullName>Bond</fullName>
+                    <default>false</default>
+                    <label>Bond</label>
+                </value>
+                <value>
+                    <fullName>Destination Credit</fullName>
+                    <default>false</default>
+                    <label>Destination Credit</label>
+                </value>
+                <value>
+                    <fullName>Double Time Labor</fullName>
+                    <default>false</default>
+                    <label>Double Time Labor</label>
+                </value>
+                <value>
+                    <fullName>Double Time Travel</fullName>
+                    <default>false</default>
+                    <label>Double Time Travel</label>
+                </value>
+                <value>
+                    <fullName>Field Supplies</fullName>
+                    <default>false</default>
+                    <label>Field Supplies</label>
+                </value>
+                <value>
+                    <fullName>Freight - New Construction</fullName>
+                    <default>false</default>
+                    <label>Freight - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Freight - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Freight - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Holiday Labor</fullName>
+                    <default>false</default>
+                    <label>Holiday Labor</label>
+                </value>
+                <value>
+                    <fullName>Holiday Travel</fullName>
+                    <default>false</default>
+                    <label>Holiday Travel</label>
+                </value>
+                <value>
+                    <fullName>Overtime Labor</fullName>
+                    <default>false</default>
+                    <label>Overtime Labor</label>
+                </value>
+                <value>
+                    <fullName>Overtime Travel</fullName>
+                    <default>false</default>
+                    <label>Overtime Travel</label>
+                </value>
+                <value>
+                    <fullName>Parts - New Construction</fullName>
+                    <default>false</default>
+                    <label>Parts - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Parts - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Parts - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Freight</fullName>
+                    <default>false</default>
+                    <label>Pass Through Freight</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Labor</fullName>
+                    <default>false</default>
+                    <label>Pass Through Labor</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Parts</fullName>
+                    <default>false</default>
+                    <label>Pass Through Parts</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Rentals</fullName>
+                    <default>false</default>
+                    <label>Pass Through Rentals</label>
+                </value>
+                <value>
+                    <fullName>Pass Through Tax</fullName>
+                    <default>false</default>
+                    <label>Pass Through Tax</label>
+                </value>
+                <value>
+                    <fullName>Permits and Licenses</fullName>
+                    <default>false</default>
+                    <label>Permits and Licenses</label>
+                </value>
+                <value>
+                    <fullName>Preventative Maintenance</fullName>
+                    <default>false</default>
+                    <label>Preventative Maintenance</label>
+                </value>
+                <value>
+                    <fullName>Rental - Equipment</fullName>
+                    <default>false</default>
+                    <label>Rental - Equipment</label>
+                </value>
+                <value>
+                    <fullName>Rental - New Construction</fullName>
+                    <default>false</default>
+                    <label>Rental - New Construction</label>
+                </value>
+                <value>
+                    <fullName>Rental - Service and Remodel</fullName>
+                    <default>false</default>
+                    <label>Rental - Service and Remodel</label>
+                </value>
+                <value>
+                    <fullName>Service Charge</fullName>
+                    <default>false</default>
+                    <label>Service Charge</label>
+                </value>
+                <value>
+                    <fullName>Service Fee</fullName>
+                    <default>false</default>
+                    <label>Service Fee</label>
+                </value>
+                <value>
+                    <fullName>Standard Labor</fullName>
+                    <default>false</default>
+                    <label>Standard Labor</label>
+                </value>
+                <value>
+                    <fullName>Standard Travel</fullName>
+                    <default>false</default>
+                    <label>Standard Travel</label>
+                </value>
+                <value>
+                    <fullName>Use Tax</fullName>
+                    <default>false</default>
+                    <label>Use Tax</label>
+                </value>
+                <value>
+                    <fullName>Vendor Double Time Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Double Time Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Double Time Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Double Time Travel</label>
+                </value>
+                <value>
+                    <fullName>Vendor Holiday Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Holiday Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Holiday Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Holiday Travel</label>
+                </value>
+                <value>
+                    <fullName>Vendor Overtime Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Overtime Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Overtime Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Overtime Travel</label>
+                </value>
+                <value>
+                    <fullName>Vendor Service Fee</fullName>
+                    <default>false</default>
+                    <label>Vendor Service Fee</label>
+                </value>
+                <value>
+                    <fullName>Vendor Standard Labor</fullName>
+                    <default>false</default>
+                    <label>Vendor Standard Labor</label>
+                </value>
+                <value>
+                    <fullName>Vendor Standard Travel</fullName>
+                    <default>false</default>
+                    <label>Vendor Standard Travel</label>
+                </value>
+                <value>
+                    <fullName>Warranty</fullName>
+                    <default>false</default>
+                    <label>Warranty</label>
+                </value>
+                <value>
+                    <fullName>Warranty Labor</fullName>
+                    <default>false</default>
+                    <label>Warranty Labor</label>
+                </value>
+                <value>
+                    <fullName>Warranty Travel</fullName>
+                    <default>false</default>
+                    <label>Warranty Travel</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Service Fee</controllingFieldValue>
+                <valueName>Asset Mgmt Fees</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Service Fee</controllingFieldValue>
+                <valueName>Service Charge</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Service Fee</controllingFieldValue>
+                <valueName>Service Fee</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Service Fee</controllingFieldValue>
+                <controllingFieldValue>Expenses</controllingFieldValue>
+                <valueName>Use Tax</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Parts</controllingFieldValue>
+                <controllingFieldValue>Vendor Services</controllingFieldValue>
+                <controllingFieldValue>Stock Receipt (Restocking)</controllingFieldValue>
+                <valueName>Field Supplies</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Parts</controllingFieldValue>
+                <controllingFieldValue>Vendor Services</controllingFieldValue>
+                <controllingFieldValue>Stock Receipt (Restocking)</controllingFieldValue>
+                <valueName>Freight - New Construction</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Parts</controllingFieldValue>
+                <controllingFieldValue>Vendor Services</controllingFieldValue>
+                <controllingFieldValue>Stock Receipt (Restocking)</controllingFieldValue>
+                <valueName>Freight - Service and Remodel</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Parts</controllingFieldValue>
+                <controllingFieldValue>Vendor Services</controllingFieldValue>
+                <controllingFieldValue>Stock Receipt (Restocking)</controllingFieldValue>
+                <valueName>Parts - New Construction</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Parts</controllingFieldValue>
+                <controllingFieldValue>Vendor Services</controllingFieldValue>
+                <controllingFieldValue>Stock Receipt (Restocking)</controllingFieldValue>
+                <valueName>Parts - Service and Remodel</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Parts</controllingFieldValue>
+                <controllingFieldValue>Vendor Services</controllingFieldValue>
+                <valueName>Pass Through Freight</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Parts</controllingFieldValue>
+                <controllingFieldValue>Vendor Services</controllingFieldValue>
+                <valueName>Pass Through Parts</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Parts</controllingFieldValue>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <controllingFieldValue>Vendor Services</controllingFieldValue>
+                <controllingFieldValue>Labor - Installation</controllingFieldValue>
+                <controllingFieldValue>Labor - Service</controllingFieldValue>
+                <valueName>Warranty</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Double Time Travel</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Holiday Travel</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Overtime Travel</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <controllingFieldValue>Labor - Installation</controllingFieldValue>
+                <controllingFieldValue>Labor - Service</controllingFieldValue>
+                <valueName>Preventative Maintenance</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Standard Travel</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Vendor Double Time Travel</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Vendor Holiday Travel</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Vendor Overtime Travel</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Vendor Standard Travel</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Expenses</controllingFieldValue>
+                <valueName>Bond</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Expenses</controllingFieldValue>
+                <valueName>Destination Credit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Vendor Services</controllingFieldValue>
+                <valueName>Pass Through Labor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Vendor Services</controllingFieldValue>
+                <valueName>Pass Through Rentals</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Vendor Services</controllingFieldValue>
+                <valueName>Pass Through Tax</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Labor - Installation</controllingFieldValue>
+                <controllingFieldValue>Labor - Service</controllingFieldValue>
+                <valueName>Double Time Labor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Labor - Installation</controllingFieldValue>
+                <controllingFieldValue>Labor - Service</controllingFieldValue>
+                <valueName>Holiday Labor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Labor - Installation</controllingFieldValue>
+                <controllingFieldValue>Labor - Service</controllingFieldValue>
+                <valueName>Overtime Labor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Labor - Installation</controllingFieldValue>
+                <controllingFieldValue>Labor - Service</controllingFieldValue>
+                <valueName>Standard Labor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Labor - Installation</controllingFieldValue>
+                <controllingFieldValue>Labor - Service</controllingFieldValue>
+                <valueName>Vendor Double Time Labor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Labor - Installation</controllingFieldValue>
+                <controllingFieldValue>Labor - Service</controllingFieldValue>
+                <valueName>Vendor Holiday Labor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Labor - Installation</controllingFieldValue>
+                <controllingFieldValue>Labor - Service</controllingFieldValue>
+                <valueName>Vendor Overtime Labor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Labor - Installation</controllingFieldValue>
+                <controllingFieldValue>Labor - Service</controllingFieldValue>
+                <valueName>Vendor Standard Labor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rental</controllingFieldValue>
+                <valueName>Rental - Equipment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rental</controllingFieldValue>
+                <valueName>Rental - New Construction</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rental</controllingFieldValue>
+                <valueName>Rental - Service and Remodel</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Asset__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Asset</label>
+        <referenceTo>Asset</referenceTo>
+        <relationshipLabel>Quote Line Items</relationshipLabel>
+        <relationshipName>Quote_Line_Items</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Available_Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Available Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Broad__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( UNITY_Product__r.Broad__c )</formula>
+        <label>Broad</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Cost_Plus__c</fullName>
+        <externalId>false</externalId>
+        <label>Cost Plus</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Cost</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Customer_Adjusted_Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Adjusted Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Customer_Holiday_Multiplier__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Customer Holiday Multiplier</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Customer_OT_Multiplier__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Customer OT Multiplier</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Customer_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Status</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Accepted</fullName>
+                    <default>false</default>
+                    <label>Accepted</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Discount_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Discount Amount</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Discount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Holds Discount % value</description>
+        <externalId>false</externalId>
+        <label>Discount %</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Discounted_Price__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+AND(NOT(ISBLANK(UNITY_Discount__c)),UNITY_Discount__c&gt;0),
+(1-UNITY_Discount__c)*UNITY_Total_Price__c,
+IF(
+AND(NOT(ISBLANK(UNITY_Discount_Amount__c)),UNITY_Discount_Amount__c&gt;0),
+UNITY_Total_Price__c - UNITY_Discount_Amount__c,
+UNITY_Total_Price__c
+)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Discounted Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Group__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( UNITY_Product__r.Group__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Group</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Is_Labor_Or_Travel_Concerned__c</fullName>
+        <externalId>false</externalId>
+        <formula>AND( 
+    NOT( ISNULL(UNITY_Product__c) ) ,
+    OR(
+       ISPICKVAL(UNITY_Product__r.UNITY_Product_Type__c , &apos;Travel&apos;),
+       ISPICKVAL(UNITY_Product__r.UNITY_Product_Type__c , &apos;Labor&apos;)
+      )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Is Labor Or Travel Concerned</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Is_Vendor_Supply__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Check if the vendor supply the part.</inlineHelpText>
+        <label>Is Vendor Supply</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Line_Item_Unit_Price__c</fullName>
+        <externalId>false</externalId>
+        <formula>UNITY_Discounted_Price__c / UNITY_Customer_Adjusted_Quantity__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Unit Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_MP_Labor_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>MP Labor Cost</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_MP_Labor_Vendor_Adjusted_Qty__c</fullName>
+        <description>The Vendor Adjusted Qty on the Menu Price Labor Line to pass down to POLI</description>
+        <externalId>false</externalId>
+        <label>MP Labor Vendor Adjusted Qty</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Make__c</fullName>
+        <description>Make of unknown/special order part</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Make of unknown/special order part</inlineHelpText>
+        <label>Make</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Model__c</fullName>
+        <description>Model of unknown/special order part</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Model of unknown/special order part</inlineHelpText>
+        <label>Model</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Not_Billable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Denotes if the line is billable or not</description>
+        <externalId>false</externalId>
+        <label>Not Billable</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Number_of_Techs__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Techs</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1 Technician</fullName>
+                    <default>false</default>
+                    <label>1 Technician</label>
+                </value>
+                <value>
+                    <fullName>2 Technicians</fullName>
+                    <default>false</default>
+                    <label>2 Technicians</label>
+                </value>
+                <value>
+                    <fullName>Multi-Tech</fullName>
+                    <default>false</default>
+                    <label>Multi-Tech</label>
+                </value>
+                <value>
+                    <fullName>1 Technician + Apprentice</fullName>
+                    <default>false</default>
+                    <label>1 Technician + Apprentice</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Part_Location__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Warehouse/Truck where an inventory part is sourced from</description>
+        <externalId>false</externalId>
+        <label>Part Location</label>
+        <referenceTo>FSO__Location__c</referenceTo>
+        <relationshipLabel>Quote Line Items</relationshipLabel>
+        <relationshipName>Quote_Line_Items</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Part_On_Hand__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Part On Hand</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Part_Source__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Part Source</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Quote Line Items</relationshipLabel>
+        <relationshipName>Quote_Line_Items</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_PriceBook_Entry_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>PriceBook Entry Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <lookupFilter>
+            <active>true</active>
+            <errorMessage>The Product needs to have the Miner Record Type.</errorMessage>
+            <filterItems>
+                <field>Product2.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Miner</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Quote Line Items</relationshipLabel>
+        <relationshipName>Proposal_Line_Items</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Proposal_Line_Item_External_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>This field will contain unique record id from source system.</description>
+        <externalId>true</externalId>
+        <label>UNITY Proposal Line Item External Id</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Proposal_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Proposal Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Proposal Creation</fullName>
+                    <default>false</default>
+                    <label>Proposal Creation</label>
+                </value>
+                <value>
+                    <fullName>Proposal sent for Manager Approval</fullName>
+                    <default>false</default>
+                    <label>Proposal sent for Manager Approval</label>
+                </value>
+                <value>
+                    <fullName>Discount - Approved by Manager</fullName>
+                    <default>false</default>
+                    <label>Discount - Approved by Manager</label>
+                </value>
+                <value>
+                    <fullName>Discount - Rejected by Manager</fullName>
+                    <default>false</default>
+                    <label>Discount - Rejected by Manager</label>
+                </value>
+                <value>
+                    <fullName>Sent to Customer</fullName>
+                    <default>false</default>
+                    <label>Sent to Customer</label>
+                </value>
+                <value>
+                    <fullName>Returned to Agent</fullName>
+                    <default>false</default>
+                    <label>Returned to Agent</label>
+                </value>
+                <value>
+                    <fullName>Proposal Amended</fullName>
+                    <default>false</default>
+                    <label>Proposal Amended</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                    <label>Cancelled</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Proposal__c</fullName>
+        <externalId>false</externalId>
+        <label>Quote</label>
+        <referenceTo>UNITY_Proposal__c</referenceTo>
+        <relationshipLabel>Quote Line Items</relationshipLabel>
+        <relationshipName>Proposal_Line_Items</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>UNITY_Quantity_Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>UNITY_Cost__c *  UNITY_Quantity__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Quantity Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Quantity_Price__c</fullName>
+        <externalId>false</externalId>
+        <formula>UNITY_Customer_Adjusted_Quantity__c * UNITY_Price__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Quantity Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Related_Menu_Price_Line__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The menu price line that the labor line is associated to</description>
+        <externalId>false</externalId>
+        <label>Related Menu Price Line</label>
+        <referenceTo>UNITY_Proposal_Line_Item__c</referenceTo>
+        <relationshipLabel>Quote Line Items</relationshipLabel>
+        <relationshipName>Menu_Price_Labor_Lines</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Sales_Tax__c</fullName>
+        <description>The sales tax to be applied to the quote line</description>
+        <externalId>false</externalId>
+        <label>Sales Tax</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Tax_Code__c</fullName>
+        <description>The tax code applied to the quote line</description>
+        <externalId>false</externalId>
+        <label>Tax Code</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Template_Config_Ext_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Template Config Ext ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Total_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Total_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Type__c</fullName>
+        <description>The quote line type</description>
+        <externalId>false</externalId>
+        <label>Line Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Expenses</fullName>
+                    <default>false</default>
+                    <label>Expenses</label>
+                </value>
+                <value>
+                    <fullName>Labor - Installation</fullName>
+                    <default>false</default>
+                    <label>Labor - Installation</label>
+                </value>
+                <value>
+                    <fullName>Labor - Service</fullName>
+                    <default>false</default>
+                    <label>Labor - Service</label>
+                </value>
+                <value>
+                    <fullName>Parts</fullName>
+                    <default>false</default>
+                    <label>Parts</label>
+                </value>
+                <value>
+                    <fullName>Travel</fullName>
+                    <default>false</default>
+                    <label>Travel</label>
+                </value>
+                <value>
+                    <fullName>Rental</fullName>
+                    <default>false</default>
+                    <label>Rental</label>
+                </value>
+                <value>
+                    <fullName>Vendor Services</fullName>
+                    <default>false</default>
+                    <label>Vendor Services</label>
+                </value>
+                <value>
+                    <fullName>Permits and Licenses</fullName>
+                    <default>false</default>
+                    <label>Permits and Licenses</label>
+                </value>
+                <value>
+                    <fullName>Stock Receipt (Restocking)</fullName>
+                    <default>false</default>
+                    <label>Stock Receipt (Restocking)</label>
+                </value>
+                <value>
+                    <fullName>Service Fee</fullName>
+                    <default>false</default>
+                    <label>Service Fee</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Unit_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Unit_of_Measure__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit of Measure</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Box</fullName>
+                    <default>false</default>
+                    <label>Box</label>
+                </value>
+                <value>
+                    <fullName>Case</fullName>
+                    <default>false</default>
+                    <label>Case</label>
+                </value>
+                <value>
+                    <fullName>Each</fullName>
+                    <default>false</default>
+                    <label>Each</label>
+                </value>
+                <value>
+                    <fullName>Feet</fullName>
+                    <default>false</default>
+                    <label>Feet</label>
+                </value>
+                <value>
+                    <fullName>Hour</fullName>
+                    <default>false</default>
+                    <label>Hour</label>
+                </value>
+                <value>
+                    <fullName>Inch</fullName>
+                    <default>false</default>
+                    <label>Inch</label>
+                </value>
+                <value>
+                    <fullName>Pack</fullName>
+                    <default>false</default>
+                    <label>Pack</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Unknown_Part_Description_2__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(NOT(ISBLANK(UNITY_Make__c)),&quot; &quot; + UNITY_Make__c,&quot;&quot;) +
+IF(NOT(ISBLANK(UNITY_Model__c)),&quot; &quot; + UNITY_Model__c, &quot;&quot;) +
+IF(NOT(ISBLANK(UNITY_Description__c)),&quot; &quot; + UNITY_Description__c,&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Unknown Part Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Unknown_Part_Description__c</fullName>
+        <description>Any description entered on the PO Line for Unknown Parts</description>
+        <externalId>false</externalId>
+        <label>Unknown Part Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>UNITY_Vendor_Adjusted_Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Vendor Adjusted Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Vendor_Holiday_Multiplier__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Vendor Holiday Multiplier</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Vendor_OT_Multiplier__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Vendor OT Multiplier</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Quote Line Item</label>
+    <nameField>
+        <displayFormat>QTLI-{0000000000}</displayFormat>
+        <label>Proposal Line Item Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Quote Line Items</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>UNITY_Customer_Proposal</fullName>
+        <active>true</active>
+        <label>Customer Proposal</label>
+        <picklistValues>
+            <picklist>UNITY_Activity_Type__c</picklist>
+            <values>
+                <fullName>Asset Mgmt Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Destination Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Time Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Double Time Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Field Supplies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freight - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Holiday Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Holiday Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Overtime Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Overtime Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Freight</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Rentals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pass Through Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permits and Licenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Preventative Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - Equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - New Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental - Service and Remodel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Use Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Double Time Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Double Time Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Holiday Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Holiday Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Overtime Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Overtime Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Service Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Standard Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Standard Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warranty Travel</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Customer_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Number_of_Techs__c</picklist>
+            <values>
+                <fullName>1 Technician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1 Technician %2B Apprentice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Technicians</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Tech</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Proposal_Status__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discount - Approved by Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discount - Rejected by Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Proposal Amended</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Proposal Creation</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Proposal sent for Manager Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned to Agent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent to Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Type__c</picklist>
+            <values>
+                <fullName>Expenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labor - Installation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labor - Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permits and Licenses</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>UNITY_Agent_Cannot_Save_Manager_Statuses</fullName>
+        <active>true</active>
+        <description>Agent cannot save the proposal record in manager statuses</description>
+        <errorConditionFormula>AND ( 
+CONTAINS( $User.Id ,  UNITY_Proposal__r.UNITY_Case__r.OwnerId  ), 
+OR( 
+ISPICKVAL( UNITY_Proposal__r.UNITY_Proposal_Status__c , &apos;Discount - Approved by Manager&apos;), 
+ISPICKVAL( UNITY_Proposal__r.UNITY_Proposal_Status__c , &apos;Discount - Rejected by Manager&apos;), 
+ISPICKVAL( UNITY_Proposal__r.UNITY_Proposal_Status__c , &apos;Proposal sent for Manager Approval&apos;) 
+) 
+)</errorConditionFormula>
+        <errorMessage>Cannot Save record with Status: Manager Approved / Rejected. Please change to the appropriate status.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Cancelled_Completed_Restrict</fullName>
+        <active>true</active>
+        <description>Restrict edit of record from completed or cancelled.</description>
+        <errorConditionFormula>AND 
+(
+OR( 
+ISPICKVAL( UNITY_Proposal__r.UNITY_Proposal_Status__c   ,&apos;Completed&apos;), 
+ISPICKVAL( UNITY_Proposal__r.UNITY_Proposal_Status__c  ,&apos;Cancelled&apos;) 
+),
+OR( 
+ISNEW(),
+ISCHANGED(UNITY_Available_Quantity__c), 
+ISCHANGED(UNITY_Cost__c),
+ISCHANGED(UNITY_Discount__c) ,
+ISCHANGED(UNITY_Type__c) , 
+ISCHANGED(UNITY_Price__c) , 
+ISCHANGED(UNITY_Product__c) , 
+ISCHANGED(UNITY_Total_Cost__c) , 
+ISCHANGED(UNITY_Total_Price__c) 
+)
+)</errorConditionFormula>
+        <errorMessage>Record cannot be edited after it has been set to Completed or Cancelled</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Discount_Edit_Customer_Accept</fullName>
+        <active>true</active>
+        <description>Discount fields cannot be edited when customer status is Accepted</description>
+        <errorConditionFormula>if( 
+AND( 
+ISPICKVAL(   UNITY_Proposal__r.UNITY_Status__c   ,&apos;Accepted&apos;), 
+OR( ISCHANGED( UNITY_Discount__c ), ISCHANGED( UNITY_Discount_Amount__c ) ) 
+) 
+, true, false)</errorConditionFormula>
+        <errorMessage>The Customer has Accepted the Quote, discount fields cannot be changed</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Discount_Percent_Amount</fullName>
+        <active>true</active>
+        <description>Ensures that either Amount or % field is used</description>
+        <errorConditionFormula>OR ( 
+AND (if(UNITY_Discount__c &gt; 0,true,false), if(UNITY_Discount_Amount__c &gt; 0,true,false) ) 
+)</errorConditionFormula>
+        <errorMessage>Please enter value in one of the two fields: Discount % or Discount Amount</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Lock_Discount_Fields</fullName>
+        <active>true</active>
+        <description>Lock discount fields in sent to customer, approved by manager, completed, cancelled statuses</description>
+        <errorConditionFormula>OR ( 
+if( 
+AND( 
+OR (ISPICKVAL(  UNITY_Proposal__r.UNITY_Proposal_Status__c  ,&apos;Sent to Customer&apos;), ISPICKVAL(  UNITY_Proposal__r.UNITY_Proposal_Status__c  ,&apos;Completed&apos;), ISPICKVAL(  UNITY_Proposal__r.UNITY_Proposal_Status__c  ,&apos;Cancelled&apos;), ISPICKVAL(  UNITY_Proposal__r.UNITY_Proposal_Status__c  ,&apos;Returned to Agent&apos;), ISPICKVAL(  UNITY_Proposal__r.UNITY_Proposal_Status__c  ,&apos;Discount - Approved by Manager&apos;)), 
+ISCHANGED( UNITY_Discount__c ) 
+) 
+, true, false), 
+if( 
+AND( 
+OR (ISPICKVAL(  UNITY_Proposal__r.UNITY_Proposal_Status__c  ,&apos;Sent to Customer&apos;), ISPICKVAL(  UNITY_Proposal__r.UNITY_Proposal_Status__c  ,&apos;Completed&apos;), ISPICKVAL(  UNITY_Proposal__r.UNITY_Proposal_Status__c  ,&apos;Cancelled&apos;), ISPICKVAL(  UNITY_Proposal__r.UNITY_Proposal_Status__c  ,&apos;Returned to Agent&apos;), ISPICKVAL(  UNITY_Proposal__r.UNITY_Proposal_Status__c  ,&apos;Discount - Approved by Manager&apos;)), 
+ISCHANGED( UNITY_Discount_Amount__c ) 
+) 
+, true, false) 
+)</errorConditionFormula>
+        <errorMessage>Discount fields cannot be changed in &apos;Discount - Approved by Manager&apos;, &apos;Sent to Customer&apos;, &apos;Completed&apos;, &apos;Returned to Agent&apos; or &apos;Cancelled&apos; statuses</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Proposal_Restrict_Customer_Edit</fullName>
+        <active>true</active>
+        <description>Restrict customer from editing the Proposal when it is not in &quot;Sent to Customer&quot; status</description>
+        <errorConditionFormula>AND(!ISPICKVAL(  UNITY_Proposal__r.UNITY_Proposal_Status__c  , &apos;Sent to Customer&apos;) , if(CONTAINS($User.ProfileId, &apos;00e18000000Hi5J&apos;),true,false) )</errorConditionFormula>
+        <errorMessage>The Quote is currently being handled by the Agent. The Quote cannot be edited at this moment. Please contact the Agent for further clarification</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Restrict_Agents_Skipping_Approvals</fullName>
+        <active>false</active>
+        <description>If discount exists and Manger Approved Discount is unchecked, the proposal cannot move into following status: Sent to Customer, Return to Agent, Proposal Completed, Proposal Amended &amp; sent to customer.</description>
+        <errorConditionFormula>AND 
+( 
+OR 
+( 
+if(UNITY_Discount_Amount__c &gt; 0,true,false), 
+if(UNITY_Discount__c &gt; 0,true,false), 
+if( UNITY_Proposal__r.UNITY_Line_Item_Discount_Exists__c  &gt; 0,true,false), 
+if( UNITY_Proposal__r.UNITY_Does_Discount_Amount_Exists__c  &gt; 0,true,false) 
+) 
+, 
+if( UNITY_Proposal__r.UNITY_Manager_Approved_Discounts__c  = false,true,false) 
+, 
+OR 
+( 
+if(ISPICKVAL( UNITY_Proposal__r.UNITY_Proposal_Status__c , &apos;Sent to Customer&apos;),true,false), 
+if(ISPICKVAL( UNITY_Proposal__r.UNITY_Proposal_Status__c , &apos;Returned to Agent&apos;),true,false), 
+if(ISPICKVAL( UNITY_Proposal__r.UNITY_Proposal_Status__c , &apos;Completed&apos;),true,false) 
+) 
+)</errorConditionFormula>
+        <errorMessage>The Quote contains discounts. Please submit the Quote for approval. Please contact the system administrator for more details.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Restrict_Proposal_Amended</fullName>
+        <active>true</active>
+        <description>Cannot move status to Proposal Amended if the Customer status is Accepted</description>
+        <errorConditionFormula>AND ( OR (ISPICKVAL(  UNITY_Proposal__r.UNITY_Status__c  , &apos;Accepted&apos;) , AND (  UNITY_Proposal__r.UNITY_Manager_Approved_Discounts__c  = true, ISPICKVAL( UNITY_Proposal__r.UNITY_Status__c ,&apos;&apos;) ) ) , 
+
+OR ( ISPICKVAL(  UNITY_Proposal__r.UNITY_Proposal_Status__c  , &apos;Proposal Amended&apos;) , ISPICKVAL(  UNITY_Proposal__r.UNITY_Proposal_Status__c  , &apos;Proposal Creation&apos;) , ISPICKVAL(  UNITY_Proposal__r.UNITY_Proposal_Status__c  , &apos;Returned to Agent&apos;)) 
+)</errorConditionFormula>
+        <errorMessage>The Quote cannot be amended once the customer has Accepted the Quote</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>MSPFS_New_Quote_Line</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Add Product</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/MSPFS_NewQuoteItem?Id={!UNITY_Proposal__c.Id}</url>
+    </webLinks>
+</CustomObject>

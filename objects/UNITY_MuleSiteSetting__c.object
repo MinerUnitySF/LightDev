@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Mule site settings for subdmains properties.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Content_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Content-Type</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Domain__c</fullName>
+        <description>mule domain endpoing</description>
+        <externalId>false</externalId>
+        <label>Domain</label>
+        <length>60</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Host__c</fullName>
+        <externalId>false</externalId>
+        <label>Host</label>
+        <length>60</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IsActive__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>IsActive</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Protocol__c</fullName>
+        <defaultValue>&apos;http&apos;</defaultValue>
+        <externalId>false</externalId>
+        <label>Protocol</label>
+        <length>10</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>UNITY Mule Site Setting</label>
+    <visibility>Protected</visibility>
+</CustomObject>

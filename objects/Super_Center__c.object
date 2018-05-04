@@ -1,0 +1,978 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Super Center is a branch service center that  contains the personnel and processes to sell and service customers for a specific geographical region.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Adjusted_Equipment_MSA_Target__c</fullName>
+        <description>The adjusted Equipment MSA to reach the equipment revenue target</description>
+        <externalId>false</externalId>
+        <formula>( Total_Equipment_Revenue_Target__c - Total_Equipment_Revenue_Actual__c ) / YTD_Remaining_Months__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current year&apos;s equipment revenue and remaining months, how many dollars must we invoice monthly to meet the equipment revenue target?</inlineHelpText>
+        <label>Adjusted Equipment MSA Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Adjusted_Service_MSA_Target__c</fullName>
+        <description>The adjusted Monthly Sales Average Target to hit the YTD Service Revenue Target</description>
+        <externalId>false</externalId>
+        <formula>( Total_Service_Revenue_Target__c - Total_Service_Revenue_Actual__c ) /  YTD_Remaining_Months__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current year&apos;s service revenue and remaining months, how many dollars must we invoice monthly to meet the service revenue target?</inlineHelpText>
+        <label>Adjusted Service MSA Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Adjusted_Total_MSA_Target__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Total_Revenue_Target__c - Total_Revenue_Actual__c)/ YTD_Remaining_Months__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Adjusted Total MSA Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>City__c</fullName>
+        <externalId>false</externalId>
+        <label>City</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Company_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Company Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Company_Legal_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Company Legal Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Equipment_Monthly_Sales_Average_Actual__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_Equipment_Revenue_Actual__c / IF((12-YTD_Remaining_Months__c = 0),1,(12 - YTD_Remaining_Months__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>On average, how many equipment dollars have been invoiced monthly?</inlineHelpText>
+        <label>Equipment Monthly Sales Average Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Monthly_Sales_Average_Target__c</fullName>
+        <description>The monthly sales average based on the total revenue divided by months.</description>
+        <externalId>false</externalId>
+        <formula>Total_Equipment_Revenue_Target__c / 12</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>How many equipment dollars must we invoice monthly to meet the service revenue target?</inlineHelpText>
+        <label>Equipment Monthly Sales Average Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Phone__c</fullName>
+        <externalId>false</externalId>
+        <label>Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Preferred_for_Super_Center__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>This field determines if this Super Center record is the PREFERRED choice when the WorkOrderUtil.setSuperCenter matching rules finds more than one super center (Example: Miner-Atlanta and Miner-Florida both use the picklist value Miner-Florida as a matching value - this checkbox would determine which is preferred).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field determines if this Super Center record is the PREFERRED choice when the WorkOrderUtil.setSuperCenter matching rules finds more than one super center (Example: Miner-Atlanta and Miner-Florida both use the picklist value Miner-Florida)</inlineHelpText>
+        <label>Preferred for Super_Center</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Projected_Equipment_Revenue_to_Target__c</fullName>
+        <description>Projected equipment revenue compared to total equipment revenue target.</description>
+        <externalId>false</externalId>
+        <formula>Projected_Total_Equipment_Revenue__c /  Total_Equipment_Revenue_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current equipment revenue trend what percentage of equipment revenue target will be achieved?</inlineHelpText>
+        <label>Projected Equipment Revenue to Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Projected_Service_Revenue_to_Targe__c</fullName>
+        <description>The Projected Total Service Revenue compared to the Total Service Revenue Target (percent)</description>
+        <externalId>false</externalId>
+        <formula>Projected_Total_Service_Revenue__c / Total_Service_Revenue_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current service revenue trend what percentage of service revenue target will be achieved?</inlineHelpText>
+        <label>Projected Service Revenue to Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Projected_Total_Equipment_Revenue__c</fullName>
+        <description>The projected total equipment revenue at the current monthly sales average</description>
+        <externalId>false</externalId>
+        <formula>Total_Equipment_Revenue_Actual__c +( Equipment_Monthly_Sales_Average_Actual__c * YTD_Remaining_Months__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current revenue trend and remaining months, what will our equipment revenue be at the end of the year.</inlineHelpText>
+        <label>Projected Total Equipment Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Projected_Total_Service_Revenue__c</fullName>
+        <description>The current projected Total Service Revenue based on Service MSA Actuals.</description>
+        <externalId>false</externalId>
+        <formula>Total_Service_Revenue_Actual__c + ( Service_Monthly_Sales_Average_Actual__c * (YTD_Remaining_Months__c-1))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current revenue trend and remaining months, what will our service revenue be at the end of the year.</inlineHelpText>
+        <label>Projected Total Service Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Province__c</fullName>
+        <externalId>false</externalId>
+        <label>Province</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Segment__c</fullName>
+        <description>This is a picklist that should match up with the Location object (SVMXC__Site__c) to assist in assigning super center to work orders.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is a picklist that should match up with the Location object (SVMXC__Site__c) to assist in assigning super center to work orders.</inlineHelpText>
+        <label>Segment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Atlanta</fullName>
+                    <default>false</default>
+                    <label>Atlanta</label>
+                </value>
+                <value>
+                    <fullName>Austin</fullName>
+                    <default>false</default>
+                    <label>Austin</label>
+                </value>
+                <value>
+                    <fullName>Avondale</fullName>
+                    <default>false</default>
+                    <label>Avondale</label>
+                </value>
+                <value>
+                    <fullName>Corpus Christi</fullName>
+                    <default>false</default>
+                    <label>Corpus Christi</label>
+                </value>
+                <value>
+                    <fullName>Dallas</fullName>
+                    <default>false</default>
+                    <label>Dallas</label>
+                </value>
+                <value>
+                    <fullName>El Paso</fullName>
+                    <default>false</default>
+                    <label>El Paso</label>
+                </value>
+                <value>
+                    <fullName>Houston</fullName>
+                    <default>false</default>
+                    <label>Houston</label>
+                </value>
+                <value>
+                    <fullName>Jacksonville</fullName>
+                    <default>false</default>
+                    <label>Jacksonville</label>
+                </value>
+                <value>
+                    <fullName>Los Angeles</fullName>
+                    <default>false</default>
+                    <label>Los Angeles</label>
+                </value>
+                <value>
+                    <fullName>Mesa</fullName>
+                    <default>false</default>
+                    <label>Mesa</label>
+                </value>
+                <value>
+                    <fullName>Miami</fullName>
+                    <default>false</default>
+                    <label>Miami</label>
+                </value>
+                <value>
+                    <fullName>Miner-Equipment</fullName>
+                    <default>false</default>
+                    <label>Miner-Equipment</label>
+                </value>
+                <value>
+                    <fullName>National</fullName>
+                    <default>false</default>
+                    <label>National</label>
+                </value>
+                <value>
+                    <fullName>New Orleans</fullName>
+                    <default>false</default>
+                    <label>New Orleans</label>
+                </value>
+                <value>
+                    <fullName>Orlando</fullName>
+                    <default>false</default>
+                    <label>Orlando</label>
+                </value>
+                <value>
+                    <fullName>San Antonio</fullName>
+                    <default>false</default>
+                    <label>San Antonio</label>
+                </value>
+                <value>
+                    <fullName>Tallahassee</fullName>
+                    <default>false</default>
+                    <label>Tallahassee</label>
+                </value>
+                <value>
+                    <fullName>Tampa</fullName>
+                    <default>false</default>
+                    <label>Tampa</label>
+                </value>
+                <value>
+                    <fullName>Tucson</fullName>
+                    <default>false</default>
+                    <label>Tucson</label>
+                </value>
+                <value>
+                    <fullName>Utah</fullName>
+                    <default>false</default>
+                    <label>Utah</label>
+                </value>
+                <value>
+                    <fullName>Valley</fullName>
+                    <default>false</default>
+                    <label>Valley</label>
+                </value>
+                <value>
+                    <fullName>Waymar</fullName>
+                    <default>false</default>
+                    <label>Waymar</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>8</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Service_Monthly_Sales_Average_Actual__c</fullName>
+        <description>The actual service revenue dollars earned monthly (average) so far YTD</description>
+        <externalId>false</externalId>
+        <formula>Total_Service_Revenue_Actual__c / IF((12-YTD_Remaining_Months__c = 0),1,(12 - YTD_Remaining_Months__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>On average, how many service dollars have been invoiced monthly?</inlineHelpText>
+        <label>Service Monthly Sales Average Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Service_Monthly_Sales_Average_Target__c</fullName>
+        <description>The total service revenue targets across all active budgets, divided by 12 months</description>
+        <externalId>false</externalId>
+        <formula>Total_Service_Revenue_Target__c / 12</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>How many service dollars must we invoice monthly to meet the service revenue target?</inlineHelpText>
+        <label>Service Monthly Sales Average Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State__c</fullName>
+        <externalId>false</externalId>
+        <label>State</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Street__c</fullName>
+        <externalId>false</externalId>
+        <label>Street</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Super_Center__c</fullName>
+        <description>This is a picklist that should match the values of the Super Center field on the Location object (SVMXC__Site__c). This is used for matching up Work Orders to Super Center.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is a picklist that should match the values of the Super Center field on the Location object (SVMXC__Site__c). This is used for matching up Work Orders to Super Center.</inlineHelpText>
+        <label>Super_Center</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Miner-Atlanta</fullName>
+                    <default>false</default>
+                    <label>Miner-Atlanta</label>
+                </value>
+                <value>
+                    <fullName>Miner-California</fullName>
+                    <default>false</default>
+                    <label>Miner-California</label>
+                </value>
+                <value>
+                    <fullName>Miner-Central Texas</fullName>
+                    <default>false</default>
+                    <label>Miner-Central Texas</label>
+                </value>
+                <value>
+                    <fullName>Miner-El Paso</fullName>
+                    <default>false</default>
+                    <label>Miner-El Paso</label>
+                </value>
+                <value>
+                    <fullName>Miner-Equipment</fullName>
+                    <default>false</default>
+                    <label>Miner-Equipment</label>
+                </value>
+                <value>
+                    <fullName>Miner-Florida</fullName>
+                    <default>false</default>
+                    <label>Miner-Florida</label>
+                </value>
+                <value>
+                    <fullName>Miner-Houston</fullName>
+                    <default>false</default>
+                    <label>Miner-Houston</label>
+                </value>
+                <value>
+                    <fullName>Miner-Miami</fullName>
+                    <default>false</default>
+                    <label>Miner-Miami</label>
+                </value>
+                <value>
+                    <fullName>Miner-National</fullName>
+                    <default>false</default>
+                    <label>Miner-National</label>
+                </value>
+                <value>
+                    <fullName>Miner-North Texas</fullName>
+                    <default>false</default>
+                    <label>Miner-North Texas</label>
+                </value>
+                <value>
+                    <fullName>Miner-Southwest</fullName>
+                    <default>false</default>
+                    <label>Miner-Southwest</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Territory_VP__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The user record that is the Territory VP for this Super Center</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The user record that is the Territory VP for this Super Center</inlineHelpText>
+        <label>Territory VP</label>
+        <lookupFilter>
+            <active>false</active>
+            <errorMessage>User must be a role of Territory VP</errorMessage>
+            <filterItems>
+                <field>User.UserRole.Name</field>
+                <operation>contains</operation>
+                <value>Territory VP</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Super_Centers</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Total_Equipment_GP_Margin_Actual__c</fullName>
+        <description>Total equipment gross profit margin actual</description>
+        <externalId>false</externalId>
+        <formula>Total_Equipment_Gross_Profit_Actual__c /  Total_Equipment_Revenue_Actual__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the current equipment gross profit margin?</inlineHelpText>
+        <label>Total Equipment GP Margin Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Total_Equipment_GP_Margin_Target__c</fullName>
+        <description>Total eqiupment gross profit margin target</description>
+        <externalId>false</externalId>
+        <formula>Total_Equipment_Gross_Profit_Target__c / Total_Equipment_Revenue_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is this year&apos;s equipment gross profit margin target?</inlineHelpText>
+        <label>Total Equipment GP Margin Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Total_Equipment_Gross_Profit_Actual__c</fullName>
+        <description>Total Equipment Gross Profit dollars earned across all active budgets</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is this year&apos;s current equipment gross profit?</inlineHelpText>
+        <label>Total Equipment Gross Profit Actual</label>
+        <summarizedField>Budget__c.Total_Equipment_Gross_Profit_Actual__c</summarizedField>
+        <summaryFilterItems>
+            <field>Budget__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Budget__c.Super_Center__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Equipment_Gross_Profit_Target__c</fullName>
+        <description>The total Equipment Gross Profit Target across all active budgets</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is this year&apos;s equipment gross profit target?</inlineHelpText>
+        <label>Total Equipment Gross Profit Target</label>
+        <summarizedField>Budget__c.Equipment_Gross_Target__c</summarizedField>
+        <summaryFilterItems>
+            <field>Budget__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Budget__c.Super_Center__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Equipment_Revenue_Actual__c</fullName>
+        <description>Total equipment revenue dollars accrued across active budgets</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is this year&apos;s current equipment revenue?</inlineHelpText>
+        <label>Total Equipment Revenue Actual</label>
+        <summarizedField>Budget__c.Total_Equipment_Revenue_Actual__c</summarizedField>
+        <summaryFilterItems>
+            <field>Budget__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Budget__c.Super_Center__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Equipment_Revenue_Target__c</fullName>
+        <description>Total equipment revenue target across active budgets</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is this year&apos;s equipment revenue target?</inlineHelpText>
+        <label>Total Equipment Revenue Target</label>
+        <summarizedField>Budget__c.Equipment_Revenue_Target__c</summarizedField>
+        <summaryFilterItems>
+            <field>Budget__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Budget__c.Super_Center__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_GP_Opportunity_Dollars__c</fullName>
+        <description>Total un-billed gross profit dollars</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the equipment dollar amount on scheduled but un-invoiced work orders?</inlineHelpText>
+        <label>Total Equipment Opportunity Dollars</label>
+        <summarizedField>Budget__c.Equipment_Revenue_Opportunity_Dollars__c</summarizedField>
+        <summaryFilterItems>
+            <field>Budget__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Budget__c.Super_Center__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Gross_Profit_Actual__c</fullName>
+        <description>Overall total gross profit</description>
+        <externalId>false</externalId>
+        <formula>Total_Service_Gross_Profit_Actual__c + Total_Equipment_Gross_Profit_Actual__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total current gross profit?</inlineHelpText>
+        <label>Total Gross Profit Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Gross_Profit_Margin_Actual__c</fullName>
+        <description>Overall gross profit margin actual</description>
+        <externalId>false</externalId>
+        <formula>Total_Gross_Profit_Actual__c / Total_Revenue_Actual__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the current total gross profit margin?</inlineHelpText>
+        <label>Total Gross Profit Margin Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Total_Gross_Profit_Margin_Target__c</fullName>
+        <description>Overall gross profit margin target</description>
+        <externalId>false</externalId>
+        <formula>Total_Gross_Profit_Target__c  / Total_Revenue_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total gross profit margin target?</inlineHelpText>
+        <label>Total Gross Profit Margin Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Total_Gross_Profit_Target__c</fullName>
+        <description>Overall gross profit target</description>
+        <externalId>false</externalId>
+        <formula>Total_Service_Gross_Profit_Target__c + Total_Equipment_Gross_Profit_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total (service + equipment) gross profit target?</inlineHelpText>
+        <label>Total Gross Profit Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Monthly_Sales_Average_Target__c</fullName>
+        <externalId>false</externalId>
+        <formula>Service_Monthly_Sales_Average_Target__c +  Equipment_Monthly_Sales_Average_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Monthly Sales Average Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Monthly_Sales_Average__c</fullName>
+        <externalId>false</externalId>
+        <formula>Equipment_Monthly_Sales_Average_Actual__c +  Service_Monthly_Sales_Average_Actual__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Monthly Sales Average</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Revenue_Actual__c</fullName>
+        <description>The total actual revenue for the year</description>
+        <externalId>false</externalId>
+        <formula>Total_Service_Revenue_Actual__c + Total_Equipment_Revenue_Actual__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total current revenue?</inlineHelpText>
+        <label>Total Revenue Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Revenue_Target__c</fullName>
+        <description>Total Revenue Target for the year</description>
+        <externalId>false</externalId>
+        <formula>Total_Service_Revenue_Target__c + Total_Equipment_Revenue_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total (service + equipment) revenue target?</inlineHelpText>
+        <label>Total Revenue Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Service_Gross_Profit_Actual__c</fullName>
+        <description>The total Service Gross Profit dollars earned across all active budgets.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is this year&apos;s current service gross profit?</inlineHelpText>
+        <label>Total Service Gross Profit Actual</label>
+        <summarizedField>Budget__c.Total_Service_Gross_Profit_Actual__c</summarizedField>
+        <summaryFilterItems>
+            <field>Budget__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Budget__c.Super_Center__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Service_Gross_Profit_Margin_Actua__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_Service_Gross_Profit_Actual__c / Total_Service_Revenue_Actual__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the current service gross profit margin?</inlineHelpText>
+        <label>Total  Service GP Margin Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Total_Service_Gross_Profit_Margin_Target__c</fullName>
+        <description>The total service gross margin target across all active budgets</description>
+        <externalId>false</externalId>
+        <formula>Total_Service_Gross_Profit_Target__c / Total_Service_Revenue_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is this year&apos;s service gross profit margin target?</inlineHelpText>
+        <label>Total Service Gross Profit Margin Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Total_Service_Gross_Profit_Target__c</fullName>
+        <description>The total target gross profit dollars across all active budgets.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is this year&apos;s service gross profit target?</inlineHelpText>
+        <label>Total Service Gross Profit Target</label>
+        <summarizedField>Budget__c.Service_Gross_Target__c</summarizedField>
+        <summaryFilterItems>
+            <field>Budget__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Budget__c.Super_Center__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Service_Job_Volume_Actual__c</fullName>
+        <description>Actual total service jobs for all active budgets.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>How many service jobs have been created this year?</inlineHelpText>
+        <label>Total Service Jobs Created</label>
+        <summarizedField>Budget__c.Service_Call_Volume_Actual__c</summarizedField>
+        <summaryFilterItems>
+            <field>Budget__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Budget__c.Super_Center__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Service_Job_Volume_Target__c</fullName>
+        <description>The total service job target for all active budgets</description>
+        <externalId>false</externalId>
+        <inlineHelpText>How many service jobs should be created this year according to target?</inlineHelpText>
+        <label>Total Service Job Target</label>
+        <summarizedField>Budget__c.Service_Call_Volume_Target__c</summarizedField>
+        <summaryFilterItems>
+            <field>Budget__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Budget__c.Super_Center__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Service_Revenue_Actual__c</fullName>
+        <description>The total service revenue dollar actuals across budgets</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the current service revenue?</inlineHelpText>
+        <label>Total Service Revenue Actual</label>
+        <summarizedField>Budget__c.Total_Service_Revenue_Actual__c</summarizedField>
+        <summaryFilterItems>
+            <field>Budget__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Budget__c.Super_Center__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Service_Revenue_Opportunity_Dollar__c</fullName>
+        <description>The total amount of service revenue dollars unbilled YTD for all active budgets</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the service dollar amount on scheduled but un-invoiced work orders?</inlineHelpText>
+        <label>Total Service Revenue Opportunity Dollar</label>
+        <summarizedField>Budget__c.Service_Revenue_Opportunity_Dollars__c</summarizedField>
+        <summaryFilterItems>
+            <field>Budget__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Budget__c.Super_Center__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Service_Revenue_Target__c</fullName>
+        <description>The Target total service revenue dollars for the active YTD budgets.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the service revenue target?</inlineHelpText>
+        <label>Total Service Revenue Target</label>
+        <summarizedField>Budget__c.Service_Revenue_Target__c</summarizedField>
+        <summaryFilterItems>
+            <field>Budget__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Budget__c.Super_Center__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>YTD_Remaining_Months__c</fullName>
+        <description>This field gives us the remaining months YTD (including today&apos;s month).</description>
+        <externalId>false</externalId>
+        <formula>13 - Month(Today())</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field gives us the remaining months YTD (including today&apos;s month).</inlineHelpText>
+        <label>YTD Remaining Months</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Zip__c</fullName>
+        <externalId>false</externalId>
+        <label>Zip</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Super Center</label>
+    <listViews>
+        <fullName>All_Super_Centers</fullName>
+        <columns>NAME</columns>
+        <columns>Territory_VP__c</columns>
+        <columns>Total_Revenue_Target__c</columns>
+        <columns>Total_Revenue_Actual__c</columns>
+        <columns>Total_Gross_Profit_Target__c</columns>
+        <columns>Total_Gross_Profit_Actual__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Super Centers</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Super Center Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Super Centers</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

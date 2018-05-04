@@ -1,0 +1,65 @@
+<apex:page showHeader="true" sidebar="true" standardController="MH_Invoice__c" extensions="callAvataxInvoice" action="{!Call}">
+    <style type="text/css">
+        .message-table{
+        	border-collapse: collapse;
+        	margin-top: 5px;
+        }
+    	body .bPageBlock .detailList .message-table th, body .bPageBlock .detailList .message-table td{
+        	padding: 4px;
+        	border : 1px solid #ccc;
+        }
+        .message-table th{
+        	background-color: #eee;
+        }
+        .message-table td{
+        	background-color: #fff;
+        }
+        .error-result{
+        	color: #cc3333;
+        }
+    </style>
+	<apex:sectionHeader title="Invoice" subtitle="{!MH_Invoice__c.Name}"/>
+    <apex:form >
+		<apex:pageBlock title="Avatax Callout Detail" mode="detail" id="myblock">
+            
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton onclick="window.location.href='/{!MH_Invoice__c.Id}'" value="< Back to Invoice" immediate="true" reRender="myblock"></apex:commandButton>
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection collapsible="false" columns="1">
+                
+            	<apex:pageBlockSectionItem >
+                	<apex:outputLabel >Invoice</apex:outputLabel>
+                    <apex:outputLink value="/{!MH_Invoice__c.Id}">{!MH_Invoice__c.Name}</apex:outputLink>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                	<apex:outputLabel >Result</apex:outputLabel>
+                    <apex:outputPanel >
+                    
+                        <apex:outputPanel rendered="{!x == 1}">
+                            <apex:messages ></apex:messages> <br/>
+                            The Invoice Line {!oname} with activity type {!otype} does not have a tax code associated. Please enter a tax code and try again.<br/><br/>
+                            <apex:inputText label="Tax Code" value="{!tcode}"/>
+                            <apex:commandButton value="Save" action="{!Save}"/>
+                            <apex:commandButton value="Cancel" action="{!Cancel}"/>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!y == 1}">
+                            The Invoice Line {!oname} does not have an activity type. Please fill in Activity Type and try again.<br/><br/>
+                            <apex:commandButton value="Back" action="{!Cancel}"/>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!error1}">
+                            There must be a Technician or a Service Team selected, with a valid Company Code, before tax can be calculated.<br/><br/>
+                            <apex:commandButton value="Back" action="{!Cancel}"/>
+                        </apex:outputPanel>
+                        <apex:outputPanel >
+                            <apex:outputText value="{!sampleResult}" escape="false"></apex:outputText>
+                        </apex:outputPanel>
+                        
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+			
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

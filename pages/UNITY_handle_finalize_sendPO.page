@@ -1,0 +1,14 @@
+<apex:page standardController="Order" showHeader="false">
+    
+    <script src="/support/console/35.0/integration.js" type="text/javascript"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <script>
+        (function(){ 
+            $( "input[name='test_not_use_sam']" ).hide("{!Order.Status != 'Draft'}");
+            console.log("{!Order.Status == 'Draft'}");
+            console.log($( "input[name='test_not_use_sam']" ));
+        }());
+    </script>
+    
+</apex:page>

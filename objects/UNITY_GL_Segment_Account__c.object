@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Maps a segment to a segment account in SL</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>false</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>false</enableSharing>
+    <enableStreamingApi>false</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>UNITY_Seg_Account_Number__c</fullName>
+        <description>The sub-account number in SL</description>
+        <externalId>false</externalId>
+        <label>Seg Account Number</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Segment__c</fullName>
+        <description>The segment the account represents</description>
+        <externalId>false</externalId>
+        <label>Segment</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>A Sure</fullName>
+                    <default>false</default>
+                    <label>A Sure</label>
+                </value>
+                <value>
+                    <fullName>Atlanta</fullName>
+                    <default>false</default>
+                    <label>Atlanta</label>
+                </value>
+                <value>
+                    <fullName>Austin</fullName>
+                    <default>false</default>
+                    <label>Austin</label>
+                </value>
+                <value>
+                    <fullName>Avondale</fullName>
+                    <default>false</default>
+                    <label>Avondale</label>
+                </value>
+                <value>
+                    <fullName>Corpus Christi</fullName>
+                    <default>false</default>
+                    <label>Corpus Christi</label>
+                </value>
+                <value>
+                    <fullName>Dallas</fullName>
+                    <default>false</default>
+                    <label>Dallas</label>
+                </value>
+                <value>
+                    <fullName>Denver</fullName>
+                    <default>false</default>
+                    <label>Denver</label>
+                </value>
+                <value>
+                    <fullName>El Paso</fullName>
+                    <default>false</default>
+                    <label>El Paso</label>
+                </value>
+                <value>
+                    <fullName>Houston</fullName>
+                    <default>false</default>
+                    <label>Houston</label>
+                </value>
+                <value>
+                    <fullName>Jacksonville</fullName>
+                    <default>false</default>
+                    <label>Jacksonville</label>
+                </value>
+                <value>
+                    <fullName>Los Angeles</fullName>
+                    <default>false</default>
+                    <label>Los Angeles</label>
+                </value>
+                <value>
+                    <fullName>Memphis</fullName>
+                    <default>false</default>
+                    <label>Memphis</label>
+                </value>
+                <value>
+                    <fullName>Mesa</fullName>
+                    <default>false</default>
+                    <label>Mesa</label>
+                </value>
+                <value>
+                    <fullName>MHC Corporate</fullName>
+                    <default>false</default>
+                    <label>MHC Corporate</label>
+                </value>
+                <value>
+                    <fullName>Miami</fullName>
+                    <default>false</default>
+                    <label>Miami</label>
+                </value>
+                <value>
+                    <fullName>Miner-Equipment</fullName>
+                    <default>false</default>
+                    <label>Miner-Equipment</label>
+                </value>
+                <value>
+                    <fullName>MNS</fullName>
+                    <default>false</default>
+                    <label>MNS</label>
+                </value>
+                <value>
+                    <fullName>MSP Conroe (CDC)</fullName>
+                    <default>false</default>
+                    <label>MSP Conroe (CDC)</label>
+                </value>
+                <value>
+                    <fullName>MSP Corporate</fullName>
+                    <default>false</default>
+                    <label>MSP Corporate</label>
+                </value>
+                <value>
+                    <fullName>MSP Dallas (CDC)</fullName>
+                    <default>false</default>
+                    <label>MSP Dallas (CDC)</label>
+                </value>
+                <value>
+                    <fullName>MSP Houston (CDC)</fullName>
+                    <default>false</default>
+                    <label>MSP Houston (CDC)</label>
+                </value>
+                <value>
+                    <fullName>Nashville</fullName>
+                    <default>false</default>
+                    <label>Nashville</label>
+                </value>
+                <value>
+                    <fullName>NCAL</fullName>
+                    <default>false</default>
+                    <label>NCAL</label>
+                </value>
+                <value>
+                    <fullName>New Orleans</fullName>
+                    <default>false</default>
+                    <label>New Orleans</label>
+                </value>
+                <value>
+                    <fullName>NSBS</fullName>
+                    <default>false</default>
+                    <label>NSBS</label>
+                </value>
+                <value>
+                    <fullName>Orlando</fullName>
+                    <default>false</default>
+                    <label>Orlando</label>
+                </value>
+                <value>
+                    <fullName>San Antonio</fullName>
+                    <default>false</default>
+                    <label>San Antonio</label>
+                </value>
+                <value>
+                    <fullName>Tallahassee</fullName>
+                    <default>false</default>
+                    <label>Tallahassee</label>
+                </value>
+                <value>
+                    <fullName>Tampa</fullName>
+                    <default>false</default>
+                    <label>Tampa</label>
+                </value>
+                <value>
+                    <fullName>TFS</fullName>
+                    <default>false</default>
+                    <label>TFS</label>
+                </value>
+                <value>
+                    <fullName>Tucson</fullName>
+                    <default>false</default>
+                    <label>Tucson</label>
+                </value>
+                <value>
+                    <fullName>Utah</fullName>
+                    <default>false</default>
+                    <label>Utah</label>
+                </value>
+                <value>
+                    <fullName>Valley</fullName>
+                    <default>false</default>
+                    <label>Valley</label>
+                </value>
+                <value>
+                    <fullName>Waymar</fullName>
+                    <default>false</default>
+                    <label>Waymar</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>GL Segment Account</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>UNITY_Segment__c</columns>
+        <columns>UNITY_Seg_Account_Number__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <columns>NAME</columns>
+        <columns>UNITY_Segment__c</columns>
+        <columns>UNITY_Seg_Account_Number__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>SEG-{0000}</displayFormat>
+        <label>Seg Account Entry</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>GL Segment Accounts</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

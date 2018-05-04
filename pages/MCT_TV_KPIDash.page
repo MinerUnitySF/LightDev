@@ -1,0 +1,679 @@
+<apex:page sidebar="false" showHeader="false" docType="html-5.0">
+    
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'lightslider/css/lightslider.css')}"/>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.jquery_ui,'js/jquery.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.jquery_ui,'lightslider/js/lightslider.js')}"></script>
+    
+    <script type="text/javascript">
+        var $j = jQuery.noConflict();
+        google.load("visualization", "1", {packages:["gauge", "corechart"]});
+    </script>
+    <style type="text/css">
+        
+        #chartPanels{
+            min-width: 1200px;
+            width:100%;
+        }
+        #chartPanels #header {
+            display: block;
+            min-width: 100%;
+            border-bottom: 2px solid #FF0F00;
+            padding: 10px 0px;
+            position: relative;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f5f5f5+100 */
+            background: #ffffff; /* Old browsers */
+            background: -moz-linear-gradient(top,  #ffffff 0%, #f5f5f5 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f5f5f5)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  #ffffff 0%,#f5f5f5 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  #ffffff 0%,#f5f5f5 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  #ffffff 0%,#f5f5f5 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  #ffffff 0%,#f5f5f5 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5',GradientType=0 ); /* IE6-9 */
+        }
+        #chartPanels #header h1{
+            color: #444;
+            display:inline-block;
+            text-align:center;
+            text-shadow: 0px 1px 0px rgb(255, 255, 255);
+            font-weight: 500;
+            font-size:3em;
+            width:calc(100% - 700px);
+        }
+        #chartPanels #header .miner-logo{
+            display:inline-block;
+            margin-left:200px;
+            position: relative;
+            vertical-align:bottom;
+            width: 150px;
+        }
+        #slidePanel li{
+           display:flex;
+        }
+        #slidePanel .chart-wrapper{
+            display:flex;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+        #slidePanel .chart-wrapper span{
+            width:45%;
+            margin: 0% 2.4%;
+            float: left;
+        }
+        #slidePanel .heading-angle{
+            margin:20px auto 0px;
+            overflow:hidden;
+            padding-right:17px;
+        }
+        #slidePanel .angle{
+            background-color:#444;
+            display: inline-block;
+            transform: skewX(30deg);
+            margin-left: -17px;
+        }
+        #slidePanel .chart-title{
+            color:#fff;
+            font-size: 2.25em;
+            font-weight: 500;
+            margin-left:22px;
+            transform: skewX(-30deg);
+            padding: 10px 25px 10px 10px;
+            display: inline-block;
+        }
+        #slidePanel ul.chart-foot-list{
+            display:block;
+            margin:0px;
+            padding:0px;
+            width: 100%;
+        }
+        #slidePanel ul.chart-foot-list li{
+            display:block;
+            text-align:center;
+            font-size:2.5em;
+            margin:0px auto;
+            padding:0px 0px 10px;
+            width: 100%;
+        }
+        #slidePanel ul.chart-foot-list li.data-label{
+            color:#444;
+            padding:0px 0px 0px 0px;
+        }
+        #slidePanel ul.chart-foot-list li.data-value{
+            color:#EE3E33;
+            font-weight:normal;
+            font-size:2.75em;
+        }
+        #chart0 svg g g text:first-child, #chart1 svg g g text:first-child{
+            font-size:3.5em;
+        }
+    </style>
+    <div id="chartPanels">
+        <div id="header">
+            <img class="miner-logo" src="{!URLFOR($Resource.Miner_Logo_svg)}" alt="Miner Logo"></img>
+            <h1>{!TEXT($User.Super_Center__c)} Dashboard</h1>
+        </div>
+        <ul id="slidePanel">
+            
+        </ul>
+    </div>
+  
+    <script type="text/javascript">
+        $j(document).ready(function(){
+            //TODO - check if user has Super Center? Maybe have a drop down list to select?
+            var userSuperCenter = '{!TEXT($User.Super_Center__c)}';
+            
+            
+            var reports = getReports('{!$Api.Session_ID}');
+            // console.log(JSON.stringify(reports[2], null, '  '));
+            //build out our value maps for this report - this is where we pull the report summary row for our supercenter
+            var valMaps = buildValMaps(reports, userSuperCenter);
+            
+            // //to build our columns properly, we have to get the column info, then match it against the aggregate column info subtracting the first two characters (or splitting at the !)
+            // console.log(JSON.stringify(valMaps[0], null, ' '));
+            // console.log(JSON.stringify(valMaps[1], null, ' '));
+            $j.each(valMaps, function(i, val){ console.log(JSON.stringify(val,null,'  ')); });
+            var charts = [];
+            charts.push(dailyGauge1(valMaps[0]));
+            charts.push(monthlyGauge2(valMaps[1]));
+            charts.push(dailyBar1(valMaps[2]));
+            charts.push(monthlyBar1(valMaps[1]));
+            
+            //////////////////////////////
+            //draw our charts
+            //////////////////////////////
+            // console.log(JSON.stringify(charts[0].type, null, ' '));
+            //draw our divs for the charts - this needs to be based on what number chart it is,
+            //if it is over 2, then we build the next LI for the rotation
+
+            var div = $j('#slidePanel');
+            $j.each(charts, function(i, c){ 
+                //on every iteration, all odd numbers are in a new group.
+                console.log('our chart : ' + i);
+                if(i % 2 === 0 || i === 0){
+                    console.log('building our list item - group' + i );
+                    div.append('<li id="chartGroup'+i+'"><div class="chart-wrapper">'+c.name+'<div id="chart'+i+'"></div><div id="chart-foot">'+c.footer+' </div></li></div>');
+                    //TODO - add some injectable string into the chart bottom
+                }else{
+                    $j('#chartGroup'+(i-1)).append('<div class="chart-wrapper">'+c.name+'<div id="chart'+i+'"> </div><div id="chartFoot"> '+c.footer+'</div></div>')
+                }
+                // div.append('<div id="chart'+i+'"> </div>');
+                
+            })
+            google.setOnLoadCallback(drawCharts(charts));
+            
+            //////////////////////////////
+            //set our timers
+            //////////////////////////////
+            setInterval(function() {
+                //get our reports again
+                // console.log('refiring our charts - will it work?')
+                reports = getReports('{!$Api.Session_ID}');
+                valMaps = buildValMaps(reports, userSuperCenter);
+                charts = [];
+                charts.push(dailyGauge1(valMaps[0]));
+                charts.push(monthlyGauge2(valMaps[1]));
+                charts.push(dailyBar1(valMaps[2]));
+                charts.push(monthlyBar1(valMaps[1]));
+                drawCharts(charts);
+                
+            }, 300000)
+            function drawCharts(charts){
+                //takes an array of charts and builds them into our chart div
+                //TODO make the target div passable
+
+                $j.each(charts, function(i, chartVal){
+                    // console.log(JSON.stringify(chartVal, null, ' '));
+                    // console.log('looping through charts to build them =  chart'+i+' type : ' + chartVal.type);
+                    
+                    //draw our new chart div:
+                    
+                    var chart;
+                    if (chartVal.type === 'gauge'){
+                        // console.log('chart type is: ' + chartVal.type);    
+                        chart = new google.visualization.Gauge(document.getElementById('chart'+i));
+                        chart.draw(chartVal.data, chartVal.options);
+                        // chart = typeMap[chartVal.type];
+                    }else if (chartVal.type === 'bar'){
+                        chart = new google.visualization.ColumnChart(document.getElementById('chart'+i));
+                        //google.charts.Bar.convertOptions(options)
+                        //chart.draw(chartVal.view, google.charts.Bar.convertOptions(chartVal.options));
+                        chart.draw(chartVal.view, chartVal.options);
+                        // chart.draw(chartVal.data, chartVal.options);
+                    }
+                    // console.log('chart should now be a function: ' + chart);
+                    
+                })
+                // $j('#slidePanel table').each(function() {
+                //     //TODO make the font size dynamic - responsive
+                //     // $j('text').attr('font-size', 22);
+                // });
+                $j('#chartGroup0 text').attr('font-size', 22);
+            }
+            
+        //get reportds
+        //TODO: maybe pass in the report names? an array of report names that queries for their ids? How to do this without a controller
+          function getReports(sessionId){
+                //this will grab both the daily and monthly reports
+                var reports = [];
+                //TODO use javascript promises to wrap all of these calls up
+                //this is our daily
+                reports[0] = JSON.parse($j.ajax({
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + sessionId);
+                    },
+                    //CLAY: This is a daily job count report based on the budget object
+                    url: "/services/data/v29.0/analytics/reports/00O31000005yRkH/",
+                    dataType:"json",
+                    async: false
+                }).responseText);
+                
+                //our second report - should be a monthly - job counts and invoice
+                reports[1] = JSON.parse($j.ajax({
+                    beforeSend: function(xhr){
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + sessionId);
+                    },
+                    url: "/services/data/v29.0/analytics/reports/00O31000005yQyD/",
+                    dataType:"json",
+                    async: false
+                }).responseText);
+                
+                //third report - TODAY's Invoiced dollars
+                reports[2] = JSON.parse($j.ajax({
+                    beforeSend: function(xhr){
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + sessionId);
+                    },
+                    url: "/services/data/v29.0/analytics/reports/00O31000005yK5M/",
+                    dataType:"json",
+                    async: false
+                }).responseText);
+                return reports;
+                
+            }
+            
+            //function to build valmaps
+            function buildValMaps(reports, userSuperCenter){
+                var valMaps = [];
+                if (reports.length > 0){
+                    $j.each(reports, function(i, report){
+                        //loop through each of the reports and build an array of valmaps
+                        var values = [];
+                        //loop through our super centers (grouping one)
+                        $j.each(reports[i].groupingsDown.groupings, function(di, de){
+                            if (de.label === userSuperCenter){
+                                //this populates an array with the values lined up how they come in on the report
+                                values = reports[i].factMap[de.key+'!T'].aggregates;
+                            }
+                        })
+                        //now we build a value map for this report
+                        var tempValMap = new ValMap(reports[i].reportMetadata.name);
+                        
+                        $j.each(reports[i].reportMetadata.aggregates, function(index, col){
+                            if (values.length > 0){
+                                tempValMap[reports[i].reportExtendedMetadata.aggregateColumnInfo[col].label] = values[index];
+                            }else {
+                                //if empty value array due to lack of supercenter, we will populate with 0's
+                                tempValMap[reports[i].reportExtendedMetadata.aggregateColumnInfo[col].label] = 0;
+                            }
+                        });
+                        valMaps.push(tempValMap)
+                    })    
+                }
+                return valMaps;
+            }
+            
+            function monthlyBar1(valMap){
+                ////////////////
+                //Chart 4 - monthly GP chart, same as our daily, but off of the second valmap??
+                //inst new chart
+                var monthlyGPBar = new ChartData();
+                
+                monthlyGPBar.name = '<div class="heading-angle"><div class="angle"><h1 class="chart-title">Invoiced Dollars and Margin - This Month</h1></div></div>';
+                //set the type
+                monthlyGPBar.type = 'bar';
+                 //month's invoiced dollars
+                var invoiced = !(valMap['Sum of Service Revenue Actual'].value) ? 0 : valMap['Sum of Service Revenue Actual'].value;
+                //month's service target
+                var target = valMap['Sum of Service Revenue Target'].value
+                //month's margin percent
+                var gpPer = (valMap['Sum of Service Gross Profit Margin Actual'].value / 100);
+                
+                //month's invoiced margin (total minus cost)
+                var margin = (invoiced * gpPer); //TODO - I am not pulling margin dollars off of invoice or onto the budget item - need to get that added
+                
+                console.log('Our delicious data' + invoiced + ' ' + gpPer + ' m ' + margin);
+                
+                monthlyGPBar.data = new google.visualization.DataTable();
+                monthlyGPBar.data.addColumn('string', '{!TEXT($User.Super_Center__c)}');
+                monthlyGPBar.data.addColumn('number', 'Invoiced $');
+                monthlyGPBar.data.addColumn('number', 'Margin $');
+                monthlyGPBar.data.addColumn('number', 'GP %');
+                // monthlyGPBar.data.addColumn('string', {role: 'annotation'});
+                monthlyGPBar.data.addRows([
+                    ["MTD Invoiced Dollars",invoiced,margin,gpPer]//, ''+gpPer]
+                    ]);
+                    
+                //our formatter
+                var formatter = new google.visualization.NumberFormat({prefix: '$'});
+                var formatter2 = new google.visualization.NumberFormat({pattern: '#,###%'});//, format:'##%'
+                formatter.format(monthlyGPBar.data, 1);
+                formatter.format(monthlyGPBar.data, 2);
+                formatter2.format(monthlyGPBar.data, 3);
+                
+                //the annotations (values displayed on the bars)
+                monthlyGPBar.view = new google.visualization.DataView(monthlyGPBar.data);
+                monthlyGPBar.view.setColumns([0,1,{ calc: 'stringify', sourceColumn: 1, type: 'string', role: 'annotation'},
+                                            2,{ calc: 'stringify', sourceColumn: 2, type: 'string', role: 'annotation'},
+                                            3,{ calc: 'stringify', sourceColumn: 3, type: 'string', role: 'annotation'}]);
+                // //set our options
+                monthlyGPBar.options = {
+                    width: 600,
+                    height: 600,
+                    fontSize:20,
+                    enableInteractivity: true,
+                    bar: {
+                      groupWidth: '90%'  
+                    },
+                    vAxes:{ 0: {//our dollars
+                                format: 'currency',
+                                viewWindowMode: 'pretty',
+                                gridlines: {color: 'transparent'},
+                                textStyle: {fontSize: 18}
+                                
+                            },
+                            1: {
+                                format: '#,###%',
+                                viewWindowMode: 'explicit',
+                                viewWindow:{
+                                            max: 1,
+                                            min: 0
+                                            },
+                                gridlines: {color: 'transparent'},
+                                textStyle: {fontSize: 18}
+                                
+                            }
+                    },
+                    hAxis:{
+                        textStyle: {fontSize: 20},
+                        titleTextStyle: {fontSize: 24}
+                    },
+                    legend:{
+                        textStyle: {fontSize: 14},
+                        position: 'top',
+                        
+                        
+                    },
+                    series: {
+                        0: {//axis: 'Dollars'
+                            targetAxisIndex: 0,
+                            axis: 'Dollars',
+                            annotations:{textStyle: {fontSize:14}}
+                        },
+                        1: {//axis: 'Percent'
+                            targetAxisIndex: 0,
+                            axis: 'Dollars',
+                            annotations:{textStyle: {fontSize:14}}
+                        },
+                        2: {targetAxisIndex: 1,
+                            axis: 'Percent',
+                            annotations:{textStyle: {fontSize:20, bold: true, color:'#ffffff'}}
+                            
+                        }
+                    },
+                    axes:{
+                        y: {
+                            Dollars: {label: 'Revenue vs Margin Dollars'}, //left y-axis
+                            Percent: {side: 'right', label: 'Gross Profit %'}
+                            
+                        }
+                    }
+                }//end of options
+                
+                
+                //set our footer
+                monthlyGPBar.footer = '<ul class="chart-foot-list"> ' + 
+                                        '<li class="data-label">Month Target</li>'+
+                                        '<li class="data-value">$'+target.toFixed(2).replace(/./g, function(c, i, a) {return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;})+'</li>'+
+                                        '<li class="data-label">Invoiced MTD</li>'+
+                                        '<li class="data-value">$'+invoiced.toFixed(2).replace(/./g, function(c, i, a) {return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;})+'</li>'+
+                                        '<li class="data-label">Margin MTD</li>'+
+                                        '<li class="data-value">'+Math.round(gpPer*100)+'%</li>'+
+                                    '</ul>'
+                
+                return monthlyGPBar;
+                
+            }
+            
+            function dailyBar1(valMap){
+                /////////////////////////////
+                //CHART 3 - our daily GP bar chart\
+                /////////////////////////////
+                //inst a new chart {name, data, options}
+                var dailyGPBar = new ChartData();
+                
+                //grab our value map = an object with our report values and fields
+                //TODO: need to check if this is an array of valmaps for the overall perspective
+                var dailyGPReport = valMap;
+                dailyGPBar.name = '<div class="heading-angle"><div class="angle"><h1 class="chart-title">Invoiced Dollars and Margin - Today</h1></div></div>';
+                //set the type
+                dailyGPBar.type = 'bar';
+                
+                //today's invoiced dollars
+                var invoiced = (valMap['Sum of Total Line Price'].value) ? valMap['Sum of Total Line Price'].value : 0;
+                
+                //today's invoiced margin (total minus cost)
+                var margin = (valMap['Sum of Invoice Margin'].value) ? valMap['Sum of Invoice Margin'].value : 0;
+                
+                console.log('==============margin = ' + margin);
+                console.log('==============invoiced = ' + invoiced);
+                
+                //today's margin percent
+                var gpPer;
+                if(margin && margin > 0 && invoiced && invoiced > 0){
+                    gpPer = Math.round((margin / invoiced) * 100)/100; //this is silly but needed
+                }else{
+                    gpPer = 0;
+                }
+                
+                console.log('==============our GP % = ' + gpPer);
+                //now we build out our data table
+                //TODO: this should be changed if there is a global user looking at this - like a presidente
+                // dailyGPBar.data = new google.visualization.arrayToDataTable([
+                //     ['{!TEXT($User.Super_Center__c)}', 'Invoiced Dollars', 'Invoiced Margin Dollars', 'GP %'],
+                //     ["Today's invoiced jobs",invoiced,margin,gpPer]
+                //     ]);
+                dailyGPBar.data = new google.visualization.DataTable();
+                dailyGPBar.data.addColumn('string', '{!TEXT($User.Super_Center__c)}');
+                dailyGPBar.data.addColumn('number', 'Invoiced $');
+                dailyGPBar.data.addColumn('number', 'Margin $');
+                dailyGPBar.data.addColumn('number', 'GP %');
+                // dailyGPBar.data.addColumn('string', {role: 'annotation'});
+                dailyGPBar.data.addRows([
+                    ["Today's Invoiced Dollars",invoiced,margin,gpPer]//, ''+gpPer]
+                    ]);
+                    
+                //our formatter
+                var formatter = new google.visualization.NumberFormat({prefix: '$'});
+                var formatter2 = new google.visualization.NumberFormat({pattern: '#,###%'});//, format:'##%'
+                formatter.format(dailyGPBar.data, 1);
+                formatter.format(dailyGPBar.data, 2);
+                formatter2.format(dailyGPBar.data, 3);
+                
+                //the annotations (values displayed on the bars)
+                dailyGPBar.view = new google.visualization.DataView(dailyGPBar.data);
+                dailyGPBar.view.setColumns([0,1,{ calc: 'stringify', sourceColumn: 1, type: 'string', role: 'annotation'},
+                                            2,{ calc: 'stringify', sourceColumn: 2, type: 'string', role: 'annotation'},
+                                            3,{ calc: 'stringify', sourceColumn: 3, type: 'string', role: 'annotation'}]);
+                // //set our options
+                dailyGPBar.options = {
+                    width: 600,
+                    height: 600,
+                    fontSize:20,
+                    enableInteractivity: true,
+                    bar: {
+                      groupWidth: '90%'  
+                    },
+                    vAxes:{ 0: {
+                                format: 'currency',
+                                viewWindowMode: 'pretty',
+                                gridlines: {color: 'transparent'},
+                                textStyle: {fontSize: 18}
+                                
+                            },
+                            1: {
+                                format: '#,###%',
+                                viewWindowMode: 'pretty',
+                                viewWindow:{
+                                            max: 1,
+                                            min: 0
+                                            },
+                                gridlines: {color: 'transparent'},
+                                textStyle: {fontSize: 18}
+                                
+                            }
+                    },
+                    hAxis:{
+                        textStyle: {fontSize: 20},
+                        titleTextStyle: {fontSize: 24}
+                    },
+                    legend:{
+                        textStyle: {fontSize: 13},
+                        position: 'top',
+                        
+                        
+                    },
+                    series: {
+                        0: {//axis: 'Dollars'
+                            targetAxisIndex: 0,
+                            axis: 'Dollars',
+                            annotations:{textStyle: {fontSize:14}}
+                        },
+                        1: {//axis: 'Percent'
+                            targetAxisIndex: 0,
+                            axis: 'Dollars',
+                            annotations:{textStyle: {fontSize:14}}
+                        },
+                        2: {targetAxisIndex: 1,
+                            axis: 'Percent',
+                            annotations:{textStyle: {fontSize:20, bold: true, color:'#ffffff'}}
+                            
+                        }
+                    },
+                    axes:{
+                        y: {
+                            Dollars: {label: 'Revenue vs Margin Dollars'}, //left y-axis
+                            Percent: {side: 'right', label: 'Gross Profit %'}
+                            
+                        }
+                    }
+                }//end of options
+                //set our footer
+                dailyGPBar.footer = '<ul class="chart-foot-list"> ' + 
+                                        '<li class="data-label">Margin Today</li>'+
+                                        '<li class="data-value">'+(gpPer*100)+'%</li>'+
+                                    '</ul>'
+                
+                return dailyGPBar;
+                
+            }
+            
+            
+            function monthlyGauge2(valMap){
+            ////////////////////////////////
+            //CHART 2 = monthly job gauge
+            ////////////////////////////////
+                var monthlyJobGauge = new ChartData(); //empty?
+                var monthlyReport = valMap;
+                monthlyJobGauge.name = '<div class="heading-angle"><div class="angle"><h1 class="chart-title">Service Jobs Created MTD</h1></div></div>';
+                monthlyJobGauge.type = 'gauge';
+                
+                var month_target = monthlyReport["Sum of Service Job Target"];
+                var month_created = monthlyReport["Sum of Service Jobs Created"];
+                
+                //create our label and measurable value
+                monthlyJobGauge.data = google.visualization.arrayToDataTable([
+                    ['Label', 'Value'],
+                    ['Month', month_created.value]
+                ]);
+                var month_max = month_target.value;
+                var month_valBreak = ((-~((month_max * 1.10) / 10)) <= 10) ? -~((month_max * 1.10) / 10) : 10;
+                
+                //build our string array for the options on this chart
+                var month_majorTix = new Array(month_valBreak + 1);
+                $j.each(month_majorTix, function (i,n){month_majorTix[i] = "" + (i * -~(month_max / month_valBreak) );});
+                //plug the options
+                monthlyJobGauge.options =  {
+                    //TODO - set the height, width based on browser size
+                    width: 600, height: 700,
+                    redFrom: 0, redTo: parseInt(month_majorTix[month_majorTix.length-3]),
+                    yellowFrom:parseInt(month_majorTix[month_majorTix.length-3]), yellowTo: parseInt(month_majorTix[month_majorTix.length-2]),
+                    greenFrom:parseInt(month_majorTix[month_majorTix.length-2]) , greenTo: parseInt(month_majorTix[month_majorTix.length-1]),
+                    minorTicks: 5,
+                    majorTicks: month_majorTix,
+                    max: parseInt(month_majorTix[month_majorTix.length-1])//month_max + (month_max / month_valBreak)
+                    };
+                                    //set our footer
+                monthlyJobGauge.footer = '<ul class="chart-foot-list"> ' +
+                                        '<li class="data-label">Month Target</li>'+
+                                        '<li class="data-value" >'+month_target.value+'</li>'+
+                                    '</ul>'
+                    return monthlyJobGauge;
+                }
+                
+            function dailyGauge1(valMap){
+                ////////////////////////////////////////////
+                //CHART 1 - Today's created job gauge
+                ////////////////////////////////////////////
+                var dailyReport = valMap;
+                var dailyJobGauge = new ChartData(); //empty?
+                dailyJobGauge.name = '<div class="heading-angle"><div class="angle"><h1 class="chart-title">Service Jobs Created Today</h1></div></div>';
+                dailyJobGauge.type = 'gauge';
+                console.log(dailyReport["Sum of Service Job Daily Target"]);
+                var today_adjTarget = dailyReport["Sum of Adjusted Service Job Daily Target"];
+                var today_target = dailyReport["Sum of Service Job Daily Target"];
+                var today_created = dailyReport["Sum of Today's Service Job Created"];
+                //create our label and measurable value
+                dailyJobGauge.data = google.visualization.arrayToDataTable([
+                    ['Label', 'Value'],
+                    ['Today', today_created.value]
+                ]);
+                var today_max = ((today_adjTarget.value > today_target.value) ? today_adjTarget.value : today_target.value);
+                var today_startMax = ((today_adjTarget.value < today_target.value) ? today_adjTarget.value : today_target.value);
+                //todo - set this up better for smaller amounts
+                var today_valBreak = (-~(today_max / 5) <= 5) ? -~(today_max / 5) : 5;
+                //build our string array for the options on this chart
+                var today_majorTix = new Array(today_valBreak + 1);
+                $j.each(today_majorTix, function (i,n){today_majorTix[i] = "" + (i * -~(today_max / today_valBreak));});
+                //plug the options
+                dailyJobGauge.options =  {
+                    //TODO - set the height, width based on browser size
+                    width: 600, height: 700,
+                    redFrom: 0, redTo:(today_majorTix.length <= 3)? parseInt(today_majorTix[today_majorTix.length-2]) : parseInt(today_majorTix[today_majorTix.length-3]) ,
+                    yellowFrom:(today_majorTix.length <= 3)? null : parseInt(today_majorTix[today_majorTix.length-3]), yellowTo: (today_majorTix.length <= 3)? null : parseInt(today_majorTix[today_majorTix.length-2]),
+                    greenFrom:parseInt(today_majorTix[today_majorTix.length-2]), greenTo:parseInt(today_majorTix[today_majorTix.length-1]),
+                    minorTicks: (today_valBreak % 2 === 0) ? (today_valBreak / 2) : 3,
+                    majorTicks: today_majorTix,
+                    max:(parseInt(today_majorTix[today_majorTix.length-1]))
+                    };
+                dailyJobGauge.footer = '<ul class="chart-foot-list"> ' + 
+                                    '<li class="data-label">Daily Target</li>'+
+                                    '<li class="data-value">'+today_target.value+'</li>'+
+                                    '<li class="data-label"> Adjusted Daily Target </li>'+
+                                    '<li class="data-value">'+today_adjTarget.value+'</li>'+
+                                '</ul>'
+                return dailyJobGauge;
+            }
+            //our valmap class , very simple - not really needed
+            function ValMap(name){
+                this.name = name;
+            }
+            
+            //to make filling an array of chartdata easy - here is our class
+            function ChartData(name, data, options, type, footer){
+                //todo protect these
+                this.name = name;
+                this.data = data;
+                this.options = options;
+                this.type = type;
+                this.footer = footer;
+            }
+            
+
+            var slider = $j("#slidePanel").lightSlider({   
+                gallery: false,
+                item: 1,
+                slideMove: 1,
+                mode: 'fade',
+                useCss:true,
+                auto: true,
+                speed: 600,
+                pause: 30000,
+                loop: true,
+                slideMargin: 2,
+                pager:false,
+                controls:false,
+                enableTouch: false,
+                adaptiveHeight: true,
+                enableDrag: false//,
+                
+                // //callback to initiate refresh to the chart that just rotated out
+                // onAfterSlide: function(el){
+                //     $j("#chart"+panl+" .refreshButton").click();
+                //     console.log('fired on chart'+panl);
+                //     $j("#chart"+(panl+1)+" .refreshButton").click();
+                //     console.log('fired on chart'+(panl+1));
+                //     panl = (panl >= limit) ? 1 : panl + 2;
+                    
+                // }
+            });
+          
+            $j('#slidePanel').parent().on('mouseenter', function(){
+                console.log('pausing slide');
+                slider.pause();
+            });
+            $j('#slidePanel').parent().on('mouseleave', function(){
+                console.log('starting back up');
+                slider.play();
+            });
+        });
+    </script>
+</apex:page>

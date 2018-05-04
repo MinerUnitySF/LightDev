@@ -1,0 +1,63 @@
+<apex:page controller="CreateInvoiceandInvoiceDetails">
+	
+	<apex:form > 
+	<apex:pageBlock > 
+	
+	
+	<apex:pageBlockButtons >
+<!-- 		 <apex:commandButton action="{!quickSave}" value="Quick Save"/> -->
+		 <apex:commandButton action="{!selectAll}" value="Select All" reRender="theTable"/>
+		 <apex:commandButton action="{!saveAndClose}" value="Save and Close"/>
+	</apex:pageBlockButtons>
+	
+	Work Order: <apex:outputField value="{!wo.SVMXC__Service_Order__c}"/><br/>
+	
+		<apex:pageblocktable value="{!wodw_list}" var="wod" id="theTable"> 
+			
+		
+			<apex:column >
+				<apex:facet name="header">Add to invoice</apex:facet>
+				<apex:inputCheckbox value="{!wod.checked}" />
+			</apex:column>
+			<apex:column >
+				<apex:facet name="header">Hide Line?</apex:facet>
+				<apex:inputCheckbox value="{!wod.wod.Hide_Line__c}" />
+			</apex:column>
+			<apex:column >
+				<apex:facet name="header">Line Type</apex:facet>
+				<apex:inputField value="{!wod.wod.SVMXC__Line_Type__c}" />
+			</apex:column>
+			
+			<apex:column >
+				<apex:facet name="header">Part</apex:facet>
+				<apex:inputField value="{!wod.wod.SVMXC__Product__c}" />
+			</apex:column>
+			<apex:column >
+				<apex:facet name="header">Activity Type</apex:facet>
+				<apex:inputField value="{!wod.wod.SVMXC__Activity_Type__c}" />
+			</apex:column>
+			<apex:column >
+				<apex:facet name="header">Vendor</apex:facet>
+				<apex:inputField value="{!wod.wod.Vendor__c}" />
+			</apex:column>
+			<apex:column >
+				<apex:facet name="header">Line Status</apex:facet>
+				<apex:inputField value="{!wod.wod.SVMXC__Line_Status__c}" />
+			</apex:column>
+			<apex:column >
+				<apex:facet name="header">Line Qty</apex:facet>
+				<apex:inputField value="{!wod.wod.SVMXC__Actual_Quantity2__c}" />
+			</apex:column>
+			<apex:column >
+				<apex:facet name="header">Work Description</apex:facet>
+				<apex:inputField style="width:90%;height:40px;" value="{!wod.wod.SVMXC__Work_Description__c}" />
+			</apex:column>
+			
+				
+		</apex:pageblocktable>
+	
+	
+	
+	</apex:pageBlock>
+	</apex:form>
+</apex:page>

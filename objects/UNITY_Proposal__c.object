@@ -1,0 +1,2063 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>UNITY object</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Quote_Approved_Date__c</fullName>
+        <description>Latest date a quote was approved</description>
+        <externalId>false</externalId>
+        <label>Quote Approved Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Quote_Margin_Calculation__c</fullName>
+        <description>This field gives a breakdown of how the Quote Margin is calculated.</description>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.DeveloperName = &apos;Master_Quote&apos;,&apos;Revenue ((&apos;+TEXT(UNITY_Total_Revenue__c)+&apos;) - (Total Cost(&apos;+TEXT(UNITY_Master_Quote_Total_Cost__c)+&apos;) + Incurred Cost(&apos;+TEXT(UNITY_Incurred_Cost__c)+&apos;))&apos;+BR() + &apos; / Revenue (&apos;+TEXT(UNITY_Total_Revenue__c)+&apos;)) = &apos; + 
+TEXT( ROUND(UNITY_Total_Quote_Margin__c,4)) ,&apos;Only valid on Master Quotes.&apos; )</formula>
+        <inlineHelpText>This field gives a breakdown of how the Quote Margin is calculated.</inlineHelpText>
+        <label>Quote Margin Calculation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quote_Submitted_Date__c</fullName>
+        <description>Earliest date a quote was submitted</description>
+        <externalId>false</externalId>
+        <label>Quote Submitted Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_48_Hours__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>48 Hours Escalation</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Proposals</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Agent__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Holds Agent Information working on the Case</description>
+        <externalId>false</externalId>
+        <label>Agent</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Proposals</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Business_Unit_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Business Unit Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Quotes (Business Unit Account)</relationshipLabel>
+        <relationshipName>Quotes</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Business_Unit__c</fullName>
+        <externalId>false</externalId>
+        <label>Business Unit</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Craft</fullName>
+                    <default>false</default>
+                    <label>Craft</label>
+                </value>
+                <value>
+                    <fullName>MNS</fullName>
+                    <default>false</default>
+                    <label>MNS</label>
+                </value>
+                <value>
+                    <fullName>MSP Atlanta</fullName>
+                    <default>false</default>
+                    <label>MSP Atlanta</label>
+                </value>
+                <value>
+                    <fullName>MSP Dallas</fullName>
+                    <default>false</default>
+                    <label>MSP Dallas</label>
+                </value>
+                <value>
+                    <fullName>MSP El Paso</fullName>
+                    <default>false</default>
+                    <label>MSP El Paso</label>
+                </value>
+                <value>
+                    <fullName>MSP Houston</fullName>
+                    <default>false</default>
+                    <label>MSP Houston</label>
+                </value>
+                <value>
+                    <fullName>MSP Jacksonville</fullName>
+                    <default>false</default>
+                    <label>MSP Jacksonville</label>
+                </value>
+                <value>
+                    <fullName>MSP Memphis</fullName>
+                    <default>false</default>
+                    <label>MSP Memphis</label>
+                </value>
+                <value>
+                    <fullName>MSP Miami</fullName>
+                    <default>false</default>
+                    <label>MSP Miami</label>
+                </value>
+                <value>
+                    <fullName>MSP Nashville</fullName>
+                    <default>false</default>
+                    <label>MSP Nashville</label>
+                </value>
+                <value>
+                    <fullName>MSP New Orleans</fullName>
+                    <default>false</default>
+                    <label>MSP New Orleans</label>
+                </value>
+                <value>
+                    <fullName>MSP Orlando</fullName>
+                    <default>false</default>
+                    <label>MSP Orlando</label>
+                </value>
+                <value>
+                    <fullName>MSP Phoenix</fullName>
+                    <default>false</default>
+                    <label>MSP Phoenix</label>
+                </value>
+                <value>
+                    <fullName>MSP San Antonio</fullName>
+                    <default>false</default>
+                    <label>MSP San Antonio</label>
+                </value>
+                <value>
+                    <fullName>MSP Tampa</fullName>
+                    <default>false</default>
+                    <label>MSP Tampa</label>
+                </value>
+                <value>
+                    <fullName>NSBS</fullName>
+                    <default>false</default>
+                    <label>NSBS</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Case_Thread_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;ref:_&quot;&amp;LEFT( $Organization.Id,5)&amp;SUBSTITUTE(RIGHT($Organization.Id,10),&quot;0&quot;,&quot;&quot;)&amp;&quot;._&quot;&amp;LEFT( UNITY_Case__r.Id ,5)&amp;SUBSTITUTE(LEFT(RIGHT(UNITY_Case__r.Id,10),5),&quot;0&quot;,&quot;&quot;)&amp;RIGHT(UNITY_Case__r.Id,5)&amp;&quot;:ref&quot;</formula>
+        <label>Case Thread ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipName>Proposals</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Comments__c</fullName>
+        <description>Comments to be added on Proposal Accept/Reject</description>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Customer_Email__c</fullName>
+        <description>Populates Contact Email from the Case through the Process Builder</description>
+        <externalId>false</externalId>
+        <label>Customer Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Customer_Margin__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Customer Margin</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Customer_PIN__c</fullName>
+        <externalId>false</externalId>
+        <formula>UNITY_Work_Order__r.UNITY_Customer_PIN__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Customer PIN</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Customer_PO__c</fullName>
+        <externalId>false</externalId>
+        <formula>UNITY_Case__r.UNITY_Customer_PO__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Customer PO</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Customer_Provided_Quote_No_Reply__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Provided Customer Quote, No Reply</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Customer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Customer</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Quotes (Customer)</relationshipLabel>
+        <relationshipName>Quotes1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_De_Escalate_Reason_No_Reply__c</fullName>
+        <externalId>false</externalId>
+        <label>De-Escalate Reason (No Customer Reply)</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Negotiating Quote</fullName>
+                    <default>false</default>
+                    <label>Negotiating Quote</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Discount_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Discount Amount</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Discount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Holds Discount % value</description>
+        <externalId>false</externalId>
+        <label>Discount %</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Discounted_Service_Charge__c</fullName>
+        <description>Service charge after applying discounts from POs or Quote</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Service charge after applying discounts from POs or Quote</inlineHelpText>
+        <label>Discounted Service Charge</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Does_Discount_Amount_Exists__c</fullName>
+        <externalId>false</externalId>
+        <label>Does Discount Amount Exists</label>
+        <summarizedField>UNITY_Proposal_Line_Item__c.UNITY_Discount_Amount__c</summarizedField>
+        <summaryForeignKey>UNITY_Proposal_Line_Item__c.UNITY_Proposal__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Effective_Till_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Effective Till Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Email_Logo_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>UNITY_Case__r.UNITY_Email_Logo_URL__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>UNITY_Email_Logo_URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Estimated_Incurred_Sales_Tax__c</fullName>
+        <description>Estimated Sales Tax for incurred charges</description>
+        <externalId>false</externalId>
+        <label>Estimated Incurred Sales Tax</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Estimated_Sales_Tax__c</fullName>
+        <description>Rollup of sales tax in all lines</description>
+        <externalId>false</externalId>
+        <label>Estimated Sales Tax</label>
+        <summarizedField>UNITY_Proposal_Line_Item__c.UNITY_Sales_Tax__c</summarizedField>
+        <summaryForeignKey>UNITY_Proposal_Line_Item__c.UNITY_Proposal__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Final_Price2__c</fullName>
+        <description>Final Price with Adjustments (No Tax Included)</description>
+        <externalId>false</externalId>
+        <formula>IF(
+  AND(NOT(ISBLANK(UNITY_Discount__c)),UNITY_Discount__c&gt;0),
+  (1-UNITY_Discount__c)*UNITY_Line_Item_Discounted_Price__c,
+  IF(
+    AND(NOT(ISBLANK(UNITY_Discount_Amount__c)),UNITY_Discount_Amount__c&gt;0),
+    UNITY_Line_Item_Discounted_Price__c - UNITY_Discount_Amount__c,
+    UNITY_Line_Item_Discounted_Price__c
+  )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Final Price with Adjustments. No Tax</inlineHelpText>
+        <label>Final Price (with Adjustments)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Final_Price__c</fullName>
+        <description>This price includes Estimated Sales Tax and Discounted Price</description>
+        <externalId>false</externalId>
+        <formula>IF(
+  NOT(ISBLANK(UNITY_Discount_Amount__c)),
+  (1-UNITY_Discount__c)*UNITY_Line_Item_Discounted_Price__c+UNITY_Estimated_Sales_Tax__c,
+  IF(
+    NOT(ISBLANK(UNITY_Discount_Amount__c)),
+    UNITY_Line_Item_Discounted_Price__c - UNITY_Discount_Amount__c + UNITY_Estimated_Sales_Tax__c,
+    UNITY_Line_Item_Discounted_Price__c + UNITY_Estimated_Sales_Tax__c
+  )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Final Price (with Adjustments and Tax)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_HT_Warning__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(OR(UNITY_Has_Cust_Holiday_Time__c &gt; 0,UNITY_Has_Vend_Holiday_Time__c &gt; 0), IMAGE(&apos;https://c.na56.content.force.com/servlet/servlet.FileDownload?file=01531000007LmXX&apos;, &apos;HT Warning&apos;,16,24),&apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>HT Warning</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Has_Cust_Holiday_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Has Cust Holiday Time</label>
+        <summaryFilterItems>
+            <field>UNITY_Proposal_Line_Item__c.UNITY_Customer_Holiday_Multiplier__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>UNITY_Proposal_Line_Item__c.UNITY_Activity_Type__c</field>
+            <operation>contains</operation>
+            <value>Labor,Travel</value>
+        </summaryFilterItems>
+        <summaryForeignKey>UNITY_Proposal_Line_Item__c.UNITY_Proposal__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Has_Cust_Overtime__c</fullName>
+        <externalId>false</externalId>
+        <label>Has Cust Overtime</label>
+        <summaryFilterItems>
+            <field>UNITY_Proposal_Line_Item__c.UNITY_Customer_OT_Multiplier__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>UNITY_Proposal_Line_Item__c.UNITY_Activity_Type__c</field>
+            <operation>contains</operation>
+            <value>Labor,Travel</value>
+        </summaryFilterItems>
+        <summaryForeignKey>UNITY_Proposal_Line_Item__c.UNITY_Proposal__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Has_Pending_Approval_Sub_Quotes__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>imaster quote with peding approval subquotes.</description>
+        <externalId>false</externalId>
+        <label>Has Pending Approval Sub Quotes</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Has_Vend_Holiday_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Has Vend Holiday Time</label>
+        <summaryFilterItems>
+            <field>UNITY_Proposal_Line_Item__c.UNITY_Vendor_Holiday_Multiplier__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>UNITY_Proposal_Line_Item__c.UNITY_Activity_Type__c</field>
+            <operation>contains</operation>
+            <value>Labor,Travel</value>
+        </summaryFilterItems>
+        <summaryForeignKey>UNITY_Proposal_Line_Item__c.UNITY_Proposal__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Has_Vend_Overtime__c</fullName>
+        <externalId>false</externalId>
+        <label>Has Vend Overtime</label>
+        <summaryFilterItems>
+            <field>UNITY_Proposal_Line_Item__c.UNITY_Vendor_OT_Multiplier__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>UNITY_Proposal_Line_Item__c.UNITY_Activity_Type__c</field>
+            <operation>contains</operation>
+            <value>Labor,Travel</value>
+        </summaryFilterItems>
+        <summaryForeignKey>UNITY_Proposal_Line_Item__c.UNITY_Proposal__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Include_Terms_and_Conditions__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Uncheck to remove the Terms &amp; Conditions section from the Quote PDF</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Uncheck to remove the Terms &amp; Conditions section from the Quote PDF</inlineHelpText>
+        <label>Include Terms and Conditions</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Incurred_Charges__c</fullName>
+        <externalId>false</externalId>
+        <label>Incurred Charges</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Incurred_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Incurred Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Is_Vendor_Supply__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Vendor Supply</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Line_Item_Count__c</fullName>
+        <externalId>false</externalId>
+        <label>Line Item Count</label>
+        <summaryForeignKey>UNITY_Proposal_Line_Item__c.UNITY_Proposal__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Line_Item_Discount_Exists__c</fullName>
+        <description>To identify if line item discounts exist?</description>
+        <externalId>false</externalId>
+        <label>Line Item Discount Exists ?</label>
+        <summarizedField>UNITY_Proposal_Line_Item__c.UNITY_Discount__c</summarizedField>
+        <summaryForeignKey>UNITY_Proposal_Line_Item__c.UNITY_Proposal__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Line_Item_Discount__c</fullName>
+        <externalId>false</externalId>
+        <formula>OR (UNITY_Does_Discount_Amount_Exists__c &gt; 0, UNITY_Line_Item_Discount_Exists__c &gt; 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Field is checked if Proposal Line Items include Discounts</inlineHelpText>
+        <label>Line Item Discount</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Line_Item_Discounted_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Line Item Discounted Price</label>
+        <summarizedField>UNITY_Proposal_Line_Item__c.UNITY_Discounted_Price__c</summarizedField>
+        <summaryForeignKey>UNITY_Proposal_Line_Item__c.UNITY_Proposal__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Manager_Approved_Discounts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Manager Approved Discounts</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Master_PIN__c</fullName>
+        <externalId>false</externalId>
+        <label>Master PIN</label>
+        <length>4</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Master_Quote_Final_Price__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Quote Final Price (with Discounts)</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Master_Quote_Margin_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>UNITY_Master_Quote_Total_Price__c + UNITY_Service_Charge__c - UNITY_Master_Quote_Total_Cost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Master Quote Margin Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Master_Quote_Total_Cost__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Additional Work Cost</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Master_Quote_Total_Price__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Quote Total Price</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Master_Quote__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Master Quote</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Master Quote</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>UNITY_Proposal__c</referenceTo>
+        <relationshipLabel>Quotes</relationshipLabel>
+        <relationshipName>Quotes</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_OT_Warning__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(OR(UNITY_Has_Cust_Overtime__c &gt; 0,UNITY_Has_Vend_Overtime__c &gt; 0), IMAGE(&apos;https://c.na56.content.force.com/servlet/servlet.FileDownload?file=01531000007LmXY&apos;, &apos;OT Warning&apos;,16,24),&apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>OT Warning</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Originating_Usage_Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Originating Usage Request</description>
+        <externalId>false</externalId>
+        <label>Originating Usage Request</label>
+        <referenceTo>Order</referenceTo>
+        <relationshipLabel>Quotes</relationshipLabel>
+        <relationshipName>Quotes</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Parts_Lead_Time__c</fullName>
+        <description>Field to add specifics about when parts are expected to be sourced</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Field to add specifics about when parts are expected to be sourced</inlineHelpText>
+        <label>Parts Lead Time</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Proposal_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Quote Comments</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Proposal_External_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>This field will contain unique record id from source system.</description>
+        <externalId>true</externalId>
+        <label>UNITY Proposal External Id</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Proposal_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Quote Status</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>true</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Quote Creation</fullName>
+                    <default>false</default>
+                    <label>Quote Creation</label>
+                </value>
+                <value>
+                    <fullName>Agent Review Complete</fullName>
+                    <default>false</default>
+                    <label>Agent Review Complete</label>
+                </value>
+                <value>
+                    <fullName>Approved by Manager</fullName>
+                    <default>false</default>
+                    <label>Approved by Manager</label>
+                </value>
+                <value>
+                    <fullName>Rejected by Manager</fullName>
+                    <default>false</default>
+                    <label>Rejected by Manager</label>
+                </value>
+                <value>
+                    <fullName>Quote Finalized</fullName>
+                    <default>false</default>
+                    <label>Quote Finalized</label>
+                </value>
+                <value>
+                    <fullName>Ready to Send to Customer</fullName>
+                    <default>false</default>
+                    <label>Ready to Send to Customer</label>
+                </value>
+                <value>
+                    <fullName>Sent to Customer</fullName>
+                    <default>false</default>
+                    <label>Sent to Customer</label>
+                </value>
+                <value>
+                    <fullName>Returned to Agent</fullName>
+                    <default>false</default>
+                    <label>Returned to Agent</label>
+                </value>
+                <value>
+                    <fullName>Proposal Amended</fullName>
+                    <default>false</default>
+                    <label>Proposal Amended</label>
+                </value>
+                <value>
+                    <fullName>Proposal Amended &amp; Sent to Customer</fullName>
+                    <default>false</default>
+                    <label>Proposal Amended &amp; Sent to Customer</label>
+                </value>
+                <value>
+                    <fullName>Pending Customer Review</fullName>
+                    <default>false</default>
+                    <label>Pending Customer Review</label>
+                </value>
+                <value>
+                    <fullName>Customer Approved</fullName>
+                    <default>false</default>
+                    <label>Customer Approved</label>
+                </value>
+                <value>
+                    <fullName>Customer Rejected</fullName>
+                    <default>false</default>
+                    <label>Customer Rejected</label>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                    <label>Cancelled</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+                <value>
+                    <fullName>Discount - Approved by Manager</fullName>
+                    <default>false</default>
+                    <label>Discount - Approved by Manager</label>
+                </value>
+                <value>
+                    <fullName>Discount - Rejected by Manager</fullName>
+                    <default>false</default>
+                    <label>Discount - Rejected by Manager</label>
+                </value>
+                <value>
+                    <fullName>Proposal sent for Manager Approval</fullName>
+                    <default>false</default>
+                    <label>Proposal sent for Manager Approval</label>
+                </value>
+                <value>
+                    <fullName>Ready to Send</fullName>
+                    <default>false</default>
+                    <label>Ready to Send</label>
+                </value>
+                <value>
+                    <fullName>Pending Manager Approval</fullName>
+                    <default>false</default>
+                    <label>Pending Manager Approval</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Quote_Comments__c</fullName>
+        <description>New Quote Comments field</description>
+        <externalId>false</externalId>
+        <label>Quote Comments</label>
+        <length>10000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>UNITY_Quote_Margin_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>UNITY_Total_Price__c + UNITY_Service_Charge__c - UNITY_Total_Cost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Quote Margin Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Quote_Margin__c</fullName>
+        <description>Calculates Margin %</description>
+        <externalId>false</externalId>
+        <formula>UNITY_Quote_Margin_Amount__c / ( UNITY_Total_Price__c + UNITY_Service_Charge__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Quote Margin %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Service_Charge_Tax__c</fullName>
+        <description>Calculated tax for service charge</description>
+        <externalId>false</externalId>
+        <label>Service Charge Tax</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Service_Charge__c</fullName>
+        <description>Service Charge Amount in $</description>
+        <externalId>false</externalId>
+        <label>Service Charge</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Shared_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Shared To</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Proposals1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Shared_to_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Shared to Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipName>Proposals</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Shared_to_User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Shared to User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Proposals1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Accepted</fullName>
+                    <default>false</default>
+                    <label>Accepted</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>Manager Approved</fullName>
+                    <default>false</default>
+                    <label>Manager Approved</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UNITY_Tax_Process_Result__c</fullName>
+        <description>The result of the avatax callout</description>
+        <externalId>false</externalId>
+        <label>Tax Process Result</label>
+        <length>10000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>UNITY_Tax_Processed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag to check when tax has been processed on the sub quote</description>
+        <externalId>false</externalId>
+        <label>Tax Processed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Template_Config_Ext_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Internal field to help create objects based on Template Configurations</description>
+        <externalId>true</externalId>
+        <label>Template Config Ext ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Template_Configuration__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Quote Template</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>UNITY_Template_Configuration__c.UNITY_Template_Parent__c</field>
+                <operation>equals</operation>
+                <value></value>
+            </filterItems>
+            <filterItems>
+                <field>UNITY_Template_Configuration__c.RecordType.Name</field>
+                <operation>equals</operation>
+                <value>Proposal</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>UNITY_Template_Configuration__c</referenceTo>
+        <relationshipLabel>Quotes</relationshipLabel>
+        <relationshipName>Proposals</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Total_Adjustments__c</fullName>
+        <description>Collects all the adjustments on the master quote</description>
+        <externalId>false</externalId>
+        <label>Total Adjustments</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Total_Case_Price__c</fullName>
+        <externalId>false</externalId>
+        <formula>UNITY_Master_Quote_Total_Price__c + 
+UNITY_Total_Adjustments__c + 
+UNITY_Total_Estimated_Sales_Tax__c + 
+UNITY_Service_Charge__c + 
+UNITY_Service_Charge_Tax__c + 
+UNITY_Incurred_Charges__c + 
+UNITY_Estimated_Incurred_Sales_Tax__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Quote Total Price +
+Total Adjustments +
+Total Estimated Sales Tax + 
+Service Charge + 
+Service Charge Tax +
+Incurred Charges + 
+Estimated Incurred Sales Tax</inlineHelpText>
+        <label>Total Case Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Total_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Cost</label>
+        <summarizedField>UNITY_Proposal_Line_Item__c.UNITY_Total_Cost__c</summarizedField>
+        <summaryForeignKey>UNITY_Proposal_Line_Item__c.UNITY_Proposal__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Total_Estimated_Sales_Tax__c</fullName>
+        <description>The total estimated sales tax on the master quote</description>
+        <externalId>false</externalId>
+        <label>Total Estimated Sales Tax</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Total_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Price (without Adjustments or Tax)</label>
+        <summarizedField>UNITY_Proposal_Line_Item__c.UNITY_Total_Price__c</summarizedField>
+        <summaryForeignKey>UNITY_Proposal_Line_Item__c.UNITY_Proposal__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Total_Price_with_Service_Charge__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Price with Service Charge</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Total_Quote_Margin__c</fullName>
+        <externalId>false</externalId>
+        <formula>((UNITY_Total_Revenue__c-(UNITY_Master_Quote_Total_Cost__c + UNITY_Incurred_Cost__c))/
+UNITY_Total_Revenue__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Quote Margin %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Total_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <formula>UNITY_Master_Quote_Total_Price__c +
+UNITY_Total_Adjustments__c +
+UNITY_Service_Charge__c +
+UNITY_Incurred_Charges__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Total_Vendor_Supplied_Dis_Price__c</fullName>
+        <description>Total Discounted Price of all vendor supplied line items only</description>
+        <externalId>false</externalId>
+        <label>Vendor Supplied Discounted Price</label>
+        <summarizedField>UNITY_Proposal_Line_Item__c.UNITY_Discounted_Price__c</summarizedField>
+        <summaryFilterItems>
+            <field>UNITY_Proposal_Line_Item__c.UNITY_Is_Vendor_Supply__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>UNITY_Proposal_Line_Item__c.UNITY_Proposal__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Total_Vendor_Supplied_Final_Price__c</fullName>
+        <description>Takes the total vendor supplied price from all quote lines (with discount)  and COMBINES with the quote total discount
+Izay: Removed Estimated Tax from Formula</description>
+        <externalId>false</externalId>
+        <formula>IF(
+AND(NOT(ISBLANK(UNITY_Discount__c)),UNITY_Discount__c&gt;0), 
+(1-UNITY_Discount__c)*UNITY_Total_Vendor_Supplied_Dis_Price__c,
+UNITY_Total_Vendor_Supplied_Dis_Price__c
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Vendor Supplied Final Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Vendor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Vendor</label>
+        <lookupFilter>
+            <active>true</active>
+            <booleanFilter>1 OR 2</booleanFilter>
+            <filterItems>
+                <field>Account.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Vendor</value>
+            </filterItems>
+            <filterItems>
+                <field>Account.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Miner</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Quotes (Vendor)</relationshipLabel>
+        <relationshipName>Quotes2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Work_Order_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>UNITY_Work_Order__r.UNITY_Order_Type__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Order Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Work_Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Work Order</label>
+        <referenceTo>WorkOrder</referenceTo>
+        <relationshipLabel>Quotes</relationshipLabel>
+        <relationshipName>Quotes</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNITY_Work_Order_del__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Work Order</label>
+        <referenceTo>FSO__WorkOrder__c</referenceTo>
+        <relationshipLabel>Quotes</relationshipLabel>
+        <relationshipName>Proposals</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Quote</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>UNITY_Case__c</columns>
+        <columns>UNITY_Agent__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MNS_Quote_Creation</fullName>
+        <columns>NAME</columns>
+        <columns>UNITY_Customer__c</columns>
+        <columns>UNITY_Master_Quote__c</columns>
+        <columns>UNITY_Proposal_Status__c</columns>
+        <columns>UNITY_Case__c</columns>
+        <columns>UNITY_Work_Order__c</columns>
+        <columns>UNITY_Agent__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>UNITY_Business_Unit__c</field>
+            <operation>equals</operation>
+            <value>MNS</value>
+        </filters>
+        <filters>
+            <field>UNITY_Proposal_Status__c</field>
+            <operation>equals</operation>
+            <value>Quote Creation</value>
+        </filters>
+        <label>MNS - Quote Creation</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>QT-{0000000000}</displayFormat>
+        <label>Quote Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Quotes</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>true</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Master_Quote</fullName>
+        <active>true</active>
+        <description>At the Case level which only includes a related list of its related quotes (all quotes on the cases related work orders).</description>
+        <label>Master Quote</label>
+        <picklistValues>
+            <picklist>UNITY_Business_Unit__c</picklist>
+            <values>
+                <fullName>Craft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Atlanta</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Dallas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP El Paso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Houston</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Jacksonville</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Memphis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Miami</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Nashville</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP New Orleans</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Orlando</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Phoenix</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP San Antonio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Tampa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NSBS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_De_Escalate_Reason_No_Reply__c</picklist>
+            <values>
+                <fullName>Negotiating Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Proposal_Status__c</picklist>
+            <values>
+                <fullName>Customer Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Quote Finalized</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected by Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent to Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manager Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>UNITY_Customer_Proposal</fullName>
+        <active>true</active>
+        <label>Sub Quote</label>
+        <picklistValues>
+            <picklist>UNITY_Business_Unit__c</picklist>
+            <values>
+                <fullName>Craft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Atlanta</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Dallas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP El Paso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Houston</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Jacksonville</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Memphis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Miami</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Nashville</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP New Orleans</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Orlando</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Phoenix</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP San Antonio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSP Tampa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NSBS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_De_Escalate_Reason_No_Reply__c</picklist>
+            <values>
+                <fullName>Negotiating Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Proposal_Status__c</picklist>
+            <values>
+                <fullName>Agent Review Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Customer Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Creation</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UNITY_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>Read</sharingModel>
+    <validationRules>
+        <fullName>Restrict_Quote_Creation_to_Completed</fullName>
+        <active>true</active>
+        <description>REstrict Movement from Quote creation to Completion</description>
+        <errorConditionFormula>AND(
+ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Proposal Creation&apos;),
+ISPICKVAL(UNITY_Proposal_Status__c,&apos;Completed&apos;)
+)</errorConditionFormula>
+        <errorMessage>Quote cannot be set to Completed as this stage.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Agent_Cannot_Save_Manager_Statuses</fullName>
+        <active>false</active>
+        <description>Agent cannot save the proposal record in manager statuses</description>
+        <errorConditionFormula>AND ( 
+CONTAINS( $User.Id , UNITY_Case__r.OwnerId ), 
+OR( 
+ISPICKVAL(UNITY_Proposal_Status__c, &apos;Approved by Manager&apos;), 
+ISPICKVAL(UNITY_Proposal_Status__c, &apos;Rejected by Manager&apos;), 
+ISPICKVAL(UNITY_Proposal_Status__c, &apos;Proposal sent for Manager Approval&apos;) 
+) 
+)</errorConditionFormula>
+        <errorMessage>Cannot Save record with Status: Manager Approved / Rejected. Please change to the appropriate status.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Cancelled_Completed_Restrict</fullName>
+        <active>true</active>
+        <description>Restrict edit of record from completed or cancelled.</description>
+        <errorConditionFormula>OR( ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Completed&apos;), 
+ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Cancelled&apos;) )</errorConditionFormula>
+        <errorMessage>Record cannot be edited after it has been set to Completed or Cancelled</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Discount_Edit_Customer_Accept</fullName>
+        <active>true</active>
+        <description>Discount fields cannot be edited when customer status is Accepted</description>
+        <errorConditionFormula>if( 
+AND( 
+ISPICKVAL(  UNITY_Status__c  ,&apos;Accepted&apos;), 
+OR( ISCHANGED( UNITY_Discount__c ),  ISCHANGED(  UNITY_Discount_Amount__c  ) )
+) 
+, true, false)</errorConditionFormula>
+        <errorMessage>The Customer has Accepted the Quote, discount fields cannot be changed</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Discount_Percent_Amount</fullName>
+        <active>true</active>
+        <description>Ensures that either Amount or % field is used</description>
+        <errorConditionFormula>OR ( 
+ AND (if(UNITY_Discount__c &gt; 0,true,false), if(UNITY_Discount_Amount__c &gt; 0,true,false) )
+)</errorConditionFormula>
+        <errorMessage>Please enter value in one of the two fields: Discount % or Discount Amount</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Final_TaxError</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+$UserRole.Name != &quot;System Administrator&quot;,
+OR(
+AND(
+NOT(CONTAINS(UNITY_Tax_Process_Result__c,&quot;Success&quot;)),
+ISPICKVAL(UNITY_Proposal_Status__c,&quot;Agent Review Complete&quot;)
+),
+AND(
+ISPICKVAL(UNITY_Proposal_Status__c,&quot;Agent Review Complete&quot;),
+NOT(UNITY_Tax_Processed__c)
+)
+)
+)</errorConditionFormula>
+        <errorMessage>Tax Process has not completed or an error occurred while processing tax. Refresh the page and verify that tax process is successful.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Lock_Discount_Fields</fullName>
+        <active>true</active>
+        <description>Lock discount fields in sent to customer, approved by manager, completed, cancelled statuses</description>
+        <errorConditionFormula>OR ( 
+if( 
+AND( 
+OR (ISPICKVAL(  UNITY_Proposal_Status__c  ,&apos;Sent to Customer&apos;), ISPICKVAL( UNITY_Proposal_Status__c ,&apos;Completed&apos;), ISPICKVAL( UNITY_Proposal_Status__c ,&apos;Cancelled&apos;), ISPICKVAL( UNITY_Proposal_Status__c ,&apos;Returned to Agent&apos;), ISPICKVAL( UNITY_Proposal_Status__c ,&apos;Discount - Approved by Manager&apos;)), 
+ISCHANGED( UNITY_Discount__c ) 
+) 
+, true, false), 
+if( 
+AND( 
+OR (ISPICKVAL(  UNITY_Proposal_Status__c  ,&apos;Sent to Customer&apos;), ISPICKVAL( UNITY_Proposal_Status__c ,&apos;Completed&apos;), ISPICKVAL( UNITY_Proposal_Status__c ,&apos;Cancelled&apos;), ISPICKVAL( UNITY_Proposal_Status__c ,&apos;Returned to Agent&apos;), ISPICKVAL( UNITY_Proposal_Status__c ,&apos;Discount - Approved by Manager&apos;)), 
+ISCHANGED( UNITY_Discount_Amount__c ) 
+) 
+, true, false) 
+)</errorConditionFormula>
+        <errorMessage>Discount fields cannot be changed in &apos;Discount - Approved by Manager&apos;, &apos;Sent to Customer&apos;, &apos;Completed&apos;, &apos;Returned to Agent&apos; or &apos;Cancelled&apos; statuses</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_No_Reply_De_Escalation</fullName>
+        <active>true</active>
+        <errorConditionFormula>RecordType.Name = &quot;Customer Proposal&quot; &amp;&amp; ISCHANGED(UNITY_Customer_Provided_Quote_No_Reply__c ) &amp;&amp; !UNITY_Customer_Provided_Quote_No_Reply__c &amp;&amp; ISPICKVAL( UNITY_De_Escalate_Reason_No_Reply__c , &quot;&quot;)</errorConditionFormula>
+        <errorDisplayField>UNITY_De_Escalate_Reason_No_Reply__c</errorDisplayField>
+        <errorMessage>De-Escalation reason must be provided.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Proposal_Restrict_Customer_Edit</fullName>
+        <active>true</active>
+        <description>Restrict customer from editing the Proposal when it is not in &quot;Sent to Customer&quot; status</description>
+        <errorConditionFormula>AND(!ISPICKVAL( UNITY_Proposal_Status__c , &apos;Sent to Customer&apos;) , if(CONTAINS( $Profile.Name , &apos;UNITY_Customer&apos;),true,false) )</errorConditionFormula>
+        <errorMessage>The Quote is currently being handled by the Agent. The quote cannot be edited at this moment. Please contact the Agent for further clarification</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Quote_Restrict_Line_Item_add</fullName>
+        <active>true</active>
+        <description>Restrict line item addition once the proposal status is accepted</description>
+        <errorConditionFormula>AND(
+ISCHANGED(UNITY_Line_Item_Count__c) ,  ISPICKVAL( UNITY_Status__c ,&quot;Accepted&quot; ) 
+)</errorConditionFormula>
+        <errorMessage>You may not modify the Quote or Line Items once the Quote is accepted</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Quote_status_restrictions</fullName>
+        <active>true</active>
+        <description>Disallow illegal status changes</description>
+        <errorConditionFormula>AND ( 
+RecordType.Name = &apos;Customer Proposal&apos;, 
+OR ( 
+
+
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Proposal sent for Manager Approval&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Returned to Agent&apos; )), true, false) , 
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Discount - Approved by Manager&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Returned to Agent&apos; )), true, false) , 
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Completed&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Returned to Agent&apos; )), true, false) , 
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Cancelled&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Returned to Agent&apos; )), true, false) , 
+
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Proposal sent for Manager Approval&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Sent to Customer&apos; )), true, false) , 
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Discount - Rejected by Manager&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Sent to Customer&apos; )), true, false) , 
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Discount - Approved by Manager&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Sent to Customer&apos; )), true, false) , 
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Proposal Creation&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Sent to Customer&apos; )), true, false) , 
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Proposal Amended&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Sent to Customer&apos; )), true, false) ,
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Completed&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Sent to Customer&apos; )), true, false) ,
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Cancelled&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Sent to Customer&apos; )), true, false) , 
+
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Sent to Customer&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Discount - Rejected by Manager&apos; )), true, false) , 
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Discount - Approved by Manager&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Discount - Rejected by Manager&apos; )), true, false) , 
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Completed&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Discount - Rejected by Manager&apos; )), true, false) , 
+
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Proposal sent for Manager Approval&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Discount - Approved by Manager&apos; )), true, false) , 
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Returned to Agent&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Discount - Approved by Manager&apos; )), true, false) , 
+If ( AND (ISPICKVAL( UNITY_Proposal_Status__c , &apos;Completed&apos;), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Discount - Approved by Manager&apos; )), true, false) , 
+
+If ( AND ((ISPICKVAL( UNITY_Proposal_Status__c , &apos;Completed&apos;)), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Proposal Creation&apos; )), true, false) ,
+If ( AND ((ISPICKVAL( UNITY_Proposal_Status__c , &apos;Discount - Approved by Manager&apos;)), ISPICKVAL(PRIORVALUE( UNITY_Proposal_Status__c ),&apos;Proposal Creation&apos; )), true, false) 
+
+) 
+)</errorConditionFormula>
+        <errorMessage>This Quote status change is not permitted. Please set the Quote record to a correct status</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Reject_reason</fullName>
+        <active>false</active>
+        <description>Add a reason when customer rejects the quote</description>
+        <errorConditionFormula>AND( 
+NOT($Profile.Name = &apos;System Administrator&apos;), 
+ISPICKVAL( UNITY_Status__c ,&apos;Rejected&apos;) ,
+UNITY_Comments__c = &apos;&apos; 
+)</errorConditionFormula>
+        <errorDisplayField>UNITY_48_Hours__c</errorDisplayField>
+        <errorMessage>Please add a reason in the comments section for rejecting this quote</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Restrict_Agents_Skipping_Approvals</fullName>
+        <active>true</active>
+        <description>If discount exists and Manger Approved Discount is unchecked, the proposal cannot move into following status: Sent to Customer, Return to Agent, Proposal Completed, Proposal Amended &amp; sent to customer.</description>
+        <errorConditionFormula>AND
+(
+OR  
+(
+ if(UNITY_Discount_Amount__c &gt; 0,true,false),
+ if(UNITY_Discount__c &gt; 0,true,false),
+ if(UNITY_Line_Item_Discount_Exists__c &gt; 0,true,false),
+ if(UNITY_Does_Discount_Amount_Exists__c &gt; 0,true,false)
+)
+, 
+ if(UNITY_Manager_Approved_Discounts__c = false,true,false)
+,
+OR
+(  
+ if(ISPICKVAL(UNITY_Proposal_Status__c, &apos;Sent to Customer&apos;),true,false),
+ if(ISPICKVAL(UNITY_Proposal_Status__c, &apos;Returned to Agent&apos;),true,false),
+ if(ISPICKVAL(UNITY_Proposal_Status__c, &apos;Completed&apos;),true,false)
+)
+)</errorConditionFormula>
+        <errorMessage>The Quote contains discounts. Please submit the Quote for approval. Please contact the system administrator for more details.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UNITY_Restrict_Proposal_Amended</fullName>
+        <active>true</active>
+        <description>Cannot move status to Proposal Amended if the Customer status is Accepted</description>
+        <errorConditionFormula>AND ( OR (ISPICKVAL( UNITY_Status__c , &apos;Accepted&apos;) , AND ( UNITY_Manager_Approved_Discounts__c  = true, ISPICKVAL(UNITY_Status__c,&apos;&apos;) ) ) , 
+
+OR ( ISPICKVAL( UNITY_Proposal_Status__c , &apos;Proposal Amended&apos;) , ISPICKVAL( UNITY_Proposal_Status__c , &apos;Proposal Creation&apos;) , ISPICKVAL( UNITY_Proposal_Status__c , &apos;&apos;)) 
+)</errorConditionFormula>
+        <errorMessage>The Quote cannot be amended once it has been Accepted by the customer</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Convert_To_Order</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Convert To Order</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)}
+var result = sforce.apex.execute(&quot;UNITY_QuoteToOrderConverter&quot;,&quot;convertQuote&quot;,{quoteId:&quot;{!UNITY_Proposal__c.Id}&quot;});
+alert(result);
+window.location.reload();</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Create_PO</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Create PO</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)} 
+var result = sforce.apex.execute(&quot;UNITY_QuoteToOrderConverter&quot;,&quot;convertQuote&quot;,{quoteId:&quot;{!UNITY_Proposal__c.Id}&quot;}); 
+alert(result); 
+window.location.reload();</url>
+    </webLinks>
+    <webLinks>
+        <fullName>UNITY_Accept</fullName>
+        <availability>online</availability>
+        <description>Clicking on the button will change the status of the proposal to &quot;Accepted / Approved&quot;</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Accept</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/27.0/connection.js&quot;)} 
+
+var objProposal = new sforce.SObject(&apos;UNITY_Proposal__c&apos;); 
+
+objProposal.Id = &apos;{!UNITY_Proposal__c.Id}&apos;; 
+objProposal.UNITY_Status__c = &apos;Accepted&apos;; 
+
+var result = sforce.connection.update([objProposal]); 
+if(result[0].success==&apos;true&apos;){ 
+alert(&apos;The Proposal has been Accepted&apos;); 
+location.reload(true); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>UNITY_New_Proposal_from_Work_Order</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New Quote</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!requireScript(&quot;/support/console/36.0/integration.js&quot;)} 
+
+sourceSObject = &apos;WorkOrder&apos;; 
+targetSObject = &apos;UNITY_Proposal__c&apos;; 
+
+
+parentId = &apos;{!WorkOrder.Id}&apos;
+
+
+baseUrl = &apos;{!URLFOR($Action.UNITY_Proposal__c.New)}&apos;;
+
+
+url =&apos;/apex/UNITY_AutopopulateChild?baseUrl=&apos;+encodeURIComponent(baseUrl)+&apos;&amp;sourceSObject=&apos;+sourceSObject+&apos;&amp;targetSObject=&apos;+targetSObject+&apos;&amp;parentId=&apos;+parentId;
+
+if ((typeof sforce == &apos;object&apos; ) &amp;&amp; sforce.console.isInConsole()) { 
+
+     sforce.console.getEnclosingPrimaryTabId(function(primatyTab){ 
+     sforce.console.openSubtab(primatyTab.id, url, true, &apos;New&apos;); 
+}); 
+}else{
+    window.open(url,&apos;_blank&apos;); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>UNITY_Rejected</fullName>
+        <availability>online</availability>
+        <description>Clicking on the button will change the status of the proposal to &quot;Rejected&quot;</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Reject</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/27.0/connection.js&quot;)} 
+
+var objProposal = new sforce.SObject(&apos;UNITY_Proposal__c&apos;); 
+
+objProposal.Id = &apos;{!UNITY_Proposal__c.Id}&apos;; 
+objProposal.UNITY_Status__c = &apos;Rejected&apos;; 
+
+var result = sforce.connection.update([objProposal]); 
+if(result[0].success==&apos;true&apos;){ 
+alert(&apos;The Proposal has been Rejected&apos;); 
+location.reload(true); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>UNITY_Send_Quote_to_Customer</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send Quote to Customer</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/25.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/25.0/apex.js&quot;)}
+var qid = &quot;{!UNITY_Proposal__c.Id}&quot;;
+var status = &quot;{!UNITY_Proposal__c.UNITY_Proposal_Status__c}&quot;;
+
+if(status == &apos;Quote Finalized&apos;){
+
+var agree = confirm(&quot;Send quote to customer?&quot;);
+
+if(agree){
+
+var ajx = document.createElement(&apos;div&apos;);
+ajx.setAttribute(&apos;id&apos;,&apos;ajax-div&apos;);
+ajx.style.position = &apos;absolute&apos;;
+ajx.style.left = &apos;calc(50% - 16px)&apos;;
+ajx.style.top = &apos;calc(50% - 16px)&apos;;
+ajx.innerHTML = &apos;&lt;img src=&quot;/img/loading32.gif&quot; alt=&quot;Processing...&quot; width=&quot;24px&quot;/&gt;&apos;;
+var c = document.getElementById(&apos;ep&apos;);
+c.appendChild(ajx);
+
+var result = sforce.apex.execute(&quot;UNITY_AttachmentHelper_Miner&quot;,&quot;sendAndAttachQuote&quot;,{qid:qid,sendEmail:true});
+
+if(result == &apos;Success&apos;){
+
+var d = document.getElementById(&apos;ajax-div&apos;);
+var c = document.getElementById(&apos;ep&apos;);
+c.removeChild(d);
+alert(&quot;The quote has been sent to the customer.&quot;);
+window.location.reload();
+}else{
+
+var d = document.getElementById(&apos;ajax-div&apos;);
+var c = document.getElementById(&apos;ep&apos;);
+c.removeChild(d);
+alert(result);
+
+}
+
+}
+
+}else{
+
+alert(&apos;The quote can only be sent to the Customer once it is finalized.&apos;);
+
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>View_Quote_PDF</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>View Quote PDF</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/apex/UNITY_CustomerQuote?id={!UNITY_Proposal__c.Id}</url>
+    </webLinks>
+</CustomObject>

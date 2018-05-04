@@ -1,0 +1,53 @@
+<apex:page standardController="Asset" extensions="UNITY_AssetChildListController">
+    <apex:pageBlock title="Child Assets">
+    <apex:pageBlockTable value="{!assetChildList}" var="asset" >
+        <apex:column >
+            <apex:facet name="header">Name</apex:facet>
+            <apex:outputLink styleClass="unity-a" target="_blank" value="/{!asset.id}">{!asset.name}</apex:outputLink>
+        </apex:column>
+        <apex:column >
+            <apex:facet name="header">Make</apex:facet>
+            <apex:outputText value="{!asset.UNITY_Make__c}"/>
+        </apex:column>     
+        <apex:column >
+            <apex:facet name="header">Model</apex:facet>
+            <apex:outputText value="{!asset.UNITY_Model__c}"/>
+        </apex:column>   
+        <apex:column >
+            <apex:facet name="header">Asset Condition</apex:facet>
+            <apex:outputText value="{!asset.SSVY_Asset_Condition__c}"/>
+        </apex:column>              
+        <apex:column >
+            <apex:facet name="header">Is Under Warranty?</apex:facet>
+            <apex:outputText value="{!asset.UNITY_Is_Under_Warranty__c }"/>
+        </apex:column> 
+        <apex:column >
+            <apex:facet name="header">Scan Code</apex:facet>
+            <apex:outputText value="{!asset.SSVY_ScanCode__c}"/>
+        </apex:column>                
+    </apex:pageBlockTable>
+    </apex:pageBlock>
+    
+    <!-- JAVASCRIPT LIBRARIES START -->
+        <script src="/support/console/35.0/integration.js" type="text/javascript"></script>
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- JAVASCRIPT LIBRARIES END -->
+        
+             
+    <script> 
+       $( document ).ready(function(){
+           
+        
+           $( document ).on('click','a.unity-a',function(event){
+               event.preventDefault();
+               var $a   = $(this);
+               if ((typeof sforce == 'object' ) && sforce.console.isInConsole()) { 
+                    sforce.console.getFocusedPrimaryTabId(function(primatyTab){
+                        sforce.console.openSubtab(primatyTab.id, $a.prop('href'), true); 
+                    }); 
+                }
+           });
+           
+       });
+    </script> 
+</apex:page>

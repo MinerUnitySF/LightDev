@@ -1,0 +1,1500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Budgets</fullName>
+        <fields>Name</fields>
+        <fields>Active__c</fields>
+        <fields>Service_Revenue_Target__c</fields>
+        <fields>Service_Revenue_Actual__c</fields>
+        <fields>Equipment_Revenue_Target__c</fields>
+        <fields>Equipment_Revenue_Actual__c</fields>
+        <fields>Total_Revenue_Target__c</fields>
+        <fields>Total_Revenue_Actual__c</fields>
+        <label>Budgets</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Targets for financial and service metrics for Super Centers.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Denotes whether this budget is currently active. Utilized when multiple budgets share the same period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Denotes whether this budget is currently active.</inlineHelpText>
+        <label>Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Actual_Daily_Sales_Average__c</fullName>
+        <description>Daily sales average over all planned working days. Uses revenue actual so far.</description>
+        <externalId>false</externalId>
+        <formula>IF((Working_Days__c  - Remaining_Working_Days__c) = 0, ((Total_Service_Revenue_Actual__c)+(Total_Equipment_Revenue_Actual__c)), (((Total_Service_Revenue_Actual__c)+(Total_Equipment_Revenue_Actual__c)) / ( Working_Days__c  - Remaining_Working_Days__c)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>On average, how many dollars have been invoiced daily?</inlineHelpText>
+        <label>Actual Daily Sales Average</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Actual_Equipment_DSA__c</fullName>
+        <description>The actual equipment revenue dollars per working day so far this budget period.</description>
+        <externalId>false</externalId>
+        <formula>IF((Working_Days__c - Remaining_Working_Days__c) = 0, Total_Equipment_Revenue_Actual__c, (Total_Equipment_Revenue_Actual__c / (Working_Days__c - Remaining_Working_Days__c)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>On average, how many equipment dollars have been invoiced daily?</inlineHelpText>
+        <label>Actual Equipment DSA</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Actual_Revenue_Per_Service_Job__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Service_Call_Volume_Actual__c &lt;= 0,0, (Service_Revenue_Actual__c + Service_Revenue_Opportunity_Dollars__c) /  Service_Call_Volume_Actual__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>How many revenue dollars per service job are we actually earning?</inlineHelpText>
+        <label>Actual Revenue Per Service Job</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Actual_Service_DSA__c</fullName>
+        <description>The actual service revenue dollars per working day so far this budget period.</description>
+        <externalId>false</externalId>
+        <formula>IF((Working_Days__c - Remaining_Working_Days__c) == 0, Total_Service_Revenue_Actual__c, (Total_Service_Revenue_Actual__c / (Working_Days__c - Remaining_Working_Days__c)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>On average, how many service dollars have been invoiced daily?</inlineHelpText>
+        <label>Actual Service DSA</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Adjusted_Daily_Sales_Average_Target__c</fullName>
+        <description>Based on current month’s total revenue and remaining working days, how many dollars must we invoice daily to meet the total revenue target?</description>
+        <externalId>false</externalId>
+        <formula>IF(Remaining_Working_Days__c &gt; 0, ((Total_Revenue_Target__c)-(Total_Revenue_Actual__c)) / Remaining_Working_Days__c,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current month’s total revenue and remaining working days, how many dollars must we invoice daily to meet the total revenue target?</inlineHelpText>
+        <label>Adjusted Daily Sales Average Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Adjusted_Equipment_Call_Daily_Target__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Remaining_Working_Days__c &gt; 0, ( Equipment_Call_Volume_Target__c -  Equipment_Call_Volume_Actual__c ) /  Remaining_Working_Days__c, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Adjusted Equipment Job Daily Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Adjusted_Equipment_DSA_Target__c</fullName>
+        <description>The adjusted equipment revenue dollar daily average to hit the total service revenue target.</description>
+        <externalId>false</externalId>
+        <formula>IF(Remaining_Working_Days__c &gt; 0, ((Equipment_Revenue_Target__c - Total_Equipment_Revenue_Actual__c) / Remaining_Working_Days__c), 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current month’s equipment revenue and remaining working days, how many service dollars must we invoice daily to meet the service revenue target?</inlineHelpText>
+        <label>Adjusted Equipment DSA Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Adjusted_Service_Call_Daily_Target__c</fullName>
+        <description>This formula is the remaining amount of calls needed to hit the Volume Target, divided by remaining working days.</description>
+        <externalId>false</externalId>
+        <formula>IF(Remaining_Working_Days__c &gt; 0, ( ((Service_Revenue_Target__c  -  (Service_Revenue_Actual__c+Service_Revenue_Opportunity_Dollars__c)) / Actual_Revenue_Per_Service_Job__c) /  Remaining_Working_Days__c ), 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>According to service jobs created and remaining working days, how many service jobs must be created daily to meet the service job target?</inlineHelpText>
+        <label>Adjusted Service Job Daily Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Adjusted_Service_DSA_Target__c</fullName>
+        <description>The adjusted service revenue dollar daily average to hit the total service revenue target.</description>
+        <externalId>false</externalId>
+        <formula>IF(Remaining_Working_Days__c &gt; 0, ((Service_Revenue_Target__c - Total_Service_Revenue_Actual__c) / Remaining_Working_Days__c), 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current month’s service revenue and remaining working days, how many service dollars must we invoice daily to meet the service revenue target?</inlineHelpText>
+        <label>Adjusted Service DSA Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Current_Year_Budget__c</fullName>
+        <description>Utilized for YTD roll-up summary fields on the super center object. This means this budget should be included in YTD roll-ups.</description>
+        <externalId>false</externalId>
+        <formula>(Year(Start_Date__c) == Year(TODAY()) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Utilized for YTD roll-up summary fields on the super center object. This means this budget should be included in YTD roll-ups.</inlineHelpText>
+        <label>Current Year Budget</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Daily_Sales_Average_Target__c</fullName>
+        <description>This formula calculates the daily sales average target (total) by adding the Equipment and Service Revenue targets, subtracting the total revenue actual, then dividing by the total working days</description>
+        <externalId>false</externalId>
+        <formula>((Equipment_Revenue_Target__c +  Service_Revenue_Target__c )) /   Working_Days__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>How many dollars must we invoice daily to meet the total revenue target?</inlineHelpText>
+        <label>Total Daily Sales Average Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <description>The end day for this budget period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The end day for this budget period.</inlineHelpText>
+        <label>End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Average_Call_Revenue__c</fullName>
+        <description>The revenue average per call for this super center, per budget period. This is used to calculate total calls</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The revenue average per call for this super center, per budget period. This is used to calculate total calls</inlineHelpText>
+        <label>Equipment Average Job Revenue</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Call_Daily_Actual__c</fullName>
+        <description>The actual average amount of equipment calls daily for this budget period.</description>
+        <externalId>false</externalId>
+        <formula>Equipment_Call_Volume_Actual__c / ( Working_Days__c -  Remaining_Working_Days__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The actual average amount of equipment calls daily for this budget period.</inlineHelpText>
+        <label>Equipment Job Daily Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Equipment_Call_Daily_Target__c</fullName>
+        <description>Daily target for jobs (Work Orders) of type Sales-Equipment.</description>
+        <externalId>false</externalId>
+        <formula>Equipment_Call_Volume_Target__c /  Working_Days__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Daily target for jobs (Work Orders) of type Sales-Equipment.</inlineHelpText>
+        <label>Equipment Job Daily Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Equipment_Call_Volume_Actual__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>The actual amount of Equipment jobs daily</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The actual amount of Equipment jobs daily</inlineHelpText>
+        <label>Equipment Job Volume Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Equipment_Call_Volume_Target__c</fullName>
+        <description>The total amount of Equipment Jobs</description>
+        <externalId>false</externalId>
+        <formula>Equipment_Revenue_Target__c / Equipment_Average_Call_Revenue__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Equipment Job Volume Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Equipment_DSA_Target__c</fullName>
+        <description>The amount of equipment revenue dollars needed daily to reach total equipment revenue target.</description>
+        <externalId>false</externalId>
+        <formula>Equipment_Revenue_Target__c  /  Working_Days__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>How many equipment dollars must we invoice daily to meet the equipment revenue target?</inlineHelpText>
+        <label>Equipment DSA Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Gross_Actual__c</fullName>
+        <defaultValue>00</defaultValue>
+        <description>The amount of actual Equipment Gross dollars for this budget period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the current equipment gross profit?</inlineHelpText>
+        <label>Equipment Gross Profit Actual</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Gross_Margin_Actual__c</fullName>
+        <description>The actual Equipment gross margin for this budget period.</description>
+        <externalId>false</externalId>
+        <formula>IF((Total_Equipment_Revenue_Actual__c = 0), 0, (Total_Equipment_Gross_Profit_Actual__c / Total_Equipment_Revenue_Actual__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the current equipment gross profit margin?</inlineHelpText>
+        <label>Equipment Gross Profit Margin Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Gross_Margin__c</fullName>
+        <description>The GP Margin Target represented as a percentage.</description>
+        <externalId>false</externalId>
+        <formula>Equipment_Gross_Target__c /  Equipment_Revenue_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the current equipment gross profit margin target?</inlineHelpText>
+        <label>Equipment Gross Profit Margin Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Gross_Profit_Opportunity__c</fullName>
+        <description>The NON Invoiced gross profit dollars from equipment work orders with delivered date for this budget period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the equipment gross profit dollar amount on scheduled but un-invoiced work orders?</inlineHelpText>
+        <label>Equipment Gross Profit Opportunity</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Gross_Target__c</fullName>
+        <description>The Equipment dollars target for the parent super center during this budget&apos;s period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the current equipment gross profit target?</inlineHelpText>
+        <label>Equipment Gross Profit Target</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Invoiced_Call_Volume_Actual__c</fullName>
+        <description>Actual count of work orders with the budget period with an invoice</description>
+        <externalId>false</externalId>
+        <label>Equipment Invoiced Job Volume Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Equipment_Oppty_Revenue_to_Target__c</fullName>
+        <description>Equipment revenue Actual + Equipment Opportunity Dollars / Equipment Revenue target</description>
+        <externalId>false</externalId>
+        <formula>IF((Total_Equipment_Revenue_Actual__c +  Equipment_Revenue_Opportunity_Dollars__c) &gt; 0 , ((Total_Equipment_Revenue_Actual__c +  Equipment_Revenue_Opportunity_Dollars__c)/Equipment_Revenue_Target__c), 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Equipment + Oppty Revenue to Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Revenue_Actual__c</fullName>
+        <description>The Equipment Revenue for this budget period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the current equipment revenue?</inlineHelpText>
+        <label>Equipment Revenue Actual</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Revenue_Actual_to_Target__c</fullName>
+        <description>The percentage of revenue target that has been achieved</description>
+        <externalId>false</externalId>
+        <formula>IF(OR(ISNULL(Equipment_Revenue_Target__c),Equipment_Revenue_Target__c = 0), 0, (Total_Equipment_Revenue_Actual__c / Equipment_Revenue_Target__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What percentage of revenue target has been achieved?</inlineHelpText>
+        <label>Equipment Revenue Actual to-Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Revenue_Opportunity_Dollars__c</fullName>
+        <description>The dollar amount of non-invoiced equipment work orders  that have a delivered date in this budget period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the equipment dollar amount on scheduled but un-invoiced work orders?</inlineHelpText>
+        <label>Equipment Revenue  Opportunity Dollars</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Revenue_Target__c</fullName>
+        <description>The revenue target, in dollars, for this Super Center for the budget period. Specifically for Equipment revenue.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the equipment revenue target?</inlineHelpText>
+        <label>Equipment Revenue Target</label>
+        <precision>14</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Scheduled_Call_Volume_Actual__c</fullName>
+        <description>Actual count of jobs scheduled within the budget period</description>
+        <externalId>false</externalId>
+        <label>Equipment Scheduled Job Volume Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Other_Equipment_Gross_Profit_Actual__c</fullName>
+        <description>The Equipment GP for this budget period from other source outside Salesforce .com</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the equipment gross profit from other source outside Salesforce .com?</inlineHelpText>
+        <label>Other Equipment Gross Profit Actual</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Other_Equipment_Revenue_Actual__c</fullName>
+        <description>The Equipment Revenue for this budget period from other source outside Salesforce .com</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the equipment revenue from other source outside Salesforce .com?</inlineHelpText>
+        <label>Other Equipment Revenue Actual</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Other_Service_Gross_Profit_Actual__c</fullName>
+        <description>The Service GP for this budget period from other source outside Salesforce .com</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the service gross profit from other source outside Salesforce .com?</inlineHelpText>
+        <label>Other Service Gross Profit Actual</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Other_Service_Revenue_Actual__c</fullName>
+        <description>Used to store service revenue from other source outside the system</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the service revenue from other source outside Salesforce .com?</inlineHelpText>
+        <label>Other Service Revenue Actual</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Period_Month__c</fullName>
+        <description>The budget period month, represented by a two digit number - Example:
+January = 01
+October = 10</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The budget period month, represented by a two digit number - Example:
+January = 01
+October = 10</inlineHelpText>
+        <label>Period Month</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Period_Year__c</fullName>
+        <description>The budget period year represented in a four digit number: 2015</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The budget period year represented in a four digit number: 2015</inlineHelpText>
+        <label>Period Year</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Period__c</fullName>
+        <description>The Period month and year combined</description>
+        <externalId>false</externalId>
+        <formula>Text(Period_Month__c) &amp; &quot;-&quot; &amp;  Text(Period_Year__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The Period month and year combined</inlineHelpText>
+        <label>Period</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Potential_Daily_Sales_Average__c</fullName>
+        <description>What is our potential daily sales average if all scheduled work orders were invoiced?</description>
+        <externalId>false</externalId>
+        <formula>(Total_Revenue_Actual__c +  Total_Revenue_Opportunity_Dollars__c)  /  (Working_Days__c - Remaining_Working_Days__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is our potential daily sales average if all scheduled work orders were invoiced?</inlineHelpText>
+        <label>Potential Daily Sales Average</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Potential_Equipment_DSA__c</fullName>
+        <description>What is our potential equipment daily sales average if we were to invoice all work orders.</description>
+        <externalId>false</externalId>
+        <formula>(Equipment_Revenue_Actual__c +  Equipment_Revenue_Opportunity_Dollars__c ) / (Working_Days__c - Remaining_Working_Days__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is our potential equipment daily sales average if we were to invoice all work orders.</inlineHelpText>
+        <label>Potential Equipment DSA</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Potential_Service_DSA__c</fullName>
+        <externalId>false</externalId>
+        <formula>( Service_Revenue_Actual__c + Service_Revenue_Opportunity_Dollars__c) / (Working_Days__c - Remaining_Working_Days__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is our potential Service daily sales average if all work orders were invoiced.</inlineHelpText>
+        <label>Potential Service DSA</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Remaining_Working_Days__c</fullName>
+        <description>This field is the subtracted amount of business days that have passed since the Start Date for this budget from the Working Days listed for this budget.</description>
+        <externalId>false</externalId>
+        <formula>IF(TODAY() &lt; Start_Date__c, Working_Days__c, IF(TODAY() &gt; End_Date__c, 0,(End_Date__c - Today()) - ( FLOOR ( ( ( (End_Date__c) - Today()) / 7 ) ) * 2 ) + CASE(MOD ( Today() - DATE( 1900,1,6 ),7), 0,CASE( MOD ((End_Date__c) - DATE( 1900,1,6 ),7),0,1,2 ), 1,CASE( MOD ((End_Date__c) - DATE( 1900,1,6 ),7),0,2,1 ), IF(MOD(Today() - DATE( 1900,1,6 ),7) - MOD((End_Date__c) - DATE( 1900,1,6 ),7) &lt;= 0 ,0, IF(MOD((End_Date__c) - DATE( 1900,1,6 ),7) = 0,1,-2 ) ) )))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>How many working days are left in this budget period?</inlineHelpText>
+        <label>Remaining Working Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Segment__c</fullName>
+        <description>The segment to which the budget record is related to</description>
+        <externalId>false</externalId>
+        <label>Segment</label>
+        <referenceTo>Segment__c</referenceTo>
+        <relationshipLabel>Budgets</relationshipLabel>
+        <relationshipName>Budgets</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Service_Average_Call_Revenue__c</fullName>
+        <description>The service revenue average per call for this super center, per budget period. This is used to calculate total calls</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Defined by Operations</inlineHelpText>
+        <label>Revenue Per Service Job Target</label>
+        <precision>14</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Service_Call_Daily_Actual__c</fullName>
+        <description>The average Actual daily service calls for this budget period.</description>
+        <externalId>false</externalId>
+        <formula>Service_Call_Volume_Actual__c / ( Working_Days__c - Remaining_Working_Days__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the average daily service jobs created this month so far?</inlineHelpText>
+        <label>Service Jobs Created Daily</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Call_Daily_Target__c</fullName>
+        <description>The target number of daily service calls</description>
+        <externalId>false</externalId>
+        <formula>Service_Call_Volume_Target__c / Working_Days__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>How many service jobs must be created daily to meet the service job target?</inlineHelpText>
+        <label>Service Job Daily Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Call_Volume_Actual__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>The actual amount of daily service calls for this budget for this budget period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>How many service jobs were created this month?</inlineHelpText>
+        <label>Service Jobs Created</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Call_Volume_Target__c</fullName>
+        <description>How many service jobs should be created this month according to target?</description>
+        <externalId>false</externalId>
+        <formula>Service_Revenue_Target__c /  Service_Average_Call_Revenue__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>How many service jobs should be created this month according to target?</inlineHelpText>
+        <label>Service Job Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_DSA_Target__c</fullName>
+        <description>The amount of Service revenue dollars daily to hit Service Revenue Target</description>
+        <externalId>false</externalId>
+        <formula>Service_Revenue_Target__c / Working_Days__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>How many service dollars must we invoice daily to meet the service revenue target?</inlineHelpText>
+        <label>Service DSA Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Service_Gross_Actual__c</fullName>
+        <defaultValue>00</defaultValue>
+        <description>The amount of actual Service Gross dollars during this budget period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the current service gross profit?</inlineHelpText>
+        <label>Service Gross Profit Actual</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Service_Gross_Margin_Actual__c</fullName>
+        <description>The actual Service gross margin for the budget period</description>
+        <externalId>false</externalId>
+        <formula>IF((Total_Service_Revenue_Actual__c = 0),0,(Total_Service_Gross_Profit_Actual__c /  Total_Service_Revenue_Actual__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the current service gross profit margin?</inlineHelpText>
+        <label>Service Gross Profit Margin Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Service_Gross_Margin__c</fullName>
+        <description>The Service Gross Margin target for this budget</description>
+        <externalId>false</externalId>
+        <formula>Service_Gross_Target__c / Service_Revenue_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the current service gross profit margin target?</inlineHelpText>
+        <label>Service Gross Profit Margin Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Service_Gross_Profit_Opportunity_Dollars__c</fullName>
+        <defaultValue>00</defaultValue>
+        <description>The NON Invoiced gross profit dollars from service work orders with a Scheduled Date Time for this budget period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the service gross profit dollar amount on scheduled but un-invoiced work orders?</inlineHelpText>
+        <label>Service Gross Profit Opportunity Dollars</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Service_Gross_Target__c</fullName>
+        <description>The Service dollars target for the parent super center during this budget&apos;s period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the current service gross profit target?</inlineHelpText>
+        <label>Service Gross Profit Target</label>
+        <precision>14</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Service_Invoiced_Call_Volume_Actual__c</fullName>
+        <description>Actual count of service work orders within the budget period with an invoice</description>
+        <externalId>false</externalId>
+        <inlineHelpText>How many service jobs scheduled this month have been invoiced?</inlineHelpText>
+        <label>Invoiced Service Jobs</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Job_Volume_Actual_to_Target__c</fullName>
+        <description>What percentage of this month’s service job target has been achieved?</description>
+        <externalId>false</externalId>
+        <formula>Service_Call_Volume_Actual__c /  Service_Call_Volume_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What percentage of this month’s service job target has been achieved?</inlineHelpText>
+        <label>Service Job Volume Actual to Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Service_Revenue_Actual__c</fullName>
+        <description>The current Service Revenue actual for this budget period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the current service revenue?</inlineHelpText>
+        <label>Service Revenue Actual</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Service_Revenue_Actual_to_Target__c</fullName>
+        <description>The Service Revenue Actual dollars compared to target, in percent.</description>
+        <externalId>false</externalId>
+        <formula>IF(OR(ISNULL(Service_Revenue_Target__c),Service_Revenue_Target__c = 0),0, (Total_Service_Revenue_Actual__c / Service_Revenue_Target__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What percentage of revenue target has been achieved?</inlineHelpText>
+        <label>Service Revenue Actual to-Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Service_Revenue_Opportunity_Dollars__c</fullName>
+        <description>The NON Invoiced dollars for service work orders scheduled this month.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the service dollar amount on scheduled but un-invoiced work orders?</inlineHelpText>
+        <label>Service Revenue Opportunity Dollars</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Service_Revenue_Oppty_to_Target__c</fullName>
+        <description>Service Revenue Actual + Service Opportunity Dollars / Service Revenue Target. Calculates service revenue actual plus service oppty dollars to target.</description>
+        <externalId>false</externalId>
+        <formula>IF(( Total_Service_Revenue_Actual__c  + Service_Revenue_Opportunity_Dollars__c) &gt; 0, ((Total_Service_Revenue_Actual__c + Service_Revenue_Opportunity_Dollars__c) /  Service_Revenue_Target__c), 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Service Revenue + Oppty to Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Service_Revenue_Target__c</fullName>
+        <description>The target revenue, in dollars, for the related super center during this budget period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the service revenue target?</inlineHelpText>
+        <label>Service Revenue Target</label>
+        <precision>14</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Service_Scheduled_Call_Volume_Actual__c</fullName>
+        <description>Actual count of service work orders scheduled within the budget period</description>
+        <externalId>false</externalId>
+        <inlineHelpText>How many service jobs are scheduled for this month?</inlineHelpText>
+        <label>Scheduled Service Jobs</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <description>The starting day of the month for this budget.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The starting day for this budget period.</inlineHelpText>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Super_Center__c</fullName>
+        <description>This is the Super Center that this budget belongs to.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the Super Center that this budget belongs to.</inlineHelpText>
+        <label>Super Center</label>
+        <referenceTo>Super_Center__c</referenceTo>
+        <relationshipLabel>Budgets</relationshipLabel>
+        <relationshipName>Budgets</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Today_Equipment_Invoiced__c</fullName>
+        <externalId>false</externalId>
+        <label>Today&apos;s Equipment Invoiced</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Today_Equipment_Opportunity__c</fullName>
+        <externalId>false</externalId>
+        <label>Today&apos;s Equipment Opportunity</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Today_Service_Invoiced__c</fullName>
+        <externalId>false</externalId>
+        <label>Today&apos;s Service Invoiced</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Today_Service_Job_Created__c</fullName>
+        <externalId>false</externalId>
+        <label>Today&apos;s Service Job Created</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Today_Service_Job_Invoiced__c</fullName>
+        <externalId>false</externalId>
+        <label>Today&apos;s Service Job Invoiced</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Today_Service_Job_Scheduled__c</fullName>
+        <externalId>false</externalId>
+        <label>Today&apos;s Service Job Scheduled</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Today_Service_Opportunity__c</fullName>
+        <externalId>false</externalId>
+        <label>Today&apos;s Service Opportunity</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Call_Volume_Target__c</fullName>
+        <description>The total call volume target for this budget period.</description>
+        <externalId>false</externalId>
+        <formula>Service_Call_Volume_Target__c +  IF(Equipment_Call_Volume_Target__c = 0, 0, Equipment_Call_Volume_Target__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The total call volume target for this budget period.</inlineHelpText>
+        <label>Total Job Volume Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Equipment_Gross_Profit_Actual__c</fullName>
+        <externalId>false</externalId>
+        <formula>( Equipment_Gross_Actual__c + Other_Equipment_Gross_Profit_Actual__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total equipment gross profit for this budget period?</inlineHelpText>
+        <label>Total Equipment Gross Profit Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Equipment_Revenue_Actual__c</fullName>
+        <externalId>false</externalId>
+        <formula>( Equipment_Revenue_Actual__c + Other_Equipment_Revenue_Actual__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total equipment revenue for this budget period?</inlineHelpText>
+        <label>Total Equipment Revenue Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Gross_Actual__c</fullName>
+        <description>The actual total amount of gross dollars for this budget period.</description>
+        <externalId>false</externalId>
+        <formula>Total_Service_Gross_Profit_Actual__c  + Total_Equipment_Gross_Profit_Actual__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total current gross profit?</inlineHelpText>
+        <label>Total Gross Profit Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Gross_Actual_to_Target__c</fullName>
+        <description>The percentage of actual gross dollars to the target for this budget period</description>
+        <externalId>false</externalId>
+        <formula>IF(Total_Gross_Target__c = 0, 0, Total_Gross_Actual__c / Total_Gross_Target__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What percentage of the total gross profit target has been achieved?</inlineHelpText>
+        <label>Total Gross Profit Actual to-Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Total_Gross_Margin_Actual__c</fullName>
+        <description>The total percentage (margin) of gross dollars for this budget period.</description>
+        <externalId>false</externalId>
+        <formula>IF(Total_Revenue_Actual__c = 0, 0, Total_Gross_Actual__c / Total_Revenue_Actual__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the current total gross profit margin?</inlineHelpText>
+        <label>Total Gross Profit Margin Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Total_Gross_Margin_Target__c</fullName>
+        <description>The percentage (margin) of the total gross target for this budget period.</description>
+        <externalId>false</externalId>
+        <formula>Total_Gross_Target__c / Total_Revenue_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total gross profit margin target?</inlineHelpText>
+        <label>Total Gross Profit Margin Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Total_Gross_Profit_Opportunity_Dollars__c</fullName>
+        <externalId>false</externalId>
+        <formula>Equipment_Gross_Profit_Opportunity__c + Service_Gross_Profit_Opportunity_Dollars__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total gross profit dollar amount on scheduled but un-invoiced work orders?</inlineHelpText>
+        <label>Total Gross Profit Opportunity Dollars</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Gross_Target__c</fullName>
+        <description>This is the total Gross Dollar target for this budget period</description>
+        <externalId>false</externalId>
+        <formula>Service_Gross_Target__c + Equipment_Gross_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total (service + equipment) gross profit target?</inlineHelpText>
+        <label>Total Gross Profit Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Job_Volume_Actual__c</fullName>
+        <externalId>false</externalId>
+        <formula>Service_Call_Volume_Actual__c + Equipment_Call_Volume_Actual__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Job Volume Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Job_Volume_Actual_to_Target__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_Job_Volume_Actual__c /Total_Call_Volume_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Job Volume Actual to Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Total_Revenue_Actual__c</fullName>
+        <description>The total current revenue</description>
+        <externalId>false</externalId>
+        <formula>Total_Service_Revenue_Actual__c +  Total_Equipment_Revenue_Actual__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total current revenue?</inlineHelpText>
+        <label>Total Revenue Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Revenue_Actual_to_Target__c</fullName>
+        <description>The percentage of actual revenue dollars compared to target for this budget period.</description>
+        <externalId>false</externalId>
+        <formula>IF(Total_Revenue_Target__c = 0,0,Total_Revenue_Actual__c / Total_Revenue_Target__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What percentage of the total revenue target has been achieved?</inlineHelpText>
+        <label>Total Revenue Actual to-Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Total_Revenue_Opportunity_Dollars__c</fullName>
+        <externalId>false</externalId>
+        <formula>Equipment_Revenue_Opportunity_Dollars__c + Service_Revenue_Opportunity_Dollars__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total dollar amount on scheduled but un-invoiced work orders?</inlineHelpText>
+        <label>Total Revenue Opportunity Dollars</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Revenue_Target__c</fullName>
+        <externalId>false</externalId>
+        <formula>Equipment_Revenue_Target__c + Service_Revenue_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total (service + equipment) revenue target?</inlineHelpText>
+        <label>Total Revenue Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Revenue_Total_Oppty_to_Target__c</fullName>
+        <description>Total Revenue Actual + Total Opportunity Dollars / Total Revenue Target</description>
+        <externalId>false</externalId>
+        <formula>IF((Total_Revenue_Actual__c)+(Total_Revenue_Opportunity_Dollars__c) &gt; 0, 
+(((Total_Revenue_Actual__c)+(Total_Revenue_Opportunity_Dollars__c))/Total_Revenue_Target__c), 
+0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Revenue + Total Oppty to Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Total_Service_Gross_Profit_Actual__c</fullName>
+        <description>The total Service GP for this budget period</description>
+        <externalId>false</externalId>
+        <formula>( Service_Gross_Actual__c + Other_Service_Gross_Profit_Actual__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the current service gross profit in total?</inlineHelpText>
+        <label>Total Service Gross Profit Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Service_Revenue_Actual__c</fullName>
+        <description>The total Service Revenue for this budget period</description>
+        <externalId>false</externalId>
+        <formula>( Service_Revenue_Actual__c + Other_Service_Revenue_Actual__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the total service revenue for this budget period?</inlineHelpText>
+        <label>Total Service Revenue Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Trending_Equipment_Revenue_Actual__c</fullName>
+        <description>Where the current budget&apos;s Equipment Revenue Actual will be, based on the current daily trend and remaining working days.</description>
+        <externalId>false</externalId>
+        <formula>Actual_Equipment_DSA__c * Working_Days__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current revenue trend and remaining working days, what will our total revenue be at the end of the month.</inlineHelpText>
+        <label>Trending Equipment Revenue Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Trending_Equipment_Revenue_to_Target__c</fullName>
+        <description>Based on our Actual Equipment DSA, what our trending total revenue will be compared to our target.</description>
+        <externalId>false</externalId>
+        <formula>Trending_Equipment_Revenue_Actual__c /  Equipment_Revenue_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current revenue trend what percentage of revenue target will be achieved?</inlineHelpText>
+        <label>Trending Equipment Revenue to Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Trending_Revenue_Actual__c</fullName>
+        <description>Where the current budget&apos;s Total Revenue Actual will be, based on the current daily trend and remaining working days.</description>
+        <externalId>false</externalId>
+        <formula>Actual_Daily_Sales_Average__c * Working_Days__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current revenue trend and remaining working days, what will our total revenue be at the end of the month.</inlineHelpText>
+        <label>Trending Revenue Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Trending_Revenue_Actual_to_Target__c</fullName>
+        <description>Based on our Actual DSA, what our trending total revenue will be compared to our target.</description>
+        <externalId>false</externalId>
+        <formula>Trending_Revenue_Actual__c /  Total_Revenue_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current revenue trend what percentage of revenue target will be achieved?</inlineHelpText>
+        <label>Trending Revenue Actual to Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Trending_Service_Revenue_Actual__c</fullName>
+        <description>Where the current budget&apos;s  Service Revenue Actual will be, based on the current daily trend and remaining working days.</description>
+        <externalId>false</externalId>
+        <formula>Actual_Service_DSA__c * Working_Days__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current revenue trend and remaining working days, what will our service revenue be at the end of the month.</inlineHelpText>
+        <label>Trending Service Revenue Actual</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Trending_Service_Revenue_to_Target__c</fullName>
+        <description>Based on our Actual Service Revenue DSA, what our trending total revenue will be compared to our target.</description>
+        <externalId>false</externalId>
+        <formula>Trending_Service_Revenue_Actual__c /  Service_Revenue_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Based on current revenue trend what percentage of revenue target will be achieved?</inlineHelpText>
+        <label>Trending Service Revenue to Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <description>The type of budget this applies to</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The type of budget this applies to</inlineHelpText>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Original</fullName>
+                    <default>false</default>
+                    <label>Original</label>
+                </value>
+                <value>
+                    <fullName>Re-forecast</fullName>
+                    <default>false</default>
+                    <label>Re-forecast</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Working_Days__c</fullName>
+        <defaultValue>22</defaultValue>
+        <description>The amount of working days during this budget period. Usually does not include weekends.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>How many working days are in this budget period?</inlineHelpText>
+        <label>Working Days</label>
+        <precision>2</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Budget</label>
+    <nameField>
+        <label>Budget Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Budgets</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Segment_Budget</fullName>
+        <active>true</active>
+        <description>Budget record for segments</description>
+        <label>Segment Budget</label>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Original</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Re-forecast</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Super_Center_Budget</fullName>
+        <active>true</active>
+        <description>Budget for the super center record</description>
+        <label>Super Center Budget</label>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Original</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Re-forecast</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

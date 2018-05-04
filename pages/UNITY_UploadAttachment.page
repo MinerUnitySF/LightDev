@@ -1,0 +1,65 @@
+<apex:page standardController="WorkOrder" tabStyle="Contact" extensions="UNITY_UploadAttachmentController">
+
+ <apex:sectionHeader title="workorder" subtitle="Attach File"/>
+ 
+ <apex:form id="form_Upload">
+ <apex:pageBlock >
+
+ <apex:pageBlockButtons >
+   <apex:commandButton action="{!back}" value="Back"/>
+   <apex:commandButton action="{!back}" value="Cancel"/>
+ </apex:pageBlockButtons>
+ <apex:pageMessages />
+ 
+  <apex:pageBlockSection columns="1">
+  
+    <apex:pageBlockSectionItem >
+      <apex:outputLabel value="File" for="file_File"/>
+      <apex:inputFile id="file_File" value="{!fileBody}" filename="{!fileName}"/>
+    </apex:pageBlockSectionItem>
+  
+    <apex:pageBlockSectionItem >
+        
+      <apex:outputLabel value="Type" for="type"/>
+        <apex:selectList id="type" value="{!selectedType}" size="1">
+            <apex:selectOptions value="{!types}"/>        
+        </apex:selectList> 
+      <!--<apex:selectList value="{!selectedType}" size="1" id="type"> 
+        <apex:selectOption itemValue="Completed Survey" itemLabel="Completed Survey"/>
+        <apex:selectOption itemValue="Copy of Supplier Parts" itemLabel="Copy of Supplier Parts"/>
+        <apex:selectOption itemValue="Copy of Vendor Invoices" itemLabel="Copy of Vendor Invoices"/>
+        <apex:selectOption itemValue="Customer-Specific Service Report Sign-Off" itemLabel="Customer-Specific Service Report Sign-Off"/>
+        <apex:selectOption itemValue="Damage & Abuse – before & after pictures" itemLabel="Damage & Abuse – before & after pictures"/>
+        <apex:selectOption itemValue="IVR Check in and Check out (Labor)" itemLabel="IVR check in and Check out (Labor)"/>
+        <apex:selectOption itemValue="Lien Waiver" itemLabel="Lien Waiver"/>
+        <apex:selectOption itemValue="Manager on Duty - Name Print & Signature" itemLabel="Manager on Duty - Name Print & Signature"/>
+        <apex:selectOption itemValue="PM Checklist Completed" itemLabel="PM Checklist Completed"/>
+        <apex:selectOption itemValue="PM Failures" itemLabel="PM Failures"/>  
+        <apex:selectOption itemValue="Service Sign-Off With Store Stamp" itemLabel="Service Sign-Off With Store Stamp"/>
+        <apex:selectOption itemValue="Shipping Documents" itemLabel="Shipping Documents"/>
+        <apex:selectOption itemValue="W-9" itemLabel="W-9"/>
+        <apex:selectOption itemValue="Warranty Information" itemLabel="Warranty Information"/>
+        <apex:selectOption itemValue="Work Acknowledgment Form" itemLabel="Work Acknowledgment Form"/>
+        <apex:selectOption itemValue="Vendor's Invoice" itemLabel="Vendor's Invoice"/>
+        <apex:selectOption itemValue="Vendor's Estimate" itemLabel="Vendor's Estimate"/>
+      </apex:selectList>-->
+    </apex:pageBlockSectionItem>
+    <!--
+    <apex:pageBlockSectionItem >
+      <apex:outputLabel value="Description" for="description"/> 
+      <apex:inputTextarea id="description" value="{!description}" rows="4" cols="50"/>
+    </apex:pageBlockSectionItem>
+    -->
+    <apex:pageBlockSectionItem >
+      <apex:outputLabel value="" for="uploadBtn"/> 
+      <apex:commandButton id="uploadBtn" value="Attach File" action="{!processUpload}" />
+    </apex:pageBlockSectionItem>    
+    
+  </apex:pageBlockSection>
+ 
+ </apex:pageBlock>
+
+
+ </apex:form>
+
+</apex:page>

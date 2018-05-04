@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <processMetadataValues>
+            <name>textJson</name>
+            <value>
+                <stringValue>{&quot;mentions&quot;:[],&quot;message&quot;:&quot;@[{![WorkOrder].UNITY_Agent__c}]\nWO: {![WorkOrder].WorkOrderNumber} is in Escalation. Please review and follow-up as required.&quot;}</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A1</name>
+        <label>Chatter Agent that WO is Escalated</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <stringValue>@[{!myVariable_current.UNITY_Agent__c}]
+WO: {!myVariable_current.WorkOrderNumber} is in Escalation. Please review and follow-up as required.</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>type</name>
+        </inputParameters>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>myVariable_waitStartTimeAssignment</name>
+        <label>myVariable_waitStartTimeAssignment</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>myVariable_waitStartTimeVariable</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>myDecision</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>myDecision</name>
+        <label>Primary Decision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>WO Is In Escalation</label>
+        </rules>
+    </decisions>
+    <description>New WO Object</description>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>OR (
+AND ( ISCHANGED([WorkOrder].UNITY_WO_Created_Not_Assigned__c),  [WorkOrder].UNITY_WO_Created_Not_Assigned__c = True ),
+AND ( ISCHANGED([WorkOrder].UNITY_WO_Assigned_Not_Accepted__c), [WorkOrder].UNITY_WO_Assigned_Not_Accepted__c = True ),
+AND ( ISCHANGED([WorkOrder].UNITY_WO_Accepted_Not_Scheduled__c), [WorkOrder].UNITY_WO_Accepted_Not_Scheduled__c = True ),
+AND ( ISCHANGED([WorkOrder].UNITY_Start_Date_Time_Missed__c), [WorkOrder].UNITY_Start_Date_Time_Missed__c = True ),
+AND ( ISCHANGED([WorkOrder].UNITY_SLA_Expired__c), [WorkOrder].UNITY_SLA_Expired__c = True )
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>OR (
+AND ( ISCHANGED({!myVariable_current.UNITY_WO_Created_Not_Assigned__c}),  {!myVariable_current.UNITY_WO_Created_Not_Assigned__c} = True ),
+AND ( ISCHANGED({!myVariable_current.UNITY_WO_Assigned_Not_Accepted__c}), {!myVariable_current.UNITY_WO_Assigned_Not_Accepted__c} = True ),
+AND ( ISCHANGED({!myVariable_current.UNITY_WO_Accepted_Not_Scheduled__c}), {!myVariable_current.UNITY_WO_Accepted_Not_Scheduled__c} = True ),
+AND ( ISCHANGED({!myVariable_current.UNITY_Start_Date_Time_Missed__c}), {!myVariable_current.UNITY_Start_Date_Time_Missed__c} = True ),
+AND ( ISCHANGED({!myVariable_current.UNITY_SLA_Expired__c}), {!myVariable_current.UNITY_SLA_Expired__c} = True )
+)</expression>
+    </formulas>
+    <interviewLabel>UNITY_Escalation_Agent_Notifications_V1-1_WorkOrder</interviewLabel>
+    <label>UNITY Escalation Agent Notifications V1</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>WorkOrder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onAllChanges</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <startElementReference>myVariable_waitStartTimeAssignment</startElementReference>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>WorkOrder</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>WorkOrder</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_waitStartTimeVariable</name>
+        <dataType>DateTime</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>$Flow.CurrentDateTime</elementReference>
+        </value>
+    </variables>
+</Flow>

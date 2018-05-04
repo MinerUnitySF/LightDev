@@ -1,0 +1,313 @@
+<apex:page standardController="WorkOrder" extensions="UNITY_WOHighlightPanelController" applyBodyTag="false" docType="html-5.0">
+
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<apex:stylesheet value="{!URLFOR($Resource.UNITY_SLDS_100, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+
+<script src="/support/console/36.0/integration.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    function openSubTab(url) {
+      sforce.console.getEnclosingPrimaryTabId(
+        function(primarytab)
+        {
+          sforce.console.openSubtab(primarytab.id, url, true);
+        });
+    }
+</script>
+
+<style>
+	body#body_no_margin {
+		margin: 0px;
+	}
+</style>
+
+<body id="body_no_margin">
+  <div class="slds">
+
+	<div class="slds-page-header" role="banner">
+	  <div class="slds-media">
+	    <div class="slds-media__figure">
+	      <svg aria-hidden="true" class="slds-icon slds-icon--large slds-icon-standard-account">
+	        <use xlink:href="{!URLFOR($Resource.UNITY_SLDS_100,'/assets/icons/standard-sprite/svg/symbols.svg#account')}"></use>
+	      </svg>
+	    </div>
+	    <div class="slds-media__body">
+	      <section class="slds-clearfix">
+	      <div class="slds-float--right slds-text-align--right">
+		      <p class="slds-page-header__title">{!dtzLocalTime.formatTime}</p>
+		      <p class="slds-text-body--small slds-page-header__info">{!dtzLocalTime.displayname}</p>
+		  </div>
+	      <div>
+		      <p class="slds-page-header__title slds-truncate slds-align-middle">
+		      <apex:outputLink value="#" onclick="openSubTab('/{!WorkOrder.AccountId}');"><apex:outputText value="{!WorkOrder.Account.Name}" /></apex:outputLink>	
+		      </p>
+		      <p class="slds-text-body--small slds-page-header__info">{!WorkOrder.Account.ShippingCity}, {!WorkOrder.Account.ShippingState}, {!WorkOrder.Account.ShippingCountry}</p>
+	      </div>
+	      </section>
+	    </div>
+	  </div>
+	</div>
+
+    <div class="slds-p-around--small slds-text-align--center slds-theme--error slds-theme--alert-texture {!IF(bWarning,'','slds-hide')}">
+      <h2 class="slds-text-heading--medium slds-truncate">{!sWarningMsg}</h2>
+    </div>
+
+	<div class="slds-p-top--small">
+      <ul class="timeline">
+	    <li class="slds-timeline__item">
+	      <span class="slds-assistive-text">Created</span>
+	      <div class="slds-media">
+	        <div class="slds-media__body">
+	          <div class="slds-media slds-media--timeline slds-timeline__media--task">
+	            <div class="slds-media__figure">
+	              <svg aria-hidden="true" class="slds-icon slds-icon-standard-task slds-timeline__icon">
+	                <use xlink:href="{!URLFOR($Resource.UNITY_SLDS_100,'/assets/icons/standard-sprite/svg/symbols.svg#contract')}"></use>
+	              </svg>
+	            </div>
+	            <div class="slds-media__body">
+	              <p>
+	                <strong>New Work Order</strong>&nbsp;<apex:outputText value="{!WorkOrder.WorkOrderNumber}"/>
+	              </p>
+	              <ul class="slds-list--vertical slds-text-body--small">
+	                <li class="slds-list__item slds-m-right--large">
+	                  <span>Site Contact:</span>
+	                  <span class="slds-m-left--xx-small">
+	                    <support:clickToDial number="{!WorkOrder.UNITY_Site_Contact_Phone__c}" entityId="{!WorkOrder.AccountId}" />
+	                  </span>
+	                </li>
+	                <li class="slds-list__item">
+	                  <span>Priority:</span>
+	                  <span class="slds-m-left--xx-small">
+	                    <apex:outputField value="{!WorkOrder.Priority}"/>
+	                  </span>
+	                </li>
+	                <li class="slds-list__item">
+	                  <span>Begin:</span>
+	                  <span class="slds-m-left--xx-small">
+	                    {!dtzWOWorkWindowBegin.format}  
+	                  </span>
+	                </li>
+	                <li class="slds-list__item">
+	                  <span>End:</span>
+	                  <span class="slds-m-left--xx-small">
+	                    {!dtzWOWorkWindowEnd.format}     
+	                  </span>
+	                </li>
+	              </ul>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="slds-media__figure slds-media__figure--reverse">
+	          <div class="slds-timeline__actions">
+	            <p class="slds-timeline__date">{!dtzWOCreated.formatDate}</p>
+	            <p class="slds-timeline__time">{!dtzWOCreated.formatTime}</p>
+	          </div>
+	        </div>
+	      </div>
+	    </li>
+
+
+	    <li class="slds-timeline__item">
+	      <span class="slds-assistive-text">Assigned</span>
+	      <div class="slds-media">
+	        <div class="slds-media__body">
+	          <div class="slds-media slds-media--timeline {!IF(bWOAssigned,'slds-timeline__media--task','slds-timeline__media--email')}">
+	            <div class="slds-media__figure">
+	              <svg aria-hidden="true" class="slds-icon {!IF(bWOAssigned,'slds-icon-standard-task','slds-icon-standard-email')} slds-timeline__icon">
+	                <use xlink:href="{!URLFOR($Resource.UNITY_SLDS_100,'/assets/icons/standard-sprite/svg/symbols.svg#announcement')}"></use>
+	              </svg>
+	            </div>
+
+	            <div class="slds-media__body {!IF(bWOAssigned,'','slds-hide')}">
+	              <p class="slds-tile__title slds-truncate">
+	                <strong>Assigned to</strong>&nbsp;
+	                <apex:outputLink value="#" onclick="openSubTab('/{!WorkOrder.UNITY_Assigned_Vendor__c}');"><apex:outputText value="{!WorkOrder.UNITY_Assigned_Vendor__r.Name}" /></apex:outputLink>  
+	              </p>
+	              <ul class="slds-tile__detail slds-list--veritical slds-text-body--small">
+	                <li class="slds-list__item slds-m-right--large">
+	                  <span>Dispatcher:</span>
+	                  <span class="slds-m-left--xx-small">
+	                    <apex:outputLink value="#" onclick="openSubTab('/{!WorkOrder.UNITY_Assigned_Vendor__r.UNITY_Dispatcher__c}');"><apex:outputText value="{!WorkOrder.UNITY_Assigned_Vendor__r.UNITY_Dispatcher__r.Name}" /></apex:outputLink> 
+	                  </span>
+	                </li>
+	                <li class="slds-list__item">
+	                  <span>Phone:</span>
+	                  <span class="slds-m-left--xx-small">
+	                    <apex:outputField value="{!WorkOrder.UNITY_Assigned_Vendor__r.UNITY_Dispatcher__r.Phone}"/>
+	                  </span>
+	                </li>
+	              </ul>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="slds-media__figure slds-media__figure--reverse">
+	          <div class="slds-timeline__actions">
+	            <p class="slds-timeline__date">{!dtzWOAssigned.formatDate}</p>
+	            <p class="slds-timeline__time">{!dtzWOAssigned.formatTime}</p>
+	          </div>
+	        </div>
+	      </div>
+	    </li>
+
+	    <li class="slds-timeline__item">
+	      <span class="slds-assistive-text">Accepted</span>
+	      <div class="slds-media">
+	        <div class="slds-media__body">
+	          <div class="slds-media slds-media--timeline {!IF(bWOAccepted,'slds-timeline__media--task','slds-timeline__media--email')}">
+	            <div class="slds-media__figure">
+	              <svg aria-hidden="true" class="slds-icon {!IF(bWOAccepted,'slds-icon-standard-task','slds-icon-standard-email')} slds-timeline__icon">
+	                <use xlink:href="{!URLFOR($Resource.UNITY_SLDS_100,'/assets/icons/standard-sprite/svg/symbols.svg#endorsement')}"></use>
+	              </svg>
+	            </div>
+	            <div class="slds-media__body {!IF(bWOAccepted,'','slds-hide')}">
+	              <p class="slds-tile__title slds-truncate">
+	                <strong>Accepted by</strong>&nbsp;
+			  		<apex:outputLink value="#" onclick="openSubTab('/{!WorkOrder.UNITY_Accepted_Vendor__c}');"><apex:outputText value="{!WorkOrder.UNITY_Accepted_Vendor__r.Name}" /></apex:outputLink>		 
+	              </p>
+	              <ul class="slds-list--vertical slds-text-body--small">
+	                <li class="slds-list__item slds-m-right--large">
+	                  <span>NTE/Initial PO Cost:</span>
+	                  <span class="slds-m-left--xx-small">
+	                    <apex:outputField value="{!WorkOrder.UNITY_Initial_Vendor_PO_Cost__c}"/>
+	                  </span>
+	                </li>
+	              </ul>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="slds-media__figure slds-media__figure--reverse">
+	          <div class="slds-timeline__actions">
+	            <p class="slds-timeline__date">{!dtzWOAccepted.formatDate}</p>
+	            <p class="slds-timeline__time">{!dtzWOAccepted.formatTime}</p>
+	          </div>
+	        </div>
+	      </div>
+	    </li>
+
+	    <li class="slds-timeline__item">
+	      <span class="slds-assistive-text">Scheduled</span>
+	      <div class="slds-media">
+	        <div class="slds-media__body">
+	          <div class="slds-media slds-media--timeline {!IF(bWOScheduled,'slds-timeline__media--task','slds-timeline__media--email')}">
+	            <div class="slds-media__figure">
+	              <svg aria-hidden="true" class="slds-icon {!IF(bWOScheduled,'slds-icon-standard-task','slds-icon-standard-email')} slds-timeline__icon">
+	                <use xlink:href="{!URLFOR($Resource.UNITY_SLDS_100,'/assets/icons/standard-sprite/svg/symbols.svg#event')}"></use>
+	              </svg>
+	            </div>
+	            <div class="slds-media__body {!IF(bWOScheduled,'','slds-hide')}">
+	              <p class="slds-tile__title slds-truncate">
+	                <strong>Scheduled</strong>&nbsp;
+	              </p>
+	              <ul class="slds-list--vertical slds-text-body--small">
+	                <li class="slds-list__item slds-m-right--large">
+	                  <span>Start:</span>
+	                  <span class="slds-m-left--xx-small">
+	                    {!dtzWOStartDate.format}  
+	                  </span>
+	                </li>
+	                <li class="slds-list__item slds-m-right--large">
+	                  <span>Technician:</span>
+	                  <span class="slds-m-left--xx-small">
+			  			<apex:outputLink value="#" onclick="openSubTab('/{!WorkOrder.OwnerId}');"><apex:outputText value="{!WorkOrder.Owner.Name}" /></apex:outputLink>		  			
+	                  </span>
+	                </li>
+
+	                <li class="slds-list__item slds-m-right--large">
+	                  <span>Phone:</span>
+	                  <span class="slds-m-left--xx-small">
+			  			<support:clickToDial number="{!WorkOrder.Owner.Phone}" entityId="{!WorkOrder.OwnerId}" />
+	                  </span>
+	                </li>                          
+	              </ul>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="slds-media__figure slds-media__figure--reverse">
+	          <div class="slds-timeline__actions">
+	            <p class="slds-timeline__date">{!dtzWOScheduled.formatDate}</p>
+	            <p class="slds-timeline__time">{!dtzWOScheduled.formatTime}</p>
+	          </div>
+	        </div>
+	      </div>
+	    </li>
+
+	    <li class="slds-timeline__item">
+	      <span class="slds-assistive-text">Checked-In</span>
+	      <div class="slds-media">
+	        <div class="slds-media__body">
+	          <div class="slds-media slds-media--timeline {!IF(bWOCheckedIn,'slds-timeline__media--task','slds-timeline__media--email')}">
+	            <div class="slds-media__figure">
+	              <svg aria-hidden="true" class="slds-icon {!IF(bWOCheckedIn,'slds-icon-standard-task','slds-icon-standard-email')} slds-timeline__icon">
+	                <use xlink:href="{!URLFOR($Resource.UNITY_SLDS_100,'/assets/icons/standard-sprite/svg/symbols.svg#call')}"></use>
+	              </svg>
+	            </div>
+	            <div class="slds-media__body {!IF(bWOCheckedIn,'','slds-hide')}">
+	              <p class="slds-tile__title slds-truncate">
+	                <strong>Checked-In</strong>&nbsp;
+	              </p>
+	              <ul class="slds-list--vertical slds-text-body--small">
+	                <li class="slds-list__item slds-m-right--large">
+	                  <span>Technician:</span>
+	                  <span class="slds-m-left--xx-small">
+			  			<apex:outputLink value="#" onclick="openSubTab('/{!WorkOrder.OwnerId}');"><apex:outputText value="{!WorkOrder.Owner.Name}" /></apex:outputLink>	 
+	                  </span>
+	                </li>
+	                <li class="slds-list__item slds-m-right--large">
+	                  <span>Phone:</span>
+	                  <span class="slds-m-left--xx-small">
+			  			<support:clickToDial number="{!WorkOrder.Owner.Phone}" entityId="{!WorkOrder.OwnerId}" />
+	                  </span>
+	                </li>                          
+	              </ul>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="slds-media__figure slds-media__figure--reverse">
+	          <div class="slds-timeline__actions">
+	            <p class="slds-timeline__date">{!dtzWOCheckedIn.formatDate}</p>
+	            <p class="slds-timeline__time">{!dtzWOCheckedIn.formatTime}</p>
+	          </div>
+	        </div>
+	      </div>
+	    </li>
+
+	    <!-- Last Step -->
+	    <li class="slds-timeline__item">
+	      <span class="slds-assistive-text">Completed</span>
+	      <div class="slds-media">
+	        <div class="slds-media__body">
+	          <div class="slds-media">
+	            <div class="slds-media__figure">
+	              <svg aria-hidden="true" class="slds-icon {!IF(bWOCompleted,'slds-icon-standard-task','slds-icon-standard-email')} slds-timeline__icon">
+	                <use xlink:href="{!URLFOR($Resource.UNITY_SLDS_100,'/assets/icons/standard-sprite/svg/symbols.svg#task')}"></use>
+	              </svg>
+	            </div>
+	            <div class="slds-media__body {!IF(bWOCompleted,'','slds-hide')}">
+	              <p class="slds-tile__title slds-truncate">
+	                <strong>Completed</strong>&nbsp;
+	              </p>
+	              <ul class="slds-list--vertical slds-text-body--small">
+	                <li class="slds-list__item slds-m-right--large">
+	                  <span>Status:</span>
+	                  <span class="slds-m-left--xx-small">
+			  			<apex:outputField value="{!WorkOrder.Status}"/> 
+	                  </span>
+	                </li>                         
+	              </ul>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="slds-media__figure slds-media__figure--reverse">
+	          <div class="slds-timeline__actions">
+	            <p class="slds-timeline__date">{!dtzWOCompleted.formatDate}</p>
+	            <p class="slds-timeline__time">{!dtzWOCompleted.formatTime}</p>
+	          </div>
+	        </div>
+	      </div>
+	    </li>
+	  </ul>
+	</div>
+  </div>
+</body>
+</html>
+</apex:page>

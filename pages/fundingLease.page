@@ -1,0 +1,84 @@
+<apex:page standardController="genesis__Applications__c" extensions="FundingLeaseController" title="Funding Lease" >
+    <apex:composition template="genesis__wizardComposition" >
+        <!-- Define the page body, including form and button bar -->
+        <apex:define name="pageBody" >
+            <!-- The first column -->
+            <apex:panelGrid columnClasses="col1,col2" columns="2"  width="100%"  cellpadding="10" cellspacing="10" border="2" rules="all">
+                
+                <!-- left arrow button -->
+                <apex:outputPanel layout="block" styleClass="outPanelLeft" >
+                    <div class="button bordered back">
+                        <span class="pointer"></span>
+                        <div class="content">
+                            <span class="label">
+                                <apex:commandLink action="{!backActionLogic}" value="{!manager.backButtonText}" />
+                            </span>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+        
+                <!-- right arrow button -->
+                <apex:outputPanel layout="block">
+                    
+                    <div class="button bordered next">
+                        <span class="pointer"></span>
+                        <div class="content">
+                            <span class="label">
+                                <apex:commandLink action="{!nextActionLogic}" value="{!manager.nextButtonText}"/>
+                            </span>
+                        </div>
+                    </div>
+                    
+                </apex:outputPanel>
+            
+            </apex:panelGrid>
+            <apex:pageBlock >
+                <apex:pageMessages escape="false" />
+            </apex:pageBlock>
+            <apex:pageblock mode="edit" >
+                <apex:pageBlockButtons >
+                    
+                    <!-- <apex:commandButton value="Calculate Invoice" action="{!generatePV}"/>
+                    -->
+                    
+                    <apex:commandButton value="Save" action="{!saveApp}" />
+                </apex:pageBlockButtons>
+                <apex:pageblockSection title="Details of Lease" columns="2">
+                  
+                   <apex:outputField label="Application Number" value="{!application.Name}"/>   
+                   <apex:outputField label="Customer Name" value="{!application.genesis__Account__c}"/>
+                   <apex:outputField label="Payment Amount" value="{!application.genesis__Payment_Amount__c}"/>
+                   <apex:outputField label="Financed Amount" value="{!application.genesis__Financed_Amount__c}"/>
+                   <apex:outputField label="Term" value="{!application.genesis__Term__c}"/>
+                   
+                </apex:pageBlockSection> 
+                <apex:pageBlockSection columns="2" title="Fund Details" >
+                    <apex:inputField value="{!application.Present_Value__c}" required="false"/>
+                    <apex:inputField value="{!application.Discount_Rate__c}" required="false"/>
+                </apex:pageblockSection>
+                
+                <apex:pageBlockSection title="Assignment Details" columns="2">
+                    <apex:inputField value="{!application.Assigned_To__c}" required="false"/>
+                </apex:pageBlockSection>
+                
+                <apex:pageBlockSection title="Invoice Details" columns="2" rendered="{!invoiceShow}"><!-- ketan need to be render-->
+                  <apex:outputField label=" PV of " value="{!application.genesis__Term__c}"/>
+                  <apex:outputField label="Payments each " value="{!application.genesis__Payment_Amount__c}"/>
+                  
+                  <apex:inputField value="{!application.Discount_Rate__c}" required="false"/>
+                  <apex:outputField label="Present Value = " value="{!application.Present_Value__c}"/>                                            
+                     
+               </apex:pageBlockSection>
+            </apex:pageBlock>
+            
+         
+        </apex:define>
+        
+        
+        <apex:relatedList subject="{!genesis__Applications__c}" list="CombinedAttachments">
+              <apex:facet name="header"><table><tr><td class="pbTitle"><h3>Notes and Attachments</h3></td></tr></table></apex:facet>
+        </apex:relatedList>
+       
+        
+    </apex:composition>
+</apex:page>

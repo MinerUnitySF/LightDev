@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>This custom setting is referenced in UNITY_CreateCaseFromEmail email handler class to map fields from email body to case fields for various templates.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Additional_Description__c</fullName>
+        <description>This text field can be used to specify any additional description regarding the field and it gets added in the Case.Description field.</description>
+        <externalId>false</externalId>
+        <label>Additional Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Field_Name__c</fullName>
+        <description>This field indicates the Salesforce field API name on Case object.</description>
+        <externalId>false</externalId>
+        <label>Field Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Attribute__c</fullName>
+        <description>This field specifies the search string within the incoming email body. This search string maps to some field on Case object within Salesforce.</description>
+        <externalId>false</externalId>
+        <label>Search Attribute</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Template_Delimiter__c</fullName>
+        <description>Every record for each template had the same value. This is the delimiter text that separates search string (field) in an email template from the value. UNITY_CreateCaseFromEmail.cls searches this pattern in the email body using regex. Examples: If template has a string &quot;Priority : P4&quot; then this field should have value &quot;:&quot;
+For line breaks use &quot;\n&quot;.</description>
+        <externalId>false</externalId>
+        <label>Template Delimiter</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Template_Key__c</fullName>
+        <description>This field is used by the email handler class to match incoming email&apos;s &quot;from&quot; email address or email address domain. The &quot;from&quot; domain or address cannot be shared between different customers that use different templates.</description>
+        <externalId>false</externalId>
+        <label>Template Key</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Template_Name__c</fullName>
+        <description>This field specifies which customer this template is applicable to.</description>
+        <externalId>false</externalId>
+        <label>Template Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>UNITY Case From Email Fields</label>
+    <visibility>Public</visibility>
+</CustomObject>

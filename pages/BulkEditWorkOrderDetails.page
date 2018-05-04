@@ -1,0 +1,103 @@
+<apex:page controller="BulkEditWorkOrderDetails" sidebar="false">
+    <apex:form > 
+    <apex:pageBlock > 
+    
+    
+    <apex:pageBlockButtons >
+         <apex:commandButton action="{!quickSave}" value="Quick Save"/>
+         <apex:commandButton action="{!saveAndClose}" value="Save and Close"/>
+    </apex:pageBlockButtons>
+    
+    Work order:<apex:outputField value="{!wo.SVMXC__Service_Order__c}"/>
+    <apex:pageblocktable value="{!wodw_list}" var="wod" id="theTable" > 
+        
+<!--        <apex:column > -->
+<!--            <apex:commandButton action="{!editRow}" value="Edit" reRender="theTable" rendered="{!NOT(br.edit)}" > -->
+<!--                 <apex:param name="reviewNumber" value="{!br.nbr}" assignTo="{!rowToEdit}"/> -->
+<!--            </apex:commandButton> -->
+<!--            <apex:commandButton action="{!saveRow}" value="Save" reRender="theTable" rendered="{!br.edit}" > -->
+<!--                 <apex:param name="reviewNumber" value="{!br.nbr}" assignTo="{!rowToEdit}"/> -->
+<!--            </apex:commandButton> -->
+<!--        </apex:column> -->
+        
+        <apex:column >
+            <apex:facet name="header">Line<br/>Number</apex:facet>
+            <apex:outputText value="{!wod.lnr}" />
+        </apex:column>
+        <apex:column >
+            <apex:facet name="header">Line Type</apex:facet>
+            <apex:inputField value="{!wod.wod.SVMXC__Line_Type__c}" >
+                 <apex:actionSupport event="onchange" 
+                                    action="{!togglePart}" 
+                                    rerender="theTable" >
+                    <apex:param name="selid" value="{!wod.lnr}" assignTo="{!slnr}"/>
+                    <apex:param name="linetype" value="{!wod.wod.SVMXC__Line_Type__c}" assignTo="{!lineType}"/>
+                </apex:actionSupport>
+            </apex:inputField>
+        </apex:column>
+        
+        <apex:column >
+            <apex:facet name="header">Activity Type</apex:facet>
+            <apex:inputField value="{!wod.wod.SVMXC__Activity_Type__c}" />
+        </apex:column>
+        
+        <apex:column >
+            <apex:facet name="header">Part</apex:facet>
+            
+            <apex:inputField id="part_lookup" value="{!wod.wod.SVMXC__Product__c}" rendered="{!wod.showPart}" style="width: 100px;">
+            
+                 <apex:actionSupport event="onchange" 
+                                    action="{!emptyMethod}" 
+                                    rerender="theTable" >
+                    <apex:param name="selid" value="{!wod.lnr}" assignTo="{!slnr}"/>
+<!--                    <apex:param name="productid" value="{!wod.wod.SVMXC__Product__c}" assignTo="{!productId}"/> -->
+                </apex:actionSupport>
+            </apex:inputField>
+            
+        </apex:column>
+        <apex:column >
+            <apex:facet name="header">Stock Location</apex:facet>
+            <apex:inputField value="{!wod.wod.SVMXC__Consumed_From_Location__c}" style="width: 100px;" />
+        </apex:column>
+
+        <apex:column >
+            <apex:facet name="header">Vendor</apex:facet>
+            <apex:inputField value="{!wod.wod.Vendor__c}" style="width: 100px;" />
+        </apex:column>
+        <apex:column width="40">
+            <apex:facet name="header">Line Qty</apex:facet>
+            <apex:inputField value="{!wod.wod.SVMXC__Actual_Quantity2__c}"  style="width: 40px;" />
+        </apex:column>
+        <apex:column width="60">
+            <apex:facet name="header">Unit Cost</apex:facet>
+            <apex:inputField value="{!wod.wod.Vendor_Cost_Per_Unit__c}" style="width: 60px;" />
+        </apex:column>
+        <apex:column width="60">
+            <apex:facet name="header">Unit Price</apex:facet>
+            <apex:inputField value="{!wod.wod.SVMXC__Actual_Price2__c}" style="width: 60px;" />
+        </apex:column>
+        <apex:column >
+            <apex:facet name="header">Line Status</apex:facet>
+            <apex:inputField value="{!wod.wod.SVMXC__Line_Status__c}" />
+        </apex:column>
+
+        
+        <apex:column >
+            <apex:facet name="header">Deliver Date</apex:facet>
+            <apex:inputField value="{!wod.wod.Deliver_Date__c}" />
+        </apex:column>
+        <apex:column >
+            <apex:facet name="header">Work Description</apex:facet>
+            <apex:inputField style="width:90%;height:40px;" value="{!wod.wod.SVMXC__Work_Description__c}" />
+        </apex:column>
+        
+        
+        
+        
+
+    </apex:pageblocktable>
+     <apex:commandButton action="{!add10MoreLines}" value="Add 10 More Lines"/>
+    
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

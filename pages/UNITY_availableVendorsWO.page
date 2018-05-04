@@ -1,0 +1,293 @@
+<apex:page standardController="WorkOrder" extensions="UNITY_VendorsFromWOController" docType="html-5.0" action="{!nextOperations}" >
+    
+   
+    <apex:stylesheet value="{!URLFOR($Resource.UNITY_SLDS_100, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.unity_availableVendorsWOCSS)}" />
+    
+    <!-- Remote Objects definition to set accessible sObjects and fields -->
+    <apex:remoteObjects jsNamespace="SObjectModel">
+        <apex:remoteObjectModel name="WorkOrder" jsShorthand="wo" fields="WorkOrderNumber,Id">
+            <apex:remoteObjectField name="UNITY_Assigned_Vendor__c" jsShorthand="assignedVendor"/>
+        </apex:remoteObjectModel>
+        <apex:remoteObjectModel name="UNITY_Vendor_Preference__c" jsShorthand="vendorPreference" fields="Name,Id">
+            <apex:remoteObjectField name="Type__c"       jsShorthand="type" />
+            <apex:remoteObjectField name="Vendor__c"     jsShorthand="vendorId" />
+            <apex:remoteObjectField name="Customer__c"   jsShorthand="customerId" />
+        </apex:remoteObjectModel>
+    </apex:remoteObjects>
+
+   
+    
+<apex:form >
+    
+    <apex:pageMessages id="apexMessage" ></apex:pageMessages>
+    <apex:outputPanel id="warningMessage" style="display:none"><div id="warningMessageDiv">{!warningMessage}</div></apex:outputPanel>
+    <apex:outputPanel id="isVendorAssigned" style=""><div id="isVendorAssigned" data-isVendorAssigned="{!isVendorAssigned}"></div></apex:outputPanel>
+    
+    <!-- REQUIRED SLDS WRAPPER -->
+    <div id="UNITYAvailableVendorsWO" class="slds unity-container"> 
+        
+        <!--<h1 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle" title="Record Title">Vendor Details</h1>-->
+        <div class="slds-grid slds-grid--align-end">
+            <div class=" slds-form-element unity-filter-container slds-col">
+                   <label class="slds-form-element__label" for="selectSample1">CP</label>
+                   <div class="slds-form-element__control" >
+                       <button class="slds-button slds-button--neutral" id="unityShowAllVendors" type="button" disabled="disabled">
+                           <!-- <apex:outputText value="${!WorkOrder.UNITY_Customer_Service_Contract_Price__c}"></apex:outputText> -->
+                           <apex:outputText value="${0, number, ###,###.00}" >
+                                <apex:param value="{!WorkOrder.UNITY_Customer_Service_Contract_Price__c}"/>
+                            </apex:outputText> 
+                       </button>
+                   </div>
+            </div><!--slds-size--1-of-5-->
+            <div class="unity-filter-container slds-col slds-col--padded">
+                   <label class="slds-form-element__label" for="selectSample1">Margin</label>
+                   <div class="slds-form-element__control" >
+                       <button class="slds-button slds-button--neutral" id="unityShowAllVendors" type="button" disabled="disabled">
+                            <!--<apex:outputText value="{!WorkOrder.UNITY_Customer_Margin__c}"></apex:outputText>-->
+                            <apex:outputText value="{0, number, ###,###.00}%">
+                                <apex:param value="{!WorkOrder.UNITY_Customer_Margin__c}"/>
+                            </apex:outputText> 
+                       </button>
+                   </div>
+            </div>
+        </div>
+        <div class="unity-filters-container slds-grid">
+            <div class="  unity-filter-container unity-location-key-container slds-col slds-small-size--1-of-8 slds-medium-size--2-of-12 slds-large-size--1-of-12">
+               <label class="slds-form-element__label" for="unityLocationKeyFilter">Location Key 
+                   <span><a href="https://en.wikipedia.org/wiki/List_of_ZIP_code_prefixes" target="_blank">(i)</a></span> 
+               </label>
+               <div class="slds-form-element__control">
+                   <input  id="unityLocationKeyFilter" value="{!locationKeyF}" class="slds-select unity-input" data-disabled="{!!canSearch}" /> 
+               </div>
+            </div>
+            <div class="unity-filter-container unity-request-type-container slds-col slds-col--padded slds-small-size--1-of-8 slds-medium-size--2-of-12 slds-large-size--1-of-12">
+               <label class="slds-form-element__label" for="unityRecordTypeFilter">Request Type </label>
+               <div class="slds-form-element__control">
+                      <select  id="unityRecordTypeFilter" class="slds-select unity-input" data-disabled="{!!canSearch}">
+                          <option value="SR" >Service Request</option>
+                          <option value="PM" >Preventative Maintenance</option>
+                          <option value="Project" >Project</option>
+                          <option value="SS" >Site Survey</option>
+                      </select>
+               </div>
+            </div>
+            <div class="unity-trade-select-container unity-filter-container slds-col slds-col--padded slds-small-size--1-of-8 slds-medium-size--2-of-12 slds-large-size--1-of-12">
+               <label class="slds-form-element__label" for="unityTradeFilter">Trade</label>
+               <div class="slds-form-element__control">
+                   <apex:outputPanel id="unityTradesSelectorSpan">
+                      <select id="unityTradeFilter" class="slds-select unity-input"  data-disabled="{!!canSearch}">
+                         <apex:repeat value="{!tradesIDs}" var="key">
+                              <option value="{!key}">{!trades[key]}</option>
+                          </apex:repeat>
+                      </select>
+                   </apex:outputPanel>
+               </div>
+            </div>
+            
+            <div class="unity-filter-container unity-status-container slds-col slds-col--padded slds-small-size--1-of-8 slds-medium-size--2-of-12 slds-large-size--1-of-12">
+               <label class="slds-form-element__label" for="unityAccountVendorStatusFilter">Vendor Status</label>
+               <div class="slds-form-element__control">
+                      <select id="unityAccountVendorStatusFilter" class="slds-select unity-input"   data-disabled="{!!canSearch}">
+                          <apex:repeat value="{!statusOptions}" var="status">
+                              <option >{!status}</option>
+                          </apex:repeat>
+                      </select>
+               </div>
+            </div>
+            <apex:outputPanel rendered="{!canSearch}" styleClass="slds-col slds-col--padded slds-small-size--1-of-8 slds-medium-size--2-of-12 slds-large-size--1-of-12">
+                <div class="unity-filter-container slds-col">
+                   <div style="padding-top: 23px;" class="slds-form-element__control">
+                       <button id="unityApplyFilter" type="button" style="" class="slds-button slds-button--neutral" >Go</button>
+                   </div>
+                </div>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!!canSearch}" styleClass="slds-col slds-col--padded slds-small-size--1-of-8 slds-medium-size--2-of-12 slds-large-size--1-of-12">
+                <div class=" unity-filter-container ">
+                   <div style="padding-top: 23px;" class="slds-form-element__control">
+                       <button id="unityShowAllVendors" type="button" style="" class="slds-button slds-button--neutral unity-filter-btn-min-width" >Show All Vendors</button>
+                   </div>
+                </div>
+            </apex:outputPanel>
+        </div>
+        <apex:outputPanel id="unityDataRows" >
+            <table id="unityVendorsTable" class="slds-table slds-table--bordered unity-table" data-outscope="{!outscope}">
+              <thead>
+                <tr class="slds-text-heading--label ">
+                  <th scope="col " class="">
+                    <span class="slds-truncate"></span>
+                  </th>
+                  <th class="slds-truncate" scope="col">
+                    <span class="slds-truncate">Name</span>
+                  </th>
+                  <th scope="col">
+                    <span class="slds-truncate">Phone</span>
+                  </th>
+                    <th scope="col">
+                    <span class="slds-truncate">Score</span>
+                  </th>
+                  <th scope="col">
+                    <span class="slds-truncate">Price</span>
+                  </th>
+                  <th scope="col">
+                    <span class="slds-truncate">Status</span>
+                  </th>
+                  <th scope="col">
+                    <span class="slds-truncate">Last Assigned</span>
+                  </th>
+                  <th class="slds-row-action unity-po-col-min-width" scope="col"></th>
+                  <th class="slds-row-action" scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <apex:repeat value="{!vendors}" var="vendor">
+                    <tr class="slds-hint-parent unity-vendor-td" 
+                        data-id="{!vendor.id}" 
+                        data-offHours="{!vendor.willBeCandidateOffHours}"
+                        data-belowMargin="{!vendor.willBeCandidateBelowMargin}" data-oon="{!vendor.isOON}" 
+                        data-rejected="{!vendor.isRejected}" id="{!vendor.id}"  data-po="{!vendor.assignment.Initial_PO__c}">
+                      <td data-label="isPreferred">
+                          <apex:outputPanel styleClass="{!IF(vendor.isCustomerPreferred, 'unity-customer-preferred-span',IF(vendor.isMinerPreferred,'unity-miner-preferred-span','unity-holder-span'))}">
+                            {!IF(vendor.isCustomerPreferred, 'Customer Preferred',IF(vendor.isMinerPreferred,'Miner Preferred',''))}
+                          </apex:outputPanel>
+    
+                      </td><!--unity-link-to-vendor-->
+                        <th class="unity-popover" data-popover="{!vendor.timeZoneName} <br/>{!vendor.summaryHours}" data-label="vendor-name" role="row" >
+                          <a class="slds-truncate  unity-link" data-href="/{!vendor.id}|true">{!IF(LEN(vendor.name)<=20,vendor.name,LEFT(vendor.name,20)+'...')} </a>
+                      </th>
+                      <td data-label="phone"><span class="slds-truncate"><support:clickToDial number="{!vendor.phone}" entityId="{!vendor.id}" /></span></td>
+                      <td data-label="score">
+                          <span class="slds-truncate">
+                              <apex:outputText value="{0, number, ###}" >
+                                        <apex:param value="{!vendor.score}"/>
+                              </apex:outputText> 
+                          </span>
+                      </td>
+                      <td data-label="price">
+                          <span class="slds-truncate">
+                              <!--<apex:outputText value="$ {0}" > <apex:param value="{!vendor.price}"/></apex:outputText></span>-->
+                              <apex:outputText value="${0, number, ###,###.00}" rendered="{!vendor.price>0}">
+                                    <apex:param value="{!vendor.price}"/>
+                              </apex:outputText> 
+                          </span>
+                      </td>
+                      <td data-label="score"><span class="slds-truncate">{!vendor.assignedStatus}
+                          <apex:outputPanel style="color:red;" rendered="{!vendor.isOON}">(OON)</apex:outputPanel></span></td>
+                      <td data-label="score">{!vendor.userFormat_lastAssignedDate}
+                          <!--<apex:outputText value="{0,date,MM'/'dd'/'yyyy 'at' HH:mm z}" rendered="{!vendor.isAssigned || vendor.isCandidate}">
+                              <apex:param value="{!vendor.lastModifiedDate }" /> 
+                          </apex:outputText>-->
+                      </td>
+                      <td data-label="PO" class="unity-po-td" data-po="{!vendor.assignment.Initial_PO__c}">
+                          <button type="button" class="slds-button unity-review-po">{!IF(vendor.assignment.Initial_PO__c ==null, 'Create PO','Review PO')}</button>
+                      </td>
+                      <td class="slds-row-action unity-assign-vendor-td">
+                        <apex:outputPanel rendered="{! showAssignBtn && (!vendor.isAssigned || !vendor.isAccepted ||(vendor.assignedStatus == '') )}">
+                            <button  type="button"  class="slds-button unity-assign-btn" >Assign</button>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{! !(showAssignBtn && (!vendor.isAssigned || !vendor.isAccepted ||(vendor.assignedStatus == '')))}">
+                            <button  type="button"  class="slds-button"  disabled="disabled">Assign</button>
+                        </apex:outputPanel>
+                          
+                      </td>
+                    </tr>
+                </apex:repeat>
+                <apex:repeat value="{!vendorsOutScope}" var="vendor">
+                    <tr class="slds-hint-parent unity-vendor-out-scope-td " 
+                        data-id="{!vendor.id}" 
+                        data-offHours="{!vendor.willBeCandidateOffHours}"
+                        data-belowMargin="{!vendor.willBeCandidateBelowMargin}" data-oon="{!vendor.isOON}" data-rejected="{!vendor.isRejected}">
+                      <td data-label="isPreferred"></td><!--unity-link-to-vendor-->
+                      <th class="" data-label="vendor-name" role="row" ><a class="slds-truncate  unity-link" data-href="/{!vendor.id}|true">{!vendor.name}</a></th>
+                      <td data-label="phone"><span class="slds-truncate"><support:clickToDial number="{!vendor.phone}" entityId="{!vendor.id}" /></span></td>
+                      <td data-label="score"><span class="slds-truncate"></span></td>
+                      <td data-label="price"><span class="slds-truncate"></span></td>
+                      <td data-label="score"><span class="slds-truncate">{!vendor.assignedStatus}<span style="color:red">(OON)</span></span></td>
+                      <td data-label="last assignment">{!vendor.userFormat_lastAssignedDate}</td>
+                      <td data-label="PO" class="unity-po-td" data-po="{!vendor.assignment.Initial_PO__c}">
+                          <button type="button" class="slds-button unity-review-po">{!IF(vendor.assignment.Initial_PO__c ==null, 'Create PO','Review PO')}</button>
+                      </td>
+                      <td class="slds-row-action unity-assign-vendor-td">
+                           <apex:outputPanel rendered="{! showAssignBtn && (!vendor.isAssigned || !vendor.isAccepted ||(vendor.assignedStatus == '') )}">
+                             <button  type="button"  class="slds-button unity-assign-btn" >Assign</button>
+                           </apex:outputPanel>
+                           <apex:outputPanel rendered="{! !(showAssignBtn && (!vendor.isAssigned || !vendor.isAccepted ||(vendor.assignedStatus == '')))}">
+                            <button  type="button"  class="slds-button"  disabled="disabled">Assign</button>
+                           </apex:outputPanel>
+                      </td>
+                    </tr>
+                </apex:repeat>
+              </tbody>
+           </table>
+           <apex:outputPanel styleClass="unity-no-vendors-available" rendered="{!notVendorsToShow}">No vendors found, please update your search criteria and click "Go."</apex:outputPanel>
+        </apex:outputPanel>
+        <div id="msgSection"></div>
+        
+        <div class="unity-modal-container">
+          <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+              <div class="slds-modal__header">
+                <h2 class="slds-text-heading--medium unity-title">Confirm Assignment</h2>
+                  <!--<button onClick="UNITY.utils.closeModal('.unity-modal-container')" type="button" class="slds-button slds-button--icon-inverse slds-modal__close  " data-class="slds-button__icon--large" data-href="/assets/icons/action-sprite/svg/symbols.svg#close">
+                  <span class="slds-assistive-text">Close</span>
+                </button>-->
+              </div>
+              <div class="slds-modal__content unity-body">
+                <div>
+                  <p>This vendor is off-hours. If you want to proceed please click "Confirm" button. </p>
+                </div>
+              </div>
+              <div class="slds-modal__footer">
+                <div class="slds-x-small-buttons--horizontal">
+                  <button type="button" class="slds-button slds-button--neutral unity-cancel-btn" >Cancel</button>
+                  <button type="button" class="slds-button slds-button--neutral slds-button--brand unity-confirm-btn" >Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-backdrop slds-backdrop--open"></div>
+        </div>
+        
+    </div>
+    <div id="unity-loading-container" ></div>
+    
+     <apex:actionFunction action="{!getVendorAssignmentWarning}" name="unity_getVendorAssignmentWarningJS" rerender="apexMessage,warningMessage" oncomplete="UNITY.availableVendorsWO.finishGetWarning()">
+        <apex:param name="vendorId" assignTo="{!vendorIdToAssign}" value="" />
+     </apex:actionFunction>
+     <apex:actionFunction action="{!createPO}" name="reviewPOJS" rerender="apexMessage,unityDataRows" oncomplete="UNITY.availableVendorsWO.finishReviewPO()">
+        <apex:param name="vendorId" assignTo="{!reviewPOVendorId}" value="" />
+     </apex:actionFunction>
+     <apex:actionFunction action="{!showAllVendors}" name="showAllVendorsJS" rerender="unityDataRows" oncomplete="UNITY.availableVendorsWO.finish()"></apex:actionFunction>
+     <apex:actionFunction action="{!assignVendor}"   name="assignVendorJS"   rerender="dummy,apexMessage,unityDataRows,isVendorAssigned" oncomplete="UNITY.availableVendorsWO.finishAssignment()"></apex:actionFunction>
+     <apex:actionFunction action="{!applyFilter}" name="unity_applyFilterJS" rerender="unityDataRows,unityTradesSelectorSpan" oncomplete="UNITY.availableVendorsWO.finish()">
+         <apex:param name="locationKeyF"         assignTo="{!locationKeyF}" value="" />
+         <apex:param name="requestTypeAbbrF"     assignTo="{!requestTypeAbbrF}" value="" />
+         <apex:param name="tradeIdF"             assignTo="{!tradeIdF}" value="" />
+         <apex:param name="statusF"              assignTo="{!statusF}" value="" />
+     </apex:actionFunction>
+     <apex:actionFunction action="{!filterByAccountVendorStatus}" name="filterAccountVendorStatusJS" rerender="unityDataRows" oncomplete="UNITY.availableVendorsWO.finish()">
+         <apex:param name="accountVendorStatus" assignTo="{!selectedAccountVendorStatus}" value="" />
+     </apex:actionFunction>
+    <apex:outputPanel id="dummy"></apex:outputPanel>
+</apex:form>    
+    
+    <!-- JAVASCRIPT LIBRARIES START -->
+    
+    <script src="/support/console/36.0/integration.js" type="text/javascript"></script>
+    <apex:includeScript value="{!URLFOR($Resource.UNITY_svg4everybody, 'svg4everybody-master/dist/svg4everybody.min.js')}" />
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <!-- JAVASCRIPT LIBRARIES END -->
+    
+    
+    
+    <!-- JAVASCRIPT -->
+    
+    <script src="{!URLFOR($Resource.UNITY_utilsJS)}"/>
+    <script src="{!URLFOR($Resource.UNITY_availableVendorsWOJS)}"/>
+      
+    <!-- JAVASCRIPT -->
+
+        
+    
+</apex:page>

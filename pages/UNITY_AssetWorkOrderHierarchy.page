@@ -1,0 +1,68 @@
+<apex:page standardController="Asset" extensions="UNITY_AssetWorkOrderHierarchyController">
+    <apex:stylesheet value="{!URLFOR($Resource.UNITY_SLDS_100, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.UNITY_AssetWorkOrderHierarchyCSS)}" />
+    
+    <apex:form >
+        <apex:pageBlock title="Work Orders">
+        <apex:pageBlockTable value="{!workOrderMap}" var="woId" >
+            <apex:column >
+                <apex:facet name="header">Name</apex:facet>
+                <apex:outputLink styleClass="unity-a" target="_blank" value="/{!workOrderMap[woId].id}">{!workOrderMap[woId].WorkOrderNumber}</apex:outputLink>
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Accepted Vendor</apex:facet>
+                <apex:outputLink styleClass="unity-a" target="_blank" value="/{!workOrderMap[woId].UNITY_Accepted_Vendor__c}">{!workOrderMap[woId].UNITY_Accepted_Vendor__r.Name}</apex:outputLink>
+            </apex:column>     
+            <apex:column >
+                <apex:facet name="header">Priority</apex:facet>
+                <apex:outputText value="{!workOrderMap[woId].Priority}"/>
+            </apex:column>   
+            <apex:column >
+                <apex:facet name="header">Status</apex:facet>
+                <apex:outputText value="{!workOrderMap[woId].Status}"/>
+            </apex:column>   
+            <apex:column >
+                <apex:facet name="header">Is Potential Warranty?</apex:facet>
+                <apex:inputCheckbox value="{!workOrderMap[woId].UNITY_Is_Potential_Warranty__c}" disabled="true"/>
+            </apex:column>              
+            <apex:column >
+                <apex:facet name="header">Is Under Warranty?</apex:facet>
+                <apex:inputCheckbox value="{!workOrderMap[woId].UNITY_Is_Under_Warranty__c}" disabled="true"/>
+            </apex:column> 
+            <apex:column >
+                <apex:facet name="header">Total Price</apex:facet>
+                <apex:outputText value="${0, number, ###,##0.00}"> 
+                    <apex:param value="{!workOrderMap[woId].UNITY_Work_Order_Total_w_Tax__c}"/>
+                </apex:outputText>
+            </apex:column>                
+        </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+    
+    <!-- JAVASCRIPT LIBRARIES START -->
+        <script src="/support/console/35.0/integration.js" type="text/javascript"></script>
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- JAVASCRIPT LIBRARIES END -->
+    
+    <!-- JAVASCRIPT START -->
+       <script src="{!URLFOR($Resource.UNITY_utilsJS)}"/>
+    <!-- JAVASCRIPT END -->
+        
+             
+    <script> 
+       $( document ).ready(function(){
+           
+        
+           $( document ).on('click','a.unity-a',function(event){
+               event.preventDefault();
+               var $a   = $(this);
+               if ((typeof sforce == 'object' ) && sforce.console.isInConsole()) { 
+                    sforce.console.getFocusedPrimaryTabId(function(primatyTab){
+                        sforce.console.openSubtab(primatyTab.id, $a.prop('href'), true); 
+                    }); 
+                }
+           });
+           
+       });
+    </script>
+</apex:page>

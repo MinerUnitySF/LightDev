@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Get Next Case Hierarchy Settings</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>SBR_Enabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>SFPS_GNC Settings, Enable Skill Based Routing. When this setting is disabled, settings from other SBR setting fields are discarded</description>
+        <externalId>false</externalId>
+        <label>SBR Enabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SBR_Include_Unspecified__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>SFPS_GNC setting, include &apos;Unspecified&apos; skill in pulling cases</description>
+        <externalId>false</externalId>
+        <label>SBR Include Unspecified</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SBR_Skill_Object__c</fullName>
+        <externalId>false</externalId>
+        <label>SBR Skill Object</label>
+        <length>40</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>SFPS GNC Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

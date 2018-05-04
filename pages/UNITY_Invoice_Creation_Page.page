@@ -1,0 +1,203 @@
+<apex:page standardController="Case" extensions="UNITY_InvoiceCreationPageController"  docType="html-5.0">
+     <script type="text/javascript">
+        function testSetTabTitle() {
+            //Set the current tab's title
+            //sforce.console.setTabTitle('{!context.CaseNumber}-Invoice');
+            sforce.console.setTabTitle('{!context.CaseNumber}');
+        }
+        var pageLoad = window.onload;
+          window.onload = function() {
+                if (pageLoad) {
+                        pageLoad();
+                }
+                  testSetTabTitle();
+          }
+    </script>
+    <apex:stylesheet value="{!URLFOR($Resource.UNITY_LightningDesignSystemV12, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <style>
+        
+    .unity-trade-select-container{
+        margin: 23px 0px;
+        width: 20%;
+    }
+    
+    #unityTRadeFilterIconLoading{
+        display: none;
+        position: absolute;
+        margin-left: 74px;
+        margin-top: -19px;
+    }
+     
+    .unity-filter-container{
+        margin-left : 5px;
+    }
+          
+    .unity-table th:first-child{
+        width: 60px;
+    }
+        
+    #unity-loading-container{
+        float: left;
+        width: 100%;
+        padding: 38px 0px;
+        text-align: center;
+    }
+    </style>
+    
+<apex:form id="unityDataRows">
+    
+    <!-- REQUIRED SLDS WRAPPER -->
+    <div id="UNITYOrders" class="slds unity-container"> 
+        <div style="font-size:20px">
+            Case {!context.CaseNumber} 
+            <div>
+                <div class="slds-form-element" >
+                    <div class="slds-form-element__control">
+                      <label class="slds-checkbox">
+                        <apex:inputCheckbox value="{!poCheckbox}" styleClass="">
+                            <apex:actionSupport event="onchange" action="{!poCheckboxCheck}" reRender="partialInvoice_Checkbox_Panel,partial_Invoicing_Reason_Panel"/>
+                        </apex:inputCheckbox>
+                        <span class="slds-checkbox--faux"></span>
+                        <span class="slds-form-element__label">Partial Invoicing.</span>
+                      </label>
+                    </div>
+                </div>
+            </div><!--
+            <span style ="margin-left:5px;margin-right:2px">  
+                <apex:inputCheckbox value="{!poCheckbox}" styleClass="">
+                    <apex:actionSupport event="onchange" action="{!poCheckboxCheck}" reRender="partialInvoice_Checkbox_Panel,partial_Invoicing_Reason_Panel"/>
+                </apex:inputCheckbox>
+            </span> Partial Invoicing.-->
+            <div class="slds-form-element" style="margin-bottom: 19px;">
+                <apex:outputPanel id="partial_Invoicing_Reason_Panel">
+                    <apex:outputPanel rendered="{!poCheckbox}">
+                        <span style="font-size: 15px !important;">User: {!$User.FirstName} {!$User.LastName}</span><br></br>
+                        <label class="slds-form-element__label" for="text-input-01">Reason:</label>
+                        <div class="slds-form-element__control">
+                          <apex:inputText value="{!context.UNITY_Partial_Invoice_Reason__c}" />
+                        </div>
+                    </apex:outputPanel>
+               </apex:outputPanel>
+            </div><!--
+            <apex:outputPanel id="partial_Invoicing_Reason_Panel">
+                <apex:outputPanel rendered="{!poCheckbox}">
+                    <span style ="margin-left:5px;margin-right:2px">Reason: <apex:inputText value="{!context.UNITY_Partial_Invoice_Reason__c}" style="font-size:12px"/></span>
+                    <span style ="margin-left:5px;margin-right:2px">User: {!$User.FirstName} {!$User.LastName}</span>
+                </apex:outputPanel>
+            </apex:outputPanel>-->
+        </div>
+        <apex:outputText rendered="{!IF(noOrders,"True","False")}" value="One or more work orders are not attachment compliant. Please see customer service contract for specific document requirements."/>   
+        
+            <apex:outputPanel id="oP1">
+                <apex:repeat value="{!wrappers}" var="workOrder">
+                <table class="slds-table slds-table--bordered unity-table">
+                  <thead>
+                    <tr>
+                        <th style="font-weight:bold" colspan="8">
+                            <apex:outputPanel rendered="{!isInvoiceableWorkOrderMap[workOrder.wo.Id]}">
+                                <apex:inputcheckbox value="{!workOrder.assignToInvoice}" >
+                                    <apex:actionSupport event="onchange" action="{!poCheckboxCheck}" reRender="partialInvoice_Checkbox_Panel"/>
+    
+                                </apex:inputcheckbox>
+                            </apex:outputPanel>
+                            Work Order Number: <a href = "/{!workOrder.wo.Id}">{!workOrder.Name} </a> 
+                         </th>
+                         <th></th>
+                    </tr>
+                    <tr class="slds-text-heading--label">
+                      <th scope="col">
+                        <span></span>
+                      </th>
+                      <th scope="col">
+                        <span></span>
+                      </th>
+                      <th scope="col">
+                        <span>Invoiced</span>
+                      </th>
+                      <th scope="col">
+                        <span>Account Name</span>                  
+                      </th>
+                      <th scope="col">
+                        <span>Customer Name</span>
+                      </th>
+                      <th scope="col">
+                        <span>Vendor Name</span>
+                      </th>
+                      <th scope="col">
+                        <span>Total Amount</span>
+                      </th>
+                      <th scope="col">
+                        <span>Total Cost</span>
+                      </th>
+                      <th scope="col">
+                        <span>Status</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                        <apex:repeat value="{!workOrder.oWrappers}" var="order">
+                        <tr>
+                          <td>
+                              <apex:outputPanel id="po_Checkbox_Panel">
+                                  <apex:outputPanel rendered="{!displayPOCheckbox}">
+                                      <input type="checkbox"/>
+                                  </apex:outputPanel>
+                              </apex:outputPanel>
+                          </td>
+                          <td>
+                            <apex:outputPanel id="partialInvoice_Checkbox_Panel" >
+                                <apex:outputPanel rendered="{!displayPOCheckbox}">
+                                <!--<button type="button" onclick="assignOrderJS({!order.orderNumber})" class="slds-button unity-assign-btn" >{!IF(order.assignToInvoice,'Deassign from Invoice','Assign to Invoice')}</button>-->
+                                <apex:inputcheckbox value="{!order.assignToInvoice}" rendered="{!NOT(order.invoiced)}" />
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                          </td>
+                          <td data-label="phone"><span class="slds-truncate">{!IF(order.order.UNITY_Invoiced__c,"Yes","No")}</span></td>
+                          <td data-label="score"><span class="slds-truncate"><a href ="/{!order.AccountId}">{!order.accountName}</a></span></td>
+                          <td data-label="score"><span class="slds-truncate">{!order.order.UNITY_Customer__r.Name}</span></td>
+                          <td data-label="score"><span class="slds-truncate">{!order.order.UNITY_Assigned_Vendor__c}</span></td>
+                          <td data-label="score"><span class="slds-truncate">{!order.order.UNITY_Total_Amount__c}</span></td>
+                          <td data-label="score"><span class="slds-truncate">{!order.order.UNITY_Total_Cost__c}</span></td>
+                          <td data-label="score"><span class="slds-truncate">{!order.order.status}</span></td>
+                        </tr>
+                     </apex:repeat>
+                  </tbody>
+               </table>
+            </apex:repeat>
+            </apex:outputPanel>
+      
+            <!--<div style="padding-left:50px;boxing-size:content-box;float:left" class="unity-trade-select-container">
+               <div class="slds-form-element__control">
+                   <button  onclick="createInvoiceJS()" type="button" class="slds-button slds-button--neutral" style="{!IF(noOrdersToInvoice,"display:none;","display:block;")}">Create Invoice</button>
+               </div>
+            </div>-->
+            <div class="slds-grid">
+               <div style="/*padding-left:50px;boxing-size:content-box;position:absolute;padding-top:23px*/"  class="slds-form-element__control slds-col  slds-m-top--small">
+                   <button onclick="backToCaseJS()" type="button" class="slds-button slds-button--neutral slds-m-left--small" style="position:relative;float: right;">Back To Case</button>
+                   <button  onclick="createInvoiceJS()" type="button" class="slds-button slds-button--neutral" style="float: right;{!IF(noOrdersToInvoice,"display:none;","display:block;")}">Create Invoice</button>
+                   
+               </div>
+
+               <!--<div style="padding-left:450px;boxing-size:content-box;position:absolute;padding-top:23px"  class="slds-form-element__control">
+                   <button onclick="backToCaseJS()" type="button" class="slds-button slds-button--neutral" style="position:relative">Back To Case</button>
+                   
+               </div>-->
+            </div>
+        <div id="msgSection"></div>
+    </div>
+    <div id="unity-loading-container" ></div>
+    <apex:actionFunction action="{!createInvoice}" name="createInvoiceJS" status="loadingStatus" rerender="unityDataRows"/>
+    <apex:actionFunction action="{!backToCase}" name="backToCaseJS"/>
+</apex:form>    
+
+    <c:ajaxStatus loadingText="Processing..."/>
+
+    <script src="/support/console/35.0/integration.js" type="text/javascript"></script>
+    <apex:includeScript value="{!URLFOR($Resource.UNITY_svg4everybody, 'svg4everybody-master/dist/svg4everybody.min.js')}" />
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <script src="{!URLFOR($Resource.UNITY_utilsJS)}"/>
+    <script src="{!URLFOR($Resource.UNITY_availableVendorsWOJS)}"/>
+
+    
+</apex:page>

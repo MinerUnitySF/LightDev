@@ -1,0 +1,292 @@
+<apex:page docType="html-5.0" standardController="SVMXC__Service_Order__c" extensions="SVMX_VF_Invoice_Preview_Extension"
+			applyBodyTag="false" applyHtmlTag="false" showHeader="false" renderAs="pdf">
+<head>
+    <style type="text/css">
+        @page {
+            margin-right: 2mm; 
+            margin-bottom: 4cm;         
+            margin-top: 100mm;   
+            @bottom-right {
+                font-family: Helvetica;
+                font-size: 9pt;
+            }
+            @top-center {
+               content: element(header);
+            }
+            @bottom-left {
+	            content: element(footer);
+	        }          
+        }
+        body {
+		  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+		  font-size: 9pt;
+		}
+		div.footer {
+			display: block;
+			padding: 5px;
+			position: running(footer);
+        }
+        div.header {
+             padding: 10px;             
+             position: running(header);
+             margin-top: 9mm;   
+        }
+        .title {
+            padding: 0px 0px 0px 0px;
+            font-size: 28pt;
+        }
+        .borderedTable {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .borderedCellSides{
+        	border-right: 1px solid gray;
+        	border-left: 1px solid gray;
+        	border-collapse: collapse;
+        	text-align: left;
+        	min-height: 18px;
+        	padding-left: 5px;
+        }
+        .borderedCellSidesAndBottom{
+        	border-right: 1px solid gray;
+        	border-left: 1px solid gray;
+        	border-bottom: 1px solid gray;
+        	border-collapse: collapse;
+        	text-align:left;
+        	min-height:18px;
+        	padding-left:5px;
+        }
+        .grayHeader {
+            background-color: #b3b3b3;
+            font-weight: bold;
+        }
+        .workOrderHeaderTable {
+            padding: 170px 0px 0px 0px;
+            min-width: 80%;
+        }
+        .workOrderLineItemTable {
+            padding: 270px 0px 0px 0px;
+            min-width: 80%;
+        }
+        .page-wrapper{            
+            left: 2px;
+            right: 50px;
+        }
+    </style>
+    </head>
+    <body style="background-image: url('{!URLFOR($Resource.images,'draft-whatermark.png')}');">
+    	<div class="footer">
+        	<table style="margin-left:1mm;font-size:8pt;width:90%" class="borderedTable">
+        		<tr valign="top">
+        			<td width="20%" class="borderedTable"></td>
+        			<td width="30%" class="borderedTable">
+						<table>
+			            	<tr>
+			            		<td colspan="2"><b>Please remit to:</b></td>
+			            	</tr> 
+			            	<tr>
+			            		<td style="width:15%"></td>
+			            		<td>
+			            			<div>
+			            				<b>{!workOrder.SVMXC__Service_Group__r.Company_Legal_Name__c}<br/>
+			            				{!minerAccount.BillingStreet}<br/>
+			            				{!minerAccount.BillingCity}, {!minerAccount.BillingState} {!minerAccount.BillingPostalCode}<br/>
+			            				830.627.8600</b>		            				
+			            			</div>
+			            			</td>
+			            	</tr>        
+						</table>
+					</td>
+        			<td width="50%" class="borderedTable" style="vertical-align:top;font-weight:bold">
+						<table width="100%">
+							<tr>
+								<td width="20%" style="text-align: right;">Sub Totals:</td>
+								<td width="80%" style="width:60%;text-align:right;">
+			                        <apex:outputText value="{0, number, currency}">
+			                            <apex:param value="{!revenue}"></apex:param>
+			                        </apex:outputText> 								
+			                    </td>
+							</tr>
+							<tr><td><br/></td></tr>
+							<tr valign="bottom">
+								<td style="text-align:right;vertical-align:top">Sales Tax:</td>
+								<td style="width:60%;text-align:right;">
+									<div>
+				                        <apex:outputText value="{0, number, currency}">
+				                            <apex:param value="{!taxTotal}"></apex:param>
+				                        </apex:outputText>
+				                        <hr/>
+			                        </div>
+			                    </td>
+							</tr>
+							<tr style="vertical-align:top"  height="2px" >
+								<td style="text-align: right;vertical-align:top;padding:0px;margin:0px;">Invoice Total:</td>
+								<td style="width:60%;text-align:right;vertical-align:top;padding:0px;margin:0px;">
+									<div>
+				                        <apex:outputText value="{0, number, currency}">
+				                            <apex:param value="{!orderTotal}"></apex:param>
+				                        </apex:outputText>
+			                        </div>
+			                    </td>
+							</tr>
+						</table>
+					</td>
+        		</tr>        		
+        	</table>
+			<div style="float:right;width:250px;margin-right:18mm;vertical-align:top;"><hr style="border-top: 5px double black;"/></div>
+        </div>
+        <div class="header">
+        	<table width="90%" >
+        		<tr>
+        			<td width="30%">
+        				<apex:image url="{!URLFOR($Resource.MinerCorp_Logo)}" width="162px" height="147px" />
+        			</td>
+        			<td style="vertical-align:top" width="30%">
+		        		<table style="font-size:7pt;">
+			            	<tr>
+			            		<td><b>{!workOrder.SVMXC__Service_Group__r.Company_Legal_Name__c}</b></td>
+			            	</tr> 
+			            	<tr>
+			            		<td>{!workOrder.SVMXC__Service_Group__r.SVMXC__Street__c}</td>
+			            	</tr> 
+			            	<tr> 
+			            		<td>{!workOrder.SVMXC__Service_Group__r.SVMXC__City__c}, {!workOrder.SVMXC__Service_Group__r.SVMXC__State__c} {!workOrder.SVMXC__Service_Group__r.SVMXC__Zip__c}</td>
+			            	</tr>
+			            	<tr> 
+			            		<td>{!workOrder.SVMXC__Service_Group__r.SVMXC__Phone__c} <b><apex:outputText rendered="{!IF(workOrder.SVMXC__Service_Group__r.SVMXC__Phone__c != null, true, false)}" value=" phone"/></b></td>
+			            	</tr>
+			            	<tr> 
+			            		<td>{!workOrder.SVMXC__Service_Group__r.Fax_c__c} <b><apex:outputText rendered="{!IF(workOrder.SVMXC__Service_Group__r.Fax_c__c != null, true, false)}" value=" fax"/></b></td>             		
+			            	</tr>           	
+	            		</table>
+		            </td>
+        			<td style="vertical-align:top;margin-right:0;margin-left:auto;cell-padding:0px;" width="30%">
+	        			<table class="borderedTable" style="font-size:10pt;" width="100%">
+			                <tr>
+			                    <td colspan="2" style="text-align:right;font-size:16pt;"><b>Invoice&nbsp;&nbsp;</b></td>
+			                </tr>
+			                <tr>
+			                    <td style="width:50%;text-align:right;" height="25px;" class="borderedTable"><b>Invoice No.:&nbsp;</b></td>
+			                    <td style="width:50%;text-align:center;font-size:12pt;" class="borderedTable">{!workOrder.SVMXC__Invoice_Number__c}</td>
+			                </tr>
+			                <tr>
+			                    <td style="width:50%;text-align:right;" height="30px;" class="borderedTable"><b>Date:&nbsp;</b></td>
+			                    <td style="width:50%;text-align:center;" class="borderedTable">
+			                        <apex:outputText value="{0,date, MM/dd/YYYY}">
+			                            <apex:param value="{!workOrder.TFS_Invoice_Date__c}"></apex:param>
+			                        </apex:outputText>
+			                    </td>
+			                </tr>
+			            </table>
+			         </td>
+        		</tr>
+        	</table>
+			<table style="width:90%;font-size:10pt;color:#2929d2;">
+                <tr>
+                	<td colspan="2" style="text-decoration:underline;text-align:right"><b>www.minercorp.com</b></td>
+                </tr>
+			</table>
+			<table style="width:90%;" class="borderedTable" id="customerInfo">
+	            <thead class="borderedTable, grayHeader">
+	                <tr>
+	                    <td style="width:50%;text-align:center" class="borderedTable">Bill To:</td>
+	                    <td style="width:50%;text-align:center" class="borderedTable">Ship To:</td>
+	                </tr>
+	            </thead>
+	            <tbody >
+	            	<tr>
+	            		<td class="borderedCellSidesAndBottom">
+	            			<div style="vertical-align:top">
+	            				{!workOrder.SVMXC__Company__r.Name}<br/>
+	            				{!workOrder.SVMXC__Company__r.BillingStreet}<br/>
+	            				{!workOrder.SVMXC__Company__r.BillingCity}, {!workOrder.SVMXC__Company__r.BillingState} {!workOrder.SVMXC__Company__r.BillingPostalCode}<br/>
+	            				Acct#: {!workOrder.SVMXC__Company__r.MH_SL_CustID__c}<br/>
+	            			</div>
+	            			<div style="color:red;">
+	            				<br/>
+	            				<b>*** Please note your new account number -</b><br/>
+	            				<b>Please reference when remitting payment ***</b>
+	            			</div>
+	            		</td>
+	            		<td style="vertical-align:top" class="borderedCellSidesAndBottom">
+	            			<div>
+	            				{!workOrder.Location__r.Name}<br/>
+	            				{!workOrder.Location__r.SVMXC__Street__c}<br/>
+	            				{!workOrder.Location__r.SVMXC__City__c}, {!workOrder.Location__r.SVMXC__State__c} {!workOrder.Location__r.SVMXC__Zip__c}
+	            			</div>
+	            		</td>
+	            	</tr>
+	            </tbody>
+	        </table>        
+        </div>
+        <div style="position:relative;page-break-after:auto;" class="page-wrapper">
+	        <div style="font-size:8pt;">&nbsp;&nbsp;Work Order #: {!workOrder.Name}</div>
+			<table style="width:90%;" class="borderedTable" id="workOrderHeaderTable">
+                 <thead class="borderedTable, grayHeader">
+                     <tr>
+                         <td style="width:25%;text-align:center" class="borderedTable">Customer P.O.</td>
+                         <td style="width:25%;text-align:center" class="borderedTable">Ship Via</td>
+                         <td style="width:34%;text-align:center" class="borderedTable">F.O.B.</td>
+                         <td style="width:16%;text-align:center" class="borderedTable">Terms</td>                            
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr>
+                         <td style="text-align:center;font-size:8pt;" height="30px;" class="borderedTable">{!workOrder.Customer_P_O__c}</td>
+                         <td style="text-align:center;font-size:8pt;" class="borderedTable"></td>
+                         <td style="text-align:center;font-size:8pt;" class="borderedTable"></td>
+                         <td style="text-align:center;font-size:8pt;" class="borderedTable">Net {!workOrder.SVMXC__Company__r.Pay_Terms__c}</td>
+                     </tr>
+                     <tr>
+                     	<td colspan="4" class="borderedCellSides" style="border-color:black"><apex:outputText value="{!IF(workOrder.Service_Notes__c != null, workOrder.Service_Notes__c, 'Thank you for choosing Miner!!!')}"/></td>
+                     </tr>
+                     <tr>
+                     	<td colspan="4" class="borderedCellSides" style="border-color:black"></td>
+                     </tr>
+                 </tbody>
+			</table>
+            <table style="width:90%;top:272px;border-collapse:collapse;margin-bottom:5px" id="workOrderLineItemTable">
+                <thead class="grayHeader">
+                    <tr>
+                        <th style="width:50%;text-align:center" class="borderedTable">Item Number And Description</th>
+                        <th style="width:10%;text-align:center" class="borderedTable">Quantity</th>
+                        <th style="width:8%;text-align:center" class="borderedTable">UOM</th>
+                        <th style="width:16%;text-align:center" class="borderedTable">Price</th>
+                        <th style="width:16%;text-align:center" class="borderedTable">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <apex:repeat value="{!workOrderLines}" var="woli"> 
+                        <tr valign="top">
+                            <td style="padding-left:5px;text-align:left;" height="40px;" class="borderedTable">{!woli.SVMXC__Work_Description__c}</td>
+                            <td style="text-align:center;" class="borderedTable">{!woli.SVMXC__Actual_Quantity2__c}</td>
+                            <td style="text-align:center;" class="borderedTable">{!woli.Unit_of_Measure__c}</td>
+                            <td style="text-align:right;" class="borderedTable">
+                                <apex:outputText value="{0, number, currency}">
+                                    <apex:param value="{!woli.Estimate_or_Actual_Price__c}" />
+                                </apex:outputText>
+                            </td>        
+                            <td style="text-align:right;" class="borderedTable">
+                                <apex:outputText value="{0, number, currency}">
+                                    <apex:param value="{!woli.SVMXC__Total_Line_Price__c}" />
+                                </apex:outputText>
+                            </td>          
+                        </tr>
+                    </apex:repeat>                        
+                </tbody>
+            </table>
+           	<table width="90%" style="border:1px solid black;">
+               	<tr>
+               		<td style="text-decoration:underline;"><b> RECOMMENDED SERVICE:</b></td>
+               	</tr>
+               	<tr>
+               		<td>
+               			<apex:repeat value="{!recommendedServices}" var="rService"> 
+               				{!rService.History_Notes__c}<br/>
+               			</apex:repeat>
+               		</td>
+               	</tr>                	
+           	</table>
+        </div>
+    </body>
+</apex:page>

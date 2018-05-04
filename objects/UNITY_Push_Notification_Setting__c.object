@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>This custom setting defines a query and what fields to display per Push Notification type.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>BG_Color__c</fullName>
+        <externalId>false</externalId>
+        <label>BG Color</label>
+        <length>225</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fields_Order__c</fullName>
+        <description>The order in which to display the fields on the notification.</description>
+        <externalId>false</externalId>
+        <label>Fields Order</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Object__c</fullName>
+        <description>The object this refers to</description>
+        <externalId>false</externalId>
+        <label>Object</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Query__c</fullName>
+        <description>The Query to be performed in order to get the desired info per notification. All the way up to &apos;FROM Objert_Api__c&apos;. No WHERE statement included.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Query to be performed in order to get the desired info per notification.</inlineHelpText>
+        <label>Query</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>Push Notification Setting</label>
+    <visibility>Public</visibility>
+</CustomObject>
