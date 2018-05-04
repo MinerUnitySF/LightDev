@@ -57,7 +57,7 @@ public class UNITY_AuraCOIExpiredNotifyController {
                              message.noticeFax  = fax;   
                              message.expiredInsurance = true;
                              message.expiredInsuranceInDays = false;
-							 message.insuranceType =insuranceType;
+                             message.insuranceType =insuranceType;
                             
                             insuranceMessages.add(message);
                          } 
@@ -81,6 +81,7 @@ public class UNITY_AuraCOIExpiredNotifyController {
           return insuranceMessages;
     }
     
+    //Remove duplicates froim the list
      private static List<UNITY_Insurance__c> removeDuplicateCIO (List<UNITY_Insurance__c> duplicateInsurance ){
         List<UNITY_Insurance__c> distinctInsurance= new List<UNITY_Insurance__c>();
         
