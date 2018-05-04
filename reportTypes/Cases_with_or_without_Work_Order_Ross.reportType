@@ -1129,6 +1129,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Coordinator</displayNameOverride>
+            <field>Corporate_Contact__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>UNITY_Template_Config_Ext_ID__c</field>
             <table>Case</table>
         </columns>
@@ -1519,12 +1525,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Contact</field>
-            <table>Case.WorkOrders</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Coordinator</displayNameOverride>
-            <field>Corporate_Contact__c</field>
             <table>Case.WorkOrders</table>
         </columns>
         <columns>

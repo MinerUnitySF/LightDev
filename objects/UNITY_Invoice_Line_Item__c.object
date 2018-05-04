@@ -80,6 +80,16 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>UNITYPM_Is_Preventative_Maintenance__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Preventative Maintenance</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>UNITY_Activity_Type__c</fullName>
         <description>The line activity type</description>
         <externalId>false</externalId>
@@ -492,6 +502,18 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UNITY_Asset_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(UNITY_Asset__r.UNITY_Asset_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Asset Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>

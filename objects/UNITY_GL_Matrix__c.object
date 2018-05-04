@@ -573,6 +573,16 @@
                     <default>false</default>
                     <label>Project</label>
                 </value>
+                <value>
+                    <fullName>PMA</fullName>
+                    <default>false</default>
+                    <label>PMA</label>
+                </value>
+                <value>
+                    <fullName>PMO</fullName>
+                    <default>false</default>
+                    <label>PMO</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -623,6 +633,8 @@
         <columns>UNITY_Tax_Account__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>

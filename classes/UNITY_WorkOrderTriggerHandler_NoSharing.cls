@@ -70,7 +70,7 @@ public without sharing class UNITY_WorkOrderTriggerHandler_NoSharing {
 		Map<Id, Account> vendorList = new Map<Id, Account>([SELECT Id, IsCustomerPortal
 										FROM Account
 	                                 	WHERE Id In :acctWOrderMap.keySet()
-                                        AND RecordTypeId = :UNITY_Constants.ACCOUNT_VENDOR_RECORDTYPE
+                                        AND (RecordTypeId = :UNITY_Constants.ACCOUNT_VENDOR_RECORDTYPE OR RecordTypeId = :UNITY_Constants.ACCOUNT_MINER_RECORDTYPE)
 	                                 	AND IsCustomerPortal = true]);
 
 		if (vendorList.size() <= 0)

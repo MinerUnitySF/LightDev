@@ -34,7 +34,7 @@
             <field>UNITY_Agent__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>customersupport@minercorp.com</senderAddress>
+        <senderAddress>customersupport_uat@minercorp.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>UNITY_Email_Templates/UNITY_Purchase_Order_New</template>
     </alerts>
@@ -73,7 +73,7 @@
             <field>UNITY_Agent__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>vendorsupport@minercorp.com</senderAddress>
+        <senderAddress>vendorsupport_uat@minercorp.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>UNITY_Email_Templates/UNITY_Purchase_Order_New</template>
     </alerts>
@@ -130,7 +130,7 @@
             <field>UNITY_Agent__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>vendorsupport@nsbs.net</senderAddress>
+        <senderAddress>vendorsupport_uat@nsbs.net</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>UNITY_Email_Templates/UNITY_Purchase_Order_New</template>
     </alerts>
@@ -149,7 +149,7 @@
             <field>UNITY_Agent__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>customersupport@minercorp.com</senderAddress>
+        <senderAddress>customersupport_uat@minercorp.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>UNITY_Email_Templates/UNITY_Work_Order_Acceptance</template>
     </alerts>
@@ -188,7 +188,7 @@
             <field>UNITY_Agent__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>vendorsupport@minercorp.com</senderAddress>
+        <senderAddress>vendorsupport_uat@minercorp.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>UNITY_Email_Templates/UNITY_Work_Order_Acceptance_v2_Miner</template>
     </alerts>
@@ -207,7 +207,7 @@
             <field>UNITY_Agent__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>vendorsupport@minercorp.com</senderAddress>
+        <senderAddress>vendorsupport_uat@minercorp.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>UNITY_Email_Templates/UNITY_Work_Order_Acceptance_MNS_Disney</template>
     </alerts>
@@ -226,7 +226,7 @@
             <field>UNITY_Agent__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>vendorsupport@minercorp.com</senderAddress>
+        <senderAddress>vendorsupport_uat@minercorp.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>UNITY_Email_Templates/UNITY_Work_Order_Acceptance_MNS_TJX</template>
     </alerts>
@@ -245,13 +245,13 @@
             <field>UNITY_Agent__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>vendorsupport@nsbs.net</senderAddress>
+        <senderAddress>vendorsupport_uat@nsbs.net</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>UNITY_Email_Templates/UNITY_Work_Order_Acceptance_v2_NSBS</template>
     </alerts>
     <alerts>
         <fullName>UNITY_Work_Order_Assignment_Notification</fullName>
-        <ccEmails>customersupport_uat@minercorp.com</ccEmails>
+        <ccEmails>vendorsupport_uat@minercorp.com</ccEmails>
         <description>UNITY Work Order Assignment Notification</description>
         <protected>false</protected>
         <recipients>
@@ -265,7 +265,7 @@
             <field>UNITY_Agent__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>vendorsupport@minercorp.com</senderAddress>
+        <senderAddress>vendorsupport_uat@minercorp.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>UNITY_Email_Templates/UNITY_WorkOrder_Assignment</template>
     </alerts>
@@ -285,13 +285,13 @@
             <field>UNITY_Agent__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>vendorsupport@nsbs.net</senderAddress>
+        <senderAddress>vendorsupport_uat@nsbs.net</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>UNITY_Email_Templates/UNITY_WorkOrder_Assignment</template>
     </alerts>
     <alerts>
         <fullName>UNITY_Work_Order_Assignment_Notification_MNS_Vendor</fullName>
-        <ccEmails>vendorsupport@minercorp.com</ccEmails>
+        <ccEmails>vendorsupport_uat@minercorp.com</ccEmails>
         <description>UNITY Work Order Assignment Notification MNS Vendor</description>
         <protected>false</protected>
         <recipients>
@@ -305,13 +305,13 @@
             <field>UNITY_Agent__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>vendorsupport@minercorp.com</senderAddress>
+        <senderAddress>vendorsupport_uat@minercorp.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>UNITY_Email_Templates/UNITY_WorkOrder_Assignment</template>
     </alerts>
     <alerts>
         <fullName>UNITY_Work_Order_Assignment_Notification_NSBS_Vendor</fullName>
-        <ccEmails>vendorsupport@nsbs.net</ccEmails>
+        <ccEmails>vendorsupport_uat@nsbs.net</ccEmails>
         <description>UNITY Work Order Assignment Notification NSBS Vendor</description>
         <protected>false</protected>
         <recipients>
@@ -325,7 +325,7 @@
             <field>UNITY_Agent__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>vendorsupport@nsbs.net</senderAddress>
+        <senderAddress>vendorsupport_uat@nsbs.net</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>UNITY_Email_Templates/UNITY_WorkOrder_Assignment</template>
     </alerts>
@@ -385,9 +385,9 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Remove_Date_Time_On_IVR_CheckOut</fullName>
-        <field>UNITY_Date_Status_IVR_Check_Out__c</field>
-        <name>Remove Date Time On IVR CheckOut</name>
+        <fullName>Remove_Date_Debriefed_Completed</fullName>
+        <field>UNITY_Date_Time_Debrief_Completed__c</field>
+        <name>Remove Date Debriefed Completed</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Null</operation>
         <protected>false</protected>
@@ -469,16 +469,6 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Set_Date_Time_On_IVR_CheckOut</fullName>
-        <field>UNITY_Date_Status_IVR_Check_Out__c</field>
-        <formula>NOW()</formula>
-        <name>Set Date Time On IVR CheckOut</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Set_Margin_Approved</fullName>
         <field>UNITY_Margin_Approved__c</field>
         <literalValue>1</literalValue>
@@ -495,16 +485,6 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Set_Status_Date_IVR_Check_Out</fullName>
-        <field>UNITY_Date_Status_IVR_Check_Out__c</field>
-        <formula>NOW()</formula>
-        <name>Set Status Date IVR Check Out</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>Set_WO_Margin_Approval</fullName>
@@ -608,24 +588,16 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>UNITY_Rem_Ttl_Min_Btw_Last_IVR_Debrif</fullName>
-        <field>UNITY_Total_Min_Btw_Last_IVR_and_Debrief__c</field>
+        <field>UNITY_Time_to_Debrief__c</field>
         <name>Remove Total Min Btw Last IVR and Debrif</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Null</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>UNITY_Remove_User_Name</fullName>
-        <field>UNITY_User_Set_AllTasks_Completed__c</field>
-        <name>Remove User Name</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Null</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>UNITY_Remove_User_Name_Total_Min</fullName>
-        <field>UNITY_Total_Min_Btw_Last_IVR_and_Debrief__c</field>
-        <name>Remove User Name Total Min</name>
+        <fullName>UNITY_Remove_Debrief_User_Name</fullName>
+        <field>UNITY_Debrief_Agent__c</field>
+        <name>Remove Debrief User Name</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Null</operation>
         <protected>false</protected>
@@ -940,8 +912,9 @@ IF(ISPICKVAL( Priority ,&quot;4 Hour Response&quot;),UNITY_Work_Window_Begin__c 
 IF(ISPICKVAL( Priority ,&quot;12 Hour Response&quot;),UNITY_Work_Window_Begin__c + 0.5, 
 IF(ISPICKVAL( Priority ,&quot;24 Hour Response&quot;),UNITY_Work_Window_Begin__c + 1.0, 
 IF(ISPICKVAL( Priority ,&quot;48 Hour Response&quot;),UNITY_Work_Window_Begin__c + 2.0, 
+IF(ISPICKVAL( Priority ,&quot;Planned Maintenance&quot;),UNITY_Work_Window_Begin__c + 2.0, 
 IF(ISPICKVAL( Priority ,&quot;72 Hour Response&quot;),UNITY_Work_Window_Begin__c + 3.0, 
-NOW()))))))</formula>
+NOW())))))))</formula>
         <name>Update Work Window End</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -1064,7 +1037,7 @@ NOW()))))))</formula>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>OR (    ISBLANK( UNITY_Customer_Service_Contract__r.UNITY_Required_Documentation__c ),    RecordType.DeveloperName = &apos;UNITY_Non_Work&apos; )</formula>
+        <formula>AND (RecordType.DeveloperName != &apos;Preventative_Maintenance&apos;, OR (    ISBLANK( UNITY_Customer_Service_Contract__r.UNITY_Required_Documentation__c ),    RecordType.DeveloperName = &apos;UNITY_Non_Work&apos; ))</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -1320,7 +1293,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>ISPICKVAL(UNITY_Customer_Service_Contract__r.UNITY_Contract_Sub_type__c , &quot;Contract Pricing&quot;) &amp;&amp; RecordType.Name = &quot;Service Request&quot;</formula>
+        <formula>ISPICKVAL(UNITY_Customer_Service_Contract__r.UNITY_Contract_Sub_type__c , &quot;Contract Pricing&quot;) &amp;&amp; RecordType.Name = &quot;Service Request&quot; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos;</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -1330,7 +1303,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp;  ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;)&amp;&amp;  !ISBLANK(UNITY_Vendor_Accept_Date__c ) &amp;&amp;  !ISBLANK( StartDate  )</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp;  RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;)&amp;&amp;  !ISBLANK(UNITY_Vendor_Accept_Date__c ) &amp;&amp;  !ISBLANK( StartDate  )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1340,7 +1313,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;)&amp;&amp; !UNITY_Auto_Dispatch__c</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;)&amp;&amp; !UNITY_Auto_Dispatch__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1350,7 +1323,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; !ISPICKVAL(UNITY_Vendor_Status__c, &apos;&apos;)</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; !ISPICKVAL(UNITY_Vendor_Status__c, &apos;&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1360,7 +1333,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp;  FSO__Check_In_Date__c  &lt;= UNITY_Work_Window_End__c</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp;  RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; FSO__Check_In_Date__c  &lt;= UNITY_Work_Window_End__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1376,7 +1349,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
     <rules>
         <fullName>UNITY_Escalation - WO Accepted but not Scheduled - 12 Hour SLA</fullName>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; ISPICKVAL( Priority , &apos;12 Hour Response&apos;) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;)&amp;&amp; !ISBLANK(UNITY_Vendor_Accept_Date__c ) &amp;&amp; ISBLANK( StartDate  )</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; ISPICKVAL( Priority , &apos;12 Hour Response&apos;) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;)&amp;&amp; !ISBLANK(UNITY_Vendor_Accept_Date__c ) &amp;&amp; ISBLANK( StartDate  )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -1391,7 +1364,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
     <rules>
         <fullName>UNITY_Escalation - WO Accepted but not Scheduled - 2%2F4 Hour SLA</fullName>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; (ISPICKVAL( Priority , &apos;2 Hour Response&apos;)||ISPICKVAL(Priority, &apos;4 Hour Response&apos;)) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;)&amp;&amp; !ISBLANK(UNITY_Vendor_Accept_Date__c ) &amp;&amp; ISBLANK( StartDate  )</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; (ISPICKVAL( Priority , &apos;2 Hour Response&apos;)||ISPICKVAL(Priority, &apos;4 Hour Response&apos;)) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;)&amp;&amp; !ISBLANK(UNITY_Vendor_Accept_Date__c ) &amp;&amp; ISBLANK( StartDate  )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -1406,7 +1379,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
     <rules>
         <fullName>UNITY_Escalation - WO Accepted but not Scheduled - 24%2F48%2F72 Hour SLA</fullName>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; (ISPICKVAL( Priority , &apos;24 Hour Response&apos;)||ISPICKVAL(Priority, &apos;48 Hour Response&apos;)||ISPICKVAL(Priority, &apos;72 Hour Response&apos;)) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;)&amp;&amp; !ISBLANK(UNITY_Vendor_Accept_Date__c ) &amp;&amp; ISBLANK( StartDate  )</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; (ISPICKVAL( Priority , &apos;24 Hour Response&apos;)||ISPICKVAL(Priority, &apos;48 Hour Response&apos;)||ISPICKVAL(Priority, &apos;72 Hour Response&apos;)) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;)&amp;&amp; !ISBLANK(UNITY_Vendor_Accept_Date__c ) &amp;&amp; ISBLANK( StartDate  )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -1424,13 +1397,13 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; !ISPICKVAL(UNITY_Vendor_Status__c, &apos;&apos;) &amp;&amp; !ISPICKVAL(UNITY_Vendor_Status__c, &apos;Assigned&apos;)&amp;&amp; !ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;) &amp;&amp; !UNITY_Auto_Dispatch__c</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; !ISPICKVAL(UNITY_Vendor_Status__c, &apos;&apos;) &amp;&amp; !ISPICKVAL(UNITY_Vendor_Status__c, &apos;Assigned&apos;)&amp;&amp; !ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;) &amp;&amp; !UNITY_Auto_Dispatch__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>UNITY_Escalation - WO Created but Not Assigned - 12 Hour SLA</fullName>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; ISPICKVAL( Priority , &apos;12 Hour Response&apos;) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;&apos;)</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; ISPICKVAL( Priority , &apos;12 Hour Response&apos;) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -1445,7 +1418,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
     <rules>
         <fullName>UNITY_Escalation - WO Created but Not Assigned - 2%2F4 Hour SLA</fullName>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; (ISPICKVAL( Priority , &apos;2 Hour Response&apos;) || ISPICKVAL(Priority, &apos;4 Hour Response&apos;)) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;&apos;)</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; (ISPICKVAL( Priority , &apos;2 Hour Response&apos;) || ISPICKVAL(Priority, &apos;4 Hour Response&apos;)) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -1460,7 +1433,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
     <rules>
         <fullName>UNITY_Escalation - WO Created but Not Assigned - 24 Hour SLA</fullName>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; ISPICKVAL(Priority, &apos;24 Hour Response&apos;) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;&apos;)</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; ISPICKVAL(Priority, &apos;24 Hour Response&apos;) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -1474,7 +1447,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
     <rules>
         <fullName>UNITY_Escalation - WO Created but Not Assigned - 48%2F72 Hour SLA</fullName>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; (ISPICKVAL(Priority, &apos;48 Hour Response&apos;)|| ISPICKVAL(Priority, &apos;72 Hour Response&apos;) ) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;&apos;)</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; (ISPICKVAL(Priority, &apos;48 Hour Response&apos;)|| ISPICKVAL(Priority, &apos;72 Hour Response&apos;) ) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -1488,7 +1461,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
     <rules>
         <fullName>UNITY_Escalation - WO SLA Expiry - 12 Hour SLA</fullName>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; ISPICKVAL(Priority, &apos;12 Hour Response&apos;) &amp;&amp; !(ISPICKVAL(Status , &quot;Completed&quot;) || ISPICKVAL(Status, &quot;Closed&quot;))</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp;  ISPICKVAL(Priority, &apos;12 Hour Response&apos;) &amp;&amp; !(ISPICKVAL(Status , &quot;Completed&quot;) || ISPICKVAL(Status, &quot;Closed&quot;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -1503,7 +1476,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
     <rules>
         <fullName>UNITY_Escalation - WO SLA Expiry - 2%2F4 Hour SLA</fullName>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; (ISPICKVAL(Priority, &apos;2 Hour Response&apos;) || ISPICKVAL(Priority, &apos;4 Hour Response&apos;)) &amp;&amp; !(ISPICKVAL(Status , &quot;Completed&quot;) || ISPICKVAL(Status, &quot;Closed&quot;))</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; (ISPICKVAL(Priority, &apos;2 Hour Response&apos;) || ISPICKVAL(Priority, &apos;4 Hour Response&apos;)) &amp;&amp; !(ISPICKVAL(Status , &quot;Completed&quot;) || ISPICKVAL(Status, &quot;Closed&quot;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -1518,7 +1491,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
     <rules>
         <fullName>UNITY_Escalation - WO SLA Expiry - 24%2F48%2F72 Hour SLA</fullName>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; (ISPICKVAL(Priority, &apos;24 Hour Response&apos;)||ISPICKVAL(Priority, &apos;48 Hour Response&apos;)||ISPICKVAL(Priority, &apos;72 Hour Response&apos;)) &amp;&amp; !(ISPICKVAL(Status , &quot;Completed&quot;) || ISPICKVAL(Status, &quot;Closed&quot;))</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; (ISPICKVAL(Priority, &apos;24 Hour Response&apos;)||ISPICKVAL(Priority, &apos;48 Hour Response&apos;)||ISPICKVAL(Priority, &apos;72 Hour Response&apos;)) &amp;&amp; !(ISPICKVAL(Status , &quot;Completed&quot;) || ISPICKVAL(Status, &quot;Closed&quot;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -1533,7 +1506,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
     <rules>
         <fullName>UNITY_Escalation - WO Start Date%2FTime Missed %28No Check-in%29 - 2%2F4%2F12%2F24%2F48%2F72 Hour SLA</fullName>
         <active>true</active>
-        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; (ISPICKVAL(Priority, &apos;2 Hour Response&apos;)||ISPICKVAL(Priority, &apos;4 Hour Response&apos;)||ISPICKVAL(Priority, &apos;12 Hour Response&apos;)||ISPICKVAL(Priority, &apos;24 Hour Response&apos;)||ISPICKVAL(Priority, &apos;48 Hour Response&apos;)||ISPICKVAL(Priority, &apos;72 Hour Response&apos;)) &amp;&amp; !ISBLANK(  StartDate  ) &amp;&amp; ISBLANK(  FSO__Check_In_Date__c  )</formula>
+        <formula>RecordType.Name = &apos;Service Request&apos; &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; (ISPICKVAL(Priority, &apos;2 Hour Response&apos;)||ISPICKVAL(Priority, &apos;4 Hour Response&apos;)||ISPICKVAL(Priority, &apos;12 Hour Response&apos;)||ISPICKVAL(Priority, &apos;24 Hour Response&apos;)||ISPICKVAL(Priority, &apos;48 Hour Response&apos;)||ISPICKVAL(Priority, &apos;72 Hour Response&apos;)) &amp;&amp; !ISBLANK(  StartDate  ) &amp;&amp; ISBLANK(  FSO__Check_In_Date__c  )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -1564,7 +1537,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         </actions>
         <active>true</active>
         <description>Email template to be sent to the WO owner when the WO.Vendor_Status = ASSIGNED &amp; BU = Craft</description>
-        <formula>ISCHANGED( UNITY_Assigned_Vendor__c ) &amp;&amp;   ISPICKVAL(  UNITY_Vendor_Status__c  , &apos;Assigned&apos;) &amp;&amp;   ISPICKVAL(UNITY_Business_Unit__c,&apos;Craft&apos;)</formula>
+        <formula>ISCHANGED( UNITY_Assigned_Vendor__c ) &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; ISPICKVAL(  UNITY_Vendor_Status__c  , &apos;Assigned&apos;) &amp;&amp;   ISPICKVAL(UNITY_Business_Unit__c,&apos;Craft&apos;)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -1575,7 +1548,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         </actions>
         <active>true</active>
         <description>Email template to be sent to the WO owner when the WO.Vendor_Status = ASSIGNED &amp; BU = MNS</description>
-        <formula>ISCHANGED( UNITY_Assigned_Vendor__c ) &amp;&amp;   ISPICKVAL(  UNITY_Vendor_Status__c  , &apos;Assigned&apos;) &amp;&amp;   OR( ISPICKVAL(UNITY_Business_Unit__c,&apos;MNS&apos;), CONTAINS( UNITY_Business_Unit_Formula__c , &apos;MSP&apos;) )</formula>
+        <formula>ISCHANGED( UNITY_Assigned_Vendor__c ) &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; ISPICKVAL(  UNITY_Vendor_Status__c  , &apos;Assigned&apos;) &amp;&amp;   OR( ISPICKVAL(UNITY_Business_Unit__c,&apos;MNS&apos;), CONTAINS( UNITY_Business_Unit_Formula__c , &apos;MSP&apos;) )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -1586,7 +1559,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         </actions>
         <active>true</active>
         <description>Email template to be sent to the WO owner when the WO.Vendor_Status = ASSIGNED &amp; BU = NSBS</description>
-        <formula>ISCHANGED( UNITY_Assigned_Vendor__c ) &amp;&amp;   ISPICKVAL(  UNITY_Vendor_Status__c  , &apos;Assigned&apos;) &amp;&amp;   ISPICKVAL(UNITY_Business_Unit__c,&apos;NSBS&apos;)</formula>
+        <formula>ISCHANGED( UNITY_Assigned_Vendor__c ) &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp;  ISPICKVAL(  UNITY_Vendor_Status__c  , &apos;Assigned&apos;) &amp;&amp;   ISPICKVAL(UNITY_Business_Unit__c,&apos;NSBS&apos;)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -1602,11 +1575,15 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
     <rules>
         <fullName>UNITY_Remove Name Total Min Last IVR and Debrf</fullName>
         <actions>
+            <name>Remove_Date_Debriefed_Completed</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>UNITY_Rem_Ttl_Min_Btw_Last_IVR_Debrif</name>
             <type>FieldUpdate</type>
         </actions>
         <actions>
-            <name>UNITY_Remove_User_Name</name>
+            <name>UNITY_Remove_Debrief_User_Name</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
@@ -1629,20 +1606,6 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>UNITY_Set Status DateIVR Check Out</fullName>
-        <actions>
-            <name>Set_Status_Date_IVR_Check_Out</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>WorkOrder.Status</field>
-            <operation>contains</operation>
-            <value>IVR Check Out - Agent Review Needed</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>UNITY_Set WO Assigned</fullName>
         <actions>
             <name>UNITY_Set_WO_to_Assigned</name>
@@ -1662,6 +1625,11 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         <criteriaItems>
             <field>WorkOrder.StartDate</field>
             <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>WorkOrder.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Preventative Maintenance</value>
         </criteriaItems>
         <description>Set WO to Assigned when the WO is accepted by the Vendor and assigned to a Tech</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -1686,6 +1654,11 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         <criteriaItems>
             <field>WorkOrder.UNITY_Primary_Technician__c</field>
             <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>WorkOrder.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Preventative Maintenance</value>
         </criteriaItems>
         <description>Set WO to Pending Dispatch when the WO is accepted by the Vendor but not assigned to a Tech</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -1720,7 +1693,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         </actions>
         <active>true</active>
         <description>Set WO to In transit when the previous status is Accepted and the tech accepts the WO and adds the start travel info</description>
-        <formula>NOT(ISNULL( FSO__Start_Travel_Date__c )) &amp;&amp; NOT(ISNULL(UNITY_Assigned_Vendor__c) ) &amp;&amp;  ISPICKVAL( UNITY_Vendor_Status__c ,&apos;Accepted&apos;)</formula>
+        <formula>NOT(ISNULL( FSO__Start_Travel_Date__c )) &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; NOT(ISNULL(UNITY_Assigned_Vendor__c) ) &amp;&amp;  ISPICKVAL( UNITY_Vendor_Status__c ,&apos;Accepted&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1731,7 +1704,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         </actions>
         <active>true</active>
         <description>Set WO to Pending Accept when Vendor is manually assigned by agent</description>
-        <formula>NOT(ISNULL(UNITY_Assigned_Vendor__c))   &amp;&amp;   ISPICKVAL(UNITY_Vendor_Status__c,&apos;Assigned&apos; )</formula>
+        <formula>NOT(ISNULL(UNITY_Assigned_Vendor__c))   &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp;   ISPICKVAL(UNITY_Vendor_Status__c,&apos;Assigned&apos; )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1742,7 +1715,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         </actions>
         <active>true</active>
         <description>Set WO to pending Assignment if auto dispatch doesnt work for 3 attempts.</description>
-        <formula>ISPICKVAL( UNITY_Vendor_Status__c, &apos;No Auto-Dispatch Candidate&apos;) ||  ISPICKVAL( UNITY_Vendor_Status__c, &apos;Rejected&apos;) ||  ISPICKVAL( UNITY_Vendor_Status__c, &apos;Rejected-No Response&apos;) ||  ISPICKVAL( UNITY_Vendor_Status__c, &apos;Rejected-Other&apos;) ||  (  UNITY_Auto_Dispatch__c = false &amp;&amp;  UNITY_Dispatch_Attempts__c &gt;= 1 &amp;&amp;  ISNULL( UNITY_Assigned_Vendor__c ) &amp;&amp;  (  ISPICKVAL( UNITY_Vendor_Status__c, &apos;Rejected&apos;) ||  ISPICKVAL( UNITY_Vendor_Status__c, &apos;Rejected-No Response&apos;) ||  ISPICKVAL( UNITY_Vendor_Status__c, &apos;Rejected-Other&apos;)  )  )</formula>
+        <formula>ISPICKVAL( UNITY_Vendor_Status__c, &apos;No Auto-Dispatch Candidate&apos;) ||  ISPICKVAL( UNITY_Vendor_Status__c, &apos;Rejected&apos;) ||  ISPICKVAL( UNITY_Vendor_Status__c, &apos;Rejected-No Response&apos;) ||  ISPICKVAL( UNITY_Vendor_Status__c, &apos;Rejected-Other&apos;) ||  (  UNITY_Auto_Dispatch__c = false &amp;&amp;  UNITY_Dispatch_Attempts__c &gt;= 1 &amp;&amp; RecordType.Name != &apos;Preventative Maintenance&apos; &amp;&amp; ISNULL( UNITY_Assigned_Vendor__c ) &amp;&amp;  (  ISPICKVAL( UNITY_Vendor_Status__c, &apos;Rejected&apos;) ||  ISPICKVAL( UNITY_Vendor_Status__c, &apos;Rejected-No Response&apos;) ||  ISPICKVAL( UNITY_Vendor_Status__c, &apos;Rejected-Other&apos;)  )  )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1768,6 +1741,11 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
             <operation>equals</operation>
             <value>12 Hour Response,24 Hour Response,48 Hour Response,72 Hour Response</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>WorkOrder.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Preventative Maintenance</value>
+        </criteriaItems>
         <description>UNITY_Set_Accept_Time for 12_24_48_72_Hr_Response</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -1782,6 +1760,11 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
             <field>WorkOrder.Priority</field>
             <operation>equals</operation>
             <value>Project,Planned Maintenance</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>WorkOrder.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Preventative Maintenance</value>
         </criteriaItems>
         <description>UNITY_Set_Accept_time_Project_Planned Maintenance</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -1844,7 +1827,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>( RecordType.Name = &quot;Service Request&quot; || RecordType.Name = &quot;Site Survey&quot; || RecordType.Name = &quot;Project Management&quot; || RecordType.Name = &quot;Project Phase&quot; || RecordType.Name = &quot;Preventative Maintenance&quot;) &amp;&amp; (ISCHANGED(UNITY_Work_Window_Begin__c ) || ISCHANGED(Priority))</formula>
+        <formula>( RecordType.Name = &quot;Service Request&quot; || RecordType.Name = &quot;Site Survey&quot; || RecordType.Name = &quot;Project Management&quot; || RecordType.Name = &quot;Project Phase&quot;) &amp;&amp; ((NOT(ISBLANK(UNITY_Work_Window_Begin__c )) &amp;&amp; (ISCHANGED(UNITY_Work_Window_Begin__c) || (ISNEW() &amp;&amp; ( ISPICKVAL(UNITYPM_Type__c ,&quot;PMO&quot;) || ISPICKVAL(UNITYPM_Type__c ,&quot;PMA&quot;)))   ) ) || ISCHANGED(Priority))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

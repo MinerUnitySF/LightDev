@@ -1,0 +1,918 @@
+<apex:page standardController="Case"  extensions="UNITYPM_PCaseBulkInvoiceCtrl"   docType="html-5.0" name="PCBulkInvoice" title="Program Case Bulk Invoice" deferLastCommandUntilReady="true" standardStylesheets="true" showHeader="false" sidebar="false">
+  
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'js/jquery.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'js/jquery-ui.js')}"/>
+    <apex:includeScript value="/support/console/35.0/integration.js"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.smoothness.css')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.css')}"/>
+    
+   <script type="text/javascript">
+        
+    function closeMe(){
+        window.top.close();
+    }
+    
+    </script>
+  <style type="text/css">
+        body{
+            min-width:1000px;
+        }
+        h2{
+            font-weight: bold;
+            color: #16325c;
+            font-size: 1.1em;
+            font-family: Arial,Helvetica,sans-serif;
+        }
+        body .bPageBlock .pbBody .labelCol,.bPageBlock .labelCol{
+            color: #54698d;
+            font-weight: normal;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            word-wrap: break-word;
+            max-width: 330px;
+            width: 18%;
+            padding-left: 2px;
+            text-align: right;
+            font-size: 100%;
+            font-weight: bold;
+            margin: 0;
+        }
+        select{
+            max-width: 150px;
+        }
+        body .btn, body input.btn{
+            border-radius: 3px;
+            line-height: 24px;
+            padding: 0 9px;
+            border: 1px solid #e0e5ee;
+            box-shadow: none;
+            cursor: default;
+            font-size: 12px;
+            height: auto;
+            outline: 0;
+            font-weight: normal;
+            font-family: 'SalesforceSans-Regular',Helvetica,Arial,sans-serif;
+            color: #0070d2;
+            text-align: center;
+            white-space: nowrap;
+            background-color: #f4f5f7;
+            background-image: none;
+        }
+        body .btn:hover, body input.btn:hover{
+            background-color: #e7edf4;
+            text-decoration: none;
+        }
+        body .bDetailBlock.bPageBlock .pbBody .dataCol,body .bPageBlock .pbBody .dataCol{
+            color: #16325c;
+            padding: 0px;
+            margin: 0px;
+            font-family: SalesforceSans-Regular,Arial,sans-serif;
+            font-size: 13px;
+            text-align: left;
+            vertical-align: middle;
+        }
+        .detailList .lines-table{
+            border-collapse:collapse;
+            margin-bottom:50px;
+            width: 100%;
+        }
+        .detailList .lines-table tr{
+            /*border: 1px solid #ececec;*/
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+        }
+        .detailList .lines-table tr th{
+            padding: 3px;
+            margin: 0px;
+            /*border: 1px solid #ddd;*/
+            position: relative;
+            vertical-align: middle;
+            background-color: efefef;
+        }
+        .detailList .lines-table tr td{
+            padding: 0px;
+            margin: 0px;
+            /*border: 1px solid #ddd;*/
+            position: relative;
+            vertical-align: middle;
+            background-color: transparent;
+            padding-bottom: 3px;
+        }
+        .detailList .lines-table tr:nth-child(odd) {
+            background-color: #dcefe8;
+        }
+        .detailList .lines-table tr:nth-child(even) {
+            background-color: #fff;
+        }
+        .detailList .lines-table tr:first-child{
+            background-color: #efefef;
+        }
+        td.select{
+            width:40px;
+        }
+        td.currency{
+            width:80px;
+        }
+        td.lookup-cell{
+            min-width:110px;
+        }
+        .cell-wrapper{
+            display: block;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            margin: 0px;
+            min-height: 26px;
+            max-width: 150px;
+            padding: 0px;
+            position: relative;
+            width: 100%;
+        }
+        .cell-wrapper-assetType{
+            display: block;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            margin: 0px;
+            min-height: 26px;
+            max-width: 150px;
+            padding: 0px;
+            position: relative;
+            width: 100%;
+        }
+        .cell-wrapper-unitCost{
+            display: block;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            margin: 0px;
+            min-height: 26px;
+            max-width: 150px;
+            padding: 0px;
+            position: relative;
+            width: 100%;
+        }
+        .cell-wrapper-unitPrice{
+            display: block;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            margin: 0px;
+            min-height: 26px;
+            max-width: 150px;
+            padding: 0px;
+            position: relative;
+            width: 100%;
+        }
+        input[type="text"],select{
+            /*-webkit-box-shadow:inset 1px 1px 2px 0 rgba(0,0,0,.2);
+            box-shadow:inset 1px 1px 2px 0 rgba(0,0,0,.2);*/
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, .2);
+            border-radius: 3px;
+            padding: 0px 3px;
+            min-height: 22px;
+            box-sizing: border-box;
+            width: 100%;
+            /*height: 100%;*/
+            display: block;
+            /*position: absolute;*/
+            top: 0px;
+            max-width: 150px;
+            min-width: 80px;
+        }
+        input[type="text"]:disabled,select:disabled{
+            /*-webkit-box-shadow:inset 1px 1px 2px 0 rgba(0,0,0,.2);
+            box-shadow:inset 1px 1px 2px 0 rgba(0,0,0,.2);*/
+            background: #efefef;
+            color: #888;
+        }
+        input[type="text"]:hover,select:hover{
+            /*-webkit-box-shadow:inset 1px 1px 2px 0 rgba(0,0,0,.2);
+            box-shadow:inset 1px 1px 2px 0 rgba(0,0,0,.2);*/
+            border: 1px solid rgba(0, 112, 210, .6);
+            outline: 0;
+        }
+        input[type="text"]:focus,select:focus{
+            box-shadow: 0 0 3px #0070d2;
+            border: 1px solid rgba(0, 112, 210, .5);
+            outline: 0;
+            z-index: 99;
+        }
+        input[disabled]:hover,select[disabled]:hover{
+            /*-webkit-box-shadow:inset 1px 1px 2px 0 rgba(0,0,0,.2);
+            box-shadow:inset 1px 1px 2px 0 rgba(0,0,0,.2);*/
+            background: #efefef;
+            border: 1px solid rgba(0, 0, 0, .2);
+        }
+        .unitCostReplacement{
+
+        }
+        .unitPriceReplacement{
+
+        }        
+        a[disabled]{
+            display:none;
+        }
+        input[type="text"].warning-input{
+            border: 1px solid #f9dd34;
+            background: #fbf9ee;
+            color: #363636;
+        }
+        .lookupInput{
+            display: block;
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            height: 100%;
+        }
+        .lookupInput input[type="text"]{
+            padding-right:23px;
+        }.lookupInput input[type="text"].readonly{
+            padding-left:15px;
+        }
+        .lookupInput input[type="text"].partLocation{
+            padding-right:37px;
+        }
+        .lookupInput a{
+            position: absolute;
+            right: 0px;
+            top: calc(50% - 12px);
+            z-index: 100;
+        }
+        .closeIcon,.closeIconOn{
+            position: absolute;
+            top: 4px;
+            left: 1px;
+        }
+        .buttons-wrapper{
+            display:block;
+            height: 30px;
+        }
+        .info-icon-wrapper{
+            display:block;
+            width:14px;
+            padding:0px;
+            margin:0px;
+            position:absolute;
+            right:22px;
+            top: calc(50% - 9px);
+            height:14px;
+            z-index: 100;
+        }
+        .info-icon{
+            width:14px;
+            height: 14px;
+            position:absolute;
+            right:0px;top:0px;
+            background: url("/img/alohaSkin/help_grey.png");
+            background-size: 14px 14px;
+            background-repeat:no-repeat;
+        }
+        .info-table{
+            border-collapse:collapse;
+        }
+        .info-table th{
+            text-align:right;
+            padding: 3px;
+            font-weight:normal;
+            font-family:"Salesforce Sans", Arial, sans-serif;
+        }
+        .info-table td{
+            vertical-align:middle;
+            padding: 3px;
+            color:#888d96;
+        }
+        .ui-tooltip {
+            border: 1px solid #a8adb6;
+            color: #54698d;
+            font-family:"Salesforce Sans", Arial, sans-serif;
+            font-size: 12px;
+        }
+        .arrow:after {
+            background: #fff;
+            border: 1px solid #a8adb6;
+        }
+        .arrow {
+            width: 70px;
+            height: 16px;
+            overflow: hidden;
+            position: absolute;
+            left: 50%;
+            margin-left: -35px;
+            bottom: -16px;
+        }
+        .arrow.top {
+            top: -16px;
+            bottom: auto;
+        }
+        .arrow.bottom {
+            bottom: -16px;
+            top: auto;
+        }
+        .arrow.left {
+            left: 20%;
+        }
+        .arrow:after {
+            content: "";
+            position: absolute;
+            left: 20px;
+            top: -20px;
+            width: 25px;
+            height: 25px;
+            box-shadow: 6px 5px 9px -9px black;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        .arrow.top:after {
+            bottom: -20px;
+            top: auto;
+        }
+        .arrow.bottom:after {
+            top: -20px;
+            bottom: auto;
+        }
+        .fields-table{
+            border-collapse: collapse;
+            width:100%;
+            padding:0px;
+            margin:0px;
+        }
+        .detailList .lines-table .fields-table tr{
+            border:none;
+            border-bottom:none;
+            background-color: transparent;
+        }
+        .detailList .lines-table .fields-table tr th{
+            padding: 0px;
+            padding-left: 0px;
+            padding-right: 3px;
+            padding-top: 2px;
+            margin: 0px;
+            border: 0px;
+            background-color:transparent;
+            position: relative;
+            vertical-align: middle;
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+        }
+        .th-label{
+            padding:0px 3px;
+            background-color: transparent;
+            -webkit-border-radius: 0 5px 0 0;
+            border-radius: 0 5px 0 0;
+            border:1px solid rgba(0, 0, 0, .0);
+            cursor: default;
+            color: #666;
+            font-size: 1em;
+            font-weight: bold;
+            min-width:45px;
+            display:block;
+        }
+        .detailList .lines-table .fields-table tr td{
+            padding: 3px;
+            margin: 0px;
+            border: 1px solid transparent;
+            position: relative;
+            vertical-align: middle;
+            background-color: transparent;
+            padding-top: 0px;
+        }
+        .detailList .lines-table .fields-table .div-table{
+            border-collapse: collapse;
+            width:100%;
+            padding:0px;
+            margin:0px;
+        }
+        .detailList .lines-table .fields-table .div-table th,
+        .detailList .lines-table .fields-table .div-table td{
+            border-collapse: collapse;
+            padding:0px;
+            margin:0px;
+            background-color: transparent;
+            border: none;
+            width: 50%;
+        }
+
+        td.currency input[type="text"]{
+            max-width: 75px;
+        }
+        .fields-table tr td.lookup-cell{
+            min-width:100px;
+        }
+        input.custom-lookup-field[type="text"],.custom-lookup-field{
+            font-weight: bold;
+            background-position: right -5px;
+        }
+        span[id$="product-panel"] a{
+            font-weight: bold;
+            max-width: 100px;
+            width: 100px;
+            display: block;
+            overflow: hidden;
+            max-height: 18px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        span[id$="asset-panel"] a{
+            font-weight: bold;
+            max-width: 100px;
+            width: 100px;
+            display: block;
+            overflow: hidden;
+            max-height: 18px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }        
+        input[type="text"].short{
+            min-width: 50px;
+            max-width: 50px;
+            width: 50px;
+        }
+        input[type="text"].shortQty{
+            min-width: 50px;
+            max-width: 50px;
+            width: 50px;
+        }
+        .totals{
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #666;
+        }
+        .totalCost{
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #666;
+        }        
+        .totalPrice{
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #666;
+        }        
+        .quick-menu-wrapper{
+            display: none;
+            position: absolute;
+            z-index: 999;
+            padding: 5px;
+            margin: 0px;
+            right : 5px;
+            background-color: rgba(0,0,0,.5);
+            -webkit-border-radius: 0 0 5px 5px;
+            border-radius: 0 0 5px 5px;
+        }
+        .quick-menu-item{
+            background-color: #f4f5f7;
+            background-image: none;
+            border: 1px solid #e0e5ee;
+            border-radius: 3px;
+            box-shadow: none;
+            color: #0070d2;
+            cursor: default;
+            display: inline-block;
+            font-size: 10px;
+            font-weight: normal;
+            font-family: 'SalesforceSans-Regular',Helvetica,Arial,sans-serif;
+            height: auto;
+            line-height: 18px;
+            margin-right: 5px;
+            outline: 0;
+            padding: 0 5px;
+            text-align: center;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .quick-menu-item:hover{
+            background-color: #e7edf4;
+            text-decoration: none;
+        }
+        .quick-menu-item:last-child{
+            margin-right: 0px;
+        }
+         .th-label1{
+            padding:0px 3px;
+            background-color: transparent;
+            -webkit-border-radius: 0 5px 0 0;
+            border-radius: 0 5px 0 0;
+            border:1px solid rgba(0, 0, 0, .0);
+            cursor: default;
+            color: #666;
+            font-size: 1em;
+            font-weight: bold;
+            min-width:45px;
+            display:block;
+            text-align: center;
+        }
+        
+        .td1, .th1 {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        
+        .tr1:nth-child(even) {
+            background-color: #dddddd;
+        }
+        
+        .trb{
+          border-bottom:0.5px solid #005000;
+          text-align: center;
+        }
+        .trl{
+          border-bottom:0.5px solid #005000;
+          text-align: left;
+           border:1px solid;
+        }
+        table.sortable thead {
+            background-color:#eee;
+            color:#666666;
+            font-weight: bold;
+            cursor: default;
+        }
+        
+    </style>
+ 
+  <apex:form >
+      
+      <div id="top"></div>
+        
+      <apex:pageBlock title="Program Case Invoice Detail" mode="maindetail">
+          
+           <apex:outputPanel id="messages">
+                <apex:pageMessages ></apex:pageMessages>
+            </apex:outputPanel>
+            
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!doFinalize}" value="Finalize" status="loadingStatus"></apex:commandButton>
+                <apex:commandButton action="{!doPrintInvoice}" value="Print Invoice" status="loadingStatus" ></apex:commandButton> 
+                <apex:commandButton action="window.close()" value="Close" onclick="window.close()"/>
+            </apex:pageBlockButtons>
+            
+            <apex:outputPanel id="casedetail">
+                 <apex:pageBlockSection showHeader="false" collapsible="false" columns="2">
+                     
+                     <apex:pageBlockSectionItem >
+                        <apex:outputLabel >Program Case</apex:outputLabel>
+                         <apex:outputLink value="{!prgCase.ID}">{!prgCase.CaseNumber}</apex:outputLink>
+                    </apex:pageBlockSectionItem>
+                     
+                       <apex:outputField value="{!prgCase.UNITYPM_Program_ID__c}"></apex:outputField>
+                      <apex:outputField value="{!prgCase.UNITY_Customer__c}"></apex:outputField>
+                       
+                        <apex:outputField value="{!prgCase.UNITYPM_Program_Start__c}"></apex:outputField>
+                       <apex:outputField value="{!prgCase.Status}"></apex:outputField>
+                      
+                         <apex:outputField value="{!prgCase.UNITYPM_Program_End__c}"></apex:outputField>
+                        <apex:outputField value="{!prgCase.Origin}"></apex:outputField>
+                       
+                 </apex:pageBlockSection>
+                
+            </apex:outputPanel>
+            
+            <br/>
+            
+             <apex:outputPanel layout="block">
+               <table class="fields-table">
+                   <tr>
+                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>  
+                    <td>
+                     <table  class="lines-table" style ="background-color: #e7edf4; padding-left: 50px; padding-right: 50px;">
+                        <tr>
+                         <td class="th-label1" align="center">
+                                 Apply Case/Invoice Filter:
+                          </td>
+                          <td>&nbsp;&nbsp;</td>
+                         <td> 
+                          <apex:selectList value="{!selectedFilterVal}" size="1" multiselect="false"> 
+                            <apex:selectOptions value="{!FiltersList}" /> 
+                            <apex:actionSupport event="onchange" action="{!applyFilter}" reRender="dependentlist"/>
+                         </apex:selectList>
+                         </td>
+                         
+                         <td>
+                              <apex:selectList id="dependentlist"  value="{!selectedFilterForDataVal}" required="false" size="1">
+                              <apex:selectOptions value="{!DependentFilterList}" />
+                           <!--<apex:actionSupport event="onchange" action="{!applyFilterShowData}"  reRender="container"/> -->
+                           </apex:selectList>
+                         </td>
+                         <td> <apex:commandButton action="{!doApplyFilter}" value="Apply Filter"  reRender="container,noData"></apex:commandButton></td>
+                        <td>&nbsp;&nbsp;</td>
+                     </tr>
+                 </table>
+                </td></tr>
+               </table>   
+             </apex:outputPanel> 
+            
+      </apex:pageBlock>
+    
+    <!-- 
+      <apex:outputPanel id ='idpnl'   layout="none">
+       <apex:outputPanel layout="block"  >
+           Value : {!doRendered}
+           <hr/>
+             <apex:repeat value="{!PMCasesWithInvoiceData}" var="page">
+                  {!page}
+              </apex:repeat>
+       </apex:outputPanel>
+       </apex:outputPanel>
+       
+   
+       <apex:outputPanel id ='idpnl'>
+           <apex:outputPanel layout="block" rendered="{!IF(hasData, 'true', 'false')}" >
+              Value hasData : {!hasData}
+            </apex:outputPanel>
+       </apex:outputPanel>
+     
+        
+        <apex:outputPanel id="idpnl1"   layout="none">
+          <apex:outputPanel layout="block" rendered="{!IF(doRendered, 'true', 'false')}">
+          
+           Value doRendered : {!doRendered}
+           <hr/>
+             <apex:repeat value="{!caseInvWrp}" var="page1">
+                  {!page1}
+              </apex:repeat>
+       </apex:outputPanel>
+       </apex:outputPanel>
+         -->
+     
+      <apex:actionRegion >
+        <apex:outputPanel id="container" layout="none">
+         <apex:outputPanel rendered="{!IF(doRendered, 'true', 'false')}"  layout="block">
+     
+          <apex:pageBlock >
+           <table  class="lines-table">
+            <tr>
+                <th class="select">Select PM Case</th>
+                <th></th>
+            </tr>
+              
+          </table>
+             
+            <br/>
+         
+            <apex:repeat value="{!caseInvWrp}" var="page">
+             <table class="fields-table" width="100%" style="background-color: #e7edf4;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; border: 2px solid #dddddd; text-align: center; padding: 20px;">
+                <tr>
+                    <th><span class="th-label1">Case Number</span></th>
+                    <th><span class="th-label1">Customer WO</span></th>
+                    <th><span class="th-label1">NTE/Threshold</span></th>
+                    <th><span class="th-label1">Status</span></th>  
+                    <th><span class="th-label1">Record Type Name</span></th>  
+                    <th><span class="th-label1">Type</span></th>  
+                    <th><span class="th-label1">Site Location</span></th>
+                </tr>
+                
+                   <tr>
+                    <td>
+                        <apex:outputPanel style="text-align: center;">
+                        <apex:outputLink value="{!page.cs.ID}">{!page.cs.CaseNumber}</apex:outputLink> 
+                       </apex:outputPanel>
+                   </td>
+                    <td>
+                        <apex:outputPanel style="text-align: center;">
+                       <apex:outputField value="{!page.cs.UNITY_Customer_WO__c}"></apex:outputField>
+                       </apex:outputPanel>
+                   </td>
+                   <td>
+                      <apex:outputPanel style="text-align: center;">
+                       <apex:outputField value="{!page.cs.UNITY_NTE_Threshold__c}"></apex:outputField>
+                      </apex:outputPanel>
+                   </td>
+                    <td>
+                        <apex:outputPanel style="text-align: center;">
+                       <apex:outputField value="{!page.cs.Status}"></apex:outputField>
+                       </apex:outputPanel>
+                   </td>
+                   
+                    <td>
+                        <apex:outputPanel style="text-align: center;">
+                       <apex:outputField value="{!page.cs.RecordType.Name}"></apex:outputField>
+                       </apex:outputPanel>
+                   </td>
+                    <td>
+                        <apex:outputPanel style="text-align: center;">
+                       <apex:outputField value="{!page.cs.Type}"></apex:outputField>
+                       </apex:outputPanel>
+                   </td>
+                   
+                    <td>
+                       <apex:outputField value="{!page.cs.UNITY_Site_Location_Address__c}"></apex:outputField>
+                   </td>
+                   </tr>
+                   
+               
+                   <!--<apex:outputPanel rendered="{!IF(doRendered, 'true', 'false')}"  id="invoicedetail" layout="block"> -->
+                     <tr>
+                        <td colspan="13">
+                          <table class="div-table" width="100%"  style="background-color: #ffffff;border-bottom: 1px solid #ddd; border-top: 2px solid #ddd; border: 1px solid #dddddd; text-align: center; padding: 10px;">
+                             <tr>
+                               <td></td> 
+                                
+                            <td>
+                            <table class="fields-table" width="100%">
+                               <tr>
+                                <th bgcolor="#E6E6E6"><span class="th-label"></span></th>
+                                <th bgcolor="#E6E6E6"><span class="th-label trb">Invoice ID</span></th>
+                                <th bgcolor="#E6E6E6"><span class="th-label trb">Invoice Status</span></th>
+                                <th bgcolor="#E6E6E6"><span class="th-label">UNITY_Service Contract</span></th>
+                                <th bgcolor="#E6E6E6"><span class="th-label trb">Total Tax</span></th>
+                                <th bgcolor="#E6E6E6"><span class="th-label trb">Final Price</span></th>
+                                <th bgcolor="#E6E6E6"><span class="th-label trb">Total Cost</span></th>
+                                <th bgcolor="#E6E6E6"><span class="th-label trb">Invoice Date</span></th>
+                                <th bgcolor="#E6E6E6"><span class="th-label trb">Invoice Margin %</span></th>
+                                <th bgcolor="#E6E6E6"><span class="th-label trb">Invoice Margin Amount</span></th>
+                                <th bgcolor="#E6E6E6"><span class="th-label trb">Tax Processed</span></th>
+                                <th bgcolor="#E6E6E6"><span class="th-label trb">Tax Posted</span></th>
+                                <th bgcolor="#E6E6E6"><span class="th-label trb">SL Process Complete</span></th>
+                              </tr>  
+                             
+                            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                             
+                            <apex:repeat value="{!page.invwrapper}" var="rowpage">
+                             
+                            <apex:repeat value="{!rowpage.invoice}" var="row">
+                             
+                                   <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                                   <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                                   <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                                   <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                                
+                                   <tr>
+                                      <td>
+                                         <apex:outputPanel styleClass="cell-wrapper">
+                                           <apex:inputCheckbox value="{!rowpage.selected}"  styleClass="sel-cbx" id="chkInv"></apex:inputCheckbox>
+                                           <input type="hidden" value="{!row.ID}"  id="invId" name ="invIDName" />
+                                         </apex:outputPanel>
+                                    </td>
+                                    
+                                     <td align="center">
+                                     <apex:outputPanel styleClass="cell-wrapper" >
+                                         <apex:outputLink value="{!row.ID}">{!row.Name}</apex:outputLink>
+                                     </apex:outputPanel>
+                                    </td>
+                                    
+                                    <td align="center"><apex:outputPanel styleClass="cell-wrapper">
+                                        <apex:outputField value="{!row.UNITY_Invoice_Status__c}"></apex:outputField>
+                                        </apex:outputPanel> 
+                                    </td>
+                                    
+                                    <td>
+                                     <apex:outputPanel styleClass="cell-wrapper">
+                                        <apex:outputField value="{!row.UNITY_Customer_Service_Contract__c}"></apex:outputField>
+                                     </apex:outputPanel>
+                                    </td>
+                                  
+                                      <td class="currency">
+                                        <apex:outputPanel styleClass="cell-wrapper-unitPrice">
+                                          <apex:outputField value="{!row.UNITY_Total_Tax__c}"></apex:outputField> 
+                                        </apex:outputPanel>
+                                    </td>
+                                    
+                                     <td class="currency">
+                                       <apex:outputPanel styleClass="cell-wrapper">
+                                         <apex:outputField value="{!row.UNITY_Final_Price__c}"></apex:outputField> 
+                                       </apex:outputPanel>
+                                     </td>
+                                     
+                                     <td class="currency">
+                                        <apex:outputPanel styleClass="cell-wrapper">
+                                          <apex:outputField value="{!row.UNITY_Total_Cost__c}"></apex:outputField> 
+                                         </apex:outputPanel>
+                                      </td>
+                                     
+                                     <td align="center">
+                                         <apex:outputPanel styleClass="cell-wrapper">
+                                             <apex:outputField value="{!row.UNITY_Invoice_Date__c}"></apex:outputField>
+                                    </apex:outputPanel>
+                                    </td>
+                                     
+                                     <td align="center">
+                                         <apex:outputPanel styleClass="cell-wrapper">
+                                             <apex:outputField value="{!row.UNITY_Invoice_Margin__c}">
+                                        </apex:outputField> </apex:outputPanel> 
+                                      </td>
+                                     
+                                      <td class="currency">
+                                        <apex:outputPanel styleClass="cell-wrapper">
+                                           <apex:outputField value="{!row.UNITY_Invoice_Margin_Amount__c}"></apex:outputField>
+                                         </apex:outputPanel>
+                                      </td>
+                                      
+                                      
+                                     <td>
+                                         <apex:inputCheckbox value="{!row.UNITY_Tax_Processed__c}"  styleClass="sel-cbx" disabled="true"></apex:inputCheckbox>
+                                     </td>
+                                     <td>
+                                         <apex:inputCheckbox value="{!row.UNITY_Tax_Posted__c}"  styleClass="sel-cbx" disabled="true"></apex:inputCheckbox>
+                                      </td>
+                                      <td>
+                                       <apex:inputCheckbox value="{!row.UNITY_SL_Process_Complete__c}"  styleClass="sel-cbx" disabled="true"></apex:inputCheckbox>
+                                      
+                                    </td>
+                                 </tr>
+                                    
+                                  <tr>
+                                      <td colspan="2"></td>
+                                      <td colspan="4">
+                                       <apex:outputPanel rendered="{!assetRanking}">
+                                         <table  style =" border: 1px dashed #d3d3d3;border-collapse: collapse; background-color:#F0F0F0;" width="80%" >  
+                                             <tr>
+                                                <th style ="border: 1px dashed #d3d3d3; text-align: center;"><span class="th-label">Asset Type</span></th>
+                                                <th style ="border: 1px dashed #d3d3d3; text-align: center;"><span class="th-label">Initial</span></th>
+                                                <th style ="border: 1px dashed #d3d3d3; text-align: center;"><span class="th-label">Additional</span></th>
+                                            </tr>  
+                                         <apex:repeat value="{!rowpage.assetPriceWrapper}" var="assets">
+                                                  <tr>
+                                                      <td style ="border: 1px dashed #d3d3d3;">
+                                                         {!assets.assetType}
+                                                      </td>
+                                                      <td style ="border: 1px dashed #d3d3d3;" >
+                                                          {!assets.highestRate}  
+                                                      </td>
+                                                       <td style ="border: 1px dashed #d3d3d3;">
+                                                         {!assets.lowestRate}  
+                                                      </td>
+                                                  </tr>
+                                         </apex:repeat>
+                                        </table> 
+                                       </apex:outputPanel>
+                                      </td>
+                                      
+                                      <td colspan="4">   
+                                          <table  style =" border: 1px dashed #d3d3d3;border-collapse: collapse; background-color:#F0F0F0;" width="80%" >
+                                            <tr>
+                                                <th style ="border: 1px dashed #d3d3d3; text-align: center;"><span class="th-label">PM Lines</span></th>
+                                                <th style ="border: 1px dashed #d3d3d3; text-align: center;"><span class="th-label">Labor</span></th>
+                                                <th style ="border: 1px dashed #d3d3d3; text-align: center;"><span class="th-label">Travel</span></th>
+                                                <th style ="border: 1px dashed #d3d3d3; text-align: center;"><span class="th-label">Parts</span></th>  
+                                            </tr>  
+                                          <tr>
+                                            <td style = "border: 1px dashed #d3d3d3;">
+                                             <apex:outputPanel styleClass="cell-wrapper">
+                                                 <apex:outputField value="{!row.UNITYPM_Number_of_Assets__c}">
+                                                 </apex:outputField> </apex:outputPanel>
+                                            </td>
+                                     
+                                         <td  style ="border: 1px dashed #d3d3d3;"><apex:outputPanel styleClass="cell-wrapper">
+                                             <apex:outputField value="{!row.Number_of_Labor_Lines__c}"></apex:outputField> 
+                                             </apex:outputPanel> </td>
+                                     
+                                         <td  style ="border: 1px dashed #d3d3d3;"><apex:outputPanel styleClass="cell-wrapper">
+                                             <apex:outputField value="{!row.Number_of_Travel_Lines__c}"></apex:outputField> 
+                                             </apex:outputPanel></td>
+                                     
+                                          <td  style ="border: 1px dashed #d3d3d3;"><apex:outputPanel styleClass="cell-wrapper">
+                                              <apex:outputField value="{!row.Number_of_Part_Lines__c}"></apex:outputField> 
+                                            </apex:outputPanel> </td>
+                                       </tr>
+                                      </table>
+                                      
+                                     </td>
+                                   
+                                  </tr>
+                                 
+                                 <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                                 <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                                 <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                              
+                             </apex:repeat>
+                            
+                        </apex:repeat>
+                        
+                         </table> 
+                        </td>
+                      </tr> 
+                    </table>
+                   </td></tr>
+                 <!-- </apex:outputPanel>   -->
+              
+                   
+                  </table>  
+                <br/>   
+            </apex:repeat> 
+            
+         
+         
+           </apex:pageBlock>
+      
+         </apex:outputPanel>
+     </apex:outputPanel> 
+     </apex:actionRegion>
+   
+   <!--
+     <apex:outputPanel id="noData" layout="none"> 
+     {!doNotRendered}
+       <br/> {!doRendered}
+       <br/>
+       {!hasData}
+       <apex:outputPanel layout="block" rendered="{!IF(AND(doNotRendered == true, doRendered == false), 'true', 'false')}">
+         <h1>No data for this filter.</h1>
+       </apex:outputPanel>
+     </apex:outputPanel>
+   -->   
+      
+  </apex:form>
+</apex:page>

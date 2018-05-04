@@ -513,7 +513,7 @@ TEXT( ROUND(UNITY_Total_Quote_Margin__c,4)) ,&apos;Only valid on Master Quotes.&
     <fields>
         <fullName>UNITY_HT_Warning__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(OR(UNITY_Has_Cust_Holiday_Time__c &gt; 0,UNITY_Has_Vend_Holiday_Time__c &gt; 0), IMAGE(&apos;https://c.na56.content.force.com/servlet/servlet.FileDownload?file=01531000007LmXX&apos;, &apos;HT Warning&apos;,16,24),&apos;&apos;)</formula>
+        <formula>IF(OR(UNITY_Has_Cust_Holiday_Time__c &gt; 0,UNITY_Has_Vend_Holiday_Time__c &gt; 0), IMAGE(&apos;https://c.cs96.content.force.com/servlet/servlet.FileDownload?file=01531000007LmXX&apos;, &apos;HT Warning&apos;,16,24),&apos;&apos;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>HT Warning</label>
         <required>false</required>
@@ -803,7 +803,7 @@ TEXT( ROUND(UNITY_Total_Quote_Margin__c,4)) ,&apos;Only valid on Master Quotes.&
     <fields>
         <fullName>UNITY_OT_Warning__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(OR(UNITY_Has_Cust_Overtime__c &gt; 0,UNITY_Has_Vend_Overtime__c &gt; 0), IMAGE(&apos;https://c.na56.content.force.com/servlet/servlet.FileDownload?file=01531000007LmXY&apos;, &apos;OT Warning&apos;,16,24),&apos;&apos;)</formula>
+        <formula>IF(OR(UNITY_Has_Cust_Overtime__c &gt; 0,UNITY_Has_Vend_Overtime__c &gt; 0), IMAGE(&apos;https://c.cs96.content.force.com/servlet/servlet.FileDownload?file=01531000007LmXY&apos;, &apos;OT Warning&apos;,16,24),&apos;&apos;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>OT Warning</label>
         <required>false</required>

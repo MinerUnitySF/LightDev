@@ -882,6 +882,16 @@
                     <default>false</default>
                     <label>Project</label>
                 </value>
+                <value>
+                    <fullName>PMA</fullName>
+                    <default>false</default>
+                    <label>PMA</label>
+                </value>
+                <value>
+                    <fullName>PMO</fullName>
+                    <default>false</default>
+                    <label>PMO</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
         <visibleLines>4</visibleLines>
@@ -1886,6 +1896,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>PMA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PMO</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Parts Orders</fullName>
                 <default>false</default>
             </values>
@@ -2771,6 +2789,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>PMA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PMO</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Parts Orders</fullName>
                 <default>false</default>
             </values>
@@ -3115,7 +3141,10 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Activity_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Tax_Code__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

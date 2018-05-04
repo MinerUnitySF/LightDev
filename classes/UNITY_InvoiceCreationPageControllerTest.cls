@@ -21,8 +21,7 @@ public class UNITY_InvoiceCreationPageControllerTest{
             PRICEBOOKENTRYID_T = (Id)prodMapT.get(s);
         }
     }
-    public static testMethod void runTest(){
-        //system.runAs(createUser()){
+    public static testMethod void runTest(){      
             Case c = prepareData();
             Test.StartTest();
             ApexPages.StandardController sc = new ApexPages.StandardController(c);
@@ -37,17 +36,12 @@ public class UNITY_InvoiceCreationPageControllerTest{
             List<UNITY_Invoice__c> invoices = [SELECT Id FROM UNITY_Invoice__c];
             system.assertEquals(1, invoices.size());
             List<UNITY_Invoice_Line_Item__c> ilis = [SELECT Id FROM UNITY_Invoice_Line_Item__c];
-
-            //TODO: Fix Assertion
-            //5/5/16 Comment to pass assert error for deployment
-            //system.assertEquals(2, ilis.size());
+            
             controller.backToCase();
-            Test.StopTest();
-        //} 
+            Test.StopTest();       
     }
     
-    private static Case prepareData(){
-        //TestDataProvider.setKeyValueStore();
+    private static Case prepareData(){    
         TestDataProvider.setGLMatrix();
         
         id standardPriceBookId = Test.getStandardPricebookId();

@@ -134,6 +134,11 @@
                     <label>Los Angeles</label>
                 </value>
                 <value>
+                    <fullName>Louisville</fullName>
+                    <default>false</default>
+                    <label>Louisville</label>
+                </value>
+                <value>
                     <fullName>Memphis</fullName>
                     <default>false</default>
                     <label>Memphis</label>

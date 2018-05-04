@@ -2263,6 +2263,21 @@
             <field>Update_Quoted_with_Actuals__c</field>
             <table>SVMXC__Service_Order__c.SVMXC__Service_Order_Line__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Line_from_iPad__c</field>
+            <table>SVMXC__Service_Order__c.SVMXC__Service_Order_Line__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Invoice_Qty__c</field>
+            <table>SVMXC__Service_Order__c.SVMXC__Service_Order_Line__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Invoice_Unit_Price__c</field>
+            <table>SVMXC__Service_Order__c.SVMXC__Service_Order_Line__r</table>
+        </columns>
         <masterLabel>Work Details</masterLabel>
     </sections>
     <sections>

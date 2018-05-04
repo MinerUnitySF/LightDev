@@ -10,9 +10,12 @@ public class UNITY_WorkOrderLineControllerTest {
 
         System.assert(!workOrders.isEmpty());
         Test.startTest();
+        
         UNITY_WorkOrderLineController workOrderLineController = new UNITY_WorkOrderLineController();
         workOrderLineController.workOrderId = workOrders.get(0).Id;
+        
         //System.assert(workOrderLineController.items.isEmpty(),'The items are not empty: '+workOrderLineController.items);
+        
         Test.stopTest();
         
     }

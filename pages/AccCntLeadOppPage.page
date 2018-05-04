@@ -1,0 +1,43 @@
+<apex:page controller="AccCntLeadOppsCntl" showHeader="false" sidebar="false">
+     <style>
+     .lbl{
+         font-size: 15px;
+         font-weight: bold;
+       }
+         .num{
+             font-size: 13px;
+             text-decoration: underline;
+         }
+         .listView{
+             font-size: 12px; 
+         }
+     </style>
+     
+    <apex:form id="frmMain">
+    <apex:pageBlock >
+         <apex:pageBlockSection columns="1">
+              <apex:pageBlockSectionItem >
+             <apex:outputPanel >
+             <apex:outputLabel value="Select sObject to get list of the fields"  styleClass="lbl"/>&nbsp;&nbsp;
+              <apex:selectList value="{!selectedObject}" size="1" multiselect="false">
+                <apex:selectOptions value="{!objectOptions}" />
+                <apex:actionSupport reRender="tblFields" event="onchange" />
+            </apex:selectList>
+           </apex:outputPanel> 
+         
+         </apex:pageBlockSectionItem>
+    </apex:pageBlockSection>
+       
+        <apex:outputPanel id="tblFields"  rendered="{!IF(sObjectFields != null , true , false)}">  
+         <apex:pageBlock >
+              <apex:outputPanel rendered="{!IF(numberOfFieds != 0 , true , false)}">  
+                 <apex:outputLabel value=" Number of fields: {!numberOfFieds}" styleClass="num"></apex:outputLabel>  
+              </apex:outputPanel>
+             <apex:dataList value="{!sObjectFields}"  var="selFiled" id="theList" >
+                <apex:outputText value="{!selFiled}"/>
+            </apex:dataList>
+         </apex:pageBlock>
+         </apex:outputPanel>     
+     </apex:pageBlock>
+    </apex:form>
+</apex:page>

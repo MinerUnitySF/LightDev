@@ -992,7 +992,7 @@ FALSE)*/</formula>
         <filters>
             <field>Date_Invoiced__c</field>
             <operation>greaterThan</operation>
-            <value>7/31/2017</value>
+            <value>9/30/2017</value>
         </filters>
         <label>INVOICES BILLED - DATE Denver</label>
         <language>en_US</language>
@@ -1294,6 +1294,42 @@ FALSE)*/</formula>
         <language>en_US</language>
     </listViews>
     <listViews>
+        <fullName>INVOICES_BILLED_DATE_MNO_Tanya</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed,In-Batch,Not Billed</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC FL - New Orleans</value>
+        </filters>
+        <filters>
+            <field>SL_Invoice_Date_c__c</field>
+            <operation>greaterThan</operation>
+            <value>7/31/2017</value>
+        </filters>
+        <filters>
+            <field>WO_Order_Type__c</field>
+            <operation>notEqual</operation>
+            <value>Sales-EQUIP</value>
+        </filters>
+        <label>INVOICES BILLED - DATE MNO Tanya</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>INVOICES_BILLED_DATE_MNT</fullName>
         <columns>NAME</columns>
         <columns>Account__c</columns>
@@ -1481,6 +1517,7 @@ FALSE)*/</formula>
     </listViews>
     <listViews>
         <fullName>Invoices_In_Batch_Not_Billed</fullName>
+        <columns>CREATED_DATE</columns>
         <columns>Account__c</columns>
         <columns>NAME</columns>
         <columns>Date_Invoiced__c</columns>
@@ -1493,7 +1530,6 @@ FALSE)*/</formula>
         <columns>Total_Tax__c</columns>
         <columns>Invoice_Total_formula__c</columns>
         <columns>Invoice_Margin__c</columns>
-        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Status__c</field>
@@ -1567,6 +1603,8 @@ FALSE)*/</formula>
     </listViews>
     <listViews>
         <fullName>MEL_Equipment</fullName>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <columns>Status__c</columns>
         <columns>NAME</columns>
         <columns>Account__c</columns>
         <columns>Date_Invoiced__c</columns>
@@ -1591,7 +1629,40 @@ FALSE)*/</formula>
             <operation>equals</operation>
             <value>Miner-Equipment</value>
         </filters>
+        <filters>
+            <field>SL_Invoice_Date_c__c</field>
+            <operation>lessThan</operation>
+            <value>12/1/2017</value>
+        </filters>
         <label>MEL Equipment</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MEMPHIS_INVOICES_BILLED_DATE</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Date_Invoiced__c</columns>
+        <columns>SL_Invoice_Date_c__c</columns>
+        <columns>Post_to_Period__c</columns>
+        <columns>Invoice_Total_formula__c</columns>
+        <columns>WO_Order_Type__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Service_Team_ic__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Billed</value>
+        </filters>
+        <filters>
+            <field>Service_Team_ic__c</field>
+            <operation>equals</operation>
+            <value>TMC - TN MEMPHIS</value>
+        </filters>
+        <label>MEMPHIS INVOICES BILLED - DATE</label>
         <language>en_US</language>
     </listViews>
     <listViews>

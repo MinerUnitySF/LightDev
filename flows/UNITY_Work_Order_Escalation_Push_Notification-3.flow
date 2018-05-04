@@ -65,37 +65,6 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.UNITY_WO_Record_Type__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Preventative Maintenance</stringValue>
-                </rightValue>
-            </conditions>
             <connector>
                 <targetReference>myRule_1_pmetdec</targetReference>
             </connector>
@@ -151,37 +120,6 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.UNITY_WO_Record_Type__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Preventative Maintenance</stringValue>
-                </rightValue>
-            </conditions>
             <connector>
                 <targetReference>myRule_14_pmetdec</targetReference>
             </connector>
@@ -232,37 +170,6 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.UNITY_WO_Record_Type__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Preventative Maintenance</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -320,37 +227,6 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.UNITY_WO_Record_Type__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Preventative Maintenance</stringValue>
-                </rightValue>
-            </conditions>
             <connector>
                 <targetReference>myRule_5_pmetdec</targetReference>
             </connector>
@@ -404,37 +280,6 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.UNITY_WO_Record_Type__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Preventative Maintenance</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -501,37 +346,6 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.UNITY_WO_Record_Type__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Preventative Maintenance</stringValue>
-                </rightValue>
-            </conditions>
             <label>Previously Met - Prev</label>
         </rules>
     </decisions>
@@ -591,37 +405,6 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.UNITY_WO_Record_Type__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Preventative Maintenance</stringValue>
                 </rightValue>
             </conditions>
             <label>Previously Met - Prev</label>
@@ -685,37 +468,6 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.UNITY_WO_Record_Type__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Preventative Maintenance</stringValue>
-                </rightValue>
-            </conditions>
             <label>Previously Met - Prev</label>
         </rules>
     </decisions>
@@ -775,37 +527,6 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.UNITY_WO_Record_Type__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Preventative Maintenance</stringValue>
                 </rightValue>
             </conditions>
             <label>Previously Met - Prev</label>
@@ -869,37 +590,6 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.UNITY_WO_Record_Type__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Preventative Maintenance</stringValue>
-                </rightValue>
-            </conditions>
             <label>Previously Met - Prev</label>
         </rules>
     </decisions>
@@ -910,7 +600,7 @@
                 <stringValue>CASESAFEID([WorkOrder].Id)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_10_myRule_9_A1_8486394805</name>
+        <name>formula_10_myRule_9_A1_Record_Id_c</name>
         <dataType>String</dataType>
         <expression>CASESAFEID({!myVariable_current.Id})</expression>
     </formulas>
@@ -921,7 +611,7 @@
                 <stringValue>[WorkOrder].WorkOrderNumber</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_9_A1_4558171118</name>
+        <name>formula_11_myRule_9_A1_Record_Name_c</name>
         <dataType>String</dataType>
         <expression>{!myVariable_current.WorkOrderNumber}</expression>
     </formulas>
@@ -932,7 +622,7 @@
                 <stringValue>IF(NOT(ISBLANK([WorkOrder].UNITY_Agent__c)), CASESAFEID([WorkOrder].UNITY_Agent__c ),CASESAFEID([WorkOrder].Case.OwnerId))</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_12_myRule_9_A1_1381424337</name>
+        <name>formula_12_myRule_9_A1_Subscriber_c</name>
         <dataType>String</dataType>
         <expression>IF(NOT(ISBLANK({!myVariable_current.UNITY_Agent__c})), CASESAFEID({!myVariable_current.UNITY_Agent__c} ),CASESAFEID({!myVariable_current.Case.OwnerId}))</expression>
     </formulas>
@@ -943,7 +633,7 @@
                 <stringValue>CASESAFEID([WorkOrder].Id)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_15_myRule_14_A1_9100948222</name>
+        <name>formula_15_myRule_14_A1_Record_Id_c</name>
         <dataType>String</dataType>
         <expression>CASESAFEID({!myVariable_current.Id})</expression>
     </formulas>
@@ -954,7 +644,7 @@
                 <stringValue>IF(NOT(ISNULL([WorkOrder].UNITY_Agent__c)), CASESAFEID([WorkOrder].UNITY_Agent__c ),CASESAFEID([WorkOrder].Case.OwnerId))</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_16_myRule_14_A1_9781357777</name>
+        <name>formula_16_myRule_14_A1_Subscriber_c</name>
         <dataType>String</dataType>
         <expression>IF(NOT(ISNULL({!myVariable_current.UNITY_Agent__c})), CASESAFEID({!myVariable_current.UNITY_Agent__c} ),CASESAFEID({!myVariable_current.Case.OwnerId}))</expression>
     </formulas>
@@ -965,7 +655,7 @@
                 <stringValue>CASESAFEID([WorkOrder].Id)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_19_myRule_18_A1_6339723056</name>
+        <name>formula_19_myRule_18_A1_Record_Id_c</name>
         <dataType>String</dataType>
         <expression>CASESAFEID({!myVariable_current.Id})</expression>
     </formulas>
@@ -976,7 +666,7 @@
                 <stringValue>IF(NOT(ISBLANK([WorkOrder].UNITY_Agent__c)), CASESAFEID([WorkOrder].UNITY_Agent__c ),CASESAFEID([WorkOrder].Case.OwnerId))</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_20_myRule_18_A1_9879066074</name>
+        <name>formula_20_myRule_18_A1_Subscriber_c</name>
         <dataType>String</dataType>
         <expression>IF(NOT(ISBLANK({!myVariable_current.UNITY_Agent__c})), CASESAFEID({!myVariable_current.UNITY_Agent__c} ),CASESAFEID({!myVariable_current.Case.OwnerId}))</expression>
     </formulas>
@@ -987,7 +677,7 @@
                 <stringValue>CASESAFEID([WorkOrder].Id ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_0420375357</name>
+        <name>formula_2_myRule_1_A1_Record_Id_c</name>
         <dataType>String</dataType>
         <expression>CASESAFEID({!myVariable_current.Id} )</expression>
     </formulas>
@@ -998,7 +688,7 @@
                 <stringValue>IF(NOT(ISBLANK([WorkOrder].UNITY_Agent__c)), CASESAFEID([WorkOrder].UNITY_Agent__c ),CASESAFEID([WorkOrder].Case.OwnerId))</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_9090509763</name>
+        <name>formula_3_myRule_1_A1_Subscriber_c</name>
         <dataType>String</dataType>
         <expression>IF(NOT(ISBLANK({!myVariable_current.UNITY_Agent__c})), CASESAFEID({!myVariable_current.UNITY_Agent__c} ),CASESAFEID({!myVariable_current.Case.OwnerId}))</expression>
     </formulas>
@@ -1009,7 +699,7 @@
                 <stringValue>CASESAFEID([WorkOrder].Id )</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_6_myRule_5_A1_2120804946</name>
+        <name>formula_6_myRule_5_A1_Record_Id_c</name>
         <dataType>String</dataType>
         <expression>CASESAFEID({!myVariable_current.Id} )</expression>
     </formulas>
@@ -1020,12 +710,12 @@
                 <stringValue>IF(NOT(ISBLANK([WorkOrder].UNITY_Agent__c)), CASESAFEID([WorkOrder].UNITY_Agent__c ),CASESAFEID([WorkOrder].Case.OwnerId))</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_7_myRule_5_A1_9766674549</name>
+        <name>formula_7_myRule_5_A1_Subscriber_c</name>
         <dataType>String</dataType>
         <expression>IF(NOT(ISBLANK({!myVariable_current.UNITY_Agent__c})), CASESAFEID({!myVariable_current.UNITY_Agent__c} ),CASESAFEID({!myVariable_current.Case.OwnerId}))</expression>
     </formulas>
-    <interviewLabel>UNITY_Work_Order_Escalation_Push_Notification-3_InterviewLabel</interviewLabel>
-    <label>UNITY Notification - Work Order in Escalation UNITYPM</label>
+    <interviewLabel>UNITY_Work_Order_Escalation_Push_Notification-2_WorkOrder</interviewLabel>
+    <label>UNITY Notification - Work Order in Escalation</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
@@ -1113,7 +803,7 @@
             </processMetadataValues>
             <field>Record_Id__c</field>
             <value>
-                <elementReference>formula_15_myRule_14_A1_9100948222</elementReference>
+                <elementReference>formula_15_myRule_14_A1_Record_Id_c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1203,7 +893,7 @@
             </processMetadataValues>
             <field>Subscriber__c</field>
             <value>
-                <elementReference>formula_16_myRule_14_A1_9781357777</elementReference>
+                <elementReference>formula_16_myRule_14_A1_Subscriber_c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1300,7 +990,7 @@
             </processMetadataValues>
             <field>Record_Id__c</field>
             <value>
-                <elementReference>formula_19_myRule_18_A1_6339723056</elementReference>
+                <elementReference>formula_19_myRule_18_A1_Record_Id_c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1390,7 +1080,7 @@
             </processMetadataValues>
             <field>Subscriber__c</field>
             <value>
-                <elementReference>formula_20_myRule_18_A1_9879066074</elementReference>
+                <elementReference>formula_20_myRule_18_A1_Subscriber_c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1487,7 +1177,7 @@
             </processMetadataValues>
             <field>Record_Id__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_0420375357</elementReference>
+                <elementReference>formula_2_myRule_1_A1_Record_Id_c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1577,7 +1267,7 @@
             </processMetadataValues>
             <field>Subscriber__c</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_9090509763</elementReference>
+                <elementReference>formula_3_myRule_1_A1_Subscriber_c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1674,7 +1364,7 @@
             </processMetadataValues>
             <field>Record_Id__c</field>
             <value>
-                <elementReference>formula_6_myRule_5_A1_2120804946</elementReference>
+                <elementReference>formula_6_myRule_5_A1_Record_Id_c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1764,7 +1454,7 @@
             </processMetadataValues>
             <field>Subscriber__c</field>
             <value>
-                <elementReference>formula_7_myRule_5_A1_9766674549</elementReference>
+                <elementReference>formula_7_myRule_5_A1_Subscriber_c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1861,7 +1551,7 @@
             </processMetadataValues>
             <field>Record_Id__c</field>
             <value>
-                <elementReference>formula_10_myRule_9_A1_8486394805</elementReference>
+                <elementReference>formula_10_myRule_9_A1_Record_Id_c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1891,7 +1581,7 @@
             </processMetadataValues>
             <field>Record_Name__c</field>
             <value>
-                <elementReference>formula_11_myRule_9_A1_4558171118</elementReference>
+                <elementReference>formula_11_myRule_9_A1_Record_Name_c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1951,7 +1641,7 @@
             </processMetadataValues>
             <field>Subscriber__c</field>
             <value>
-                <elementReference>formula_12_myRule_9_A1_1381424337</elementReference>
+                <elementReference>formula_12_myRule_9_A1_Subscriber_c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>

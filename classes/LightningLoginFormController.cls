@@ -49,7 +49,7 @@ global class LightningLoginFormController {
         Auth.AuthConfiguration authConfig = new Auth.AuthConfiguration(networkId,'');
         return authConfig;
     }
-    
+
     @AuraEnabled
     global static String setExperienceId(String expId) {
         // Return null if there is no error, else it will return the error message 
@@ -61,5 +61,5 @@ global class LightningLoginFormController {
         } catch (Exception ex) {
             return ex.getMessage();            
         }
-    }  
+    }   
 }

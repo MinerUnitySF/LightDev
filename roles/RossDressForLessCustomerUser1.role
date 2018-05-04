@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>None</contactAccessLevel>
+    <description>Ross Dress For Less Customer User</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Ross Dress For Less Customer User</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <parentRole>VP_of_Sales</parentRole>
+</Role>

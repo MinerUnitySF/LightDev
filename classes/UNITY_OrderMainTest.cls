@@ -127,4 +127,137 @@ private class UNITY_OrderMainTest{
         
         System.Test.stopTest();
     }
+    
+    static testMethod void testGetCurrentPO(){
+        //Miner Test Data Set up
+        TestDataProvider.setKeyValueStore();
+        
+        List<UNITY_General_Settings__c> generalSetting =new  List<UNITY_General_Settings__c>();
+        system.debug(UNITY_General_Settings__c.getAll().values());
+        if(UNITY_General_Settings__c.getAll().values()==null){
+            
+        
+            UNITY_General_Settings__c setting1 = new UNITY_General_Settings__c(
+                Name = 'Service Fee POLI Activity Type',
+                UNITY_Description__c = 'Vendor Service Fee POLI Activity Type',
+                UNITY_Value__c = 'Vendor Service Fee'
+            );
+            
+            UNITY_General_Settings__c setting2 = new UNITY_General_Settings__c(
+                Name = 'Service Fee POLI Type',
+                UNITY_Description__c = 'Vendor Service Fee POLI Type',
+                UNITY_Value__c = 'Vendor Services'
+            );
+            
+            UNITY_General_Settings__c setting3 = new UNITY_General_Settings__c(
+                Name = 'Service Fee Product Type',
+                UNITY_Description__c = 'Vendor Service Fee Product Type',
+                UNITY_Value__c = 'Vendor Service Fee'
+            );
+            
+            UNITY_General_Settings__c setting4 = new UNITY_General_Settings__c(
+                Name = 'Service Fee Product name',
+                UNITY_Description__c = 'Vendor Service Fee Product Name',
+                UNITY_Value__c = 'Vendor Service Fee'
+            );
+            
+            UNITY_General_Settings__c setting5 = new UNITY_General_Settings__c(
+                Name = 'PO_Invoiceable_Statuses',
+                UNITY_Description__c = 'Comma separated list of statuses, when a PO should be invoiceable ',
+                UNITY_Value__c = 'Final,Accepted'
+            );
+            
+            generalSetting.add(setting1);
+            generalSetting.add(setting2);
+            generalSetting.add(setting3);
+            generalSetting.add(setting4);
+            generalSetting.add(setting5);
+            insert generalSetting;
+        }
+        
+        List<Account> accounts = UNITY_TestDataFactory.createAccounts(2, 'Krishna', Schema.SObjectType.Account.getRecordTypeInfosByName().get('Customer').getRecordTypeId());
+        List<Contact> contacts = UNITY_TestDataFactory.createContacts(2,accounts.get(0).Id);
+        List<Case> cases = UNITY_TestDataFactory.createCases(2,accounts.get(0).Id,accounts.get(1).Id,contacts.get(0).Id,UNITY_Constants.CASE_SERVICE_REQUEST_RECORDTYPE);
+        List<WorkOrder> workOrders = UNITY_TestDataFactory.createWorkOrders(2,cases.get(0).Id,accounts.get(0).id,UNITY_Constants.WO_PREVENTATIVE_MAINTENANCE_RECORDTYPE);
+        List<UNITY_Invoice__c> invoices = UNITY_TestDataFactory.createInvoices(2, cases.get(0).Id, accounts.get(0).Id);
+        UNITY_Service_Contract__c serviceContract =new UNITY_Service_Contract__c();
+        serviceContract.UNITY_Required_Documentation__c = 'Copy of Supplier Parts;Customer Required Sign Off';
+        serviceContract.UNITY_Account__c = accounts.get(0).Id;
+        insert serviceContract;
+        
+        UNITY_Service_Contract_Line_Item__c scli = new UNITY_Service_Contract_Line_Item__c();
+        scli.UNITYPM_Additional_PM_Rate__c = 50;
+        scli.UNITY_Labor_Cost__c = 60;
+        scli.UNITY_Service_Contract__c = serviceContract.id;
+        insert scli;
+        
+        WorkOrder wo =workOrders.get(0);
+        wo.UNITY_Customer_Service_Contract__c =serviceContract.Id; 
+        update wo;
+        System.Test.startTest();
+        
+        //WorkOrder wo =[SELECT UNITY_Attachment_Compliant__c FROM WorkOrder WHERE id='a4O180000008YV0EAM' LIMIT 1];
+        UNITY_Attachment__c attachment1 = new UNITY_Attachment__c();
+        attachment1.Work_Order__c =wo.Id;
+        attachment1.UNITY_Type__c ='Copy of Supplier Parts';
+        insert attachment1;
+        Order orderObj=new Order();
+        orderObj.AccountId =  accounts.get(0).Id;
+        orderObj.UNITY_Invoice__c=invoices.get(0).Id;
+        orderObj.FSO__WorkOrder__c = wo.Id;
+        orderObj.Status ='Draft';
+        orderObj.EffectiveDate =System.today();
+        orderObj.RecordTypeId = UNITY_Constants.ORDER_PURCHASE_ORDER_RECORDTYPE;
+        insert orderObj;
+        
+        Id oId = UNITY_OrderUtilities.getCurrentPO(wo.Id);
+        UNITY_OrderUtilities.finalizePMPOs(new List<String>{String.valueOf(wo.id)});
+
+        Asset a = new Asset();
+        a.UNITY_Asset_Type__c = 'Dock';
+        a.Name = 'Asset 1';
+		a.AccountId = accounts.get(0).Id;
+        insert a;
+        
+        List<OrderItem> olList = new List<OrderItem>();
+		OrderItem oi = new OrderItem();
+        oi.UNITY_Asset__c = a.Id; 
+        oi.OrderId = orderObj.Id;
+        oi.PricebookEntryId = PRICEBOOKENTRYID_P;
+        oi.Quantity = 2;
+        oi.UnitPrice = 10;
+        oi.UNITY_Activity_Type__c = 'Standard Labor';
+        oi.UNITY_Type__c = 'Labor - Service';
+        oi.UNITYPM_Is_Preventative_Maintenance__c = true;
+        olList.add(oi);
+        
+        OrderItem oiPM = new OrderItem();
+        oiPM.UNITY_Asset__c = a.Id; 
+        oiPM.OrderId = orderObj.Id;
+        oiPM.PricebookEntryId = PRICEBOOKENTRYID_P;
+        oiPM.Quantity = 2;
+        oiPM.UnitPrice = 10;
+        oiPM.UNITY_Activity_Type__c = 'Standard Labor';
+        oiPM.UNITY_Type__c = 'Labor - Service';
+        oiPM.UNITYPM_Is_Preventative_Maintenance__c = true;
+        olList.add(oiPM);
+        
+        insert olList;
+        
+        OrderItem oi2 = new OrderItem();
+        oi2.UNITY_Asset__c = a.Id;
+        oi2.PricebookEntryId = PRICEBOOKENTRYID_P;
+        oi2.Quantity = 2;
+        oi2.UnitPrice = 10;
+        oi2.UNITY_Activity_Type__c = 'Standard Labor';
+        oi2.UNITY_Type__c = 'Labor - Service';
+        UNITY_OrderUtilities.getAssetRate(oi, new List<OrderItem>{oi2}, scli, true);
+             
+        UNITY_OrderUtilities.calculatePMPricing(oi, new List<OrderItem>{oi2}, scli, scli);
+        UNITY_OrderUtilities.calculatePMPricing(oiPM, new List<OrderItem>{oi2}, scli, scli);
+        
+        PriceBookEntry pbe = [SELECT Id FROM PriceBookEntry WHERE Id = :PRICEBOOKENTRYID_P];
+        UNITY_OrderUtilities.getSCLIForPriceBookEntry(pbe, serviceContract);
+        System.Test.stopTest();
+    }
 }

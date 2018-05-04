@@ -15,20 +15,28 @@
 public class UNITY_OrderItemTriggerHandler_Miner  extends UNITY_BaseHandler{
     
     public override void bulkBefore(){
-        if(runTriggerOnce_Before()){
-            System.debug('##### On Bulk Before');
-            if(Trigger.isInsert || Trigger.isUpdate){
-                List<OrderItem> oLines = new List<OrderItem>();
-                for(SObject s :Trigger.new){
-                    OrderItem line = (OrderItem)s;
-                    if(String.isBlank(line.UNITY_GL_Cost_Account__c)|| String.isBlank(line.UNITY_GL_Revenue_Account__c)|| String.isBlank(line.UNITY_GL_Tax_Account__c)){
-                        oLines.add(line);
-                    }
+        System.debug('##### On Bulk Before');
+        if(Trigger.isInsert || Trigger.isUpdate){
+            List<OrderItem> oLines = new List<OrderItem>();
+            for(SObject s :Trigger.new){
+                OrderItem line = (OrderItem)s;
+                if(String.isBlank(line.UNITY_GL_Cost_Account__c)|| String.isBlank(line.UNITY_GL_Revenue_Account__c)|| String.isBlank(line.UNITY_GL_Tax_Account__c)){
+                    oLines.add(line);
                 }
-                System.debug('##### oLines.size(): ' + oLines.size());
-                if(!oLines.isEmpty()){
-                    setGLValues(oLines);
+                if (line.UNITYPM_Non_Payable__c && !line.UNITYPM_Is_Preventative_Maintenance__c){
+                    Decimal cost = line.UNITY_Cost__c;
+                    line.UNITYPM_Cost_For_Non_Payable__c = cost;
+                    line.UNITY_Cost__c = 0;
+                    line.UNITY_Total_Cost__c = 0;
+                    if (line.UNITY_Cost_Calculation_Details__c == null)
+                        line.UNITY_Cost_Calculation_Details__c = ''; //initialize
+                    line.UNITY_Cost_Calculation_Details__c += 'Non Payable, Cost: 0 \r\n';
+
                 }
+            }
+            System.debug('##### oLines.size(): ' + oLines.size());
+            if(!oLines.isEmpty()){
+                setGLValues(oLines);
             }
         }
     }
@@ -54,7 +62,7 @@ public class UNITY_OrderItemTriggerHandler_Miner  extends UNITY_BaseHandler{
     }
     
     public static void setGLValues(List<OrderItem> oLines){
-        System.debug('##### On setGLValues');
+        System.debug('##### On setGLValues oLines:' +oLines);
         if(!oLines.isEmpty()){
             System.debug('##### oLines.size(): ' + oLines.size());
             /*List<OrderItem> toUpdate = new List<OrderItem>();

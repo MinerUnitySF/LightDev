@@ -47,7 +47,7 @@ global class LightningSelfRegisterController {
             String networkId = Network.getNetworkId();
 
             // If using site to host the community the user should not hit s1 after logging in from mobile.
-            if(networkId != null && siteAsContainerEnabled(networkId)) {
+            if(networkId != null && siteAsContainerEnabled(Network.getLoginUrl(networkId))) {
                 u.put('UserPreferencesHideS1BrowserUI',true);
             }
             
@@ -133,5 +133,5 @@ global class LightningSelfRegisterController {
         } catch (Exception ex) {
             return ex.getMessage();            
         }        
-    } 
+    }  
 }

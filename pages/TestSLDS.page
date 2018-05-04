@@ -1,0 +1,30 @@
+<apex:page >   
+   <!-- JavaScript and style includes -->
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'js/jquery.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'js/jquery-ui.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jquery_ui,'moment/moment.min.js')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.smoothness.css')}"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.jquery_ui,'css/jquery-ui.css')}"/>
+
+    <script>
+        $j = jQuery.noConflict();
+          $j(document).ready(function() {
+              $j( "#but" ).click(function() {
+                  $j( "#partnerMessage" ).hide( "drop", { direction: "down" }, "slow" );
+                });
+           });
+
+      
+    </script>
+
+
+        <apex:pageBlock id="message" >
+        <div id="partnerMessage">
+            <h3 ><a href="#">Header 1</a></h3>
+            Content 1
+            <button id="but">Close</button>           
+        </div>
+    </apex:pageBlock>
+    
+    
+    </apex:page>

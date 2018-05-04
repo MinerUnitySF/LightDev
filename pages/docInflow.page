@@ -1,0 +1,44 @@
+<apex:page standardController="Account">
+      <apex:pageBlock >
+        <apex:pageBlockSection columns="1">
+             <apex:pageBlockSectionItem >
+               <apex:outputPanel >
+                   <apex:outputText value="First, I would like to thank you for all you do and continue to do on behalf of Miner National Service.  Lately, it has become very clear that our current process for collecting and remitting payment is not working and we are causing harm to our relationship with our most valuable commodity, our Affiliates. 
+
+Effective 2/1/2018, each Affiliate will be assigned to an Affiliate Relations Specialist who will be their designated point of contact when issues arise related to paperwork submission or payment issues.  
+
+Enforcing our “I’m on it, Now” Core Value, our phones will be routed to the Affiliate Relations Specialist, who will respond and retain ownership of the issues until resolved, driving to a one-call resolution philosophy.  Below outlines who is your key point of contact based on your company name.   You can reach them by calling (877) 287-0370, Option 2.
+
+ 
+
+With all the changes within our organization, I wanted to take this opportunity to review the methods of submitting paperwork to Miner.  
+•	If your company is issuing a PO that begins with “MFM”- you will need to ensure that the bar code page is the leading page when faxing or emailing the documents. E-mail address for this method of submitting is ServicePartnerPPW@minercorp.com.
+
+•	If your company is issuing a PO that begins with “WO” – you can reply to the email, do not change the subject line, attach your documents and send.  Or if you have multiple work orders that you are submitting paperwork or photos for, you can email to; ServicePartnerMNS@minercorp.com mailbox.  This is monitored and processed on a daily basis.  
+
+•	Affiliates are required to include the Work Order Number in the Subject line, this will allow the documents to be expeditiously processed.
+And lastly, the Vendor Community Portal, recently launched, allows Affiliates the ability to upload quotes, photos, invoices and sign-offs to their assigned work orders.  If you are currently not on our vendor portal and our interested, please contact your Affiliate Relations Specialist.
+
+
+Ensuring our success, I wanted to reiterate key things to remember to avoid delays or non-payment of funds.
+•	IVR adherence – ensure that your technicians utilize the IVR system and account for the number technicians on-site.  This is mandated by our clients.
+
+•	Affiliates are required to check in and out with Miner.  This provides you with support to ensure clients IVR compliance is adhered too. 
+
+•	Not to Exceed “NTE” - Invoices submitted cannot exceed the authorized Purchase Order amount. Miner will only pay the authorized amount issued to the Affiliate.   After the fact request for additional funds will not be accepted or approved. 
+
+•	While on-site, should your tech be able to complete repairs but requires additional time or parts, the technician MUST call into our office at 877-287-0370.
+
+•	Required paperwork; company invoice, before and after photos, and a Work Acknowledgement Form (Service Sign-Off) that contains time in and out, Manager on Duty Signature and a store stamp if available.  
+
+In closing, we at Miner are aware that we have to improve our performance and with these changes we are confident that we will deliver unsurpassed customer service to our loyal Affiliates.  Being that we have mutual financial interests and the goal is to be profitable in our business, it is imperative that our Affiliates adhere to the mandated protocols set forth by the customer.  
+
+Please join me with this endeavor and let us grow our businesses together!  Miner sincerely appreciates your commitment to our customers and we look forward to a long prosperous business relationship with you!
+">
+                   
+                   </apex:outputText>
+                 </apex:outputPanel>
+            </apex:pageBlockSectionItem>
+          </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>
