@@ -55,10 +55,8 @@ public class UNITY_InvoicePDFController{
                     UNITY_Invoice_Status__c,
                     UNITY_Invoice_Date__c,
                     UNITY_Total_Adjustments__c, 
-
                     UNITY_Case__r.UNITY_Customer_PO__c, 
                     UNITY_Case__r.UNITY_Email_Invoice_Guarantee_Text__c, 
-                
                     UNITY_Customer__r.UNITY_TimeZoneSidKey__c, 
                     UNITY_Customer__r.UNITY_Account_ID__c, 
                     UNITY_Customer__r.BillingStreet, 
@@ -69,12 +67,9 @@ public class UNITY_InvoicePDFController{
                     UNITY_Customer__r.ShippingPostalCode, 
                     UNITY_Customer__r.ShippingCity, 
                     UNITY_Customer__r.ShippingState, 
-
                     UNITY_Customer_Service_Contract__r.UNITY_Net_Payment_Terms__c, 
-
                     UNITY_Business_Unit_Account__c,
                     UNITY_Business_Unit_Account__r.MSPFS_BU_Billing_Address__c
-
                    FROM UNITY_Invoice__c WHERE Id =: invoiceId];
                   
                   
@@ -85,7 +80,7 @@ public class UNITY_InvoicePDFController{
                                                         FROM UNITY_Invoice_Line_Item__c 
                                                         WHERE UNITY_Invoice__c =: invoiceId 
                                                           AND UNITY_Line_Status__c != 'Cancelled'
-                                                          ORDER BY Product__r.Name];
+                                                          ORDER BY Product__r.Name, Name];
         
         
         system.debug('>>>> neli  invoiceLineItems >>>>' + invoiceLineItems.size());
@@ -102,17 +97,13 @@ public class UNITY_InvoicePDFController{
                  break;
          }
         Integer counter = 0;
+     
         for(UNITY_Invoice_Line_Item__c ili : invoiceLineItems){
            // if (!invoiceForPM)
             //    invoiceForPM = ili.UNITYPM_Is_Preventative_Maintenance__c;
-            
-            system.debug('>>>> neli  invoiceForPM >>>>' + invoiceForPM);
-            
+             
             if(invoiceForPM){
                  iliPageList.add(ili);  
-                 
-                 system.debug('>>>> neli  ili >>>>' + ili);
-                 
             }
             else {
                 if(counter >= 22){
@@ -131,12 +122,9 @@ public class UNITY_InvoicePDFController{
         }
         
         invoiceLineItemList.add(iliPageList);
-        
-         system.debug('>>>> neli  invoiceLineItemList.size() >>>>' + invoiceLineItemList.size());
-         
+             
         totalPages = 1;
         for(List<UNITY_Invoice_Line_Item__c> iliList : invoiceLineItemList){
-            system.debug('####  iliList.size   ###' + iliList.size());
             List<InvoiceLineItemWrapper> wrapperList = new List<InvoiceLineItemWrapper>();
             for(UNITY_Invoice_Line_Item__c ili : iliList){
                 wrapperList.add(new InvoiceLineItemWrapper(ili));
@@ -145,12 +133,17 @@ public class UNITY_InvoicePDFController{
             //start adding ==============================================
           if ( invoiceForPM) {
              Map<String, List<InvoiceLineItemWrapper>> maptemp = new Map <String, List<InvoiceLineItemWrapper>>();
-            
-            system.debug('####  wrapperList.size   ###' + wrapperList.size());
-            
-                 for(InvoiceLineItemWrapper wrapper : wrapperList){
-                     String  aId = wrapper.productName;
-                      
+          
+             Boolean  firstLine = true;
+             
+             for(InvoiceLineItemWrapper wrapper : wrapperList){
+                 String  aId = wrapper.productName;
+               
+                 if ( firstLine == true) {
+                    wrapperPMList.add(new InvoiceLineItemWrapper(wrapper.productName, wrapper.description, '1', wrapper.tax,  wrapper.price, wrapper.total)) ;   
+                    firstLine = false;
+                 } 
+                else {    
                      if(maptemp.containsKey(aId)) {
                          List<InvoiceLineItemWrapper> ols = maptemp.get(aId);
                          ols.add(wrapper);
@@ -160,20 +153,15 @@ public class UNITY_InvoicePDFController{
                          maptemp.put(aId, new List<InvoiceLineItemWrapper> {wrapper});
                      }
                    }
+               }
                                 
-                 for(String key : maptemp.keySet()){
+                for(String key : maptemp.keySet()){
                      String productName ='';
                      String description ='';
-                    
                      Integer intquantity =0;
-                     Integer inttax=0;
-                     Integer intprice =0; 
-                     Integer inttotal =0;
-                     
                      Decimal dectax=0.00;
                      Decimal decprice =0.00; 
                      Decimal dectotal =0.00;
-                      
                      String strquantity ='';
                      String strtax='';
                      String strprice =''; 
@@ -194,16 +182,6 @@ public class UNITY_InvoicePDFController{
                              strquantity = il.quantity;
                              intquantity = intquantity + Integer.valueof(strquantity);
                          }
-                         /*
-                           if (strtax == ''){  
-                             strtax = il.tax;
-                             inttax = Integer.valueof(strtax);
-                         }
-                         else{
-                             strtax = il.tax;
-                             inttax = inttax + Integer.valueof(strtax);
-                         }
-                         */
                           if (strtax == ''){  
                              strtax = il.tax;
                              dectax = decimal.valueof(strtax);
@@ -212,18 +190,7 @@ public class UNITY_InvoicePDFController{
                              strtax = il.tax;
                              dectax = dectax + decimal.valueof(strtax);
                          }
-                         /*
                           if (strprice == ''){  
-                             strprice = il.price;
-                             intprice = Integer.valueof(strprice);
-                         }
-                         else{
-                             Integer temp =Integer.valueof(il.price);
-                             if (temp > intprice)                             
-                                  intprice = temp;
-                          }
-                          */
-                           if (strprice == ''){  
                              strprice = il.price;
                              decprice = decimal.valueof(strprice);
                          }
@@ -232,36 +199,23 @@ public class UNITY_InvoicePDFController{
                              if (temp > decprice)                             
                                   decprice = temp;
                           }
-                         /* 
-                           if (strtotal == ''){  
-                             strtotal = il.total;
-                             inttotal = Integer.valueof(strtotal);
-                             }
-                            else{
-                                 strtotal = il.total;
-                                 inttotal = inttotal + Integer.valueof(strtotal);
-                             }
-                             
-                           */   
-                           if (strtotal == ''){  
+                       
+                          if (strtotal == ''){  
                              strtotal = il.total;
                              dectotal = Decimal.valueof(strtotal);
                              }
                             else{
                                  strtotal = il.total;
                                  dectotal = dectotal + Decimal.valueof(strtotal);
-                             }
+                        }
                      }
                          
                     strquantity =  String.valueOf(intquantity);
-                    //strtax =  String.valueOf(inttax);
                     strtax =  String.valueOf(dectax);
-                    //strprice =  String.valueOf(intprice);
                     strprice =  String.valueOf(decprice);
-                    //strtotal =  String.valueOf(inttotal);
                     strtotal =  String.valueOf(dectotal);
                    
-                 wrapperPMList.add(new InvoiceLineItemWrapper(productName, description, strquantity, strtax,  strprice, strtotal)) ;
+                   wrapperPMList.add(new InvoiceLineItemWrapper(productName, description, strquantity, strtax,  strprice, strtotal)) ;
                 }
             }    
             

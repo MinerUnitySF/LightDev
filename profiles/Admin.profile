@@ -6207,6 +6207,7 @@
         <startAddress>0.0.0.0</startAddress>
     </loginIpRanges>
     <loginIpRanges>
+        <description>Lightning Readiness</description>
         <endAddress>52.2.2.209</endAddress>
         <startAddress>52.2.2.209</startAddress>
     </loginIpRanges>
@@ -7921,6 +7922,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ModifyAllData</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ModifyMetadata</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

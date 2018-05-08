@@ -322,4 +322,10 @@
              </div> 
      </apex:outputPanel>
      
+       <apex:outputPanel rendered="{!IF(AND(VendorAssignedStatus == false,WorkOrderNoPM == false,WorkOrderCanceled == false, WorkOrderCompleted == false,VendorNoAssigned == true), TRUE, FALSE)}">
+         <div class="info">
+              {!WarningMessage}
+             </div> 
+     </apex:outputPanel>
+     
 </apex:page>

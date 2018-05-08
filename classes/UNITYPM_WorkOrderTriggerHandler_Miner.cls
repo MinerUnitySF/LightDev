@@ -87,7 +87,7 @@ public class UNITYPM_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
                                
                             caseWOmap.put(wo.CaseId, wo.ID);
                            
-                           system.debug('### neli callining to generate invoice ###' + caseWOmap.size());      
+                           system.debug('###  callining to generate invoice ###' + caseWOmap.size());      
                        }
                      }
                   }
@@ -110,7 +110,7 @@ public class UNITYPM_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
                updateWOFields(caseChangedMap);
            
            
-             system.debug('### neli callining to generate invoice ###' + caseWOmap.size());
+             system.debug('###  callining to generate invoice ###' + caseWOmap.size());
              
              if (caseWOmap.size() >0){
                  system.debug('### callining to generate invoice ###' + caseWOmap.size());

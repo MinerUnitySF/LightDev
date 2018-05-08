@@ -643,7 +643,7 @@
           <apex:pageBlock >
            <table  class="lines-table">
             <tr>
-                <th class="select">Select PM Case</th>
+                <th class="select">Select Preventative Maintenance Case</th>
                 <th></th>
             </tr>
               
@@ -715,7 +715,7 @@
                                 <th bgcolor="#E6E6E6"><span class="th-label"></span></th>
                                 <th bgcolor="#E6E6E6"><span class="th-label trb">Invoice ID</span></th>
                                 <th bgcolor="#E6E6E6"><span class="th-label trb">Invoice Status</span></th>
-                                <th bgcolor="#E6E6E6"><span class="th-label">UNITY_Service Contract</span></th>
+                                <th bgcolor="#E6E6E6"><span class="th-label trb">UNITY_Service Contract</span></th>
                                 <th bgcolor="#E6E6E6"><span class="th-label trb">Total Tax</span></th>
                                 <th bgcolor="#E6E6E6"><span class="th-label trb">Final Price</span></th>
                                 <th bgcolor="#E6E6E6"><span class="th-label trb">Total Cost</span></th>

@@ -71,7 +71,7 @@ public class UNITYPM_PCaseBulkInvoiceCtrl {
        } 
        else if ( selectedFilterVal == 'Invoice Status'){
            dependentFilterOption = new List<SelectOption>();
-            List<string> caseStatusList = new List<string>{'--None--','Invoice Creation','Invoice sent for Manager Approval','Discount - Approved by Manager','Discount - Rejected by Manager', 'Invoice Finalized','Sent to Customer','Returned to Agent','Invoice Amended','Completed','Cancelled'}; 
+            List<string> caseStatusList = new List<string>{'--None--','Invoice Creation','Invoice sent for Manager Approval','Discount - Approved by Manager','Discount - Rejected by Manager','Sent to Customer','Returned to Agent','Invoice Amended','Completed','Cancelled'}; 
              for (string status: caseStatusList) {
                 dependentFilterOption.add(new selectOption(status, status));
              }   
@@ -182,9 +182,16 @@ public class UNITYPM_PCaseBulkInvoiceCtrl {
     //case Type filter
     public  Map<ID, Case> setPMCaseWithTypeCase(String caseType){
        this.pmCasesMap = new Map<ID, Case>();
-       this.cases = [SELECT ID, UNITY_Customer__c,CaseNumber, Status,RecordTypeId,RecordType.Name, UNITY_Customer_WO__c,Type, UNITY_Record_Type_Name__c,
+       if ( caseType == 'PMO' || caseType == 'PMA'){
+          this.cases = [SELECT ID, UNITY_Customer__c,CaseNumber, Status,RecordTypeId,RecordType.Name, UNITY_Customer_WO__c,Type, UNITY_Record_Type_Name__c,
                            Origin,Priority, UNITY_Site_Location_Address__c, UNITYPM_Total_PM_Cases__c, Parent.ID, UNITY_NTE_Threshold__c
                                     FROM Case WHERE Parent.ID =:this.prgCase.ID AND Type =:caseType];
+       }
+       else{
+           this.cases = [SELECT ID, UNITY_Customer__c,CaseNumber, Status,RecordTypeId,RecordType.Name, UNITY_Customer_WO__c,Type, UNITY_Record_Type_Name__c,
+                           Origin,Priority, UNITY_Site_Location_Address__c, UNITYPM_Total_PM_Cases__c, Parent.ID, UNITY_NTE_Threshold__c
+                                    FROM Case WHERE Parent.ID =:this.prgCase.ID]; 
+       }
                                     
        for (Case cs : this.cases){
              this.pmCasesMap.put(cs.id, cs);

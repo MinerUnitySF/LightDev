@@ -10,13 +10,14 @@ public class UNITYPM_AddRemoveWOAssetsCntrlExt {
        public string selectedNumVal {get;set;}
        public String WarningMessage {get;set;}
        public Boolean VendorAssignedStatus {get;set;}
-        public String workOrderNumber { get; set; }
+       public String workOrderNumber { get; set; }
        public String customeAccount { get; set; }
        public String siteStoreNumber { get; set; }
        
        public Boolean WorkOrderNoPM {get;set;}
        public Boolean WorkOrderCanceled {get;set;}
        public Boolean WorkOrderCompleted {get;set;}
+       public Boolean VendorNoAssigned {get;set;}
         
        public String WarningWONoPM {get;set;}
        public String WarningWOCanceled {get;set;}
@@ -28,6 +29,7 @@ public class UNITYPM_AddRemoveWOAssetsCntrlExt {
          WorkOrderNoPM = false;
          WorkOrderCanceled = false;
          WorkOrderCompleted = false;
+         VendorNoAssigned = false;
          
           workorder = (Workorder)controller.getRecord();
           worOrderID = (ID) controller.getRecord().get('id');
@@ -53,8 +55,8 @@ public class UNITYPM_AddRemoveWOAssetsCntrlExt {
                 }
                 
             else if ( wo.UNITY_Assigned_Vendor__c == null){
-                  ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning, WarningMessage));
-                  VendorAssignedStatus = false;
+                  //ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning, WarningMessage));
+                  VendorNoAssigned = true;
             }
             else{
                  VendorAssignedStatus = true;
