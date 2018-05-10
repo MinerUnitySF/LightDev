@@ -412,6 +412,15 @@ NOW()))))))</formula>
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_To_False</fullName>
+        <field>UNITYPM_AutoInvoiceGenerated__c</field>
+        <literalValue>0</literalValue>
+        <name>Update To False</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>Asset Down At - default value</fullName>
         <actions>

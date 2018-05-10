@@ -8,12 +8,12 @@ public class UNITY_InvoiceTriggerHandler_Miner extends UNITY_BaseHandler{
                 if((inv.UNITY_Invoice_Status__c == 'Invoice Finalized') && (oldInv.UNITY_Invoice_Status__c != inv.UNITY_Invoice_Status__c)){
                     inv.UNITY_Invoice_Date__c = Date.today();
                 }
-            }
+             }
         }
     }
     public override void bulkAfter(){
         List<UNITY_Invoice__c> invIdUpdateCase = new List<UNITY_Invoice__c>();
-
+         
         if(Trigger.isUpdate){
             //Check which invoices are updated to 'Sent to Customer' to generate Invoice PDF and attach it to the case
             Set<String> invIds = new Set<String>();
@@ -30,7 +30,8 @@ public class UNITY_InvoiceTriggerHandler_Miner extends UNITY_BaseHandler{
                 //If invoice date changed or status, update case
                 if (inv.UNITY_Invoice_Date__c != oldInv.UNITY_Invoice_Date__c || inv.UNITY_Invoice_Status__c != oldInv.UNITY_Invoice_Status__c){
                     invIdUpdateCase.add(inv);
-                }                
+                } 
+                
                 //If ther invoice status changes to Invoice Finalized...
                 if((inv.UNITY_Invoice_Status__c == 'Invoice Finalized') && (oldInv.UNITY_Invoice_Status__c != inv.UNITY_Invoice_Status__c)){
                     invIds.add(inv.Id);
@@ -91,7 +92,8 @@ public class UNITY_InvoiceTriggerHandler_Miner extends UNITY_BaseHandler{
         }
         if (!invIdUpdateCase.isEmpty() && !System.isFuture() && !System.isBatch()){
             updateCaseDaysToInvoiceField(invIdUpdateCase);
-        }           
+        } 
+       
     }
     
     @future(callout=true)

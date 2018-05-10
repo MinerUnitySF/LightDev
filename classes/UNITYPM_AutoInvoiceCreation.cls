@@ -255,7 +255,7 @@ public class UNITYPM_AutoInvoiceCreation {
             invoice.UNITY_Discount_from_POs__c = this.discount_per;
             invoice.UNITY_Discount_Amount__c = this.discount_amt;
             invoice.UNITY_Business_Unit_Account__c = context.UNITY_Business_Unit_Account__c;
-            //invoice.UNITY_Invoice_Description__c = '';
+            invoice.UNITY_Invoice_Description__c = 'Contracted Planned Maintenance Program';
             //invoice.context.UNITY_Customer_PO__c;
             
             insert invoice;

@@ -346,10 +346,15 @@ public class UNITYPM_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
        }
        if ( caseNums.size() > 0){
            List<Case> casesToUpdate = new List<Case>();
-           for (Case c : [SELECT ID, Status FROM Case WHERE CaseNumber IN :caseNums]){
-               c.Status = 'Service Completed';
-               casesToUpdate.add(c);
-               
+           for (Case c : [SELECT ID, Status, UNITYPM_AutoInvoiceGenerated__c FROM Case WHERE CaseNumber IN :caseNums]){
+               if ( c.UNITYPM_AutoInvoiceGenerated__c  == true){
+                c.Status = 'Service Completed';
+               }
+               else{
+                 c.Status = 'Service Completed';
+                 c.UNITYPM_AutoInvoiceGenerated__c = false;
+                 casesToUpdate.add(c);
+               }
            }
            if (casesToUpdate.size() >0){
                update casesToUpdate;
