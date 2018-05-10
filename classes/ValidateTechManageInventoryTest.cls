@@ -29,7 +29,7 @@ public class ValidateTechManageInventoryTest {
         
         //TestDataProvider.setKeyValueStore();
         //TestDataProvider.unityTestSetup();
-        /*
+        
         SVMXC__Service_Order__c wo = new SVMXC__Service_Order__c();
         wo.SVMXC__Company__c = ac.id;
         wo.SVMXC__Order_Status__c = 'Open';
@@ -75,7 +75,7 @@ public class ValidateTechManageInventoryTest {
         catch(Exception e){
             String message = e.getMessage();
             //System.assert(message.contains(' Manage inventory permission not set on this user.'), 'message=' + message);
-        } */
+        } 
         
         test.stopTest();    
     }
@@ -117,7 +117,7 @@ public class ValidateTechManageInventoryTest {
         
         //TestDataProvider.setKeyValueStore();
         //TestDataProvider.unityTestSetup();
-        /*
+        
         SVMXC__Service_Order__c wo = new SVMXC__Service_Order__c();
         wo.SVMXC__Company__c = ac.id;
         wo.SVMXC__Order_Status__c = 'Open';
@@ -164,7 +164,7 @@ public class ValidateTechManageInventoryTest {
             String message = e.getMessage();
             //System.assert(message.contains(' Manage inventory permission at this location not met.'), 'message=' + message);
         } 
-        */
+        
         test.stopTest();    
     }
     
@@ -194,7 +194,7 @@ public class ValidateTechManageInventoryTest {
         sgroup.Super_Center__c = 'Miner-Central Texas';
         sgroup.Segment__c = 'San Antonio';        
         insert sgroup;
-        /*
+        
         SVMXC__Service_Order__c wo = new SVMXC__Service_Order__c();
         wo.SVMXC__Company__c = ac.id;
         wo.SVMXC__Order_Status__c = 'Open';
@@ -245,7 +245,7 @@ public class ValidateTechManageInventoryTest {
         //member User should be equal to user who is running test
         //trigger should should allow insert, order status should  change
         system.assertEquals(poBefore.SVMXC__Order_Status__c, poAfter.SVMXC__Order_Status__c);
-        */
+        
         test.stopTest();    
     }
     
@@ -275,7 +275,7 @@ public class ValidateTechManageInventoryTest {
         sgroup.Super_Center__c = 'Miner-Central Texas';
         sgroup.Segment__c = 'San Antonio';        
         insert sgroup;
-        /*
+        
         SVMXC__Service_Order__c wo = new SVMXC__Service_Order__c();
         wo.SVMXC__Company__c = ac.id;
         wo.SVMXC__Order_Status__c = 'Open';
@@ -325,7 +325,7 @@ public class ValidateTechManageInventoryTest {
         //member User should be equal to user who is running test
         //trigger should should allow insert, order status should  change
         system.assertEquals(poBefore.SVMXC__Order_Status__c, poAfter.SVMXC__Order_Status__c);
-        */
+        
         test.stopTest();    
     }
     

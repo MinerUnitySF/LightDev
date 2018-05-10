@@ -276,7 +276,7 @@ public without sharing class UNITY_NewOrderItemController {
                           this.hasError = true;
                     }
                     if(line.isMinerSource && String.isNotBlank(Line.item.UNITY_Part_Source__c) && line.item.UNITY_Part_Location__c == null){
-                        line.item.UNITY_Part_Location__c.addError('This field is required when the Part Source is a Business Unit');
+                        line.item.UNITY_Part_Location__c.addError('This field is required when the Part Source is a Bueiness Unit');
                         this.hasError = true;
                     }
                     if(!this.hasError)
@@ -405,7 +405,7 @@ public without sharing class UNITY_NewOrderItemController {
                             this.item.UNITY_Type__c = 'Vendor Services';
                         else
                             this.item.UNITY_Type__c = 'Parts';
-                        if(this.oType == 'Service' || this.oType == 'PM' || this.oType == 'PMO' || this.oType == 'PMA')
+                        if(this.oType == 'Service' || this.oType == 'PM')
                             this.item.UNITY_Activity_Type__c = 'Parts - Service and Remodel';
                         else if(this.oType == 'Project')
                             this.item.UNITY_Activity_Type__c = 'Parts - New Construction';
@@ -413,7 +413,7 @@ public without sharing class UNITY_NewOrderItemController {
                     //Default for ALL ***FREIGHT***
                     }else if(this.pbe.Product2.UNITY_Product_Type__c.contains('Freight')){
                         this.item.UNITY_Type__c = 'Parts';
-                        if(this.oType == 'Service' || this.oType == 'PM' || this.oType == 'PMO' || this.oType == 'PMA')
+                        if(this.oType == 'Service' || this.oType == 'PM')
                             this.item.UNITY_Activity_Type__c = 'Freight - Service and Remodel';
                         else if(this.oType == 'Project')
                             this.item.UNITY_Activity_Type__c = 'Freight - New Construction';

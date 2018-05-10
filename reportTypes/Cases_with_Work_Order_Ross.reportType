@@ -869,6 +869,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Tech_ETA__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>UNITY_Service_Channel_CustomerID__c</field>
             <table>Case</table>
         </columns>
@@ -1941,6 +1946,16 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>FSO__IsNew__c</field>
+            <table>Case.WorkOrders</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UNITY_Next_Action__c</field>
+            <table>Case.WorkOrders</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UNITY_Next_Action_Date__c</field>
             <table>Case.WorkOrders</table>
         </columns>
         <columns>

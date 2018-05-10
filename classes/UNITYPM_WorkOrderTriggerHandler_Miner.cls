@@ -3,7 +3,6 @@ public class UNITYPM_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
     private static Set<Id> includeRTSet = new Set<Id>{UNITY_Constants.WO_PREVENTATIVE_MAINTENANCE_RECORDTYPE};
     public static List<SObject> newList_WO = UNITY_Utils.includeRecordType(trigger.new, includeRTSet);
     public static Boolean woliCheckInCheckOutCreated = false;
-    public static Boolean caseInvoiceCreated = false;
 
      public override void bulkBefore(List<SObject> newList_WorkOrder, List<SObject> oldList_WorkOrder, Map<Id,SObject> oldMap_WorkOrder, Map<Id,SObject> newMap_WorkOrder){
         if (isFirstTriggerRun_Before){
@@ -13,10 +12,7 @@ public class UNITYPM_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
                  
             Map<Id,WorkOrder> vendorChangedMap = new Map<Id,WorkOrder>();
             Map<Id,WorkOrder> woDebriefMap = new Map<Id,WorkOrder>();
-            Map<Id,WorkOrder> caseChangedMap = new Map<Id,WorkOrder>();
-           // Map<ID, List<WorkOrder>> mapWofoInvoice = new Map<ID, List<WorkOrder>>();
-            Map<String, String> caseWOmap = new Map<String, String>();
-            
+
             if(trigger.isUpdate){
               
               UNITY_TimeInput_Ctlr.verifyDateTimeChanged(newList_WorkOrder,oldMap_WorkOrder,'WorkOrder',true);      
@@ -53,48 +49,12 @@ public class UNITYPM_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
                        else  if ( wo.SFPS_FS_AllTasks_Completed__c == 'Complete'  && wo.UNITY_Next_Step__c == 'Completion Confirmed'){
                                wo.Status = 'Completed';
                                wo.SFPS_FS_OverallStatus__c = 'Completed';
-                               caseWOmap.put(wo.CaseId, wo.ID);
-                          
-                             if(wo.SFPS_FS_AllTasks_Completed__c != oldWO.SFPS_FS_AllTasks_Completed__c && wo.UNITY_Next_Step__c != oldWO.UNITY_Next_Step__c){                              
-                                 caseWOmap.put(wo.CaseId, wo.ID);
-                                
-                                  /* 
-                                 if (caseWOmap.containsKey(wo.CaseId)){
-                                     String woIDtemp = caseWOmap.get(wo.CaseId);
-                                     if (woIDtemp != wo.ID)
-                                        caseWOmap.put(wo.CaseID, wo.ID );
-                                 }
-                                 else{
-                                    caseWOmap.put(wo.CaseID,  wo.ID); 
-                                 }
-                             
-                               
-                                 if (mapWofoInvoice.containsKey(wo.CaseId)){
-                                     List<WorkOrder>wotemp = mapWofoInvoice.get(wo.CaseId);
-                                     wotemp.add(wo);
-                                     mapWofoInvoice.put(wo.CaseID,wotemp );
-                                 }
-                                 else{
-                                    mapWofoInvoice.put(wo.CaseID, new List<workOrder> { wo }); 
-                                 }
-                                 */
-                             }
-                             
                        }
                         else  if ( wo.SFPS_FS_AllTasks_Completed__c == 'PM Complete'  && wo.UNITY_Next_Step__c == 'Waiting for checklists'){
                                wo.Status = 'Waiting for Checklist/Paperwork';
                                wo.SFPS_FS_OverallStatus__c = 'In Progress';
-                               
-                            caseWOmap.put(wo.CaseId, wo.ID);
-                           
-                           system.debug('###  callining to generate invoice ###' + caseWOmap.size());      
                        }
                      }
-                  }
-                  
-
-                  if (wo.CaseId != oldWO.CaseId && wo.CaseId != null){
-                      caseChangedMap.put(wo.Id, wo);
                   }
 
                 }
@@ -105,21 +65,7 @@ public class UNITYPM_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
               
             if (woDebriefMap.size() > 0)
                setDebriefdetails(woDebriefMap);
-
-            if (caseChangedMap.size() > 0)
-               updateWOFields(caseChangedMap);
-           
-           
-             system.debug('###  callining to generate invoice ###' + caseWOmap.size());
-             
-             if (caseWOmap.size() >0){
-                 system.debug('### callining to generate invoice ###' + caseWOmap.size());
-                  system.debug('### caseInvoiceCreated ###' + caseInvoiceCreated);
-                 if ( caseInvoiceCreated == false){
-                   generateInvoiceWOcompleted(caseWOmap);
-                   caseInvoiceCreated = true;
-                 }
-             }
+            
         }
     }
 
@@ -129,9 +75,8 @@ public class UNITYPM_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
         List<WorkOrder> woForCheckInCheckOut = new List<WorkOrder>();
         Set <ID> caseIDs = new Set <ID>();
         List<WorkOrder> shareToVendorList = new List<WorkOrder>(); //WOs that has an assigned vendor
-		    List<WorkOrder> unshareToVendorList = new List<WorkOrder>(); //WOs that's no longer assigned to a certain vendor        
-			  List<WorkOrder> caseUpdatedList = new List<WorkOrder>();
-
+		List<WorkOrder> unshareToVendorList = new List<WorkOrder>(); //WOs that's no longer assigned to a certain vendor        
+			
         if (trigger.isInsert){
 
             for(SObject sObj :  newList_WorkOrder){
@@ -157,8 +102,7 @@ public class UNITYPM_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
             if (wo.UNITY_Assigned_Vendor__c != oldWO.UNITY_Assigned_Vendor__c)
               vendorSCChangedList.add(wo);
                  
-            if ( wo.SFPS_FS_AllTasks_Completed__c == 'Complete' &&  wo.UNITY_Next_Step__c == 'Completion Confirmed'
-                    || (wo.SFPS_FS_AllTasks_Completed__c == 'PM Complete' && wo.UNITY_Next_Step__c == 'Waiting for checklists') )
+            if ( wo.SFPS_FS_AllTasks_Completed__c == 'Complete' &&  wo.UNITY_Next_Step__c == 'Completion Confirmed' )
                    woDebriefCompletedMap.put(wo.Id, wo);
              
              
@@ -177,9 +121,6 @@ public class UNITYPM_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
                 if (oldWO.Status != wo.Status && wo.Status == 'Canceled'){
                     system.debug('@@@ UNITYPM WorkOrderTrigger share status changed');
                     unshareToVendorList.add(oldWO);
-                }
-                if (wo.CaseID != null && oldWO.CaseId != wo.CaseID){
-                    caseUpdatedList.add(wo);
                 }
            // }
              
@@ -224,10 +165,7 @@ public class UNITYPM_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
             	UNITY_WorkOrderTriggerHandler_NoSharing.unshareToVendor(unshareToVendorList);
             if (shareToVendorList.size() > 0)
             	UNITY_WorkOrderTriggerHandler_NoSharing.shareToVendor(shareToVendorList);
-        
-        if (caseUpdatedList.size() > 0){
           
-        }
     }
 
 /*
@@ -307,35 +245,6 @@ public class UNITYPM_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
       
     }
 
-
-   private static void generateInvoiceWOcompleted(Map<String, String> caseWo){
-       Boolean invoiceGenerated = false;
-       
-       UNITYPM_AutoInvoiceCreation autoInvCreate = new UNITYPM_AutoInvoiceCreation();
-       for (String cid :caseWo.keySet()){
-         String woID = caseWo.get(cid);
-         invoiceGenerated = autoInvCreate.getAutoInvoiceCreation(cid, woID); 
-         system.debug('####  neli invoiceGenerated  ###' + invoiceGenerated);
-       }
-   }
-  
-  private static void updateWOFields(Map<Id,WorkOrder> workOrderList){
-    Map<Id,Id> woCaseMap = new Map<Id, Id>();
-
-    for (WorkOrder wo: workOrderList.values())
-      woCaseMap.put(wo.Id, wo.CaseId);
-
-    Map<Id, Case> caseMap = new Map<Id, Case>([SELECT Id, UNITY_Work_Description__c FROM Case WHERE ID in :woCaseMap.values()]);
-
-    for (WorkOrder wo: workOrderList.values()){
-        if (String.isEmpty(wo.UNITY_Work_Description__c)){
-            Case c = caseMap.get(woCaseMap.get(wo.Id));
-            wo.UNITY_Work_Description__c = c.UNITY_Work_Description__c;
-        }
-    }
-
-  }
-
    //update Case status to Completed base on complete status on debrief of work order
    private static void setCaseStatusOnComplete(Map<Id,WorkOrder> woMap){
        Set <String> caseNums = new Set <String>();
@@ -344,20 +253,23 @@ public class UNITYPM_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
        for (WorkOrder wo : woMap.values()){
          caseNums.add(wo.UNITY_Case_Number__c);  
        }
+     
+       system.debug('#### neli caseNums ### ' + caseNums); 
+       
        if ( caseNums.size() > 0){
            List<Case> casesToUpdate = new List<Case>();
-           for (Case c : [SELECT ID, Status, UNITYPM_AutoInvoiceGenerated__c FROM Case WHERE CaseNumber IN :caseNums]){
-               if ( c.UNITYPM_AutoInvoiceGenerated__c  == true){
-                c.Status = 'Service Completed';
-               }
-               else{
-                 c.Status = 'Service Completed';
-                 c.UNITYPM_AutoInvoiceGenerated__c = false;
-                 casesToUpdate.add(c);
+           for (Case c : [SELECT ID, Status FROM Case WHERE CaseNumber IN :caseNums]){
+               c.Status = 'Service Completed';
+               casesToUpdate.add(c);
+               
+           }
+           try{
+               if (casesToUpdate.size() >0){
+                   update casesToUpdate;
                }
            }
-           if (casesToUpdate.size() >0){
-               update casesToUpdate;
+           catch(Exception ex){
+              system.debug('#####   ERROR to update case status #### ' + ex) ;  
            }
        }
    }

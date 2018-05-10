@@ -10,7 +10,7 @@ public class UNITY_OrderLineItemsController {
                                items = [SELECT UNITY_Product_Code__c,UNITY_Product_Description__c,UNITY_Cost__c,Quantity,UNITY_Asset__c, UNITYPM_Is_Preventative_Maintenance__c,
                                         UNITY_Unknown_Part_Description__c,UNITY_Vendor_Adjusted_Quantity__c,UNITY_Total_Cost__c,Order.UNITY_Total_Cost__c 
                                         FROM OrderItem
-                                        WHERE OrderId=:value AND UNITYPM_Is_Preventative_Maintenance__c = false AND UNITYPM_Non_Payable__c = false];
+                                        WHERE OrderId=:value AND UNITYPM_Is_Preventative_Maintenance__c = false];
                                         
                                  // system.debug('>>>>>  items >>> ' + items);
                            }}

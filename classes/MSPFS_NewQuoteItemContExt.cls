@@ -155,7 +155,7 @@ public with sharing class  MSPFS_NewQuoteItemContExt {
                           this.hasError = true;
                     }
                     if ( line.isMinerSource && line.item.UNITY_Part_Location__c == null ) {
-                        line.item.UNITY_Part_Location__c.addError('This field is required when the Part Source is a Business Unit');
+                        line.item.UNITY_Part_Location__c.addError('This field is required when the Part Source is a Bueiness Unit');
                         this.hasError = true;
                     }
                     if ( !this.hasError )

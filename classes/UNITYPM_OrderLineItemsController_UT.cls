@@ -26,35 +26,36 @@ public class UNITYPM_OrderLineItemsController_UT {
     public static void init(){
         TestDataProvider.unityTestSetup();
     }
-    public static testMethod void test(){        
+    public static testMethod void test(){
+        
         Id standardPriceBookId = Test.getStandardPricebookId();
-        
+
         UNITY_Constants.MAX_TRIGGER_EXECUTION = 6;
-        
+
         List<OrderItem> orderItems = new List<OrderItem>();
-        
+
         Map<String,UNITY_General_Settings__c> generalSettings = UNITY_General_Settings__c.getAll();
         
         List<UNITY_General_Settings__c> gSettings =  new List<UNITY_General_Settings__c>();
-        
+
         if(!generalSettings.KeySet().contains(UNITY_Constants.SERVICE_FEE_PRODUCT_TYPE_CS_KEY))
             gSettings.add(new UNITY_General_Settings__c(Name = UNITY_Constants.SERVICE_FEE_PRODUCT_TYPE_CS_KEY, UNITY_Value__c = 'Vendor Service Fee', UNITY_Description__c='Vendor Service Fee'));
         
-        
+
         if(!generalSettings.KeySet().contains(UNITY_Constants.PO_INVOICEABLE_STATUSES))
             gSettings.add(new UNITY_General_Settings__c(Name = UNITY_Constants.PO_INVOICEABLE_STATUSES, UNITY_Value__c = 'Final', UNITY_Description__c='PO INVOICEABLE STATUS'));
         
         
         if(!gSettings.isEmpty()) insert gSettings ;
-        
+
         Test.startTest();
         //system.runAs(createUser()){
-        
-        Product2 product = new Product2(Name = 'Test', Unity_Is_Stockable__c = true);
-        product.UNITY_Status__c = 'Inactive';
-        insert product;
-        
-        //Get the accounts
+
+            Product2 product = new Product2(Name = 'Test', Unity_Is_Stockable__c = true);
+            product.UNITY_Status__c = 'Inactive';
+            insert product;
+
+            //Get the accounts
         String custRTId = UNITY_Constants.ACCOUNT_CUSTOMER_RECORDTYPE;
         String vendRTId = UNITY_Constants.ACCOUNT_VENDOR_RECORDTYPE;
         String buRTId = UNITY_Constants.ACCOUNT_MINER_RECORDTYPE;
@@ -75,7 +76,7 @@ public class UNITYPM_OrderLineItemsController_UT {
         }
         //Get the case
         Case c = [SELECT Id FROM Case LIMIT 1];
-        
+
         Asset a = new Asset(
             Name = 'TestAsset#1',
             AccountId = cust.Id,
@@ -98,7 +99,7 @@ public class UNITYPM_OrderLineItemsController_UT {
         c.AssetId = a.Id;
         c.UNITY_Customer_Service_Contract__c = sc.Id;
         update c;
-        
+            
         FSO__Location__c location = new FSO__Location__c(FSO__Geolocation__Latitude__s = 10, FSO__Geolocation__Longitude__s = 10);
         insert location; 
         
@@ -143,10 +144,11 @@ public class UNITYPM_OrderLineItemsController_UT {
         oi.UNITYPM_Is_Preventative_Maintenance__c = true;
         orderItems.add(oi);
         insert oi;
-        
+ 
         UNITYPM_OrderLineItemsController controller = new UNITYPM_OrderLineItemsController();
-        controller.orderId = order.Id;    
+        controller.orderId = order.Id;
+            
+        Test.stopTest();
         
-        Test.stopTest();        
     }
 }

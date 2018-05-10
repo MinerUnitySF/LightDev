@@ -162,8 +162,8 @@
         </rules>
     </decisions>
     <description>Resets the Work Order after Completed to IVR Check-Out - Agent Review Needed</description>
-    <interviewLabel>UNITY_Reset_WorkOrder_Completion-4_InterviewLabel</interviewLabel>
-    <label>UNITY Reset WorkOrder Completion v2 np</label>
+    <interviewLabel>UNITY_Reset_WorkOrder_Completion-3_InterviewLabel</interviewLabel>
+    <label>UNITY Reset WorkOrder Completion v2</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
@@ -651,6 +651,66 @@
                 </value>
             </processMetadataValues>
             <field>SFPS_FS_LastCheckOut__c</field>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Overall Status</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>SFPS_FS_OverallStatus__c</field>
+            <value>
+                <stringValue>In Progress</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Status</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Status</field>
+            <value>
+                <stringValue>IVR Check Out - Agent Review Needed</stringValue>
+            </value>
         </inputAssignments>
         <object>WorkOrder</object>
     </recordUpdates>

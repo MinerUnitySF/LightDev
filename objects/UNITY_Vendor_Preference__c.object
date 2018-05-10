@@ -115,6 +115,11 @@
         <type>Lookup</type>
     </fields>
     <label>Vendor Preference</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>VP-{0000000}</displayFormat>
         <label>Vendor Preference Name</label>

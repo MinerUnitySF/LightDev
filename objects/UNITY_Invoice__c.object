@@ -42,13 +42,6 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
-    <compactLayouts>
-        <fullName>UNITYPM_BulkInvoice</fullName>
-        <fields>UNITY_Case__c</fields>
-        <fields>UNITY_Customer__c</fields>
-        <fields>UNITY_Invoice_Date__c</fields>
-        <label>UNITYPM_BulkInvoice</label>
-    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>UNITY Invoice object</description>
     <enableActivities>true</enableActivities>
@@ -82,62 +75,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Number_of_Labor_Lines__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>Number of Labor Lines</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Number_of_Part_Lines__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>Number of Part Lines</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Number_of_Travel_Lines__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>Number of Travel Lines</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UNITYPM_Number_of_Assets__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>Number of Assets</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>UNITY_Agent__c</fullName>
@@ -874,7 +811,7 @@ UNITY_Case__r.RecordType.DeveloperName = &quot;UNITY_Preventative_Maintenance&qu
         <externalId>false</externalId>
         <label>SL Process Complete</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -1368,7 +1305,6 @@ UNITY_Total_Vendor_Supplied_Dis_Price__c
     <recordTypes>
         <fullName>UNITY_Invoice</fullName>
         <active>true</active>
-        <compactLayoutAssignment>UNITYPM_BulkInvoice</compactLayoutAssignment>
         <label>UNITY Invoice</label>
         <picklistValues>
             <picklist>UNITY_Doc_Type__c</picklist>
@@ -1857,6 +1793,24 @@ sforce.console.openSubtab(primaryTabId,&apos;/apex/UNITYUNITY_Dispute_Invoice_Bu
 }else{ 
 alert(&apos;The invoice needs to be finalized, tax needs to be posted, and the SL Process needs to complete before the invoice can be credited.&apos;); 
 }</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Dispute_v2</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>page</linkType>
+        <masterLabel>Dispute v2</masterLabel>
+        <openType>newWindow</openType>
+        <page>UNITYUNITY_Dispute_Invoice_Button</page>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
     </webLinks>
     <webLinks>
         <fullName>Print_Invoice</fullName>

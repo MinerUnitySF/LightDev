@@ -83,15 +83,6 @@
         <template>UNITY_Email_Templates/UNITY_Escalation_Case_Created_but_Not_Assigned</template>
     </alerts>
     <fieldUpdates>
-        <fullName>AutoInvoiceGeneratedStatusChange</fullName>
-        <field>Status</field>
-        <literalValue>Pending Billing</literalValue>
-        <name>AutoInvoiceGeneratedStatusChange</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Case_Owner_E_mail</fullName>
         <field>Case_Owner_E_mail__c</field>
         <formula>Owner:User.Email</formula>
@@ -412,15 +403,6 @@ NOW()))))))</formula>
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_To_False</fullName>
-        <field>UNITYPM_AutoInvoiceGenerated__c</field>
-        <literalValue>0</literalValue>
-        <name>Update To False</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
     <rules>
         <fullName>Asset Down At - default value</fullName>
         <actions>
@@ -429,10 +411,7 @@ NOW()))))))</formula>
         </actions>
         <active>true</active>
         <description>Default Asset Down At IF Asset down has been checked and asset down at was not populated.</description>
-        <formula>AND(
- UNITY_Asset_Down__c = true,
- ISBLANK(UNITY_Asset_Down_At__c)
-)</formula>
+        <formula>AND(  UNITY_Asset_Down__c = true,  ISBLANK(UNITY_Asset_Down_At__c) )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -544,20 +523,6 @@ NOW()))))))</formula>
         <description>Update PM case status when the following are populated 1. SC 2. Location 3. Parent Case (program case)</description>
         <formula>AND( RecordType.Name == &quot;Preventative Maintenance&quot;,  UNITY_Customer_Service_Contract__c != null,  Parent.RecordType.Name == &quot;Program Case&quot;,  AccountId != null,  ISPICKVAL(Status, &quot;New&quot;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>UNITYPM_UpdateStatusAutoInvoice</fullName>
-        <actions>
-            <name>AutoInvoiceGeneratedStatusChange</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Case.UNITYPM_AutoInvoiceGenerated__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>UNITY_BU_Populate</fullName>

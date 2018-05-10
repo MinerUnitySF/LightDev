@@ -129,7 +129,7 @@ public class UNITY_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
                     revertOwnerChange(ownerChangedWO);
                 }
                 if (woCaseChangeMap.size() > 0)
-                    updateWOAndCaseForPM(woCaseChangeMap); 
+                    evaluateAndSetExpectingCaseFlag(woCaseChangeMap); 
             }//End if trigger.isUpdate
             //populate ultimate parent text field that is used for community sharing
             if (newMap_WorkOrder != null){
@@ -353,7 +353,7 @@ public class UNITY_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
                 }
             }
         }
-    } 
+    }
     /**This method reassigns a case to the appropriate team queue after its first work order has been dispatched (accepted by a vendor)
     *@param cids - Set<Id>: The case ids to reassign to team
     */
@@ -548,47 +548,25 @@ public class UNITY_WorkOrderTriggerHandler_Miner extends UNITY_BaseHandler{
     	return result;
     }    
 
-    private static void updateWOAndCaseForPM(Map<id, WorkOrder> woList){
-        system.debug('@@@updateWOAndCaseForPM woList'+woList);
+    //Reset UNITYPM_Expecting_Case_from_Integration__c flag
+    private static void evaluateAndSetExpectingCaseFlag(Map<id, WorkOrder> woList){
+        system.debug('@@@evaluateAndSetExpectingCaseFlag woList'+woList);
 
         Map<id, Id> woCaseMap = new Map<id, id>();
         for (WorkOrder wo : woList.values()){
             woCaseMap.put(wo.Id, wo.CaseId);
         }
 
-        //Get the Cases for the Work Orders
-        Map<id, Case> caseList = new Map<Id, Case>([SELECT Id, RecordTypeId, ParentId, UNITY_Customer_PO__c, Type FROM Case where Id in :woCaseMap.values()]);
+        Map<id, Case> caseList = new Map<Id, Case>([SELECT Id, RecordTypeId FROM Case where Id in :woCaseMap.values()]);
 
-        List<Case> casesToUpdate = new List<Case>();
         for(Id woId : woCaseMap.keySet()){
             WorkOrder wo = woList.get(woId);
             Case c = caseList.get(woCaseMap.get(woId));
 
-            //Populate Customer PO from case
-            wo.UNITY_Customer_PO__c = c != null ? c.UNITY_Customer_PO__c : '';
-
-            //Make sure the type matches
-            if (wo.UNITYPM_Type__c != c.Type){
-                wo.addError('Work Order Type should match the Parent Case\'s Type.  This Work Order is a '+wo.UNITYPM_Type__c + ' and the Parent Case is a '+c.Type + '.');
-                return;
-            }
-
-
-            //Reset UNITYPM_Expecting_Case_from_Integration__c flag
             if (c.RecordTypeId == UNITY_Constants.CASE_SERVICE_REQUEST_RECORDTYPE){
-              system.debug('@@@updateWOAndCaseForPM Service Request? Yes');  
+              system.debug('@@@evaluateAndSetExpectingCaseFlag Service Request? Yes');
               wo.UNITYPM_Expecting_Case_from_Integration__c = false;
             }
-
-            if (wo.UNITY_Program_Case__c != c.ParentId){
-                c.ParentId = wo.UNITY_Program_Case__c;
-                casesToUpdate.add(c);
-            }
-        }
-
-        if (casesToUpdate.size() > 0){
-            system.debug('@@@updateWOAndCaseForPM casesToUpdate:'+casesToUpdate);
-            Database.update(casesToUpdate);
         }
     }
     //Clay

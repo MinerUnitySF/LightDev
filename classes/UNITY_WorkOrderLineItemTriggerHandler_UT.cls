@@ -170,7 +170,7 @@ public class UNITY_WorkOrderLineItemTriggerHandler_UT {
                insert wolis;
         
         wolis = [select id, AssetId, WorkOrderId, Status,Description from WorkOrderLineItem where workorderID =:wo.ID];
-        system.debug('>>>>  wolis >>>' + wolis);
+        system.debug('>>>> neli wolis >>>' + wolis);
         
         List<WorkOrderLineItem> wolisUpdate = new List<WorkOrderLineItem>();
         List<WorkOrderLineItem> wolisDelete = new List<WorkOrderLineItem>();

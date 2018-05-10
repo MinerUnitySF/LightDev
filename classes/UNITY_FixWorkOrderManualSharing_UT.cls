@@ -101,21 +101,7 @@ public class UNITY_FixWorkOrderManualSharing_UT {
         wo.UNITY_Vendor_Status__c = 'Accepted';
         wo.Subject = 'Test';
         insert wo;    
-    
-        List<Order> ords = new List<Order>();
-        Order o = new Order();
-        o.RecordTypeId = usageRecRTId;
-        o.AccountId = cust.Id;
-        o.UNITY_Vendor__c = vend.Id;
-        o.Type = 'Purchase Order';
-        o.UNITY_Business_Unit__c = 'NSBS';
-        o.UNITY_Business_Unit_Account__c = bu.Id;
-        o.Status = 'Draft';
-        o.FSO__WorkOrder__c = wo.Id;
-        o.EffectiveDate = Date.today();
-        o.UNITY_NTE__c = 200;
-        ords.add(o);
-        insert ords;
+
       
 
         //Determine the group id

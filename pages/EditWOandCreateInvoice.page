@@ -34,7 +34,7 @@
         </div>
         
         <div id="workPerformedNotes"  title="Existing Work Performed Notes" style="display:none;">
-            <textarea id="workPerformedTextArea" rows="6" cols="30"><apex:outputtext value="{!workPerformed}"/></textarea>
+        	<textarea id="workPerformedTextArea" rows="6" cols="30"><apex:outputtext value="{!workPerformed}"/></textarea>
             <span id="copyResult"></span>
         </div>
         
@@ -84,12 +84,12 @@
                                     <apex:inputField value="{!workOrder.Customer_P_O__c}"/>
                                 </apex:pageBlockSectionItem>
                                 <apex:pageBlockSectionItem >
-                                    <apex:outputLabel >Invoice Service Notes:</apex:outputLabel>
-                                    <apex:inputField value="{!workOrder.Service_Notes__c}"/>
+                                	<apex:outputLabel >Invoice Service Notes:</apex:outputLabel>
+                                	<apex:inputField value="{!workOrder.Service_Notes__c}"/>
                                 </apex:pageBlockSectionItem>
                                 <apex:pageBlockSectionItem rendered="{!AND(workPerformed != '')}" >
-                                    <apex:outputLabel >&nbsp;</apex:outputLabel>
-                                    <apex:outputLink id="workPerformedLink" onclick="showWorkPerformedNotes();return false;">View existing Work Performed Notes</apex:outputLink>
+                                	<apex:outputLabel >&nbsp;</apex:outputLabel>
+                                	<apex:outputLink id="workPerformedLink" onclick="showWorkPerformedNotes();return false;">View existing Work Performed Notes</apex:outputLink>
                                 </apex:pageBlockSectionItem>
                             </apex:pageBlockSection>
                         </td>
@@ -286,7 +286,7 @@
                         </apex:outputText>
                     </apex:outputPanel>
                 </apex:column>
-                -->
+				-->
                 <apex:column width="40" headerValue="Actual Qty">
                     <apex:outputPanel id="qty-col">
                         <apex:inputField value="{!lineWrap.line.SVMXC__Actual_Quantity2__c}"  style="width: 40px;" 
@@ -611,21 +611,21 @@
                 }
             }
             function showWorkPerformedNotes(){
-                $j('#workPerformedNotes').dialog({
+            	$j('#workPerformedNotes').dialog({
                             modal:true,
                             buttons:{
                                  'Copy to clipboard':function(){
-                                    var wpTextarea = document.getElementById("workPerformedTextArea");
-                                    wpTextarea.select();
-                                    try {
-                                        var successful = document.execCommand('copy');
-                                        var copyResult = document.getElementById("copyResult");
-                                        
-                                        if(successful) copyResult.innerHTML = 'Copied!';
-                                        else copyResult.innerHTML = 'Unable to copy!';
-                                    } catch (err) {
-                                        copyResult.innerHTML = 'Unsupported Browser!';
-                                    }
+                                 	var wpTextarea = document.getElementById("workPerformedTextArea");
+                                 	wpTextarea.select();
+                                 	try {
+								       	var successful = document.execCommand('copy');
+										var copyResult = document.getElementById("copyResult");
+										
+								       	if(successful) copyResult.innerHTML = 'Copied!';
+								       	else copyResult.innerHTML = 'Unable to copy!';
+								   	} catch (err) {
+								        copyResult.innerHTML = 'Unsupported Browser!';
+								   	}
                                  },
                                  'Close':function() {
                                     $j(this).dialog("close");

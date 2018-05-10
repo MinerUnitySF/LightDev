@@ -28,7 +28,7 @@ public with sharing class EditWOandCreateInvoiceTest {
         String pId = '';
         for(String key :prodMap.keySet()){
             pId = key;
-            break;
+			break;
         }
         
         SVMXC__Service_Order_Line__c wod = new SVMXC__Service_Order_Line__c();
@@ -195,7 +195,7 @@ public with sharing class EditWOandCreateInvoiceTest {
         test.stopTest();
     }
 */
-/*  private static testmethod void test3(){
+/*	private static testmethod void test3(){
         
         //Create Account
         Account acct = TestDataProvider.getAccounts(1,'Prospect Accounts', 'Customer')[0];
@@ -512,7 +512,7 @@ public with sharing class EditWOandCreateInvoiceTest {
         SVMXC__Service_Order__c wo = new SVMXC__Service_Order__c();
         
         wo.SVMXC__Company__c = ac.id;
-        wo.Work_Order_Type__c = 'Warranty';
+    	wo.Work_Order_Type__c = 'Warranty';
         wo.SVMXC__Order_Status__c = 'Open';
         wo.SVMXC__Order_Type__c = 'Service-DDM';
         wo.SVMXC__Component__c = IP1.id;
@@ -522,7 +522,7 @@ public with sharing class EditWOandCreateInvoiceTest {
         String pId = '';
         for(String key :prodMap.keySet()){
             pId = key;
-            break;
+			break;
         }
         
         SVMXC__Service_Order_Line__c wod = new SVMXC__Service_Order_Line__c();
@@ -596,7 +596,7 @@ public with sharing class EditWOandCreateInvoiceTest {
         String pId = '';
         for(String key :prodMap.keySet()){
             pId = key;
-            break;
+			break;
         }
         
         SVMXC__Service_Order__c wo = new SVMXC__Service_Order__c();
@@ -689,7 +689,7 @@ public with sharing class EditWOandCreateInvoiceTest {
         String pId = '';
         for(String key :prodMap.keySet()){
             pId = key;
-            break;
+			break;
         }
         
         SVMXC__Service_Order_Line__c wod = new SVMXC__Service_Order_Line__c();
@@ -704,8 +704,8 @@ public with sharing class EditWOandCreateInvoiceTest {
         wod.SVMXC__Actual_Price2__c = 100;
         wod.Vendor_Cost_Per_Unit__c = 100;
         wod.SVMXC__Is_Billable__c = true;
-        wod.Invoice_Qty__c = 1;
-        wod.Invoice_Unit_Price__c = 100;
+    	wod.Invoice_Qty__c = 1;
+    	wod.Invoice_Unit_Price__c = 100;
         insert wod;
         
         SVMXC__Service_Order_Line__c wod1 = new SVMXC__Service_Order_Line__c();
@@ -717,8 +717,8 @@ public with sharing class EditWOandCreateInvoiceTest {
         wod1.Vendor_Cost_Per_Unit__c = 100;
         wod1.SVMXC__Activity_Type__c = 'Standard Labor';
         wod1.SVMXC__Is_Billable__c = true;
-        wod1.Invoice_Qty__c = 1;
-        wod1.Invoice_Unit_Price__c = 100;
+    	wod1.Invoice_Qty__c = 1;
+    	wod1.Invoice_Unit_Price__c = 100;
         insert wod1;
         
         PageReference pr = Page.EditWOandCreateInvoice;
@@ -780,7 +780,7 @@ public with sharing class EditWOandCreateInvoiceTest {
         String pId = '';
         for(String key :prodMap.keySet()){
             pId = key;
-            break;
+			break;
         }
         
         SVMXC__Service_Order__c wo = new SVMXC__Service_Order__c();
@@ -821,7 +821,7 @@ public with sharing class EditWOandCreateInvoiceTest {
 
         controller.calculateTotals();
         System.debug('@@@controller.revenue'+ controller.revenue);
-        System.assert(controller.revenue == 100);
+		System.assert(controller.revenue == 100);
 
         controller.workOrderLines[0].line.Sales_Tax__c = 25;
         controller.calculateTotals();
@@ -849,7 +849,7 @@ public with sharing class EditWOandCreateInvoiceTest {
         workOrder.SVMXC__Order_Status__c = 'Invoice Completed';
         workOrderLine.SVMXC__Line_Status__c = 'Canceled';
         EditWOandCreateInvoice.WorkOrderLineWrapper wrapper = new EditWOandCreateInvoice.WorkOrderLineWrapper(workOrderLine, workOrder);
-        System.debug('@@@wrapper.edit:'+wrapper.edit);
+		System.debug('@@@wrapper.edit:'+wrapper.edit);
         System.assert(wrapper.edit == false);
 
         //Test if quoted, line is from iPad
@@ -904,7 +904,7 @@ public with sharing class EditWOandCreateInvoiceTest {
         //Test invoice total field
         //Returs 0 if invoice qty is null
         wrapper.line.Invoice_Qty__c = null;
-       // System.Assert(wrapper.invTotal == 0);
+        System.Assert(wrapper.invTotal == 0);
         
         //Returns quoted if not null
         wrapper.line.Invoice_Qty__c = 0;

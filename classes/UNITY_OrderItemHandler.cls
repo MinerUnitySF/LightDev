@@ -261,8 +261,8 @@ public with sharing class UNITY_OrderItemHandler extends UNITY_BaseHandler{
         System.debug('#newOrderItem '+so);
         OrderItem oi = (OrderItem)so;
         if (!oi.UNITYPM_Is_WO_Preventative_Maintenance__c){
-            relatedPricebookEntryList.add(oi.PricebookEntryId);
-            updatedOrderLineItemIdSet.add(oi.Id);
+        	relatedPricebookEntryList.add(oi.PricebookEntryId);
+        	updatedOrderLineItemIdSet.add(oi.Id);
         }
     }
     
@@ -303,7 +303,7 @@ public with sharing class UNITY_OrderItemHandler extends UNITY_BaseHandler{
             populateFieldsFromSCLI();
             recalculatePricing();
             handleStockingPurchaseOrder();
-            zeroOutCostForNonPayable();
+
             // updates only the records that where modified.
             system.debug('>>>>>> orderItemsToUpdate_map '+orderItemsToUpdate_map.size());
             updateRecords();
@@ -361,12 +361,8 @@ public with sharing class UNITY_OrderItemHandler extends UNITY_BaseHandler{
                                                                UNITY_Actual_Quantity__c,
                                                                UNITY_Part_Location__c,
                                                                MSPFS_Technician__c,
-                                                               MSPFS_Technician2__c,
-                                                               UNITYPM_Non_Payable__c,
-                                                               UNITYPM_Cost_For_Non_Payable__c,
-                                                               UNITYPM_Is_Preventative_Maintenance__c,
-                                                               UNITY_Total_Cost__c,
-                                                               UNITY_Cost_Calculation_Details__c 
+                                                               MSPFS_Technician2__c
+                                                               
                                                        FROM    OrderItem 
                                                        WHERE   id IN :orderItemsId]);
         return orderItemsQueried_map;
@@ -823,18 +819,5 @@ public with sharing class UNITY_OrderItemHandler extends UNITY_BaseHandler{
             orderItem.UNITY_Location_QOH_LastChecked__c = Datetime.now();
         }
     }
-
-    private void zeroOutCostForNonPayable(){
-        for (OrderItem oi: orderItemsToUpdate_map.values()){
-            system.debug('@@@zeroOutCostForNonPayable nonPayable flag:'+oi.UNITYPM_Non_Payable__c );
-            system.debug('@@@zeroOutCostForNonPayable prev maint flag:'+oi.UNITYPM_Is_Preventative_Maintenance__c);
-            if (oi.UNITYPM_Non_Payable__c && !oi.UNITYPM_Is_Preventative_Maintenance__c){
-                system.debug('@@@zeroOutCostForNonPayable:'+oi);
-                oi.UNITY_Cost__c = 0;
-                oi.UNITY_Total_Cost__c = 0;
-                oi.UNITY_Cost_Calculation_Details__c += 'Non Payable, Cost: 0\n';
-            }
-
-        }
-    }
+    
 }

@@ -598,7 +598,7 @@
                         <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.RecordType.DeveloperName</leftValueReference>
+                <leftValueReference>myVariable_current.RecordType.Name</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>Preventative Maintenance</stringValue>
@@ -1200,7 +1200,7 @@
                         <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_old.RecordType.DeveloperName</leftValueReference>
+                <leftValueReference>myVariable_old.RecordType.Name</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>Preventative Maintenance</stringValue>
@@ -1246,6 +1246,7 @@
             <label>Previously Met - Prev</label>
         </rules>
     </decisions>
+    <description>This is what sends the acceptance emails</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -1253,7 +1254,7 @@
                 <stringValue>Now()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_10_A2_9874803762</name>
+        <name>formula_11_myRule_10_A2_9333985791</name>
         <dataType>DateTime</dataType>
         <expression>Now()</expression>
     </formulas>
@@ -1264,7 +1265,7 @@
                 <stringValue>Now()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_14_myRule_13_A2_7768399824</name>
+        <name>formula_14_myRule_13_A2_5583509434</name>
         <dataType>DateTime</dataType>
         <expression>Now()</expression>
     </formulas>
@@ -1275,7 +1276,7 @@
                 <stringValue>Now()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A2_9753866528</name>
+        <name>formula_2_myRule_1_A2_2818681963</name>
         <dataType>DateTime</dataType>
         <expression>Now()</expression>
     </formulas>
@@ -1286,7 +1287,7 @@
                 <stringValue>Now()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_A2_8801839555</name>
+        <name>formula_5_myRule_4_A2_8809866069</name>
         <dataType>DateTime</dataType>
         <expression>Now()</expression>
     </formulas>
@@ -1297,7 +1298,7 @@
                 <stringValue>Now()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_8_myRule_7_A2_1079187905</name>
+        <name>formula_8_myRule_7_A2_0809380725</name>
         <dataType>DateTime</dataType>
         <expression>Now()</expression>
     </formulas>
@@ -1472,7 +1473,7 @@ OR( ISPICKVAL({!myVariable_old.UNITY_Business_Unit__c},&apos;MNS&apos;),
 CONTAINS( {!myVariable_old.UNITY_Business_Unit_Formula__c} , &apos;MSP&apos;) )</expression>
     </formulas>
     <interviewLabel>UNITY_Vendor_Acceptance_Emails-6_InterviewLabel</interviewLabel>
-    <label>Vendor Acceptance Emails</label>
+    <label>UNITY Vendor Acceptance Emails</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
@@ -1561,7 +1562,7 @@ CONTAINS( {!myVariable_old.UNITY_Business_Unit_Formula__c} , &apos;MSP&apos;) )<
             </processMetadataValues>
             <field>UNITY_Vendor_PO_Sent_Date__c</field>
             <value>
-                <elementReference>formula_11_myRule_10_A2_9874803762</elementReference>
+                <elementReference>formula_11_myRule_10_A2_9333985791</elementReference>
             </value>
         </inputAssignments>
         <object>WorkOrder</object>
@@ -1629,7 +1630,7 @@ CONTAINS( {!myVariable_old.UNITY_Business_Unit_Formula__c} , &apos;MSP&apos;) )<
             </processMetadataValues>
             <field>UNITY_Vendor_PO_Sent_Date__c</field>
             <value>
-                <elementReference>formula_14_myRule_13_A2_7768399824</elementReference>
+                <elementReference>formula_14_myRule_13_A2_5583509434</elementReference>
             </value>
         </inputAssignments>
         <object>WorkOrder</object>
@@ -1697,7 +1698,7 @@ CONTAINS( {!myVariable_old.UNITY_Business_Unit_Formula__c} , &apos;MSP&apos;) )<
             </processMetadataValues>
             <field>UNITY_Vendor_PO_Sent_Date__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A2_9753866528</elementReference>
+                <elementReference>formula_2_myRule_1_A2_2818681963</elementReference>
             </value>
         </inputAssignments>
         <object>WorkOrder</object>
@@ -1765,7 +1766,7 @@ CONTAINS( {!myVariable_old.UNITY_Business_Unit_Formula__c} , &apos;MSP&apos;) )<
             </processMetadataValues>
             <field>UNITY_Vendor_PO_Sent_Date__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A2_8801839555</elementReference>
+                <elementReference>formula_5_myRule_4_A2_8809866069</elementReference>
             </value>
         </inputAssignments>
         <object>WorkOrder</object>
@@ -1833,7 +1834,7 @@ CONTAINS( {!myVariable_old.UNITY_Business_Unit_Formula__c} , &apos;MSP&apos;) )<
             </processMetadataValues>
             <field>UNITY_Vendor_PO_Sent_Date__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A2_1079187905</elementReference>
+                <elementReference>formula_8_myRule_7_A2_0809380725</elementReference>
             </value>
         </inputAssignments>
         <object>WorkOrder</object>

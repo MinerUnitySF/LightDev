@@ -47,7 +47,9 @@ public with sharing class UNITY_TimeInput_Ctlr{
     public PageReference saveRecord(){
         try{
             PageReference pr = this.controller.save();
-        }catch(Exception e){
+            
+        }
+        catch(Exception e){
             String pageMessage = e.getMessage();
             pageMessage = System.EncodingUtil.urlDecode(pageMessage, 'UTF-8');
             String url = ApexPages.currentPage().getUrl();

@@ -882,16 +882,6 @@
                     <default>false</default>
                     <label>Project</label>
                 </value>
-                <value>
-                    <fullName>PMA</fullName>
-                    <default>false</default>
-                    <label>PMA</label>
-                </value>
-                <value>
-                    <fullName>PMO</fullName>
-                    <default>false</default>
-                    <label>PMO</label>
-                </value>
             </valueSetDefinition>
         </valueSet>
         <visibleLines>4</visibleLines>
@@ -1896,14 +1886,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>PMA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PMO</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Parts Orders</fullName>
                 <default>false</default>
             </values>
@@ -2786,14 +2768,6 @@
             </values>
             <values>
                 <fullName>PM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PMA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PMO</fullName>
                 <default>false</default>
             </values>
             <values>

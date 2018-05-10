@@ -646,6 +646,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Scrubber</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Sectional Door</fullName>
                 <default>false</default>
             </values>
@@ -810,11 +814,19 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Panic Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Passenger Elevator</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Propane Burnisher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rolling Steel Door</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -827,6 +839,10 @@
             </values>
             <values>
                 <fullName>Scissor Lift</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scrubber</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -995,11 +1011,19 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Panic Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Passenger Elevator</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Propane Burnisher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rolling Steel Door</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1012,6 +1036,10 @@
             </values>
             <values>
                 <fullName>Scissor Lift</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scrubber</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1179,11 +1207,19 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Panic Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Passenger Elevator</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Propane Burnisher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rolling Steel Door</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1196,6 +1232,10 @@
             </values>
             <values>
                 <fullName>Scissor Lift</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scrubber</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1364,11 +1404,19 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Panic Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Passenger Elevator</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Propane Burnisher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rolling Steel Door</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1381,6 +1429,10 @@
             </values>
             <values>
                 <fullName>Scissor Lift</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scrubber</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1549,11 +1601,19 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Panic Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Passenger Elevator</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Propane Burnisher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rolling Steel Door</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1566,6 +1626,10 @@
             </values>
             <values>
                 <fullName>Scissor Lift</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scrubber</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1733,11 +1797,19 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Panic Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Passenger Elevator</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Propane Burnisher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rolling Steel Door</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1750,6 +1822,10 @@
             </values>
             <values>
                 <fullName>Scissor Lift</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scrubber</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1917,11 +1993,19 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Panic Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Passenger Elevator</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Propane Burnisher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rolling Steel Door</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1934,6 +2018,10 @@
             </values>
             <values>
                 <fullName>Scissor Lift</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scrubber</fullName>
                 <default>false</default>
             </values>
             <values>

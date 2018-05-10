@@ -21,6 +21,7 @@
     </alerts>
     <alerts>
         <fullName>UNITY_Send_Purchase_Order</fullName>
+        <ccEmails>vendorsupport_uat@minercorp.com</ccEmails>
         <description>UNITY Send Purchase Order</description>
         <protected>false</protected>
         <recipients>
@@ -60,6 +61,7 @@
     </alerts>
     <alerts>
         <fullName>UNITY_Send_Purchase_Order_MNS</fullName>
+        <ccEmails>vendorsupport_uat@minercorp.com</ccEmails>
         <description>UNITY Send Purchase Order MNS</description>
         <protected>false</protected>
         <recipients>
@@ -79,6 +81,7 @@
     </alerts>
     <alerts>
         <fullName>UNITY_Send_Purchase_Order_MNS_Disney</fullName>
+        <ccEmails>vendorsupport_uat@minercorp.com</ccEmails>
         <description>UNITY Send Purchase Order MNS - Disney</description>
         <protected>false</protected>
         <recipients>
@@ -98,6 +101,7 @@
     </alerts>
     <alerts>
         <fullName>UNITY_Send_Purchase_Order_MNS_TJX</fullName>
+        <ccEmails>vendorsupport_uat@minercorp.com</ccEmails>
         <description>UNITY Send Purchase Order MNS - TJX</description>
         <protected>false</protected>
         <recipients>
@@ -117,6 +121,7 @@
     </alerts>
     <alerts>
         <fullName>UNITY_Send_Purchase_Order_NSBS</fullName>
+        <ccEmails>vendorsupport_uat@nsbs.net</ccEmails>
         <description>UNITY Send Purchase Order NSBS</description>
         <protected>false</protected>
         <recipients>
@@ -251,7 +256,7 @@
     </alerts>
     <alerts>
         <fullName>UNITY_Work_Order_Assignment_Notification</fullName>
-        <ccEmails>vendorsupport_uat@minercorp.com</ccEmails>
+        <ccEmails>customersupport_uat@minercorp.com</ccEmails>
         <description>UNITY Work Order Assignment Notification</description>
         <protected>false</protected>
         <recipients>
@@ -1173,7 +1178,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         </actions>
         <active>false</active>
         <description>Email template to be sent to the WO owner when the WO.Vendor_Status = Accepted</description>
-        <formula>ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;) &amp;&amp; !ISBLANK(UNITY_Current_PO__c) &amp;&amp; ISBLANK(UNITY_Vendor_PO_Sent_Date__c)</formula>
+        <formula>NOT(RecordType.Name = &quot;Preventative Maintenance&quot;) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;) &amp;&amp; !ISBLANK(UNITY_Current_PO__c) &amp;&amp; ISBLANK(UNITY_Vendor_PO_Sent_Date__c)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1203,7 +1208,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         </actions>
         <active>false</active>
         <description>Email template to be sent to the WO owner when the WO.Vendor_Status = Accepted &amp; BU = MNS</description>
-        <formula>ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;) &amp;&amp; !ISBLANK(UNITY_Current_PO__c) &amp;&amp; ISBLANK(UNITY_Vendor_PO_Sent_Date__c) &amp;&amp;  OR( ISPICKVAL(UNITY_Business_Unit__c,&apos;MNS&apos;),  CONTAINS( UNITY_Business_Unit_Formula__c , &apos;MSP&apos;) )</formula>
+        <formula>NOT(RecordType.Name = &quot;Preventative Maintenance&quot;) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;) &amp;&amp; !ISBLANK(UNITY_Current_PO__c) &amp;&amp; ISBLANK(UNITY_Vendor_PO_Sent_Date__c) &amp;&amp;  OR( ISPICKVAL(UNITY_Business_Unit__c,&apos;MNS&apos;),  CONTAINS( UNITY_Business_Unit_Formula__c , &apos;MSP&apos;) )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1218,7 +1223,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         </actions>
         <active>false</active>
         <description>Email template to be sent to the WO owner when the WO.Vendor_Status = Accepted &amp; BU = NSBS</description>
-        <formula>ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;) &amp;&amp; !ISBLANK(UNITY_Current_PO__c) &amp;&amp; ISBLANK(UNITY_Vendor_PO_Sent_Date__c) &amp;&amp; ISPICKVAL( UNITY_Business_Unit__c ,&apos;NSBS&apos;)</formula>
+        <formula>NOT(RecordType.Name = &quot;Preventative Maintenance&quot;) &amp;&amp; ISPICKVAL(UNITY_Vendor_Status__c, &apos;Accepted&apos;) &amp;&amp; !ISBLANK(UNITY_Current_PO__c) &amp;&amp; ISBLANK(UNITY_Vendor_PO_Sent_Date__c) &amp;&amp; ISPICKVAL( UNITY_Business_Unit__c ,&apos;NSBS&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1827,7 +1832,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>( RecordType.Name = &quot;Service Request&quot; || RecordType.Name = &quot;Site Survey&quot; || RecordType.Name = &quot;Project Management&quot; || RecordType.Name = &quot;Project Phase&quot;) &amp;&amp; ((NOT(ISBLANK(UNITY_Work_Window_Begin__c )) &amp;&amp; (ISCHANGED(UNITY_Work_Window_Begin__c) || (ISNEW() &amp;&amp; ( ISPICKVAL(UNITYPM_Type__c ,&quot;PMO&quot;) || ISPICKVAL(UNITYPM_Type__c ,&quot;PMA&quot;)))   ) ) || ISCHANGED(Priority))</formula>
+        <formula>( RecordType.Name = &quot;Service Request&quot; || RecordType.Name = &quot;Site Survey&quot; || RecordType.Name = &quot;Project Management&quot; || RecordType.Name = &quot;Project Phase&quot;) &amp;&amp; ((NOT(ISBLANK(UNITY_Work_Window_Begin__c )) &amp;&amp; (ISCHANGED(UNITY_Work_Window_Begin__c) || (ISNEW() &amp;&amp; (ISPICKVAL( UNITYPM_Type__c, &quot;PMO&quot;) || ISPICKVAL( UNITYPM_Type__c, &quot;PMA&quot;)))) ) || ISCHANGED(Priority))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -1887,7 +1892,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         </actions>
         <active>false</active>
         <description>When the action picklist is set to Send PO, send email to vendor that includes current PO and work plan if a PO is linked to work order and in Final status</description>
-        <formula>ISPICKVAL(UNITY_Action__c, &quot;Send PO&quot;) &amp;&amp; !ISBLANK(UNITY_Current_PO__c) &amp;&amp; !ISBLANK( UNITY_Vendor_PO_Sent_Date__c )</formula>
+        <formula>NOT(RecordType.Name = &apos;Preventative Maintenance&apos;) &amp;&amp; ISPICKVAL(UNITY_Action__c, &quot;Send PO&quot;) &amp;&amp; !ISBLANK(UNITY_Current_PO__c) &amp;&amp; !ISBLANK( UNITY_Vendor_PO_Sent_Date__c )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1917,7 +1922,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         </actions>
         <active>false</active>
         <description>When the action picklist is set to Send PO, send email to vendor that includes current PO and work plan if a PO is linked to work order and in Final status . BU MNS</description>
-        <formula>ISPICKVAL(UNITY_Action__c, &quot;Send PO&quot;) &amp;&amp; !ISBLANK(UNITY_Current_PO__c) &amp;&amp; OR(!ISBLANK( UNITY_Vendor_PO_Sent_Date__c )&amp;&amp;( RecordType.Name = &apos;Service Request&apos;),RecordType.Name = &apos;Non-Work&apos;) &amp;&amp;  OR( ISPICKVAL(UNITY_Business_Unit__c,&apos;MNS&apos;),  CONTAINS( UNITY_Business_Unit_Formula__c , &apos;MSP&apos;) )</formula>
+        <formula>NOT(RecordType.Name = &apos;Preventative Maintenance&apos;) &amp;&amp; ISPICKVAL(UNITY_Action__c, &quot;Send PO&quot;) &amp;&amp; !ISBLANK(UNITY_Current_PO__c) &amp;&amp; OR(!ISBLANK( UNITY_Vendor_PO_Sent_Date__c )&amp;&amp;( RecordType.Name = &apos;Service Request&apos;),RecordType.Name = &apos;Non-Work&apos;) &amp;&amp;  OR( ISPICKVAL(UNITY_Business_Unit__c,&apos;MNS&apos;),  CONTAINS( UNITY_Business_Unit_Formula__c , &apos;MSP&apos;) )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1932,7 +1937,7 @@ NOT(ISPICKVAL( Status, &quot;Closed&quot;))
         </actions>
         <active>false</active>
         <description>When the action picklist is set to Send PO, send email to vendor that includes current PO and work plan if a PO is linked to work order and in Final status . BU NSBS</description>
-        <formula>ISPICKVAL(UNITY_Action__c, &quot;Send PO&quot;) &amp;&amp; !ISBLANK(UNITY_Current_PO__c) &amp;&amp; OR(!ISBLANK( UNITY_Vendor_PO_Sent_Date__c )&amp;&amp;( RecordType.Name = &apos;Service Request&apos;),RecordType.Name = &apos;Non-Work&apos;) &amp;&amp;  ISPICKVAL ( UNITY_Business_Unit__c, &apos;NSBS&apos;)</formula>
+        <formula>NOT(RecordType.Name = &apos;Preventative Maintenance&apos;) &amp;&amp; ISPICKVAL(UNITY_Action__c, &quot;Send PO&quot;) &amp;&amp; !ISBLANK(UNITY_Current_PO__c) &amp;&amp; OR(!ISBLANK( UNITY_Vendor_PO_Sent_Date__c )&amp;&amp;( RecordType.Name = &apos;Service Request&apos;),RecordType.Name = &apos;Non-Work&apos;) &amp;&amp;  ISPICKVAL ( UNITY_Business_Unit__c, &apos;NSBS&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

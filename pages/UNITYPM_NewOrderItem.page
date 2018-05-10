@@ -124,9 +124,6 @@
         td.lookup-cell{
             min-width:110px;
         }
-        checkboxWidth{
-            width:70px;
-        }
         .cell-wrapper{
             display: block;
             top: 0px;
@@ -638,7 +635,7 @@
                                                             <td class="currency">
                                                                 <apex:outputPanel id="cost-panel" styleClass="cell-wrapper">
                                                                     <apex:inputField value="{!line.item.UNITY_Cost__c}" styleClass="cell-wrapper-unitCost" >
-                                                                        <apex:actionSupport action="{!line.onCostQtyChange}" event="onchange" reRender="totalCost-panel, cost-panel"/>
+                                                                        <apex:actionSupport action="{!line.onCostQtyChange}" event="onchange" reRender="totalCost-panel"/>
                                                                     </apex:inputField>
                                                                 </apex:outputPanel>
                                                             </td>
@@ -741,14 +738,7 @@
                                             </tr>
                                             <tr>
                                                 <th><span class="th-label">Is Vendor Supply</span></th>
-                                                <th>
-                                                    <table class="div-table">
-                                                        <tr>
-                                                            <td><span class="th-label" style="display:{!IF(line.item.UNITYPM_Is_Preventative_Maintenance__c,'none;','block;')}">Non Billable</span></td>
-                                                            <td><span class="th-label" style="display:{!IF(line.item.UNITYPM_Is_Preventative_Maintenance__c,'none;','block;')}">Non Payable</span></td>
-                                                        </tr>
-                                                    </table>
-                                                </th>
+                                                <th><span class="th-label"  style="display:{!IF(line.item.UNITYPM_Is_Preventative_Maintenance__c,'none;','block;')}">Non Billable</span></th>
                                                 <th><span class="th-label">Asset</span></th>
                                                 <th><span class="th-label">Asset Type</span></th>
                                                 <th>
@@ -770,22 +760,9 @@
                                                 <!-- End Is Vendor Supply -->
                                                 <!-- Non Billable -->
                                                 <td>
-                                                    <table class="div-table">
-                                                        <tr>
-                                                            <td>
-                                                                <apex:outputPanel id="nonBillable-panel" styleClass="cell-wrapper" >
-                                                                    <apex:inputField value="{!line.item.UNITY_Not_Billable__c}" rendered="{!NOT(line.item.UNITYPM_Is_Preventative_Maintenance__c)}"></apex:inputField>
-                                                                </apex:outputPanel>
-                                                            </td>
-                                                            <td>
-                                                                <apex:outputPanel styleClass="cell-wrapper" >
-                                                                    <apex:inputField value="{!line.item.UNITYPM_Non_Payable__c}" rendered="{!NOT(line.item.UNITYPM_Is_Preventative_Maintenance__c)}">
-                                                                        <apex:actionSupport action="{!line.onNonPayableChanged}" event="onchange" reRender="totalCost-panel, cost-panel"/>
-                                                                    </apex:inputField>
-                                                                </apex:outputPanel>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                                                    <apex:outputPanel id="nonBillable-panel" styleClass="cell-wrapper" >
+                                                        <apex:inputField value="{!line.item.UNITY_Not_Billable__c}" rendered="{!NOT(line.item.UNITYPM_Is_Preventative_Maintenance__c)}"></apex:inputField>
+                                                    </apex:outputPanel>
                                                 </td>
                                                 <!-- End Non Billable-->
                                                <!-- Asset _-->
@@ -804,10 +781,10 @@
                                                             <apex:inputHidden value="{!line.item.UNITY_Asset__c}" required="false" html-data-id="asset-lookup-{!line.index}-hidden"></apex:inputHidden>
                                                             <script type="text/javascript">
                                                                 $j('[data-id="asset-lookup-{!line.index}-hidden"]').change(function(){ 
-                                                                    assetChange('{!line.index}',$j(this).val());
+                                                                    assetChange('{!line.index}',$j(this).val()); 
                                                                 });
-                                                            </script>
-                                                        </apex:outputPanel>
+                                                            </script> 
+                                                        </apex:outputPanel>                                                                                
                                                         <apex:outputField value="{!line.item.UNITY_Asset__c}" styleClass="product-link" rendered="{!AND(line.item.UNITY_Asset__c != NULL,line.item.Id != NULL)}"></apex:outputField>    
                                                     </apex:outputPanel>
                                                 </td>
@@ -856,7 +833,7 @@
                 </apex:outputPanel>
             </apex:PageBlockSection>
             <apex:pageBlockButtons location="bottom"> 
-                <apex:commandButton action="{!doSave}" value="Save" status="loadingStatus" reRender="messages,items-wrapper,order-detail,script" rendered="{!canEdit}" oncomplete="closeMe();"></apex:commandButton>
+                <apex:commandButton action="{!doSave}" value="Save" status="loadingStatus" reRender="messages,script,items-wrapper,order-detail" rendered="{!canEdit}" oncomplete="closeMe();"></apex:commandButton>
                 <apex:commandButton action="{!doQuickSave}" value="Quick Save" status="loadingStatus" reRender="messages,script,items-wrapper,order-detail" rendered="{!canEdit}"></apex:commandButton>             
                 <apex:commandButton styleClass="cancel-btn" value="Go Back" rendered="{! NOT(o.UNITYPM_Is_WO_Preventative_Maintenance__c)}"></apex:commandButton>
             </apex:pageBlockButtons>           
@@ -882,16 +859,9 @@
                     closeAndRefresh(true);
                 }
             });
-            function closeMe() {
-                var saveComplete = {!saveComplete};
-                if (saveComplete) {
-                    window.top.close();
-                }
-            }
         </script>
     </apex:outputPanel>
     <script type="text/javascript">
-
         $j(".cancel-btn").click(function(e){
             e.preventDefault();
             if({!oLines.size} > 0){
@@ -1137,7 +1107,9 @@
                 alert('No lines found with asset type of '+ selectedAsseType);
 
         }
-
+    function closeMe(){
+        window.top.close();
+    }    
     
     </script>
     <style type="text/css">

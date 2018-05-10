@@ -2,9 +2,9 @@
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseAccessLevel>None</caseAccessLevel>
     <contactAccessLevel>None</contactAccessLevel>
-    <description>MINER BOYTON BEACH (SFL) Customer User</description>
+    <description>MINER BOYNTON BEACH (SFL) Customer User</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>MINER BOYTON BEACH (SFL) Customer User</name>
+    <name>MINER BOYNTON BEACH (SFL) Customer User</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
     <parentRole>UNITY_MNSCorporate</parentRole>
 </Role>

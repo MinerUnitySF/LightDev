@@ -620,7 +620,7 @@
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_3</name>
-            <conditionLogic>2  AND 1 AND 3 AND 4</conditionLogic>
+            <conditionLogic>1 AND 3 AND 4 AND (2 OR 5)</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -743,6 +743,37 @@
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>Preventative Maintenance</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Reopened</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -1375,7 +1406,7 @@
         </rules>
         <rules>
             <name>myRule_3_pmetrule</name>
-            <conditionLogic>2  AND 1 AND 3 AND 4</conditionLogic>
+            <conditionLogic>1 AND 3 AND 4 AND (2 OR 5)</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -1498,6 +1529,37 @@
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>Preventative Maintenance</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_old.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Reopened</stringValue>
                 </rightValue>
             </conditions>
             <label>Previously Met - Prev</label>
@@ -1627,7 +1689,7 @@
         </rules>
     </decisions>
     <description>Set All WOLIs to Completed or Mark WO as Partially Complete</description>
-    <interviewLabel>SFPS_FS_SetAllTasksCompleted-15_InterviewLabel</interviewLabel>
+    <interviewLabel>SFPS_FS_SetAllTasksCompleted-16_InterviewLabel</interviewLabel>
     <label>SFPS FS SetAllTasksCompleted UNITYPM</label>
     <processMetadataValues>
         <name>ObjectType</name>

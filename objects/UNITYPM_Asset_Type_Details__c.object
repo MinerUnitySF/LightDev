@@ -15,5 +15,14 @@
         <unique>false</unique>
     </fields>
     <label>UNITYPM Asset Type Details</label>
+    <listViews>
+        <fullName>All_Columns</fullName>
+        <columns>NAME</columns>
+        <columns>Product_ID__c</columns>
+        <columns>SETUP_TYPE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Columns</label>
+        <language>en_US</language>
+    </listViews>
     <visibility>Public</visibility>
 </CustomObject>

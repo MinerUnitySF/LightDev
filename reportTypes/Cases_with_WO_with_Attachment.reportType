@@ -2617,6 +2617,11 @@
             <field>PostalCode</field>
             <table>Case.WorkOrders</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UNITY_Accepted_Vendor__c.UNITY_Has_Community_Member__c</field>
+            <table>Case.WorkOrders</table>
+        </columns>
         <masterLabel>Work Orders</masterLabel>
     </sections>
     <sections>

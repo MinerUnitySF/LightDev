@@ -8,12 +8,12 @@ public class UNITY_InvoiceTriggerHandler_Miner extends UNITY_BaseHandler{
                 if((inv.UNITY_Invoice_Status__c == 'Invoice Finalized') && (oldInv.UNITY_Invoice_Status__c != inv.UNITY_Invoice_Status__c)){
                     inv.UNITY_Invoice_Date__c = Date.today();
                 }
-             }
+            }
         }
     }
     public override void bulkAfter(){
         List<UNITY_Invoice__c> invIdUpdateCase = new List<UNITY_Invoice__c>();
-         
+
         if(Trigger.isUpdate){
             //Check which invoices are updated to 'Sent to Customer' to generate Invoice PDF and attach it to the case
             Set<String> invIds = new Set<String>();
@@ -30,22 +30,17 @@ public class UNITY_InvoiceTriggerHandler_Miner extends UNITY_BaseHandler{
                 //If invoice date changed or status, update case
                 if (inv.UNITY_Invoice_Date__c != oldInv.UNITY_Invoice_Date__c || inv.UNITY_Invoice_Status__c != oldInv.UNITY_Invoice_Status__c){
                     invIdUpdateCase.add(inv);
-                } 
-                
+                }                
                 //If ther invoice status changes to Invoice Finalized...
                 if((inv.UNITY_Invoice_Status__c == 'Invoice Finalized') && (oldInv.UNITY_Invoice_Status__c != inv.UNITY_Invoice_Status__c)){
                     invIds.add(inv.Id);
                     //if not running  postInvoiceTax && tax has not been posted
                     if(!System.isFuture() && !System.isBatch() && !inv.UNITY_Tax_Posted__c)
-                        system.debug('//Clay: Adding an invoice to be sent to postInvoiceTax future  method (result will be in a different log):');
-                        system.debug('//Clay: invoice: ' + inv.Id);
                         postInvoiceTax(inv.Id);
                 //If the invoice status changed to Disputed...
                 }else if((inv.UNITY_Invoice_Status__c == 'Disputed') && (oldInv.UNITY_Invoice_Status__c != inv.UNITY_Invoice_Status__c)){
                     //If not runnign canceltaxInvoice
                     if(!UNITY_Constants.isExecutingContext('UNITY_InvoiceTriggerHandler_Miner.cancelInvoiceTax'))
-                        system.debug('//Clay: Adding an invoice to be sent to cancelInvoiceTax future  method (result will be in a different log):');
-                        system.debug('//Clay: invoice: ' + inv.Id);
                         invIdsCancelTax.add(inv.Id);
                 //If the invoice status changed to Disputed and tax processed is set to false...
                 }else if(inv.UNITY_Invoice_Status__c == 'Disputed' && inv.UNITY_Tax_Processed__c == false){
@@ -58,7 +53,6 @@ public class UNITY_InvoiceTriggerHandler_Miner extends UNITY_BaseHandler{
                          !UNITY_Constants.isExecutingContext('UNITY_InvoiceCreationPageController.callAvataxForInvoice') &&
                          !UNITY_Constants.isExecutingContext('UNITY_CallAvatax.getTaxServiceCharge') &&
                          (inv.UNITY_Tax_Processed__c == false || (inv.UNITY_Tax_Processed__c == true && inv.UNITY_Total_Price__c != oldInv.UNITY_Total_Price__c))) {
-
                              invIdsAvatax.add(inv.Id);
                          }else if(inv.UNITY_Invoice_Status__c == 'Cancelled' && oldInv.UNITY_Invoice_Status__c != inv.UNITY_Invoice_Status__c){
                              cancelledInvIds.add(inv.Id);
@@ -92,8 +86,7 @@ public class UNITY_InvoiceTriggerHandler_Miner extends UNITY_BaseHandler{
         }
         if (!invIdUpdateCase.isEmpty() && !System.isFuture() && !System.isBatch()){
             updateCaseDaysToInvoiceField(invIdUpdateCase);
-        } 
-       
+        }           
     }
     
     @future(callout=true)
@@ -110,8 +103,6 @@ public class UNITY_InvoiceTriggerHandler_Miner extends UNITY_BaseHandler{
             List<Id> invIds = new List<Id>();
             invIds.add(invId);
             UNITY_CallAvatax.AvataxResult taxResult = UNITY_CallAvatax.getTaxInvoice(invIds,true);
-            system.debug('//Clay: We just tried to post tax by calling UNITY_CallAvatax.AvataxResult: ');
-            system.debug('//Clay: taxResult = ' + taxResult);
         }
     }
     
@@ -119,8 +110,6 @@ public class UNITY_InvoiceTriggerHandler_Miner extends UNITY_BaseHandler{
     public static void cancelInvoiceTax(List<Id> invIds){
         if(!invIds.isEmpty()){
             UNITY_CallAvatax.AvataxResult taxResult = UNITY_CallAvatax.cancelTaxInvoice(invIds);
-            system.debug('//Clay: We just tried to cancel tax by calling UNITY_CallAvatax.AvataxResult: ');
-            system.debug('//Clay: taxResult = ' + taxResult);
         }
     }
     public static void resetPOsRelatedToInvoice(Set<Id> invIds){

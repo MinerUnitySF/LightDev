@@ -30,7 +30,7 @@
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
-            <conditionLogic>(1 OR 2) AND 3 AND 4</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -169,7 +169,7 @@
                 <stringValue>IF(ISBLANK([Case].Subject), &apos;No Subject&apos;, [Case].Subject) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_9679140195</name>
+        <name>formula_2_myRule_1_A1_3840420447</name>
         <dataType>String</dataType>
         <expression>IF(ISBLANK({!myVariable_current.Subject}), &apos;No Subject&apos;, {!myVariable_current.Subject})</expression>
     </formulas>
@@ -180,7 +180,7 @@
                 <stringValue>CASESAFEID([Case].Id) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_6713277852</name>
+        <name>formula_3_myRule_1_A1_2607973513</name>
         <dataType>String</dataType>
         <expression>CASESAFEID({!myVariable_current.Id})</expression>
     </formulas>
@@ -191,7 +191,7 @@
                 <stringValue>[Case].CaseNumber </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_1_A1_1188486482</name>
+        <name>formula_4_myRule_1_A1_8050260588</name>
         <dataType>String</dataType>
         <expression>{!myVariable_current.CaseNumber}</expression>
     </formulas>
@@ -202,12 +202,12 @@
                 <stringValue>CASESAFEID([Case].OwnerId ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_1_A1_8037713620</name>
+        <name>formula_5_myRule_1_A1_9149217050</name>
         <dataType>String</dataType>
         <expression>CASESAFEID({!myVariable_current.OwnerId} )</expression>
     </formulas>
-    <interviewLabel>UNITY_Emergency_Case_Notification-5_InterviewLabel</interviewLabel>
-    <label>UNITY Notification - Emergency Case v2 UNITYPM</label>
+    <interviewLabel>UNITY_Emergency_Case_Notification-4_InterviewLabel</interviewLabel>
+    <label>UNITY Notification - Emergency Case v2</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
@@ -265,7 +265,7 @@
             </processMetadataValues>
             <field>Record_Id__c</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_6713277852</elementReference>
+                <elementReference>formula_3_myRule_1_A1_2607973513</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -295,7 +295,7 @@
             </processMetadataValues>
             <field>Record_Name__c</field>
             <value>
-                <elementReference>formula_4_myRule_1_A1_1188486482</elementReference>
+                <elementReference>formula_4_myRule_1_A1_8050260588</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -325,7 +325,7 @@
             </processMetadataValues>
             <field>Subject__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_9679140195</elementReference>
+                <elementReference>formula_2_myRule_1_A1_3840420447</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -355,7 +355,7 @@
             </processMetadataValues>
             <field>Subscriber__c</field>
             <value>
-                <elementReference>formula_5_myRule_1_A1_8037713620</elementReference>
+                <elementReference>formula_5_myRule_1_A1_9149217050</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>

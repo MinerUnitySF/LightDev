@@ -16,7 +16,7 @@ public class UNITY_FixWorkOrderManualSharing  implements Database.Batchable<SObj
 						 AND Status != 'Canceled'
                          AND UNITY_Assigned_Vendor__r.IsCustomerPortal = true
                          AND UNITY_Assigned_Vendor__c in :accID
-                         AND RecordTypeId in (Select Id From RecordType where sobjecttype = 'WorkOrder' and name in ('Service Request', 'Non-work', 'Preventative Maintenance'))
+                         AND RecordTypeId in (Select Id From RecordType where sobjecttype = 'WorkOrder' and name in ('Service Request', 'Non-work', 'Planned Maintenance'))
                         ]);
 
         List<UserRole> userRoles = [SELECT Id FROM UserRole WHERE PortalAccountId IN :accID];
@@ -91,4 +91,18 @@ public class UNITY_FixWorkOrderManualSharing  implements Database.Batchable<SObj
     
      public void finish(Database.BatchableContext context) {
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

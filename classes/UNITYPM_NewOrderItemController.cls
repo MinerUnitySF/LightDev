@@ -55,7 +55,7 @@ public without sharing class UNITYPM_NewOrderItemController {
         List<Schema.PicklistEntry> assetTypesPL = Asset.getSObjectType().getDescribe().fields.getMap().get('UNITY_Asset_Type__c').getDescribe().getPickListValues();
         List<SelectOption> options = new List<SelectOption>();
         for (Schema.PicklistEntry at : assetTypesPL){
-            options.add(new SelectOption(at.getLabel(),at.getValue()));
+            options.add(new SelectOption(at.getLabel(),at.getValue()));    
         }
         system.debug('@@@getAssetTypes options'+options);
         return options;
@@ -100,7 +100,7 @@ public without sharing class UNITYPM_NewOrderItemController {
                                     UNITY_Vendor_Adjusted_Quantity__c,UNITY_Customer_Adjusted_Quantity__c,
                                     UNITY_Cost_Calculation_Details__c,UNITY_Customer_Holiday_Multiplier__c,
                                     UNITY_Customer_OT_Multiplier__c, UNITYPM_Is_Preventative_Maintenance__c,
-                                    UNITY_Asset_Type__c, UNITY_Not_Billable__c, UNITYPM_Non_Payable__c
+                                    UNITY_Asset_Type__c, UNITY_Not_Billable__c
                                     FROM OrderItem WHERE OrderId = :o.Id ORDER BY OrderItemNumber ASC];
 
         Set<Id> priceBookEntryIds = new Set<Id>();
@@ -320,17 +320,6 @@ public without sharing class UNITYPM_NewOrderItemController {
                     if(!this.hasError)
                         newLines.add(line);
                 }
-                //Non Payable
-                if (line.item.UNITYPM_Non_Payable__c){
-                    if (line.item.UNITY_Cost__c != 0.00 && line.item.UNITY_Cost__c != null ) {
-                        line.item.UNITY_Cost__c.addError('Cost should be zero for Non Payable lines.' + line.item.UNITY_Cost__c);
-                        this.hasError = true;
-                    }
-                    if (line.item.UNITY_Not_Billable__c){
-                        line.item.UNITY_Not_Billable__c.addError('Line cannot be Non-Billable and Non-Payable at the same time.');
-                        this.hasError = true;
-                    }
-                }
             }
             if(!hasError)
                 this.oLines = newLines;
@@ -365,7 +354,6 @@ public without sharing class UNITYPM_NewOrderItemController {
             }
         }
     }
-
     public class OLineWrapper{
         public OrderItem item {get; set;}
         public List<OrderItem> orderItemLines{get; set;}
@@ -471,10 +459,7 @@ public without sharing class UNITYPM_NewOrderItemController {
         public void onCostQtyChange(){
             //Calculate the total cost
             if(this.item.UNITY_Cost__c != null){
-                this.item.UNITY_Cost_Calculation_Details__c = '';
-                if (this.item.UNITYPM_Non_Payable__c)
-                    this.item.UNITY_Cost__c = 0;
-                this.item.UNITY_Total_Cost__c = this.item.UNITY_Cost__c * (this.item.UNITYPM_Is_Preventative_Maintenance__c ? this.item.Quantity : this.item.UNITY_Vendor_Adjusted_Quantity__c);
+            	this.item.UNITY_Total_Cost__c = this.item.UNITY_Cost__c * (this.item.UNITYPM_Is_Preventative_Maintenance__c ? this.item.Quantity : this.item.UNITY_Vendor_Adjusted_Quantity__c);
             }
         }//End onCostQtyChange
         /**This method runs when the line price is changed.
@@ -516,13 +501,6 @@ public without sharing class UNITYPM_NewOrderItemController {
         	}//ENd onVenbdorSupplyChange
 
     	}
-        public void onNonPayableChanged(){
-            system.debug('@@@onNonPayableChanged isNonPayable:'+this.item.UNITYPM_Non_Payable__c);
-            if(this.item.UNITYPM_Non_Payable__c){
-                this.item.UNITY_Cost__c = 0;
-                this.item.UNITY_Total_Cost__c = this.item.UNITY_Cost__c * (this.item.UNITYPM_Is_Preventative_Maintenance__c ? this.item.Quantity : this.item.UNITY_Vendor_Adjusted_Quantity__c);
-            }
-        }
     }
     
     @RemoteAction

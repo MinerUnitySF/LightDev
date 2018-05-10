@@ -93,37 +93,6 @@
                     <elementReference>myVariable_current.UNITY_Agent__c</elementReference>
                 </rightValue>
             </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.UNITY_WO_Record_Type__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Preventative Maintenance</stringValue>
-                </rightValue>
-            </conditions>
             <connector>
                 <targetReference>myRule_1_pmetdec</targetReference>
             </connector>
@@ -216,38 +185,7 @@
                 <leftValueReference>myVariable_old.LastModifiedById</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>myVariable_old.UNITY_Agent__c</elementReference>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.UNITY_WO_Record_Type__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Preventative Maintenance</stringValue>
+                    <elementReference>myVariable_current.UNITY_Agent__c</elementReference>
                 </rightValue>
             </conditions>
             <label>Previously Met - Prev</label>
@@ -261,7 +199,7 @@
                 <stringValue>CASESAFEID([WorkOrder].Id)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_3290918105</name>
+        <name>formula_2_myRule_1_A1_Record_Id_c</name>
         <dataType>String</dataType>
         <expression>CASESAFEID({!myVariable_current.Id})</expression>
     </formulas>
@@ -276,7 +214,7 @@ CASESAFEID([WorkOrder].Case.OwnerId)
  )</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_4460727860</name>
+        <name>formula_3_myRule_1_A1_Subscriber_c</name>
         <dataType>String</dataType>
         <expression>IF(
 NOT(ISBLANK({!myVariable_current.UNITY_Agent__c})),
@@ -284,7 +222,7 @@ CASESAFEID({!myVariable_current.UNITY_Agent__c}),
 CASESAFEID({!myVariable_current.Case.OwnerId})
  )</expression>
     </formulas>
-    <interviewLabel>UNITY_Notification_Tech_Check_Out-2_InterviewLabel</interviewLabel>
+    <interviewLabel>UNITY_Notification_Tech_Check_Out-1_WorkOrder</interviewLabel>
     <label>UNITY Notification - Tech Check-Out</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -373,7 +311,7 @@ CASESAFEID({!myVariable_current.Case.OwnerId})
             </processMetadataValues>
             <field>Record_Id__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_3290918105</elementReference>
+                <elementReference>formula_2_myRule_1_A1_Record_Id_c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -463,7 +401,7 @@ CASESAFEID({!myVariable_current.Case.OwnerId})
             </processMetadataValues>
             <field>Subscriber__c</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_4460727860</elementReference>
+                <elementReference>formula_3_myRule_1_A1_Subscriber_c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>

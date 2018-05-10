@@ -505,18 +505,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>UNITY_Asset_Type__c</fullName>
-        <externalId>false</externalId>
-        <formula>TEXT(UNITY_Asset__r.UNITY_Asset_Type__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Asset Type</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>UNITY_Asset__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>

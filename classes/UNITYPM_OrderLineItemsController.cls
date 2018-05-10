@@ -8,7 +8,7 @@ public class UNITYPM_OrderLineItemsController {
                                                   UNITY_Unknown_Part_Description__c,UNITY_Vendor_Adjusted_Quantity__c,
                                                   UNITY_Total_Cost__c,Order.UNITY_Total_Cost__c 
                                             FROM OrderItem
-                                                WHERE OrderId=:value  AND UNITYPM_Non_Payable__c = false];
+                                                WHERE OrderId=:value]; 
                                                   //AND UNITYPM_Is_Preventative_Maintenance__c = true];
                                         
                                  Map<String, List<OrderItem>> olMap = new Map  <String, List<OrderItem>>();      

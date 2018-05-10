@@ -1324,8 +1324,8 @@
         </rules>
     </decisions>
     <description>Set All WOLIs to Completed or Mark WO as Partially Complete</description>
-    <interviewLabel>SFPS_FS_SetAllTasksCompleted-14_InterviewLabel</interviewLabel>
-    <label>SFPS FS SetAllTasksCompleted neli</label>
+    <interviewLabel>SFPS_FS_SetAllTasksCompleted-15_InterviewLabel</interviewLabel>
+    <label>SFPS FS SetAllTasksCompleted NEW</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>

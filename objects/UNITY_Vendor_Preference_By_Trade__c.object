@@ -140,6 +140,11 @@
         <type>Lookup</type>
     </fields>
     <label>Vendor Preference By Trade</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>VPT-{0000000}</displayFormat>
         <label>Vendor Preference By Trade Name</label>

@@ -80,7 +80,7 @@
                                                        fields_to_return="Name, UNITY_Account_ID__c"
                                                        fields_labels="{'Name':'Name', 'UNITY_Account_ID__c':'AccountID'}"
                                                        like_fields="Name"
-                                                       where_clause="RecordType.Name in (\'Vendor\',\'Miner\') AND UNITY_Vendor_Status__c = \'Active\' AND UNITY_Vendor_Type_PM__c 
+                                                       where_clause="RecordType.Name in (\'Vendor\',\'Miner\')  AND UNITY_Vendor_Status__c = \'Active\' AND UNITY_Vendor_Type_PM__c 
 = true"
                                                        obj_name="Account"></c:CustomLookupField>
                                   
@@ -112,8 +112,7 @@
           </script>
         </apex:outputPanel>
              <apex:pageBlockButtons location="bottom">
-               <apex:commandButton action="{!assignVendor}" reRender="messages, resultJS" styleClass="buttonStyle" style="background:LightCray;width:150px;font-size: 14px;" status="pageStatus" 
-               value="Save & Close" oncomplete="checkResult();"></apex:commandButton>   
+               <apex:commandButton action="{!assignVendor}" reRender="messages, resultJS" styleClass="buttonStyle" style="background:LightCray;width:150px;font-size: 14px;" status="pageStatus" value="Save & Close" oncomplete="checkResult();"></apex:commandButton>   
              </apex:pageBlockButtons>
        
       </apex:pageBlock>

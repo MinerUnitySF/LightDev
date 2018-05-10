@@ -258,7 +258,7 @@
     </decisions>
     <description>Process to update integration notes field with case notes if Send to integration checked</description>
     <interviewLabel>UNITY_Case_Update_Integration_Notes-3_InterviewLabel</interviewLabel>
-    <label>UNITY Case Update Integration Notes UNITYPM</label>
+    <label>UNITY Case Update Integration Notes</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>

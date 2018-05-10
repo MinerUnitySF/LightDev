@@ -576,9 +576,6 @@ public with sharing class UNITY_PriceCalculation {
  * ********************************************************************************************************************** */                        
                         }else if(orderItem.PricebookEntry.Product2.UNITY_Product_Type__c == 'Part'){
                             System.debug(LoggingLevel.INFO,'<AK> : inside else if : onOrderItem.UNITY_Type__c : '+onOrderItem.UNITY_Type__c);
-                            if (orderItem.UNITYPM_Non_Payable__c){
-                                orderItem.UNITY_Cost__c = orderItem.UNITYPM_Cost_For_Non_Payable__c;
-                            }
                             orderItem.UNITY_Cost_Calculation_Details__c += 'Original Cost: '+orderItem.UNITY_Cost__c+'\n';
                             orderItem.UNITY_Price_Calculation_Details__c += 'Original Price: '+orderItem.UNITY_Price__c+'\n';
                             //VENDOR: COST CALCULATION
@@ -806,7 +803,6 @@ public with sharing class UNITY_PriceCalculation {
                                 }
                                 
                             }
-
 /* **********************************************************************************************************************
  * ******************** PO LABOR LINE PRICE CALCULATION *****************************************************************
  * ********************************************************************************************************************** */
@@ -1291,11 +1287,7 @@ public with sharing class UNITY_PriceCalculation {
                             orderItem.UNITY_Total_Price__c = orderItem.UNITY_Price__c * orderItem.UNITY_Customer_Adjusted_Quantity__c;
                             orderItem.UNITY_Type__c = 'Service Fee';
                             orderItem.UNITY_Activity_Type__c = 'Service Fee';
-
                         }else{
-                            if (orderItem.UNITYPM_Non_Payable__c){
-                                orderItem.UNITY_Cost__c = orderItem.UNITYPM_Cost_For_Non_Payable__c;
-                            }
                             // VENDOR COST CALCULATION
                             if (orderItem.UNITY_Cost__c == null || orderItem.UNITY_Cost__c <= 0){
                                 if (costByProductFromSCLI >= 0){

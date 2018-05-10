@@ -84,8 +84,8 @@
     <listViews>
         <fullName>All_Fields</fullName>
         <columns>NAME</columns>
-        <columns>Category__c</columns>
         <columns>Description__c</columns>
+        <columns>Category__c</columns>
         <columns>CustomerId_Subscriber__c</columns>
         <columns>SCField__c</columns>
         <columns>SourceValue__c</columns>

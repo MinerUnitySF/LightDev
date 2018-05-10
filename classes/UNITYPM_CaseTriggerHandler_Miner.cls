@@ -46,10 +46,6 @@ public class UNITYPM_CaseTriggerHandler_Miner extends UNITY_BaseHandler{
                         //Assuming the oldcase was also service channel - i.e. we dont ever convert a none Service Channel Case to an integrated one
                         oldCases.put(oldCase.Id,oldCase);
                     } 
-               
-                if (oldCase.Status == 'Pending Billing'){
-                   newCase.UNITYPM_AutoInvoiceGenerated__c = false;
-                }
 
         	}
             //Call work order checkin on service channel PM cases:

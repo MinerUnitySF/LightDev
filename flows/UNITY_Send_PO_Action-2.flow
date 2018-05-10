@@ -476,7 +476,7 @@
                 <stringValue>Now()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_10_A1_2799670686</name>
+        <name>formula_11_myRule_10_A1_8732783514</name>
         <dataType>DateTime</dataType>
         <expression>Now()</expression>
     </formulas>
@@ -487,7 +487,7 @@
                 <stringValue>Now()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_14_myRule_13_A1_5092476040</name>
+        <name>formula_14_myRule_13_A1_3648611003</name>
         <dataType>DateTime</dataType>
         <expression>Now()</expression>
     </formulas>
@@ -498,7 +498,7 @@
                 <stringValue>Now()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_3159872514</name>
+        <name>formula_2_myRule_1_A1_2173763558</name>
         <dataType>DateTime</dataType>
         <expression>Now()</expression>
     </formulas>
@@ -509,7 +509,7 @@
                 <stringValue>Now()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_A1_7400637984</name>
+        <name>formula_5_myRule_4_A1_7305059575</name>
         <dataType>DateTime</dataType>
         <expression>Now()</expression>
     </formulas>
@@ -520,7 +520,7 @@
                 <stringValue>Now()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_8_myRule_7_A1_2505767249</name>
+        <name>formula_8_myRule_7_A1_2702955667</name>
         <dataType>DateTime</dataType>
         <expression>Now()</expression>
     </formulas>
@@ -529,7 +529,7 @@
             <name>originalFormula</name>
             <value>
                 <stringValue>AND(
-NOT([WorkOrder].RecordType.Name = &quot;Preventative Maintenance&quot;),
+NOT([WorkOrder].RecordType.Name == &quot;Preventative Maintenance&quot;),
 ISPICKVAL([WorkOrder].UNITY_Action__c, &quot;Send PO&quot;),
 NOT(ISBLANK([WorkOrder].UNITY_Current_PO__c)),
 OR(
@@ -550,7 +550,7 @@ OR(
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
         <expression>AND(
-NOT({!myVariable_current.RecordType.Name} = &quot;Preventative Maintenance&quot;),
+NOT({!myVariable_current.RecordType.Name} == &quot;Preventative Maintenance&quot;),
 ISPICKVAL({!myVariable_current.UNITY_Action__c}, &quot;Send PO&quot;),
 NOT(ISBLANK({!myVariable_current.UNITY_Current_PO__c})),
 OR(
@@ -572,7 +572,7 @@ OR(
             <name>originalFormula</name>
             <value>
                 <stringValue>AND(
-NOT([WorkOrder].RecordType.Name = &quot;Preventative Maintenance&quot;),
+NOT([WorkOrder].RecordType.Name == &quot;Preventative Maintenance&quot;),
 ISPICKVAL([WorkOrder].UNITY_Action__c, &quot;Send PO&quot;),
 NOT(ISBLANK([WorkOrder].UNITY_Current_PO__c)),
 OR(
@@ -593,7 +593,7 @@ CONTAINS([WorkOrder].UNITY_Business_Unit_Formula__c ,&apos;MSP&apos;)
         <name>formula_myRule_10</name>
         <dataType>Boolean</dataType>
         <expression>AND(
-NOT({!myVariable_current.RecordType.Name} = &quot;Preventative Maintenance&quot;),
+NOT({!myVariable_current.RecordType.Name} == &quot;Preventative Maintenance&quot;),
 ISPICKVAL({!myVariable_current.UNITY_Action__c}, &quot;Send PO&quot;),
 NOT(ISBLANK({!myVariable_current.UNITY_Current_PO__c})),
 OR(
@@ -615,7 +615,7 @@ CONTAINS({!myVariable_current.UNITY_Business_Unit_Formula__c} ,&apos;MSP&apos;)
             <name>originalFormula</name>
             <value>
                 <stringValue>AND(
-NOT([WorkOrder].RecordType.Name = &quot;Preventative Maintenance&quot;),
+NOT([WorkOrder].RecordType.Name == &quot;Preventative Maintenance&quot;),
 ISPICKVAL([WorkOrder].UNITY_Action__c, &quot;Send PO&quot;),
 NOT(ISBLANK([WorkOrder].UNITY_Current_PO__c)),
 OR(
@@ -636,7 +636,7 @@ CONTAINS([WorkOrder].UNITY_Business_Unit_Formula__c ,&apos;MSP&apos;)
         <name>formula_myRule_10_pmetrule</name>
         <dataType>Boolean</dataType>
         <expression>AND(
-NOT({!myVariable_old.RecordType.Name} = &quot;Preventative Maintenance&quot;),
+NOT({!myVariable_old.RecordType.Name} == &quot;Preventative Maintenance&quot;),
 ISPICKVAL({!myVariable_old.UNITY_Action__c}, &quot;Send PO&quot;),
 NOT(ISBLANK({!myVariable_old.UNITY_Current_PO__c})),
 OR(
@@ -658,7 +658,7 @@ CONTAINS({!myVariable_old.UNITY_Business_Unit_Formula__c} ,&apos;MSP&apos;)
             <name>originalFormula</name>
             <value>
                 <stringValue>AND(
-NOT([WorkOrder].RecordType.Name = &quot;Preventative Maintenance&quot;),
+NOT([WorkOrder].RecordType.Name == &quot;Preventative Maintenance&quot;),
 ISPICKVAL([WorkOrder].UNITY_Action__c, &quot;Send PO&quot;),
 NOT(ISBLANK([WorkOrder].UNITY_Current_PO__c)),
 OR(
@@ -679,7 +679,7 @@ CONTAINS([WorkOrder].UNITY_Business_Unit_Formula__c ,&apos;MSP&apos;)
         <name>formula_myRule_13</name>
         <dataType>Boolean</dataType>
         <expression>AND(
-NOT({!myVariable_current.RecordType.Name} = &quot;Preventative Maintenance&quot;),
+NOT({!myVariable_current.RecordType.Name} == &quot;Preventative Maintenance&quot;),
 ISPICKVAL({!myVariable_current.UNITY_Action__c}, &quot;Send PO&quot;),
 NOT(ISBLANK({!myVariable_current.UNITY_Current_PO__c})),
 OR(
@@ -701,7 +701,7 @@ CONTAINS({!myVariable_current.UNITY_Business_Unit_Formula__c} ,&apos;MSP&apos;)
             <name>originalFormula</name>
             <value>
                 <stringValue>AND(
-NOT([WorkOrder].RecordType.Name = &quot;Preventative Maintenance&quot;),
+NOT([WorkOrder].RecordType.Name == &quot;Preventative Maintenance&quot;),
 ISPICKVAL([WorkOrder].UNITY_Action__c, &quot;Send PO&quot;),
 NOT(ISBLANK([WorkOrder].UNITY_Current_PO__c)),
 OR(
@@ -722,7 +722,7 @@ CONTAINS([WorkOrder].UNITY_Business_Unit_Formula__c ,&apos;MSP&apos;)
         <name>formula_myRule_13_pmetrule</name>
         <dataType>Boolean</dataType>
         <expression>AND(
-NOT({!myVariable_old.RecordType.Name} = &quot;Preventative Maintenance&quot;),
+NOT({!myVariable_old.RecordType.Name} == &quot;Preventative Maintenance&quot;),
 ISPICKVAL({!myVariable_old.UNITY_Action__c}, &quot;Send PO&quot;),
 NOT(ISBLANK({!myVariable_old.UNITY_Current_PO__c})),
 OR(
@@ -744,7 +744,7 @@ CONTAINS({!myVariable_old.UNITY_Business_Unit_Formula__c} ,&apos;MSP&apos;)
             <name>originalFormula</name>
             <value>
                 <stringValue>AND(
-NOT([WorkOrder].RecordType.Name = &quot;Preventative Maintenance&quot;),
+NOT([WorkOrder].RecordType.Name == &quot;Preventative Maintenance&quot;),
 ISPICKVAL([WorkOrder].UNITY_Action__c, &quot;Send PO&quot;),
 NOT(ISBLANK([WorkOrder].UNITY_Current_PO__c)),
 OR(
@@ -765,7 +765,7 @@ OR(
         <name>formula_myRule_1_pmetrule</name>
         <dataType>Boolean</dataType>
         <expression>AND(
-NOT({!myVariable_old.RecordType.Name} = &quot;Preventative Maintenance&quot;),
+NOT({!myVariable_old.RecordType.Name} == &quot;Preventative Maintenance&quot;),
 ISPICKVAL({!myVariable_old.UNITY_Action__c}, &quot;Send PO&quot;),
 NOT(ISBLANK({!myVariable_old.UNITY_Current_PO__c})),
 OR(
@@ -787,7 +787,7 @@ OR(
             <name>originalFormula</name>
             <value>
                 <stringValue>AND(
-NOT([WorkOrder].RecordType.Name = &quot;Preventative Maintenance&quot;),
+NOT([WorkOrder].RecordType.Name == &quot;Preventative Maintenance&quot;),
 ISPICKVAL([WorkOrder].UNITY_Action__c, &quot;Send PO&quot;),
 NOT(ISBLANK([WorkOrder].UNITY_Current_PO__c)),
 OR(
@@ -808,7 +808,7 @@ OR(
         <name>formula_myRule_4</name>
         <dataType>Boolean</dataType>
         <expression>AND(
-NOT({!myVariable_current.RecordType.Name} = &quot;Preventative Maintenance&quot;),
+NOT({!myVariable_current.RecordType.Name} == &quot;Preventative Maintenance&quot;),
 ISPICKVAL({!myVariable_current.UNITY_Action__c}, &quot;Send PO&quot;),
 NOT(ISBLANK({!myVariable_current.UNITY_Current_PO__c})),
 OR(
@@ -830,7 +830,7 @@ OR(
             <name>originalFormula</name>
             <value>
                 <stringValue>AND(
-NOT([WorkOrder].RecordType.Name = &quot;Preventative Maintenance&quot;),
+NOT([WorkOrder].RecordType.Name == &quot;Preventative Maintenance&quot;),
 ISPICKVAL([WorkOrder].UNITY_Action__c, &quot;Send PO&quot;),
 NOT(ISBLANK([WorkOrder].UNITY_Current_PO__c)),
 OR(
@@ -851,7 +851,7 @@ OR(
         <name>formula_myRule_4_pmetrule</name>
         <dataType>Boolean</dataType>
         <expression>AND(
-NOT({!myVariable_old.RecordType.Name} = &quot;Preventative Maintenance&quot;),
+NOT({!myVariable_old.RecordType.Name} == &quot;Preventative Maintenance&quot;),
 ISPICKVAL({!myVariable_old.UNITY_Action__c}, &quot;Send PO&quot;),
 NOT(ISBLANK({!myVariable_old.UNITY_Current_PO__c})),
 OR(
@@ -873,7 +873,7 @@ OR(
             <name>originalFormula</name>
             <value>
                 <stringValue>AND(
-NOT([WorkOrder].RecordType.Name = &quot;Preventative Maintenance&quot;),
+NOT([WorkOrder].RecordType.Name == &quot;Preventative Maintenance&quot;),
 ISPICKVAL([WorkOrder].UNITY_Action__c, &quot;Send PO&quot;),
 NOT(ISBLANK([WorkOrder].UNITY_Current_PO__c)),
 OR(
@@ -897,7 +897,7 @@ IsBlank([WorkOrder].UNITY_Customer_Specific_Signature_forms__c)
         <name>formula_myRule_7</name>
         <dataType>Boolean</dataType>
         <expression>AND(
-NOT({!myVariable_current.RecordType.Name} = &quot;Preventative Maintenance&quot;),
+NOT({!myVariable_current.RecordType.Name} == &quot;Preventative Maintenance&quot;),
 ISPICKVAL({!myVariable_current.UNITY_Action__c}, &quot;Send PO&quot;),
 NOT(ISBLANK({!myVariable_current.UNITY_Current_PO__c})),
 OR(
@@ -922,7 +922,7 @@ IsBlank({!myVariable_current.UNITY_Customer_Specific_Signature_forms__c})
             <name>originalFormula</name>
             <value>
                 <stringValue>AND(
-NOT([WorkOrder].RecordType.Name = &quot;Preventative Maintenance&quot;),
+NOT([WorkOrder].RecordType.Name == &quot;Preventative Maintenance&quot;),
 ISPICKVAL([WorkOrder].UNITY_Action__c, &quot;Send PO&quot;),
 NOT(ISBLANK([WorkOrder].UNITY_Current_PO__c)),
 OR(
@@ -946,7 +946,7 @@ IsBlank([WorkOrder].UNITY_Customer_Specific_Signature_forms__c)
         <name>formula_myRule_7_pmetrule</name>
         <dataType>Boolean</dataType>
         <expression>AND(
-NOT({!myVariable_old.RecordType.Name} = &quot;Preventative Maintenance&quot;),
+NOT({!myVariable_old.RecordType.Name} == &quot;Preventative Maintenance&quot;),
 ISPICKVAL({!myVariable_old.UNITY_Action__c}, &quot;Send PO&quot;),
 NOT(ISBLANK({!myVariable_old.UNITY_Current_PO__c})),
 OR(
@@ -1059,7 +1059,7 @@ IsBlank({!myVariable_old.UNITY_Customer_Specific_Signature_forms__c})
             </processMetadataValues>
             <field>UNITY_Vendor_PO_Sent_Date__c</field>
             <value>
-                <elementReference>formula_11_myRule_10_A1_2799670686</elementReference>
+                <elementReference>formula_11_myRule_10_A1_8732783514</elementReference>
             </value>
         </inputAssignments>
         <object>WorkOrder</object>
@@ -1195,7 +1195,7 @@ IsBlank({!myVariable_old.UNITY_Customer_Specific_Signature_forms__c})
             </processMetadataValues>
             <field>UNITY_Vendor_PO_Sent_Date__c</field>
             <value>
-                <elementReference>formula_14_myRule_13_A1_5092476040</elementReference>
+                <elementReference>formula_14_myRule_13_A1_3648611003</elementReference>
             </value>
         </inputAssignments>
         <object>WorkOrder</object>
@@ -1331,7 +1331,7 @@ IsBlank({!myVariable_old.UNITY_Customer_Specific_Signature_forms__c})
             </processMetadataValues>
             <field>UNITY_Vendor_PO_Sent_Date__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_3159872514</elementReference>
+                <elementReference>formula_2_myRule_1_A1_2173763558</elementReference>
             </value>
         </inputAssignments>
         <object>WorkOrder</object>
@@ -1467,7 +1467,7 @@ IsBlank({!myVariable_old.UNITY_Customer_Specific_Signature_forms__c})
             </processMetadataValues>
             <field>UNITY_Vendor_PO_Sent_Date__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A1_7400637984</elementReference>
+                <elementReference>formula_5_myRule_4_A1_7305059575</elementReference>
             </value>
         </inputAssignments>
         <object>WorkOrder</object>
@@ -1603,7 +1603,7 @@ IsBlank({!myVariable_old.UNITY_Customer_Specific_Signature_forms__c})
             </processMetadataValues>
             <field>UNITY_Vendor_PO_Sent_Date__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A1_2505767249</elementReference>
+                <elementReference>formula_8_myRule_7_A1_2702955667</elementReference>
             </value>
         </inputAssignments>
         <object>WorkOrder</object>

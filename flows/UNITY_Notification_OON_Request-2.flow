@@ -199,7 +199,7 @@
                 <stringValue>CASESAFEID([WorkOrder].Id)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_8313666247</name>
+        <name>formula_2_myRule_1_A1_3409052471</name>
         <dataType>String</dataType>
         <expression>CASESAFEID({!myVariable_current.Id})</expression>
     </formulas>
@@ -210,7 +210,7 @@
                 <stringValue>IF(NOT(ISBLANK($User.ManagerId)),CASESAFEID($User.ManagerId),&apos;&apos;)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_2373608066</name>
+        <name>formula_3_myRule_1_A1_6307330148</name>
         <dataType>String</dataType>
         <expression>IF(NOT(ISBLANK($User.ManagerId)),CASESAFEID($User.ManagerId),&apos;&apos;)</expression>
     </formulas>
@@ -303,7 +303,7 @@
             </processMetadataValues>
             <field>Record_Id__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_8313666247</elementReference>
+                <elementReference>formula_2_myRule_1_A1_3409052471</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -393,7 +393,7 @@
             </processMetadataValues>
             <field>Subscriber__c</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_2373608066</elementReference>
+                <elementReference>formula_3_myRule_1_A1_6307330148</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
