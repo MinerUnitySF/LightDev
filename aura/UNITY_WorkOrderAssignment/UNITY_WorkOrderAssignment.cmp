@@ -17,8 +17,8 @@
       <div class="slds-grid slds-grid--align-end">          
            <button class="slds-button slds-button--brand slds-button--destructive updateWO" onclick="{!c.updateSelected}">Update Work Orders</button>         
       </div>
-   </div>
-    <!-- testing commit -->
+   </div> 
+	<!--  Neli added testing commit -->
     <table class="slds-table slds-table--bordered slds-table--cell-buffer">
       <thead>
         <tr class="slds-text-title--caps slds-is-sortable">
