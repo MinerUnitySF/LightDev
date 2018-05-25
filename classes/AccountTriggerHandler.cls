@@ -1,4 +1,4 @@
-/**This class serves as handler for account triggers Mary
+/**This class serves as handler for account triggers 
 ** @programer: Izay Ramos-Irizarry
 ** @version: 1.0
 ** @date: 2/19/2016
