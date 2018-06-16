@@ -13,7 +13,8 @@ public class UNITYPM_AssetsWorkPlanPDFCntrlExt {
      public String WarningMessage {get;set;}
      public String siteContactPhone {get;set;}
      public String workOrderNumber {get;set;}
-     
+     public String workOrderID {get;set;}
+      
      public  List<string> wlYesNoList  {get;  set;}
      public  List<string> wlPassFailList  {get;  set;}
      public List<Asset> assets {get;set;}
@@ -48,6 +49,7 @@ public class UNITYPM_AssetsWorkPlanPDFCntrlExt {
              woCreatedDate = wo.CreatedDate;
              siteContactPhone = wo.UNITY_Site_Contact_Phone__c;
              workOrderNumber = wo.WorkOrderNumber;
+             workOrderID = wo.ID;
              
              //cerate map of work plan ID and List of assets associated with work plan
             Set<Id> aIds = new Set<Id>();

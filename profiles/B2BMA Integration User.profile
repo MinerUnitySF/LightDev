@@ -677,6 +677,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>UNITYPM_PMScheduleCntrl</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>UNITYPM_PopulateJunctionObjFromWOLI</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -6044,6 +6048,46 @@
         <readable>false</readable>
     </fieldPermissions>
     <loginIpRanges>
+        <description>Pardot Public Cloud</description>
+        <endAddress>18.232.248.67</endAddress>
+        <startAddress>18.232.248.67</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <description>Pardot Public Cloud</description>
+        <endAddress>34.208.83.105</endAddress>
+        <startAddress>34.208.83.105</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <description>Pardot Public Cloud</description>
+        <endAddress>34.218.141.17</endAddress>
+        <startAddress>34.218.141.17</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <description>Pardot Public Cloud</description>
+        <endAddress>35.164.165.226</endAddress>
+        <startAddress>35.164.165.226</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <description>Pardot Public Cloud</description>
+        <endAddress>35.164.251.63</endAddress>
+        <startAddress>35.164.251.63</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <description>Pardot Public Cloud</description>
+        <endAddress>35.172.247.215</endAddress>
+        <startAddress>35.172.247.215</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <description>Pardot Public Cloud</description>
+        <endAddress>35.174.85.220</endAddress>
+        <startAddress>35.174.85.220</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <description>Pardot Public Cloud</description>
+        <endAddress>52.21.28.50</endAddress>
+        <startAddress>52.21.28.50</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
         <endAddress>136.147.96.23</endAddress>
         <startAddress>136.147.96.20</startAddress>
     </loginIpRanges>
@@ -6418,6 +6462,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>UNITYPM_NewOrderItem</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>UNITYPM_PMSchedule</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>

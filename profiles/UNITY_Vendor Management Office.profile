@@ -677,6 +677,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>UNITYPM_PMScheduleCntrl</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>UNITYPM_PopulateJunctionObjFromWOLI</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -6590,6 +6594,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>UNITYPM_NewOrderItem</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>UNITYPM_PMSchedule</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
